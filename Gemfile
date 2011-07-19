@@ -29,6 +29,9 @@ gem 'sqlite3'
 # group :development, :test do
 #   gem 'webrat'
 # end
+gem "system_timer"
+gem "mongoid", "~> 2.0"
+gem "bson_ext", "~> 1.3"
 gem "jquery-rails"
 gem "omniauth", "~> 0.2.0"
 gem "redgreen"
