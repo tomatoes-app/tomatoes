@@ -34,5 +34,8 @@ gem "mongoid", "~> 2.0"
 gem "bson_ext", "~> 1.3"
 gem "jquery-rails"
 gem "omniauth", "~> 0.2.0"
-gem "redgreen"
-gem "heroku"
+
+group :development, :test do
+  gem "redgreen"
+  gem "mocha"
+end
