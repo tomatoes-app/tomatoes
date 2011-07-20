@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Started at:</b>
+  <%= @tomato.created_at - Tomato::DURATION %>
+</p>
+
+<p>
+  <b>Tags:</b>
+  <%= @tomato.tags.join(', ') %>
+</p>
+
+
+<%= link_to 'Edit', edit_tomato_path(@tomato) %> |
+<%= link_to 'Back', tomatoes_path %>

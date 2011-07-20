@@ -1,7 +1,12 @@
 TomatoesApp::Application.routes.draw do
-  get "welcome/index"
+  resources :tomatoes
 
-  match '/auth/:provider/callback', :to => 'sessions#callback'
+  resources :users, :only => [:show, :edit, :update, :destroy]
+  
+  match '/auth/:provider/callback' => 'sessions#create'
+  match '/signin' => 'sessions#new', :as => :signin
+  match '/signout' => 'sessions#destroy', :as => :signout
+  match '/auth/failure' => 'sessions#failure'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
