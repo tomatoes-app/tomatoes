@@ -43,5 +43,8 @@ module TomatoesApp
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
+    
+    # disable mongoid model preloading (see http://mongoid.org/docs/rails/railties.html)
+    config.mongoid.preload_models = false
   end
 end
