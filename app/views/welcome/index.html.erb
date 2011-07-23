@@ -1,2 +1,27 @@
-<h1>Welcome#index</h1>
-<p>Find me in app/views/welcome/index.html.erb</p>
+<p>Hi...</p>
+
+<p id="timer"></p>
+
+<div id="new_tomato_form">
+  <%= render 'tomatoes/form' %>
+</div>
+
+<table>
+  <tr>
+    <th>Started at</th>
+    <th>Tags</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @tomatoes.each do |tomato| %>
+  <tr>
+    <td><%= tomato.created_at - Tomato::DURATION %></td>
+    <td><%= tomato.tags.join(', ') %></td>
+    <td><%= link_to 'Show', tomato %></td>
+    <td><%= link_to 'Edit', edit_tomato_path(tomato) %></td>
+    <td><%= link_to 'Destroy', tomato, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
