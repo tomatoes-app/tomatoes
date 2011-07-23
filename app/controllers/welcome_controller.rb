@@ -1,6 +1,8 @@
 class WelcomeController < ApplicationController
   def index
-    @tomato = current_user.tomatoes.build
-    @tomatoes = current_user.tomatoes.all
+    if current_user
+      @tomato = current_user.tomatoes.build
+      @tomatoes = current_user.tomatoes.all
+    end
   end
 end
