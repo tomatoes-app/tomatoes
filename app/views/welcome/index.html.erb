@@ -9,24 +9,13 @@
     <%= render 'tomatoes/form' %>
   </div>
 
-  <% @tomatoes.group_by {|t| t.created_at.to_s[0..9]}.each do |day, tomatoes| %>
+  <% @tomatoes.each do |day, tomatoes| %>
     <h3><%= day %></h3>
     <table>
-      <tr>
-        <th>Started at</th>
-        <th>Tags</th>
-        <th></th>
-        <th></th>
-        <th></th>
-        </tr>
       <% tomatoes.each do |tomato| %>
-      
         <tr>
-          <td><%= tomato.created_at - Tomato::DURATION %></td>
+          <td><%= link_to tomato_duration(tomato), tomato %></td>
           <td><%= tomato.tags.join(', ') %></td>
-          <td><%= link_to 'Show', tomato %></td>
-          <td><%= link_to 'Edit', edit_tomato_path(tomato) %></td>
-          <td><%= link_to 'Destroy', tomato, :confirm => 'Are you sure?', :method => :delete %></td>
         </tr>
       <% end %>
     </table>
