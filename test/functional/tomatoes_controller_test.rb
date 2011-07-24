@@ -39,7 +39,7 @@ class TomatoesControllerTest < ActionController::TestCase
       post :create, :tomato => @tomato.attributes
     end
 
-    assert_redirected_to tomato_path(assigns(:tomato))
+    assert_redirected_to root_path
   end
 
   test "should show tomato" do
