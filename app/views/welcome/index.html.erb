@@ -1,31 +1,36 @@
 <p>Hi...</p>
 
 <% if current_user %>
-  <p id="timer"></p>
+  <%= link_to_function "Start", "start(0.1)", :id => "start" %>
+  <%= link_to_function "Squash", "squash()", :id => "squash", :style => "display: none" %>
+  <p id="timer" style="display: none"></p>
 
-  <div id="new_tomato_form">
+  <div id="new_tomato_form" style="display: none">
     <%= render 'tomatoes/form' %>
   </div>
 
-  <table>
-    <tr>
-      <th>Started at</th>
-      <th>Tags</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-
-  <% @tomatoes.each do |tomato| %>
-    <tr>
-      <td><%= tomato.created_at - Tomato::DURATION %></td>
-      <td><%= tomato.tags.join(', ') %></td>
-      <td><%= link_to 'Show', tomato %></td>
-      <td><%= link_to 'Edit', edit_tomato_path(tomato) %></td>
-      <td><%= link_to 'Destroy', tomato, :confirm => 'Are you sure?', :method => :delete %></td>
-    </tr>
+  <% @tomatoes.group_by {|t| t.created_at.to_s[0..9]}.each do |day, tomatoes| %>
+    <h3><%= day %></h3>
+    <table>
+      <tr>
+        <th>Started at</th>
+        <th>Tags</th>
+        <th></th>
+        <th></th>
+        <th></th>
+        </tr>
+      <% tomatoes.each do |tomato| %>
+      
+        <tr>
+          <td><%= tomato.created_at - Tomato::DURATION %></td>
+          <td><%= tomato.tags.join(', ') %></td>
+          <td><%= link_to 'Show', tomato %></td>
+          <td><%= link_to 'Edit', edit_tomato_path(tomato) %></td>
+          <td><%= link_to 'Destroy', tomato, :confirm => 'Are you sure?', :method => :delete %></td>
+        </tr>
+      <% end %>
+    </table>
   <% end %>
-  </table>
 <% else %>
   <%= link_to "sign in", signin_path %>
 <% end %>
