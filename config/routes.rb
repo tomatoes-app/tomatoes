@@ -1,5 +1,12 @@
 TomatoesApp::Application.routes.draw do
-  match '/auth/:provider/callback', :to => 'sessions#callback'
+  resources :tomatoes
+
+  resources :users, :only => [:show, :edit, :update, :destroy]
+  
+  match '/auth/:provider/callback' => 'sessions#create'
+  match '/signin' => 'sessions#new', :as => :signin
+  match '/signout' => 'sessions#destroy', :as => :signout
+  match '/auth/failure' => 'sessions#failure'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -50,7 +57,7 @@ TomatoesApp::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => "welcome#index"
+  root :to => "welcome#index"
 
   # See how all your routes lay out with "rake routes"
 
