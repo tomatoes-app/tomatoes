@@ -10,26 +10,40 @@
   <%= csrf_meta_tag %>
 </head>
 <body>
-  <header>
-    <% if current_user %>
-      <%= link_to current_user.name, current_user %> <%= link_to "sign out", signout_path %>
-    <% else %>
-      <%= link_to "sign in", signin_path %>
-    <% end %>
+  <div id="container">
+    <header>
+      <div class="block">
+        <% if current_user %>
+          <div class="left">
+            <%= user_avatar(current_user) %>
+            <%= link_to current_user.name, current_user %>
+          </div>
+          <div class="right">
+            <%= link_to "Sign out", signout_path %>
+          </div>
+        <% else %>
+          <%= link_to "Sign in with GitHub", signin_path %>
+        <% end %>
+      </div>
   
-    <h1><%= link_to "Tomatoes", root_path %></h1>
+      <h1><%= link_to "Tomatoes", root_path %></h1>
+      <h2>Pomodoro technique® time tracker</h2>
     
-    <div id="flash">
-      <% flash.each do |key, msg| %>
-        <div class="<%= key %>"><p><%= msg %></p></div>
-      <% end %>
-    </div>
-  </header>
+      <div id="flash">
+        <% flash.each do |key, msg| %>
+          <div class="<%= key %>"><p><%= msg %></p></div>
+        <% end %>
+      </div>
+    </header>
 
-  <%= yield %>
+    <%= yield %>
 
-  <footer>
-    <%= link_to "@johnnyaboh", "http://twitter.com/johnnyaboh" %>
-  </footer>
+    <footer>
+      <p>
+        Follow updates <%= link_to "@johnnyaboh", "http://twitter.com/johnnyaboh" %><br/>
+        Tomatoes - <%= link_to "version #{TomatoesApp::VERSION}", "#{TomatoesApp::REPO}/tree/#{TomatoesApp::VERSION}" %>
+      </p>
+    </footer>
+  </div>
 </body>
 </html>

@@ -1,5 +1,52 @@
 body {}
 
+a, a:visited {
+	color: #000;
+	text-decoration: none;
+}
+a:hover { text-decoration: underline; }
+
+table {
+	border-top: 1px solid #ccc;
+	border-spacing: 0;
+}
+
+table td,
+table th {
+	padding: 5px 30px 5px 0;
+	border-bottom: 1px solid #ccc;
+}
+
+.right {
+	float: right;
+}
+
+.left {
+	float: left;
+}
+
+.block {
+	overflow: hidden;
+}
+
+.notice {
+  color: #090;
+}
+
+#container {
+	width: 900px;
+	margin: 0 auto;
+}
+
+#sign_in {
+	padding-top: 10px;
+	font-size: 30px;
+}
+
+#timer_container {
+	margin-left: 320px;
+}
+
 #timer {
 	font-size: 72px;
 }

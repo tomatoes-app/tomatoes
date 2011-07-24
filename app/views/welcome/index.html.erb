@@ -1,25 +1,36 @@
-<p>Hi...</p>
+<p>Please put a simple description here</p>
 
-<% if current_user %>
-  <%= link_to_function "Start", "start(0.1)", :id => "start" %>
-  <%= link_to_function "Squash", "squash()", :id => "squash", :style => "display: none" %>
-  <p id="timer" style="display: none"></p>
-
-  <div id="new_tomato_form" style="display: none">
-    <%= render 'tomatoes/form' %>
+<% unless current_user %>
+  <div id="sign_in" class="block">
+    <div class="left">
+      <%= image_tag("Octocat.png", :width => "32") %>
+    </div>
+    <%= link_to "Sign in with GitHub", signin_path %>
   </div>
-
-  <% @tomatoes.each do |day, tomatoes| %>
-    <h3><%= day %></h3>
-    <table>
-      <% tomatoes.each do |tomato| %>
-        <tr>
-          <td><%= link_to tomato_duration(tomato), tomato %></td>
-          <td><%= tomato.tags.join(', ') %></td>
-        </tr>
-      <% end %>
-    </table>
-  <% end %>
 <% else %>
-  <%= link_to "sign in", signin_path %>
+  <div class="block">
+    <div class="left">
+      <% @tomatoes.each do |day, tomatoes| %>
+        <h3><%= day %></h3>
+        <table>
+          <% tomatoes.each do |tomato| %>
+            <tr>
+              <td><%= link_to tomato_duration(tomato), tomato %></td>
+              <td><%= tomato.tags.join(', ') %></td>
+            </tr>
+          <% end %>
+        </table>
+      <% end %>
+    </div>
+    
+    <div id="timer_container" class="left">
+      <%= link_to_function "Start", "start(0.1)", :id => "start" %>
+      <%= link_to_function "Squash", "squash()", :id => "squash", :style => "display: none" %>
+      <p id="timer" style="display: none"></p>
+
+      <div id="new_tomato_form" style="display: none">
+        <%= render 'tomatoes/form' %>
+      </div>
+    </div>
+  </div>
 <% end %>

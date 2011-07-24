@@ -13,6 +13,7 @@ Bundler.require(:default, Rails.env) if defined?(Bundler)
 
 module TomatoesApp
   VERSION = '0.1.1'
+  REPO = 'https://github.com/potomak/tomatoes'
   
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
