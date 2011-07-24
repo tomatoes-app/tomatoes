@@ -5,7 +5,8 @@ class User
   field :login, :type => String
   field :name, :type => String
   field :email, :type => String
-  attr_accessible :provider, :uid, :login, :name, :email
+  field :gravatar_id, :type => String
+  attr_accessible :provider, :uid, :login, :name, :email, :gravatar_id
   
   has_many :tomatoes
   
@@ -22,6 +23,7 @@ class User
         if auth['extra']['user_hash']
           user.name = auth['extra']['user_hash']['name'] if auth['extra']['user_hash']['name'] # Facebook
           user.email = auth['extra']['user_hash']['email'] if auth['extra']['user_hash']['email'] # Facebook
+          user.gravatar_id = auth['extra']['user_hash']['gravatar_id'] if auth['extra']['user_hash']['gravatar_id'] # GitHub
         end
       end
     rescue Exception
