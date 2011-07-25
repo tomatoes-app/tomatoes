@@ -10,12 +10,6 @@ class SessionsController < ApplicationController
     
     logger.debug "auth hash: #{auth.inspect}"
     
-    # if !user.email
-    #   redirect_to edit_user_path(user), :alert => "Please enter your email address."
-    # else
-    #   redirect_to root_url, :notice => 'Signed in!'
-    # end
-    
     redirect_to root_url, :notice => 'Signed in!'
   end
 
