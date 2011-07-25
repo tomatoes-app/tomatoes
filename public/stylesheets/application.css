@@ -160,7 +160,7 @@ a.button:hover {
 }
 
 #index {
-	padding-top: 30px;
+	padding: 30px 0;
 }
 
 #index h3 {
@@ -189,7 +189,7 @@ td.tomato_duration {
 
 a#start {
 	font-size: 54px;
-	margin-top: 20px;
+	margin: 20px 0;
 }
 
 a#squash {}
