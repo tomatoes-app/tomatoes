@@ -2,10 +2,10 @@
 
 <% unless current_user %>
   <div id="sign_in" class="block">
-    <div class="left">
+    <% link_to signin_path, :class => "button" do %>
       <%= image_tag("Octocat.png", :width => "32") %>
-    </div>
-    <%= link_to "Sign in with GitHub", signin_path %>
+      Sign in with GitHub
+    <% end %>
   </div>
 <% else %>
   <div id="index" class="block">

@@ -108,8 +108,14 @@ a.button:hover {
 }
 
 #sign_in {
-	padding-top: 10px;
+	margin: 50px;
+	text-align: center;
 	font-size: 30px;
+}
+
+#sign_in img {
+	margin-bottom: -6px;
+	margin-right: 6px;
 }
 
 #index {
