@@ -1,10 +1,10 @@
-// Sound Manager setup
-
+// sound manager setup
 soundManager.url = '/javascripts/sm/swf/';
 soundManager.flashVersion = 9; // optional: shiny features (default = 8)
 soundManager.useFlashBlock = false; // optionally, enable when you're ready to dive in
 soundManager.useHTML5Audio = true;
 
+// sound manager initializing sounds
 soundManager.onready(function() {
   if (soundManager.supported()) {
     // SM2 is ready to go!
@@ -22,7 +22,7 @@ soundManager.onready(function() {
   }
 });
 
-var timerInterval;
+var timerInterval = null;
 var originalTitle;
 
 function show(ids) {
@@ -98,6 +98,7 @@ function start(mins) {
     stateCounting(timer);
     if(timer <= 0) {
       clearInterval(timerInterval);
+      timerInterval = null;
       soundManager.play('ringing');
       stateNewForm();
     }
@@ -109,6 +110,7 @@ function squash() {
   
   if(confirm("Sure?")) {
     clearInterval(timerInterval);
+    timerInterval = null;
     soundManager.play('squash');
     stateStop();
   }
@@ -116,4 +118,10 @@ function squash() {
 
 $(document).ready(function() {
   
+});
+
+$(window).bind('beforeunload', function() {
+  if(timerInterval != null) {
+    return "You're running a pomodoro."
+  }
 });
