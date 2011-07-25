@@ -1,6 +1,5 @@
-<p>Please put a simple description here</p>
-
 <% unless current_user %>
+  <p>Sign in with your GitHub account and start tracking your pomodoros.</p>
   <div id="sign_in" class="block">
     <% link_to signin_path, :class => "button" do %>
       <%= image_tag("Octocat.png", :width => "32") %>
