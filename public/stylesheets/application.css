@@ -1,3 +1,12 @@
+/* TEST FULL BACKGROUND
+html {
+	background: url(/images/bg_01.jpg) no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+} */
+
 body {
 	font-size: 13px;
 	color: #444;
