@@ -8,6 +8,10 @@
   <%= stylesheet_link_tag :all %>
   <%= javascript_include_tag :defaults, 'sm/script/soundmanager2-nodebug-jsmin.js' %>
   <%= csrf_meta_tag %>
+  <%= javascript_tag do %>
+    var tomatoDuration = <%= Tomato::DURATION/60 %>;
+    var tomatoBreakDuration = <%= Tomato::BREAK_DURATION/60 %>;
+  <% end %>
 </head>
 <body>
   <div id="container">
@@ -28,12 +32,10 @@
       </div>
   
       <h1><%= link_to "Tomatoes", root_path %></h1>
-      <h2>Pomodoro technique® time tracker</h2>
-    
+      <h2>Pomodoro technique<sup>®</sup> time tracker</h2>
+      
       <div id="flash">
-        <% flash.each do |key, msg| %>
-          <div class="<%= key %>"><p><%= msg %></p></div>
-        <% end %>
+        <%= render :partial => 'shared/flash', :locals => {:flash => flash} %>
       </div>
     </header>
 

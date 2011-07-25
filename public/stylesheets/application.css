@@ -58,7 +58,7 @@ label {
 	width: 120px;
 }
 
-input[type=text] {
+input[type=text], select {
 	font-family: 'Varela Round', sans-serif;
 	margin: 0;
 	padding: 3px;
@@ -90,6 +90,10 @@ footer {}
 
 .notice {
   color: #090;
+}
+
+.alert {
+  color: #f00;
 }
 
 .button {
@@ -180,6 +184,10 @@ a.button:hover {
 	font-size: 10px;
 	width: 400px;
 	margin-bottom: 50px;
+}
+
+tr.highlight {
+	background-color: #dfd;
 }
 
 td.tomato_duration {

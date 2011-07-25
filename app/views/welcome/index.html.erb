@@ -9,26 +9,16 @@
 <% else %>
   <div id="index" class="block">
     <div id="timer_container" class="left">
-      <%= link_to_function "Start", "start(#{Tomato::DURATION/60})", :id => "start", :class => "button" %>
+      <%= link_to "Start", "#", :id => "start", :class => "button" %>
       <p id="timer" style="display: none"></p>
-      <%= link_to_function "Squash", "squash()", :id => "squash", :class => "button", :style => "display: none" %>
+      <%= link_to "Squash", "#", :id => "squash", :class => "button", :style => "display: none" %>
       <div id="new_tomato_form" style="display: none">
-        <%= render 'tomatoes/form' %>
+        <%= render 'tomato_form' %>
       </div>
     </div>
     
     <div id="list_container" class="left">
-      <% @tomatoes.each do |day, tomatoes| %>
-        <h3><%= relative_day(day) %></h3>
-        <table>
-          <% tomatoes.each do |tomato| %>
-            <tr>
-              <td class="tomato_duration"><%= link_to tomato_duration(tomato), tomato %></td>
-              <td><%= tomato.tags.join(', ') %></td>
-            </tr>
-          <% end %>
-        </table>
-      <% end %>
+      <%= render :partial => 'tomatoes_list', :locals => {:high => nil} %>
     </div>
   </div>
 <% end %>
