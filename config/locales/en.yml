@@ -3,3 +3,7 @@
 
 en:
   hello: "Hello world"
+  helpers:
+    label:
+      tomato:
+        tag_list: "Tag list (comma separated)"

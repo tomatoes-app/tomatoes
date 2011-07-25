@@ -2,34 +2,49 @@
 <html>
 <head>
   <title>Tomatoes</title>
-  <meta content='Simple pomodoro technique tracking tool. Track your time using 25 minutes slots called "pomodoros" load it to your Freckle account.' name='description' />
+  <meta content='Simple pomodoro technique tracking tool. Track your time using 25 minutes slots called "pomodoros" and load them to your Freckle account.' name='description' />
   <meta content='Tomatoes' name='title' />
-  <link href='http://fonts.googleapis.com/css?family=Varela+Round&v2' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Varela+Round|Leckerli+One&v2' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag :all %>
-  <%= javascript_include_tag :defaults %>
+  <%= javascript_include_tag :defaults, 'sm/script/soundmanager2-nodebug-jsmin.js' %>
   <%= csrf_meta_tag %>
 </head>
 <body>
-  <header>
-    <% if current_user %>
-      <%= link_to current_user.name, current_user %> <%= link_to "sign out", signout_path %>
-    <% else %>
-      <%= link_to "sign in", signin_path %>
-    <% end %>
+  <div id="container">
+    <header>
+      <div class="block">
+        <% if current_user %>
+          <div class="left user">
+            <div class="left avatar">
+              <%= user_avatar(current_user) %>
+              <div class="overlay"></div>
+            </div>
+            <%= link_to current_user.name, current_user %>
+          </div>
+          <div class="right"><%= link_to "Sign out", signout_path %></div>
+        <% else %>
+          <div class="right"><%= link_to "Sign in with GitHub", signin_path %></div>
+        <% end %>
+      </div>
   
-    <h1><%= link_to "Tomatoes", root_path %></h1>
+      <h1><%= link_to "Tomatoes", root_path %></h1>
+      <h2>Pomodoro technique® time tracker</h2>
     
-    <div id="flash">
-      <% flash.each do |key, msg| %>
-        <div class="<%= key %>"><p><%= msg %></p></div>
-      <% end %>
-    </div>
-  </header>
+      <div id="flash">
+        <% flash.each do |key, msg| %>
+          <div class="<%= key %>"><p><%= msg %></p></div>
+        <% end %>
+      </div>
+    </header>
 
-  <%= yield %>
+    <%= yield %>
 
-  <footer>
-    <%= link_to "@johnnyaboh", "http://twitter.com/johnnyaboh" %>
-  </footer>
+    <footer>
+      <p>
+        Follow updates <%= link_to "@johnnyaboh", "http://twitter.com/johnnyaboh" %><br/>
+        <%= link_to "Tomatoes", TomatoesApp::REPO %> - <%= link_to "version #{TomatoesApp::VERSION}", "#{TomatoesApp::REPO}/tree/#{TomatoesApp::VERSION}" %>
+      </p>
+    </footer>
+  </div>
 </body>
 </html>

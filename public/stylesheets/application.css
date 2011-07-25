@@ -1,5 +1,205 @@
-body {}
+body {
+	font-size: 13px;
+	color: #444;
+}
+
+body, p, ol, ul, td {
+	font-family: 'Varela Round', sans-serif;
+}
+
+h1 {
+	font-size: 48px;
+	font-family: 'Leckerli One', cursive;
+	margin: 10px 0;
+}
+
+h1 a:hover {
+	text-decoration: none;
+}
+
+h1, h2 {
+	font-weight: normal;
+}
+
+a, a:visited {
+	color: #000;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+table {
+	margin-bottom: 20px;
+	width: 100%;
+	border-top: 1px solid #ccc;
+	border-spacing: 0;
+}
+
+table td,
+table th {
+	padding: 5px 10px 5px 0;
+	border-bottom: 1px solid #ccc;
+}
+
+label {
+	display: block;
+	float: left;
+	width: 120px;
+}
+
+input[type=text] {
+	font-family: 'Varela Round', sans-serif;
+	margin: 0;
+	padding: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	border: 1px solid #dcdcdc;
+	font-size: 20px;
+}
+
+input[type=submit] {
+	font-family: 'Varela Round', sans-serif;
+	font-size: 13px;
+}
+
+footer {}
+
+.right {
+	float: right;
+}
+
+.left {
+	float: left;
+}
+
+.block {
+	overflow: hidden;
+}
+
+.notice {
+  color: #090;
+}
+
+.button {
+	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	box-shadow:inset 0px 1px 0px 0px #ffffff;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ededed), color-stop(1, #dfdfdf) );
+	background:-moz-linear-gradient( center top, #ededed 5%, #dfdfdf 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#dfdfdf');
+	background-color:#ededed;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
+	border:1px solid #dcdcdc;
+	display:inline-block;
+	color:#777777;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:1px 1px 0px #ffffff;
+}.button:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #dfdfdf), color-stop(1, #ededed) );
+	background:-moz-linear-gradient( center top, #dfdfdf 5%, #ededed 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#dfdfdf', endColorstr='#ededed');
+	background-color:#dfdfdf;
+}.button:active {
+	position:relative;
+	top:1px;
+}
+
+.button.big {
+	font-family:arial;
+	font-size:15px;
+	font-weight:bold;
+}
+
+a.button:hover {
+	text-decoration: none;
+}
+
+.user {
+	width: 200px;
+}
+
+.avatar {
+	position: relative;
+	width: 24px;
+	height: 24px;
+	margin-right: 5px;
+}
+
+.avatar .overlay {
+	background-image: url(/images/rounded-avatar-24.png);
+	position: absolute;
+	top: 0;
+	width: 24px;
+	height: 24px;
+}
+
+#container {
+	width: 900px;
+	margin: 0 auto;
+}
+
+#content {
+	padding-bottom: 20px;
+}
+
+#sign_in {
+	margin: 50px;
+	text-align: center;
+	font-size: 30px;
+}
+
+#sign_in img {
+	margin-bottom: -6px;
+	margin-right: 6px;
+}
+
+#index {
+	padding-top: 30px;
+}
+
+#index h3 {
+	margin-top: 0;
+}
+
+#list_container {
+	font-size: 10px;
+	width: 400px;
+	margin-bottom: 50px;
+}
+
+td.tomato_duration {
+	width: 110px;
+}
+
+#timer_container {
+	width: 500px;
+	text-align: center;
+}
 
 #timer {
-	font-size: 72px;
+	font-size: 128px;
+	margin: 20px 0 40px;
+}
+
+a#start {
+	font-size: 54px;
+	margin-top: 20px;
+}
+
+a#squash {}
+
+#new_tomato_form {
+	text-align: left;
+}
+
+#new_tomato_form label {
+	display: block;
+	float: none;
+	width: auto;
 }

@@ -1,36 +1,35 @@
-<p>Hi...</p>
-
-<% if current_user %>
-  <%= link_to_function "Start", "start(0.1)", :id => "start" %>
-  <%= link_to_function "Squash", "squash()", :id => "squash", :style => "display: none" %>
-  <p id="timer" style="display: none"></p>
-
-  <div id="new_tomato_form" style="display: none">
-    <%= render 'tomatoes/form' %>
+<% unless current_user %>
+  <p>Sign in with your GitHub account and start tracking your pomodoros.</p>
+  <div id="sign_in" class="block">
+    <% link_to signin_path, :class => "button" do %>
+      <%= image_tag("Octocat.png", :width => "32") %>
+      Sign in with GitHub
+    <% end %>
   </div>
-
-  <% @tomatoes.group_by {|t| t.created_at.to_s[0..9]}.each do |day, tomatoes| %>
-    <h3><%= day %></h3>
-    <table>
-      <tr>
-        <th>Started at</th>
-        <th>Tags</th>
-        <th></th>
-        <th></th>
-        <th></th>
-        </tr>
-      <% tomatoes.each do |tomato| %>
-      
-        <tr>
-          <td><%= tomato.created_at - Tomato::DURATION %></td>
-          <td><%= tomato.tags.join(', ') %></td>
-          <td><%= link_to 'Show', tomato %></td>
-          <td><%= link_to 'Edit', edit_tomato_path(tomato) %></td>
-          <td><%= link_to 'Destroy', tomato, :confirm => 'Are you sure?', :method => :delete %></td>
-        </tr>
-      <% end %>
-    </table>
-  <% end %>
 <% else %>
-  <%= link_to "sign in", signin_path %>
+  <div id="index" class="block">
+    <div id="timer_container" class="left">
+      <!-- <%= link_to_function "Start", "start(#{Tomato::DURATION/60})", :id => "start", :class => "button" %> -->
+      <%= link_to_function "Start", "start(0.05)", :id => "start", :class => "button" %>
+      <p id="timer" style="display: none"></p>
+      <%= link_to_function "Squash", "squash()", :id => "squash", :class => "button", :style => "display: none" %>
+      <div id="new_tomato_form" style="display: none">
+        <%= render 'tomatoes/form' %>
+      </div>
+    </div>
+    
+    <div id="list_container" class="left">
+      <% @tomatoes.each do |day, tomatoes| %>
+        <h3><%= relative_day(day) %></h3>
+        <table>
+          <% tomatoes.each do |tomato| %>
+            <tr>
+              <td class="tomato_duration"><%= link_to tomato_duration(tomato), tomato %></td>
+              <td><%= tomato.tags.join(', ') %></td>
+            </tr>
+          <% end %>
+        </table>
+      <% end %>
+    </div>
+  </div>
 <% end %>

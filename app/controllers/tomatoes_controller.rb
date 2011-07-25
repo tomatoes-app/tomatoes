@@ -46,7 +46,7 @@ class TomatoesController < ApplicationController
 
     respond_to do |format|
       if @tomato.save
-        format.html { redirect_to(root_url, :notice => 'Tomato was successfully created.') }
+        format.html { redirect_to(root_url, :notice => 'Tomato created, now it\'s time for a break.') }
         format.xml  { render :xml => @tomato, :status => :created, :location => @tomato }
       else
         format.html { render :action => "new" }
