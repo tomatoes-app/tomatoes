@@ -33,12 +33,17 @@ GEM
     bson (1.3.1)
     bson_ext (1.3.1)
     builder (2.1.2)
+    crack (0.1.8)
     erubis (2.6.6)
       abstract (>= 1.0.0)
     faraday (0.6.1)
       addressable (~> 2.2.4)
       multipart-post (~> 1.1.0)
       rack (>= 1.1.0, < 2)
+    httparty (0.6.1)
+      crack (= 0.1.8)
+    hubruby (0.0.4)
+      httparty (= 0.6.1)
     i18n (0.5.0)
     jquery-rails (1.0.12)
       railties (~> 3.0)
@@ -143,6 +148,7 @@ PLATFORMS
 
 DEPENDENCIES
   bson_ext (~> 1.3)
+  hubruby
   jquery-rails
   mocha
   mongoid (~> 2.0)
