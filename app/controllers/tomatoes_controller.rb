@@ -46,6 +46,15 @@ class TomatoesController < ApplicationController
 
     respond_to do |format|
       if @tomato.save
+        format.js do
+          flash.now[:notice] = 'Pomodoro finished, tomato created, time for a break.'
+          @highlight = @tomato
+          @tomato = current_user.tomatoes.build
+          @tomatoes = current_user.tomatoes.order_by([[:created_at, :desc]]).group_by do |tomato|
+            date = tomato.created_at
+            Time.mktime(date.year, date.month, date.day)
+          end
+        end
         format.html { redirect_to(root_url, :notice => 'Tomato created, now it\'s time for a break.') }
         format.xml  { render :xml => @tomato, :status => :created, :location => @tomato }
       else
