@@ -6,7 +6,8 @@ class User
   field :name, :type => String
   field :email, :type => String
   field :gravatar_id, :type => String
-  attr_accessible :provider, :uid, :login, :name, :email, :gravatar_id
+  field :token, :type => String
+  attr_accessible :provider, :uid, :login, :name, :email, :gravatar_id, :token
   
   has_many :tomatoes
   
@@ -19,6 +20,7 @@ class User
           user.name = auth['user_info']['name'] if auth['user_info']['name'] # Twitter, Google, Yahoo, GitHub
           user.email = auth['user_info']['email'] if auth['user_info']['email'] # Google, Yahoo, GitHub
           user.login = auth['user_info']['nickname'] if auth['user_info']['nickname'] # GitHub
+          user.token = auth['credentials']['token'] if auth['credentials']['token'] # GitHub
         end
         if auth['extra']['user_hash']
           user.name = auth['extra']['user_hash']['name'] if auth['extra']['user_hash']['name'] # Facebook
