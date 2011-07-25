@@ -9,8 +9,7 @@
 <% else %>
   <div id="index" class="block">
     <div id="timer_container" class="left">
-      <!-- <%= link_to_function "Start", "start(#{Tomato::DURATION/60})", :id => "start", :class => "button" %> -->
-      <%= link_to_function "Start", "start(0.05)", :id => "start", :class => "button" %>
+      <%= link_to_function "Start", "start(#{Tomato::DURATION/60})", :id => "start", :class => "button" %>
       <p id="timer" style="display: none"></p>
       <%= link_to_function "Squash", "squash()", :id => "squash", :class => "button", :style => "display: none" %>
       <div id="new_tomato_form" style="display: none">
