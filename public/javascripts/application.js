@@ -1,4 +1,29 @@
+// Sound Manager setup
+
+soundManager.url = '/javascripts/sm/swf/';
+soundManager.flashVersion = 9; // optional: shiny features (default = 8)
+soundManager.useFlashBlock = false; // optionally, enable when you're ready to dive in
+soundManager.useHTML5Audio = true;
+
+soundManager.onready(function() {
+  if (soundManager.supported()) {
+    // SM2 is ready to go!
+    ['ringing', 'squash'].forEach(function(sound) {
+      soundManager.createSound({
+        id: sound,
+        url: 'sounds/' + sound + '.mp3',
+        autoLoad: true,
+        autoPlay: false,
+        volume: 50
+      });
+    });
+  } else {
+    // unsupported/error case
+  }
+});
+
 var timerInterval;
+var originalTitle;
 
 function show(ids) {
   ids.forEach(function(id) {
@@ -30,6 +55,7 @@ function stateStart(timer) {
   console.log("stateStart");
   
   $("#timer").html(secondsToString(timer));
+  originalTitle = document.title;
   
   show(["timer", "squash"]);
   hide(["start"]);
@@ -38,11 +64,15 @@ function stateStart(timer) {
 function stateCounting(timer) {
   console.log("stateCounting");
   
-  $("#timer").html(secondsToString(timer));
+  var timerString = secondsToString(timer);
+  $("#timer").html(timerString);
+  document.title = timerString + " - " + originalTitle;
 }
 
 function stateStop() {
   console.log("stateStop");
+  
+  document.title = originalTitle;
   
   hide(["timer", "squash"]);
   show(["start"]);
@@ -50,6 +80,8 @@ function stateStop() {
 
 function stateNewForm() {
   console.log("stateNewForm");
+  
+  document.title = originalTitle;
   
   hide(["timer", "squash", "start"]);
   show(["new_tomato_form"]);
@@ -66,6 +98,7 @@ function start(mins) {
     stateCounting(timer);
     if(timer <= 0) {
       clearInterval(timerInterval);
+      soundManager.play('ringing');
       stateNewForm();
     }
   }, 1000);
@@ -76,6 +109,7 @@ function squash() {
   
   if(confirm("Sure?")) {
     clearInterval(timerInterval);
+    soundManager.play('squash');
     stateStop();
   }
 }

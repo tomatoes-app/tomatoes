@@ -120,6 +120,25 @@ a.button:hover {
 	text-decoration: none;
 }
 
+.user {
+	width: 200px;
+}
+
+.avatar {
+	position: relative;
+	width: 24px;
+	height: 24px;
+	margin-right: 5px;
+}
+
+.avatar .overlay {
+	background-image: url(/images/rounded-avatar-24.png);
+	position: absolute;
+	top: 0;
+	width: 24px;
+	height: 24px;
+}
+
 #container {
 	width: 900px;
 	margin: 0 auto;
@@ -164,11 +183,13 @@ td.tomato_duration {
 }
 
 #timer {
-	font-size: 72px;
+	font-size: 128px;
+	margin: 20px 0 40px;
 }
 
 a#start {
-	font-size: 24px;
+	font-size: 54px;
+	margin-top: 20px;
 }
 
 a#squash {}
