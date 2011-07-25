@@ -60,8 +60,10 @@ function start(mins) {
 function squash() {
   console.log("squash tomato");
   
-  clearInterval(timerInterval);
-  stateStop();
+  if(confirm("Sure?")) {
+    clearInterval(timerInterval);
+    stateStop();
+  }
 }
 
 $(document).ready(function() {
