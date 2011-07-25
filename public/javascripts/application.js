@@ -12,10 +12,24 @@ function hide(ids) {
   });
 }
 
+function pad(number, length) {
+    var str = '' + number;
+    while (str.length < length) {
+      str = '0' + str;
+    }
+    return str;
+}
+
+function secondsToString(seconds) {
+  minutes = Math.floor(seconds/60);
+  seconds = seconds - minutes*60;
+  return pad(minutes, 2) + ":" + pad(seconds, 2);
+}
+
 function stateStart(timer) {
   console.log("stateStart");
   
-  $("#timer").html(timer);
+  $("#timer").html(secondsToString(timer));
   
   show(["timer", "squash"]);
   hide(["start"]);
@@ -24,7 +38,7 @@ function stateStart(timer) {
 function stateCounting(timer) {
   console.log("stateCounting");
   
-  $("#timer").html(timer);
+  $("#timer").html(secondsToString(timer));
 }
 
 function stateStop() {
