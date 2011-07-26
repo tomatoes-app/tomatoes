@@ -148,6 +148,7 @@ PLATFORMS
 
 DEPENDENCIES
   bson_ext (~> 1.3)
+  faraday
   hubruby
   jquery-rails
   mocha

@@ -34,6 +34,7 @@ gem "bson_ext", "~> 1.3"
 gem "jquery-rails"
 gem "omniauth", "~> 0.2.0"
 gem "hubruby"
+gem "faraday"
 
 group :development, :test do
   gem "system_timer"
