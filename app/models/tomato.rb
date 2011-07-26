@@ -5,14 +5,13 @@ class Tomato
   include Mongoid::Document::Taggable
   include Mongoid::Timestamps
   field :freckle_id, :type => String
-  attr_accessible :freckle_id
+  
+  belongs_to :user
   
   # DURATION = 25*60 # pomodoro default duration in seconds
   DURATION = 3.0
   # BREAK_DURATION = 5*60 # pomodoro default break duration in seconds
   BREAK_DURATION = 3.0
-  
-  belongs_to :user
   
   def to_freckle_entry
     {
