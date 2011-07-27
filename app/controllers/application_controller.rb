@@ -10,10 +10,6 @@ class ApplicationController < ActionController::Base
   private
 
   def set_time_zone
-    # TODO: remove debug code
-    logger.debug "cookies[:timezone].inspect: #{cookies[:timezone].inspect}"
-    logger.debug "-cookies[:timezone].to_i.minutes: #{-cookies[:timezone].to_i.minutes}"
-    
     Time.zone = ActiveSupport::TimeZone[-cookies[:timezone].to_i.minutes]
   end
   
