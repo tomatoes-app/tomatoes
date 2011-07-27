@@ -127,10 +127,6 @@ $(document).ready(function() {
     squash();
     return false;
   });
-  
-  if(!($.cookie('timezone'))) {
-    $.cookie('timezone', (new Date()).getTimezoneOffset());
-  }
 });
 
 $(window).bind('beforeunload', function() {
