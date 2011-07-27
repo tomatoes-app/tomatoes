@@ -1,5 +1,9 @@
 TomatoesApp::Application.routes.draw do
-  resources :tomatoes
+  resources :tomatoes do
+    member do
+      post 'track'
+    end
+  end
 
   resources :users, :only => [:show, :edit, :update, :destroy]
   

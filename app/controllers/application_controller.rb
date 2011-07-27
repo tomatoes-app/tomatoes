@@ -4,8 +4,18 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
   helper_method :user_signed_in?
   helper_method :correct_user?
+  
+  before_filter :set_time_zone
 
   private
+
+  def set_time_zone
+    # TODO: remove debug code
+    logger.debug "cookies[:timezone].inspect: #{cookies[:timezone].inspect}"
+    logger.debug "-cookies[:timezone].to_i.minutes: #{-cookies[:timezone].to_i.minutes}"
+    
+    Time.zone = ActiveSupport::TimeZone[-cookies[:timezone].to_i.minutes]
+  end
   
   def current_user
     begin

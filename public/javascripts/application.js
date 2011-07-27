@@ -1,17 +1,17 @@
-// Sound Manager setup
-
+// sound manager setup
 soundManager.url = '/javascripts/sm/swf/';
 soundManager.flashVersion = 9; // optional: shiny features (default = 8)
 soundManager.useFlashBlock = false; // optionally, enable when you're ready to dive in
 soundManager.useHTML5Audio = true;
 
+// sound manager initializing sounds
 soundManager.onready(function() {
   if (soundManager.supported()) {
     // SM2 is ready to go!
     ['ringing', 'squash'].forEach(function(sound) {
       soundManager.createSound({
         id: sound,
-        url: 'sounds/' + sound + '.mp3',
+        url: '/sounds/' + sound + '.mp3',
         autoLoad: true,
         autoPlay: false,
         volume: 50
@@ -22,7 +22,7 @@ soundManager.onready(function() {
   }
 });
 
-var timerInterval;
+var timerInterval = null;
 var originalTitle;
 
 function show(ids) {
@@ -58,7 +58,7 @@ function stateStart(timer) {
   originalTitle = document.title;
   
   show(["timer", "squash"]);
-  hide(["start"]);
+  hide(["start", "new_tomato_form"]);
 }
 
 function stateCounting(timer) {
@@ -74,6 +74,7 @@ function stateStop() {
   
   document.title = originalTitle;
   
+  $("#flash").html("");
   hide(["timer", "squash"]);
   show(["start"]);
 }
@@ -87,7 +88,7 @@ function stateNewForm() {
   show(["new_tomato_form"]);
 }
 
-function start(mins) {
+function start(mins, callback) {
   console.log("start timer for " + mins + " mins");
   
   var timer = mins*60;
@@ -98,8 +99,9 @@ function start(mins) {
     stateCounting(timer);
     if(timer <= 0) {
       clearInterval(timerInterval);
+      timerInterval = null;
       soundManager.play('ringing');
-      stateNewForm();
+      callback();
     }
   }, 1000);
 }
@@ -109,11 +111,30 @@ function squash() {
   
   if(confirm("Sure?")) {
     clearInterval(timerInterval);
+    timerInterval = null;
     soundManager.play('squash');
     stateStop();
   }
 }
 
 $(document).ready(function() {
+  $("#start").click(function() {
+    start(tomatoDuration, stateNewForm);
+    return false;
+  });
   
+  $("#squash").click(function() {
+    squash();
+    return false;
+  });
+  
+  if(!($.cookie('timezone'))) {
+    $.cookie('timezone', (new Date()).getTimezoneOffset());
+  }
+});
+
+$(window).bind('beforeunload', function() {
+  if(timerInterval != null) {
+    return "You're running a pomodoro."
+  }
 });

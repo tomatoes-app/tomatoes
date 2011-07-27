@@ -23,5 +23,15 @@
   <%= @user.login %>
 </p>
 
+<p>
+  <b>Freckle login:</b>
+  <%= @user.freckle_login %>
+</p>
+
+<p>
+  <b>Freckle token:</b>
+  <%= @user.freckle_token %>
+</p>
+
 <%= link_to 'Your tomatoes', tomatoes_path %><br/>
 <%= link_to 'Edit', edit_user_path(@user) %>

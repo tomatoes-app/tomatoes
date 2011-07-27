@@ -1,0 +1,6 @@
+<tr class="<%= "highlight" if high && tomato.id == high.id %>">
+  <td class="tomato_duration">
+    <%= link_to tomato_duration(tomato), tomato %>
+  </td>
+  <td><%= tomato.tags.join(', ') %></td>
+</tr>
