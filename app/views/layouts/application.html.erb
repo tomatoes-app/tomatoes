@@ -6,7 +6,7 @@
   <meta content='Tomatoes' name='title' />
   <link href='http://fonts.googleapis.com/css?family=Varela+Round|Leckerli+One&v2' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag :all %>
-  <%= javascript_include_tag :defaults, 'sm/script/soundmanager2-nodebug-jsmin.js' %>
+  <%= javascript_include_tag :defaults, 'sm/script/soundmanager2-nodebug-jsmin.js', 'time_zone' %>
   <%= csrf_meta_tag %>
   <%= javascript_tag do %>
     var tomatoDuration = <%= Tomato::DURATION/60 %>;
