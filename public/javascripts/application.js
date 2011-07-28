@@ -91,7 +91,7 @@ function stateNewForm() {
 function start(mins, callback) {
   console.log("start timer for " + mins + " mins");
   
-  var timer = mins*60;
+  var timer = Math.round(mins*60);
   stateStart(timer);
   
   timerInterval = setInterval(function() {

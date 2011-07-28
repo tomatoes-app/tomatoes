@@ -2,4 +2,4 @@ $("#flash").html("<%= escape_javascript(render(:partial => 'shared/flash', :loca
 $("#list_container").html("<%= escape_javascript(render(:partial => 'welcome/tomatoes_list', :locals => {:high => @highlight})) %>");
 $("#new_tomato_form").html("<%= escape_javascript(render(:partial => 'welcome/tomato_form')) %>");
 $(".highlight").animate({backgroundColor: "#fff"}, 3000);
-start(tomatoBreakDuration, stateStop);
+start(tomatoBreakDuration<%= "*3" if @long_break %>, stateStop);
