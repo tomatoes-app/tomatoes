@@ -49,8 +49,8 @@ class TomatoesController < ApplicationController
         format.js do
           @highlight = @tomato
           
-          today_tomatoes = current_user.tomatoes.where(:created_at.gt => Time.now.beginning_of_day)
-          @long_break = true if 0 == today_tomatoes.size % 2
+          today_tomatoes = current_user.tomatoes.where(:created_at.gt => Time.zone.now.beginning_of_day.utc)
+          @long_break = true if 0 == today_tomatoes.size % 4
           if @long_break
             flash.now[:notice] = "You just finished your #{ActiveSupport::Inflector::ordinalize(today_tomatoes.size)} pomodoro, you deserve a long break!"
           else
