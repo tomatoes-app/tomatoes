@@ -9,4 +9,13 @@ module ApplicationHelper
       date.strftime("%A, %B %e")
     end
   end
+  
+  def humanize(secs)
+    [[60, "second"], [60, "minute"], [24, "hour"], [1000, "day"]].map do |count, name|
+      if secs > 0
+        secs, n = secs.divmod(count)
+        pluralize(n.to_i, name) if n.to_i > 0
+      end
+    end.compact.reverse.join(', ')
+  end
 end
