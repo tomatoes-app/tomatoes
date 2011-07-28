@@ -21,11 +21,12 @@
       <%= render :partial => 'tomatoes_list', :locals => {:high => nil} %>
     </div>
   </div>
-  <div id="leaderboards" class="block">
-    <h2>Leaderboards</h2>
-    <%= render :partial => 'leaderboard_list', :locals => {:title => "Today", :leaderboard => @day_leaderboard} %>
-    <%= render :partial => 'leaderboard_list', :locals => {:title => "This week", :leaderboard => @week_leaderboard} %>
-    <%= render :partial => 'leaderboard_list', :locals => {:title => "This month", :leaderboard => @month_leaderboard} %>
-    <%= render :partial => 'leaderboard_list', :locals => {:title => "Everytime", :leaderboard => @everytime_leaderboard} %>
-  </div>
 <% end %>
+
+<div id="leaderboards" class="block">
+  <h2>Leaderboards</h2>
+  <%= render :partial => 'leaderboard_list', :locals => {:title => "Today", :leaderboard => @day_leaderboard} %>
+  <%= render :partial => 'leaderboard_list', :locals => {:title => "This week", :leaderboard => @week_leaderboard} %>
+  <%= render :partial => 'leaderboard_list', :locals => {:title => "This month", :leaderboard => @month_leaderboard} %>
+  <%= render :partial => 'leaderboard_list', :locals => {:title => "Everytime", :leaderboard => @everytime_leaderboard} %>
+</div>
