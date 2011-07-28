@@ -46,6 +46,10 @@
         Follow updates <%= link_to "@johnnyaboh", "http://twitter.com/johnnyaboh" %><br/>
         <%= link_to "Tomatoes", TomatoesApp::REPO %> - <%= link_to "version #{TomatoesApp::VERSION}", "#{TomatoesApp::REPO}/tree/#{TomatoesApp::VERSION}" %>
       </p>
+      <p>
+        <%= pluralize(User.all.count, 'user') %> already tracked <%= pluralize(Tomato.all.count, 'tomato') %><br/>
+        about <%= humanize(Tomato.all.count*Tomato::DURATION) %> of work
+      </p>
     </footer>
   </div>
 </body>
