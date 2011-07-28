@@ -236,9 +236,11 @@ a#squash {}
 }
 
 #leaderboards .leaderboard_list li {
+	list-style-position: inside;
 	margin-bottom: 5px;
 }
 
 #leaderboards .leaderboard_list .count {
+	margin-left: 43px;
 	font-size: 10px;
 }
