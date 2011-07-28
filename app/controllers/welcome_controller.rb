@@ -14,9 +14,9 @@ class WelcomeController < ApplicationController
       :reduce => "function(doc, prev) {prev.count += 1}"
     }
 
-    @day_leaderboard = Tomato.sort_limit_and_map(Tomato.collection.group(count_query_opts.merge(:cond => {:created_at => {'$gt' => Time.now.beginning_of_day}})))
-    @week_leaderboard = Tomato.sort_limit_and_map(Tomato.collection.group(count_query_opts.merge(:cond => {:created_at => {'$gt' => Time.now.beginning_of_week}})))
-    @month_leaderboard = Tomato.sort_limit_and_map(Tomato.collection.group(count_query_opts.merge(:cond => {:created_at => {'$gt' => Time.now.beginning_of_month}})))
+    @day_leaderboard = Tomato.sort_limit_and_map(Tomato.collection.group(count_query_opts.merge(:cond => {:created_at => {'$gt' => Time.zone.now.beginning_of_day.utc}})))
+    @week_leaderboard = Tomato.sort_limit_and_map(Tomato.collection.group(count_query_opts.merge(:cond => {:created_at => {'$gt' => Time.zone.now.beginning_of_week.utc}})))
+    @month_leaderboard = Tomato.sort_limit_and_map(Tomato.collection.group(count_query_opts.merge(:cond => {:created_at => {'$gt' => Time.zone.now.beginning_of_month.utc}})))
     @everytime_leaderboard = Tomato.sort_limit_and_map(Tomato.collection.group(count_query_opts))
   end
 end
