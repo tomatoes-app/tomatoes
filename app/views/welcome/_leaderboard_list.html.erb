@@ -1,0 +1,13 @@
+<div class="left leaderboard_list">
+  <h3><%= title %></h3>
+  <% unless leaderboard.empty? %>
+    <ol>
+    <% leaderboard.each do |item| %>
+      <li class="block">
+        <%= render :partial => 'users/user', :locals => {:user => item[:user]} %>
+        <div class="count"><%= pluralize(item[:count], 'tomato') %></div>
+      </li>
+    <% end %>
+    </ol>
+  <% end %>
+</div>

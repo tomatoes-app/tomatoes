@@ -47,8 +47,16 @@ class TomatoesController < ApplicationController
     respond_to do |format|
       if @tomato.save
         format.js do
-          flash.now[:notice] = 'Pomodoro finished, tomato created, time for a break.'
           @highlight = @tomato
+          
+          today_tomatoes = current_user.tomatoes.where(:created_at.gt => Time.now.beginning_of_day)
+          @long_break = true if 0 == today_tomatoes.size % 2
+          if @long_break
+            flash.now[:notice] = "You just finished your #{ActiveSupport::Inflector::ordinalize(today_tomatoes.size)} pomodoro, you deserve a long break!"
+          else
+            flash.now[:notice] = 'Pomodoro finished, tomato created, it\'s time for a break.'
+          end
+          
           @tomato = current_user.tomatoes.build
           @tomatoes = current_user.tomatoes.order_by([[:created_at, :desc]]).group_by do |tomato|
             date = tomato.created_at

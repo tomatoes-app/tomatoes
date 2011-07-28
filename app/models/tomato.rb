@@ -35,4 +35,16 @@ class Tomato
     
     tomatoes_array
   end
+  
+  def self.sort_limit_and_map(array)
+    array.sort { |a, b| b['count'] <=> a['count'] }.slice(0, 10).map do |r|
+      begin
+        if r['user_id'] && user = User.find(r['user_id'])
+          {:user => user, :count => r['count'].to_i}
+        end
+      rescue => e
+        puts "ERROR: #{e}"
+      end
+    end.compact
+  end
 end

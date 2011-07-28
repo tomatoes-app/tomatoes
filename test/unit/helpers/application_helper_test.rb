@@ -18,4 +18,14 @@ class ApplicationHelperTest < ActionView::TestCase
     
     assert true
   end
+  
+  [
+    {:secs => 30, :string => '30 seconds'},
+    {:secs => 60 + 1, :string => '1 minute, 1 second'},
+    {:secs => 60*2 + 1, :string => '2 minutes, 1 second'}
+  ].each do |data|
+    test "humanize #{data[:secs]} secs returns '#{data[:string]}'" do
+      assert humanize(data[:secs]) == data[:string]
+    end
+  end
 end

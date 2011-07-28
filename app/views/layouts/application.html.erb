@@ -19,11 +19,7 @@
       <div class="block">
         <% if current_user %>
           <div class="left user">
-            <div class="left avatar">
-              <%= user_avatar(current_user) %>
-              <div class="overlay"></div>
-            </div>
-            <%= link_to current_user.name, current_user %>
+            <%= render :partial => 'users/user', :locals => {:user => current_user} %>
           </div>
           <div class="right"><%= link_to "Sign out", signout_path %></div>
         <% else %>
@@ -45,6 +41,11 @@
       <p>
         Follow updates <%= link_to "@johnnyaboh", "http://twitter.com/johnnyaboh" %><br/>
         <%= link_to "Tomatoes", TomatoesApp::REPO %> - <%= link_to "version #{TomatoesApp::VERSION}", "#{TomatoesApp::REPO}/tree/#{TomatoesApp::VERSION}" %>
+      </p>
+      <p>
+        <% tomatoes = Tomato.all.count %>
+        <%= pluralize(User.all.count, 'user') %> already tracked <%= pluralize(tomatoes, 'tomato') %><br/>
+        about <%= humanize(tomatoes*Tomato::DURATION) %> of work
       </p>
     </footer>
   </div>
