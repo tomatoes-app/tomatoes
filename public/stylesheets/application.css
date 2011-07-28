@@ -26,8 +26,13 @@ h1 a:hover {
 	text-decoration: none;
 }
 
-h1, h2 {
+h1, h2, h3 {
 	font-weight: normal;
+}
+
+ol, ul {
+	padding: 0;
+	margin: 0;
 }
 
 a, a:visited {
@@ -219,4 +224,21 @@ a#squash {}
 	display: block;
 	float: none;
 	width: auto;
+}
+
+#leaderboards {
+	margin-bottom: 50px;
+}
+
+#leaderboards .leaderboard_list {
+	width: 220px;
+	margin-right: 5px;
+}
+
+#leaderboards .leaderboard_list li {
+	margin-bottom: 5px;
+}
+
+#leaderboards .leaderboard_list .count {
+	font-size: 10px;
 }
