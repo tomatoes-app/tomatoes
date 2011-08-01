@@ -16,16 +16,6 @@ body, p, ol, ul, td {
 	font-family: 'Varela Round', sans-serif;
 }
 
-h1 {
-	font-size: 48px;
-	font-family: 'Leckerli One', cursive;
-	margin: 10px 0;
-}
-
-h1 a:hover {
-	text-decoration: none;
-}
-
 h1, h2, h3 {
 	font-weight: normal;
 }
@@ -157,6 +147,39 @@ a.button:hover {
 	height: 24px;
 }
 
+#flash {
+	text-align: center;
+}
+
+#logo h1 {
+	font-size: 48px;
+	font-family: 'Leckerli One', cursive;
+	margin-top: 10px;
+	margin-bottom: -8px;
+}
+
+#logo h1.start {
+	font-size: 158px;
+	margin-bottom: -45px;
+	text-align: center;
+}
+
+#logo h1 a:hover {
+	text-decoration: none;
+}
+
+#logo h2 {
+	font-size: 9px;
+	margin-top: 0;
+	margin-left: 53px;
+}
+
+#logo h2.start {
+	font-size: 20px;
+	margin-left: 436px;
+	margin-bottom: 50px;
+}
+
 #container {
 	width: 900px;
 	margin: 0 auto;
@@ -167,8 +190,11 @@ a.button:hover {
 }
 
 #sign_in {
-	margin: 50px;
+	margin: 100px 50px;
 	text-align: center;
+}
+
+#sign_in .button {
 	font-size: 30px;
 }
 
