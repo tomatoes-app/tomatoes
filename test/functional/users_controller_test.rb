@@ -3,15 +3,13 @@ require 'test_helper'
 class UsersControllerTest < ActionController::TestCase
   setup do
     # @user = users(:one)
-    @user = User.new(
+    @user = User.create(
       :provider => "provider",
       :uid => "uid",
       :name => "name",
       :email => "email",
       :login => "login"
     )
-    @user.save
-    
     @controller.stubs(:current_user).returns(@user)
   end
   
