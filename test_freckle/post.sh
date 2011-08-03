@@ -1,1 +1,1 @@
-curl -d entry.js -H "Content-type: application/json" -H "X-FreckleToken:kfuv5r369pqsz1s2r5n5t4km62jpag2" http://gcappellotto.letsfreckle.com/api/entries.json
+curl -v -d entry.js -H "Content-type: application/json" -H "X-FreckleToken:kfuv5r369pqsz1s2r5n5t4km62jpag2" http://gcappellotto.letsfreckle.com/api/entries.json

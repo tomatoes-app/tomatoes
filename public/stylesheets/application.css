@@ -69,7 +69,17 @@ input[type=submit] {
 	font-size: 13px;
 }
 
-footer {}
+header {
+	margin-bottom: 50px;
+}
+
+footer {
+	margin-top: 100px;
+}
+
+footer p.right {
+	text-align: right;
+}
 
 .right {
 	float: right;
@@ -145,6 +155,18 @@ a.button:hover {
 	top: 0;
 	width: 24px;
 	height: 24px;
+}
+
+.avatar.size48 {
+	width: 48px;
+	height: 48px;
+	margin-right: 10px;
+}
+
+.avatar.size48 .overlay {
+	background-image: url(/images/rounded-avatar-48.png);
+	width: 48px;
+	height: 48px;
 }
 
 #flash {
@@ -269,4 +291,14 @@ a#squash {}
 #leaderboards .leaderboard_list .count {
 	margin-left: 43px;
 	font-size: 10px;
+}
+
+#user {
+	margin-bottom: 20px;
+}
+
+.chart {
+	width: 900px;
+	height: 400px;
+	margin-bottom: 20px;
 }

@@ -5,7 +5,14 @@ TomatoesApp::Application.routes.draw do
     end
   end
 
-  resources :users, :only => [:show, :edit, :update, :destroy]
+  resources :users, :only => [:show, :edit, :update, :destroy] do
+    resources :tomatoes do
+      collection do
+        get 'by_day'
+        get 'by_hour'
+      end
+    end
+  end
   
   match '/auth/:provider/callback' => 'sessions#create'
   match '/signin' => 'sessions#new', :as => :signin

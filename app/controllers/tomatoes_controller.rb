@@ -11,6 +11,30 @@ class TomatoesController < ApplicationController
       format.xml  { render :xml => @tomatoes }
     end
   end
+  
+  # GET /users/1/tomatoes/by_day.js
+  def by_day
+    @tomatoes = User.find(params[:user_id]).tomatoes.order_by([[:created_at, :desc]]).group_by do |tomato|
+      date = tomato.created_at
+      Time.mktime(date.year, date.month, date.day)
+    end
+    
+    respond_to do |format|
+      format.js # tomatoes_by_day.js.erb
+    end
+  end
+  
+  # GET /users/1/tomatoes/by_hour.js
+  def by_hour
+    @tomatoes = User.find(params[:user_id]).tomatoes.order_by([[:created_at, :desc]]).group_by do |tomato|
+      date = tomato.created_at
+      Time.mktime(2000, 1, 1, date.hour)
+    end
+    
+    respond_to do |format|
+      format.js # tomatoes_by_hour.js.erb
+    end
+  end
 
   # GET /tomatoes/1
   # GET /tomatoes/1.xml
@@ -40,6 +64,7 @@ class TomatoesController < ApplicationController
   end
 
   # POST /tomatoes
+  # POST /tomatoes.js
   # POST /tomatoes.xml
   def create
     @tomato = current_user.tomatoes.build(params[:tomato])

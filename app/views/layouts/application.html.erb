@@ -13,6 +13,8 @@
     var tomatoDuration = <%= Tomato::DURATION/60 %>;
     var tomatoBreakDuration = <%= Tomato::BREAK_DURATION/60 %>;
   <% end %>
+  
+  <%= yield :head %>
 </head>
 <body>
   <div id="container">
@@ -40,12 +42,12 @@
 
     <%= yield %>
 
-    <footer>
-      <p>
+    <footer class="block">
+      <p class="left">
         Follow updates <%= link_to "@johnnyaboh", "http://twitter.com/johnnyaboh" %><br/>
         <%= link_to "Tomatoes", TomatoesApp::REPO %> - <%= link_to "version #{TomatoesApp::VERSION}", "#{TomatoesApp::REPO}/tree/#{TomatoesApp::VERSION}" %>
       </p>
-      <p>
+      <p class="right">
         <% tomatoes = Tomato.all.count %>
         <%= pluralize(User.all.count, 'user') %> already tracked <%= pluralize(tomatoes, 'tomato') %><br/>
         about <%= humanize(tomatoes*Tomato::DURATION) %> of work
