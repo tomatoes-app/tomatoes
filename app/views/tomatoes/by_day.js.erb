@@ -1,0 +1,10 @@
+var tomatoes_by_day = [
+  <% Range.new(@tomatoes.keys.last.to_i, @tomatoes.keys.first.to_i).step(60*60*24) do |day| %>
+    <% day = Time.at(day) %>
+    <% if @tomatoes[day] %>
+      <%= raw([day.to_i*1000, @tomatoes[day].size].to_json) %>,
+    <% else %>
+      <%= raw([day.to_i*1000, 0].to_json) %>,
+    <% end %>
+  <% end %>
+];
