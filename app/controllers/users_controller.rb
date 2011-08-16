@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :except => :show
   before_filter :same_user?, :except => :show
   
   # GET /users/1/edit
