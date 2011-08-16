@@ -1,5 +1,5 @@
 class TomatoesController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :except => [:by_day, :by_hour]
   
   # GET /tomatoes
   # GET /tomatoes.xml
@@ -27,8 +27,9 @@ class TomatoesController < ApplicationController
   # GET /users/1/tomatoes/by_hour.js
   def by_hour
     @tomatoes = User.find(params[:user_id]).tomatoes.order_by([[:created_at, :desc]]).group_by do |tomato|
-      date = tomato.created_at
-      Time.mktime(2000, 1, 1, date.hour)
+      now = Time.zone.now
+      date = [0, 0, tomato.created_at.hour, 1, 1, 2011, now.wday, now.yday, now.isdst, now.zone]
+      Time.mktime(*date)
     end
     
     respond_to do |format|

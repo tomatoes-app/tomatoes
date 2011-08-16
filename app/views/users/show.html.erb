@@ -4,7 +4,7 @@
 
 <div id="user" class="block">
   <div class="left avatar size48">
-    <%= user_avatar(@user, 48) %>
+    <%= avatar(@user, 48) %>
     <div class="overlay"></div>
   </div>
   <%= link_to @user.name, @user %><br/>
@@ -48,7 +48,7 @@ $(document).ready(function () {
 });
 <% end %>
 
-<% if current_user.id == @user.id %>
+<% if current_user && current_user.id == @user.id %>
   <p>
     <%= link_to 'Your tomatoes', tomatoes_path %> |
     <%= link_to 'Edit', edit_user_path(@user) %>
