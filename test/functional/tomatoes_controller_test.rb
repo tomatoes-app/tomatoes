@@ -3,14 +3,13 @@ require 'test_helper'
 class TomatoesControllerTest < ActionController::TestCase
   setup do
     # @tomato = tomatoes(:one)
-    @user = User.new(
+    @user = User.create(
       :provider => "provider",
       :uid => "uid",
       :name => "name",
       :email => "email",
       :login => "login"
     )
-    @user.save
     @tomato = @user.tomatoes.create(:tag_list => "one, two")
     
     @controller.stubs(:current_user).returns(@user)

@@ -16,17 +16,19 @@ class UsersHelperTest < ActionView::TestCase
     assert avatar(@user, @size).match(Regexp.escape("http://gravatar.com/avatar/#{@gravatar_id}?s=#{@size}"))
   end
   
-  test "name should return the user name link" do
+  test "user_name should return the user name link" do
+    stubs(:users_path)
     @name = "John"
     @user = User.new(:name => @name)
     
-    assert name(@user).match(Regexp.escape(@name))
+    assert user_name(@user).match(Regexp.escape(@name))
   end
   
-  test "name should return the user login if name is empty" do
+  test "user_name should return the user login if name is empty" do
+    stubs(:users_path)
     @login = "john"
     @user = User.new(:name => nil, :login => @login)
     
-    assert name(@user).match(Regexp.escape(@login))
+    assert user_name(@user).match(Regexp.escape(@login))
   end
 end
