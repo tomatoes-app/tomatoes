@@ -24,9 +24,8 @@ class UsersHelperTest < ActionView::TestCase
   end
   
   test "name should return the user login if name is empty" do
-    @name = ""
     @login = "john"
-    @user = User.new(:name => @name, :login => @login)
+    @user = User.new(:name => nil, :login => @login)
     
     assert name(@user).match(Regexp.escape(@login))
   end

@@ -4,6 +4,6 @@ module UsersHelper
   end
   
   def name(user)
-    link_to user.name.empty? ? user.login : user.name, user
+    link_to user.name ? user.name : user.login, user
   end
 end
