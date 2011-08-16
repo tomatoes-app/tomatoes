@@ -1,0 +1,16 @@
+{
+  "name": "Tomatoes",
+  "description": "Pomodoro technique time tracker",
+  "version": "0.5.3",
+  "icons": {
+    "128": "icon_128.png"
+  },
+  "app": {
+    "urls": [
+      "http://tomatoes.heroku.com/"
+    ],
+    "launch": {
+      "web_url": "http://tomatoes.heroku.com/"
+    }
+  }
+}
