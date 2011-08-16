@@ -3,7 +3,7 @@ module UsersHelper
     image_tag "http://gravatar.com/avatar/#{user.gravatar_id}?s=#{size}"
   end
   
-  def name(user)
+  def user_name(user)
     link_to user.name ? user.name : user.login, user
   end
 end
