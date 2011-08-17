@@ -3,7 +3,7 @@
 <head>
   <title>Tomatoes</title>
   <meta charset="UTF-8">
-  <meta content='Simple pomodoro technique tracking tool. Track your time using 25 minutes slots called "pomodoros" and load them to your Freckle account.' name='description' />
+  <meta content='Pomodoro technique® online time tracker. Track your time using 25 minutes slots called "pomodoros".' name='description' />
   <meta content='Tomatoes' name='title' />
   <link href='http://fonts.googleapis.com/css?family=Varela+Round|Leckerli+One&v2' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag :all %>
@@ -25,6 +25,16 @@
       var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
       ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  <% end %>
+  
+  <%= javascript_tag do %>
+    (function() {
+      var s = document.createElement('script'), t = document.getElementsByTagName('script')[0];
+      s.type = 'text/javascript';
+      s.async = true;
+      s.src = 'http://api.flattr.com/js/0.6/load.js?mode=auto';
+      t.parentNode.insertBefore(s, t);
     })();
   <% end %>
 </head>
@@ -56,6 +66,9 @@
 
     <footer class="block">
       <p class="left">
+        <a class="FlattrButton" style="display:none;" rev="flattr;button:compact;" href="http://tomatoes.heroku.com"></a>
+        <noscript><a href="http://flattr.com/thing/376437/Tomatoes" target="_blank">
+        <img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0" /></a></noscript><br/>
         Follow updates <%= link_to "@johnnyaboh", "http://twitter.com/johnnyaboh" %><br/>
         <%= link_to "Tomatoes", TomatoesApp::REPO %> - <%= link_to "version #{TomatoesApp::VERSION}", "#{TomatoesApp::REPO}/tree/#{TomatoesApp::VERSION}" %>
       </p>
