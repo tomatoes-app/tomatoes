@@ -12,7 +12,7 @@ require "rails/test_unit/railtie"
 Bundler.require(:default, Rails.env) if defined?(Bundler)
 
 module TomatoesApp
-  VERSION = '0.5.4'
+  VERSION = '0.5.5'
   REPO = 'https://github.com/potomak/tomatoes'
   
   class Application < Rails::Application
