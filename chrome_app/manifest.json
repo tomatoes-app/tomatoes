@@ -1,7 +1,7 @@
 {
   "name": "Tomatoes",
-  "description": "Pomodoro technique time tracker",
-  "version": "0.5.3",
+  "description": "Pomodoro technique® online time tracker",
+  "version": "0.5.5",
   "icons": {
     "128": "icon_128.png"
   },
