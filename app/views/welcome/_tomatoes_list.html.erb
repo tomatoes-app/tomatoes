@@ -1,10 +1,10 @@
 <% unless @tomatoes.empty? %>
   <% @tomatoes.each do |day, tomatoes| %>
     <% if day > Time.zone.now.beginning_of_week %>
-      <%= render :partial => 'tomatoes_day_list', :locals => {:high => high, :day => day, :tomatoes => tomatoes} %>
+      <%= render :partial => 'welcome/tomatoes_day_list', :locals => {:high => high, :day => day, :tomatoes => tomatoes} %>
     <% else %>
       <div class="old_tomatoes" style="display:none">
-        <%= render :partial => 'tomatoes_day_list', :locals => {:high => high, :day => day, :tomatoes => tomatoes} %>
+        <%= render :partial => 'welcome/tomatoes_day_list', :locals => {:high => high, :day => day, :tomatoes => tomatoes} %>
       </div>
     <% end %>
   <% end %>
