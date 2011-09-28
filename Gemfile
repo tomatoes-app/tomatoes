@@ -35,6 +35,7 @@ gem "jquery-rails"
 gem "omniauth", "~> 0.2.0"
 gem "hubruby"
 gem "faraday"
+gem "thin"
 
 group :development, :test do
   gem "system_timer"
