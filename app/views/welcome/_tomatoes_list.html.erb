@@ -1,10 +1,16 @@
 <% unless @tomatoes.empty? %>
   <% @tomatoes.each do |day, tomatoes| %>
-    <h3 class="<%= relative_day(day).parameterize%>"><%= relative_day(day) %></h3>
-    <table>
-      <%= render :partial => 'tomatoes/tomato', :collection => tomatoes, :locals => {:high => high} %>
-    </table>
+    <% if day > Time.zone.now.beginning_of_week %>
+      <%= render :partial => 'tomatoes_day_list', :locals => {:high => high, :day => day, :tomatoes => tomatoes} %>
+    <% else %>
+      <div class="old_tomatoes" style="display:none">
+        <%= render :partial => 'tomatoes_day_list', :locals => {:high => high, :day => day, :tomatoes => tomatoes} %>
+      </div>
+    <% end %>
   <% end %>
+  <p>
+    <%= link_to_function "Toggle old tomatoes", "$('.old_tomatoes').slideToggle()" %>
+  </p>
 <% else %>
   <p>No tomatoes here</p>
   <p>Click the Start button when you're ready to start your first tomato</p>

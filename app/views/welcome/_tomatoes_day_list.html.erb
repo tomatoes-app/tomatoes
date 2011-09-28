@@ -1,0 +1,4 @@
+<h3 class="<%= relative_day(day).parameterize %>"><%= relative_day(day) %></h3>
+<table>
+  <%= render :partial => 'tomatoes/tomato', :collection => tomatoes, :locals => {:high => high} %>
+</table>
