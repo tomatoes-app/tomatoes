@@ -13,3 +13,7 @@ Because
 1. the [Pomodoro technique](http://www.pomodorotechnique.com)<sup>®</sup> helps you to get things done;
 2. I need it to measure pomodoros in a fast and easy way;
 3. I want to challenge my friends.
+
+## License
+
+Tomatoes is released under the MIT license.
