@@ -8,8 +8,8 @@ class Tomato
   
   belongs_to :user
   
-  DURATION = 25*60 # pomodoro default duration in seconds
-  BREAK_DURATION = 5*60 # pomodoro default break duration in seconds
+  DURATION       = Rails.env.development? ? 10 : 25*60 # pomodoro default duration in seconds
+  BREAK_DURATION = Rails.env.development? ? 5  : 5*60  # pomodoro default break duration in seconds
   
   def to_freckle_entry
     {
