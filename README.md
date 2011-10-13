@@ -17,3 +17,5 @@ Because
 ## License
 
 Tomatoes is released under the MIT license.
+
+[![Build Status](https://secure.travis-ci.org/potomak/tomatoes.png)](http://travis-ci.org/potomak/tomatoes)
