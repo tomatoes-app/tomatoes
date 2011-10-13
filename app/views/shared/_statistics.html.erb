@@ -1,0 +1,7 @@
+<% tomatoes = Tomato.all.count %>
+<% now = Time.zone.now %>
+<% first_tomato = Tomato.order_by([[:created_at, :desc]]).last %>
+
+<%= pluralize(User.all.count, 'user') %> already tracked <%= pluralize(tomatoes, 'tomato') %><br/>
+about <%= humanize(tomatoes*Tomato::DURATION) %> of work<br/>
+about <%= number_with_precision(tomatoes/((now - first_tomato.created_at) / 3600)) %> tomatoes per hour

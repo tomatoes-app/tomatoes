@@ -59,6 +59,10 @@ $(document).ready(function() {
     // ESC key
     event.which == 27 && squashCallback(event);
   });
+  
+  if((typeof window.chrome == 'undefined') || (window.chrome && window.chrome.app && window.chrome.app.isInstalled)) {
+    $("#add_to_chrome").hide();
+  }
 });
 
 $(window).bind('beforeunload', function() {
