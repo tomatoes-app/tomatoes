@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta content='Pomodoro technique® online time tracker. Track your time using 25 minutes slots called "pomodoros".' name='description' />
   <meta content='Tomatoes' name='title' />
+  <link rel="chrome-webstore-item" href="https://chrome.google.com/webstore/detail/jijbhneeenepenoolcdalnekggeialeo">
   <link href='http://fonts.googleapis.com/css?family=Varela+Round|Leckerli+One&v2' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag :all %>
   <%= javascript_include_tag :defaults, 'sm/script/soundmanager2-nodebug-jsmin.js', 'time_zone', 'TT' %>
@@ -70,6 +71,7 @@
         <a class="FlattrButton" style="display:none;" rev="flattr;button:compact;" href="http://tomatoes.heroku.com"></a>
         <noscript><a href="http://flattr.com/thing/376437/Tomatoes" target="_blank">
         <img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0" /></a></noscript><br/>
+        <span id="add_to_chrome"><%= link_to_function "Add to Chrome", "chrome.webstore.install()" %><br/></span>
         Follow updates <%= link_to "@johnnyaboh", "http://twitter.com/johnnyaboh" %><br/>
         <%= link_to "Tomatoes", TomatoesApp::REPO %> - <%= link_to "version #{TomatoesApp::VERSION}", "#{TomatoesApp::REPO}/tree/#{TomatoesApp::VERSION}" %>
       </p>
