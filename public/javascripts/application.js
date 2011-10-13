@@ -52,7 +52,7 @@ function secondsToString(seconds) {
 }
 
 function stateStart(timer) {
-  console.log("stateStart");
+  log("stateStart");
   
   $("#timer").html(secondsToString(timer));
   originalTitle = document.title;
@@ -62,7 +62,7 @@ function stateStart(timer) {
 }
 
 function stateCounting(timer) {
-  console.log("stateCounting");
+  log("stateCounting");
   
   var timerString = secondsToString(timer);
   $("#timer").html(timerString);
@@ -70,7 +70,7 @@ function stateCounting(timer) {
 }
 
 function stateStop() {
-  console.log("stateStop");
+  log("stateStop");
   
   document.title = originalTitle;
   
@@ -80,7 +80,7 @@ function stateStop() {
 }
 
 function stateNewForm() {
-  console.log("stateNewForm");
+  log("stateNewForm");
   
   document.title = originalTitle;
   
@@ -89,7 +89,7 @@ function stateNewForm() {
 }
 
 function start(mins, callback) {
-  console.log("start timer for " + mins + " mins");
+  log("start timer for " + mins + " mins");
   
   var timer = Math.round(mins*60);
   stateStart(timer);
@@ -107,13 +107,19 @@ function start(mins, callback) {
 }
 
 function squash() {
-  console.log("squash tomato");
+  log("squash tomato");
   
   if(confirm("Sure?")) {
     clearInterval(timerInterval);
     timerInterval = null;
     soundManager.play('squash');
     stateStop();
+  }
+}
+
+function log(object) {
+  if(DEBUG) {
+    console.log(object);
   }
 }
 
@@ -126,6 +132,14 @@ $(document).ready(function() {
   $("#squash").click(function() {
     squash();
     return false;
+  });
+  
+  $("#new_tomato_form").live("ajax:beforeSend", function() {
+    log("ajax:beforeSend");
+    $(this).bind("keypress", function(e) {
+      log("keypress event");
+      if (e.keyCode == 13) return false;
+    });
   });
 });
 
