@@ -22,129 +22,50 @@ soundManager.onready(function() {
   }
 });
 
-var timerInterval = null;
-var originalTitle;
-
-function show(ids) {
-  ids.forEach(function(id) {
-    $("#"+id).show();
-  });
-}
-
-function hide(ids) {
-  ids.forEach(function(id) {
-    $("#"+id).hide();
-  });
-}
-
-function pad(number, length) {
-    var str = '' + number;
-    while (str.length < length) {
-      str = '0' + str;
-    }
-    return str;
-}
-
-function secondsToString(seconds) {
-  minutes = Math.floor(seconds/60);
-  seconds = seconds - minutes*60;
-  return pad(minutes, 2) + ":" + pad(seconds, 2);
-}
-
-function stateStart(timer) {
-  log("stateStart");
-  
-  $("#timer").html(secondsToString(timer));
-  originalTitle = document.title;
-  
-  show(["timer", "squash"]);
-  hide(["start", "new_tomato_form"]);
-}
-
-function stateCounting(timer) {
-  log("stateCounting");
-  
-  var timerString = secondsToString(timer);
-  $("#timer").html(timerString);
-  document.title = timerString + " - " + originalTitle;
-}
-
-function stateStop() {
-  log("stateStop");
-  
-  document.title = originalTitle;
-  
-  $("#flash").html("");
-  hide(["timer", "squash"]);
-  show(["start"]);
-}
-
-function stateNewForm() {
-  log("stateNewForm");
-  
-  document.title = originalTitle;
-  
-  hide(["timer", "squash", "start"]);
-  show(["new_tomato_form"]);
-}
-
-function start(mins, callback) {
-  log("start timer for " + mins + " mins");
-  
-  var timer = Math.round(mins*60);
-  stateStart(timer);
-  
-  timerInterval = setInterval(function() {
-    timer--;
-    stateCounting(timer);
-    if(timer <= 0) {
-      clearInterval(timerInterval);
-      timerInterval = null;
-      soundManager.play('ringing');
-      callback();
-    }
-  }, 1000);
-}
-
-function squash() {
-  log("squash tomato");
-  
-  if(confirm("Sure?")) {
-    clearInterval(timerInterval);
-    timerInterval = null;
-    soundManager.play('squash');
-    stateStop();
+function startCallback(event) {
+  if('idle' == TT.getStatus()) {
+    TT.start(tomatoDuration, TT.stateNewForm);
+    event.preventDefault();
   }
 }
 
-function log(object) {
-  if(DEBUG) {
-    console.log(object);
+function squashCallback(event) {
+  if('running' == TT.getStatus()) {
+    TT.squash();
+    event.preventDefault();
   }
 }
 
 $(document).ready(function() {
-  $("#start").click(function() {
-    start(tomatoDuration, stateNewForm);
-    return false;
-  });
-  
-  $("#squash").click(function() {
-    squash();
-    return false;
-  });
+  $("#start").click(startCallback);
+  $("#squash").click(squashCallback);
   
   $("#new_tomato_form").live("ajax:beforeSend", function() {
-    log("ajax:beforeSend");
-    $(this).bind("keypress", function(e) {
-      log("keypress event");
-      if (e.keyCode == 13) return false;
+    TT.log("ajax:beforeSend");
+    
+    $(this).keypress(function(event) {
+      TT.log("keypress event");
+      
+      // ENTER key
+      event.which == 13 && event.preventDefault();
     });
+  });
+  
+  $(document).keydown(function(event) {
+    TT.log("keydown: " + event.which);
+    
+    // SPACE key
+    event.which == 32 && startCallback(event);
+    // ESC key
+    event.which == 27 && squashCallback(event);
   });
 });
 
 $(window).bind('beforeunload', function() {
-  if(timerInterval != null) {
-    return "You're running a pomodoro."
+  if('running' == TT.getStatus()) {
+    return "Timer is running."
+  }
+  if('saving' == TT.getStatus()) {
+    return "You're about to save a pomodoro."
   }
 });
