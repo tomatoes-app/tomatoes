@@ -211,8 +211,14 @@ a.button:hover {
 	padding-bottom: 20px;
 }
 
+#intro {
+	text-align: justify;
+	margin: 60px auto;
+	width: 650px;
+}
+
 #sign_in {
-	margin: 100px 50px;
+	margin: 80px 50px;
 	text-align: center;
 }
 
