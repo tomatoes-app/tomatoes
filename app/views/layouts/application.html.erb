@@ -74,9 +74,7 @@
         <%= link_to "Tomatoes", TomatoesApp::REPO %> - <%= link_to "version #{TomatoesApp::VERSION}", "#{TomatoesApp::REPO}/tree/#{TomatoesApp::VERSION}" %>
       </p>
       <p class="right">
-        <% tomatoes = Tomato.all.count %>
-        <%= pluralize(User.all.count, 'user') %> already tracked <%= pluralize(tomatoes, 'tomato') %><br/>
-        about <%= humanize(tomatoes*Tomato::DURATION) %> of work
+        <%= render :partial => 'shared/statistics' %>
       </p>
     </footer>
   </div>
