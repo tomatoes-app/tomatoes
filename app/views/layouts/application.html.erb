@@ -10,8 +10,9 @@
   <%= javascript_include_tag :defaults, 'sm/script/soundmanager2-nodebug-jsmin.js', 'time_zone' %>
   <%= csrf_meta_tag %>
   <%= javascript_tag do %>
-    var tomatoDuration = <%= Tomato::DURATION/60 %>;
-    var tomatoBreakDuration = <%= Tomato::BREAK_DURATION/60 %>;
+    var tomatoDuration = <%= Tomato::DURATION/60.0 %>;
+    var tomatoBreakDuration = <%= Tomato::BREAK_DURATION/60.0 %>;
+    var DEBUG = <%= Rails.env.development? %>;
   <% end %>
   
   <%= yield :head %>
