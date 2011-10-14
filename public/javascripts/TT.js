@@ -5,8 +5,12 @@ var TT = function() {
       settings = {
         timerEndSoundId: 'ringing',
         timerSquashSoundId: 'squash',
+        timerContainerId: 'timer_container',
         startButtonId: 'start',
+        startHintId: 'start_hint',
         squashButtonId: 'squash',
+        squashHintId: 'squash_hint',
+        progressBarId: 'progress_bar',
         formId: 'new_tomato_form',
         timerId: 'timer',
         flashId: 'flash'
@@ -50,17 +54,42 @@ var TT = function() {
     status = 'running';
     $("#" + settings.timerId).html(secondsToString(timer));
     originalTitle = document.title;
+    
+    var timerContainerObj = $("#" + settings.timerContainerId);
+    timerContainerObj.removeClass('round_left');
+    timerContainerObj.addClass('round_right');
 
-    hide([settings.startButtonId, settings.formId]);
-    show([settings.timerId, settings.squashButtonId]);
+    hide([settings.startButtonId, settings.startHintId, settings.formId]);
+    show([settings.timerId, settings.squashButtonId, settings.squashHintId]);
   }
 
-  var stateCounting = function(timer) {
+  var stateCounting = function(timer, duration) {
     log("stateCounting");
 
     var timerString = secondsToString(timer);
     $("#" + settings.timerId).html(timerString);
     document.title = timerString + " - " + originalTitle;
+    
+    var factor = (duration-timer) / duration;
+    log("factor: " + factor);
+    
+    var progressBarObj = $("#" + settings.progressBarId),
+        timerContainerObj = $("#" + settings.timerContainerId);
+    
+    progressBarObj.css('width', factor*100 + '%');
+    progressBarObj.css('backgroundColor', 'rgba(' + Math.round(factor*255) + ', ' + Math.round((1-factor)*255) + ', 0, .5)');
+    if(progressBarObj.width() < 400) {
+      timerContainerObj.css('right', '');
+      timerContainerObj.css('left', progressBarObj.width());
+    }
+    else {
+      if(!timerContainerObj.hasClass('round_left')) {
+        timerContainerObj.removeClass('round_right');
+        timerContainerObj.addClass('round_left');
+        timerContainerObj.css('left', '');
+        timerContainerObj.css('right', 0);
+      }
+    }
   }
 
   var stateStop = function() {
@@ -69,9 +98,10 @@ var TT = function() {
     status = 'idle';
     document.title = originalTitle;
     $("#" + settings.flashId).html("");
+    $("#" + settings.progressBarId).css('width', 0);
     
-    hide([settings.timerId, settings.squashButtonId]);
-    show([settings.startButtonId]);
+    hide([settings.timerId, settings.squashButtonId, settings.squashHintId]);
+    show([settings.startButtonId, settings.startHintId]);
   }
 
   var stateNewForm = function() {
@@ -79,20 +109,22 @@ var TT = function() {
 
     status = 'saving';
     document.title = originalTitle;
+    $("#" + settings.formId + " input[type=text]").focus();
 
-    hide([settings.timerId, settings.squashButtonId, settings.startButtonId]);
+    hide([settings.timerId, settings.squashButtonId, settings.squashHintId, settings.startButtonId, settings.startHintId]);
     show([settings.formId]);
   }
 
   var start = function(mins, callback) {
     log("start timer for " + mins + " mins");
 
-    var timer = Math.round(mins*60);
+    var duration = Math.round(mins*60);
+    var timer = duration;
     stateStart(timer);
 
     timerInterval = setInterval(function() {
       timer--;
-      stateCounting(timer);
+      stateCounting(timer, duration);
       
       if(timer <= 0) {
         clearInterval(timerInterval);
