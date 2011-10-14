@@ -264,18 +264,22 @@ td.tomato_duration {
 	right: 0;
 	padding: 20px;
 	background: #F9F9F9;
+	border: 1px solid #EEE;
 }
 
 #timer_container.round_left {
 	-moz-border-radius: 6px 0 0 6px;
 	-webkit-border-radius: 6px 0 0 6px;
 	border-radius: 6px 0 0 6px;
+	border: 1px solid #CCC;
+	border-right: 0 none;
 }
 
 #timer_container.round_right {
 	-moz-border-radius: 0 6px 6px 0;
 	-webkit-border-radius: 0 6px 6px 0;
 	border-radius: 0 6px 6px 0;
+	border-left: 0 none;
 }
 
 #timer {
