@@ -10,6 +10,9 @@ html {
 body {
 	font-size: 13px;
 	color: #444;
+	position: relative;
+	margin: 0;
+	padding: 10px;
 }
 
 body, p, ol, ul, td {
@@ -254,8 +257,25 @@ td.tomato_duration {
 }
 
 #timer_container {
-	width: 500px;
+	width: 400px;
 	text-align: center;
+	position: absolute;
+	top: 20px;
+	right: 0;
+	padding: 20px;
+	background: #F9F9F9;
+}
+
+#timer_container.round_left {
+	-moz-border-radius: 6px 0 0 6px;
+	-webkit-border-radius: 6px 0 0 6px;
+	border-radius: 6px 0 0 6px;
+}
+
+#timer_container.round_right {
+	-moz-border-radius: 0 6px 6px 0;
+	-webkit-border-radius: 0 6px 6px 0;
+	border-radius: 0 6px 6px 0;
 }
 
 #timer {
@@ -263,12 +283,21 @@ td.tomato_duration {
 	margin: 20px 0 40px;
 }
 
+#start_container {
+	width: 500px;
+	text-align: center;
+	margin: 0 auto 80px;
+}
+
 a#start {
 	font-size: 54px;
-	margin: 20px 0;
 }
 
 a#squash {}
+
+p#squash_hint {
+	font-size: 10px;
+}
 
 #new_tomato_form {
 	text-align: left;
@@ -307,4 +336,14 @@ a#squash {}
 	width: 900px;
 	height: 400px;
 	margin-bottom: 20px;
+}
+
+#progress_bar {
+	top: 0;
+	left: 0;
+	width: 0;
+	height: 100%;
+	background-color: rgba(0, 255, 0, .5);
+	position: absolute;
+	z-index: 100;
 }

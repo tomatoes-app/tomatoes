@@ -12,14 +12,21 @@
     <p>Sign in with your GitHub account and start tracking your pomodoros.</p>
   </div>
 <% else %>
-  <div id="index" class="block">
-    <div id="timer_container" class="left">
-      <%= link_to "Start", "#", :id => "start", :class => "button" %>
+  <div id="progress_bar">
+    <div id="timer_container">
       <p id="timer" style="display: none"></p>
       <%= link_to "Squash", "#", :id => "squash", :class => "button", :style => "display: none" %>
+      <p id="squash_hint">or press esc</p>
       <div id="new_tomato_form" style="display: none">
         <%= render 'tomato_form' %>
       </div>
+    </div>
+  </div>
+
+  <div id="index" class="block">
+    <div id="start_container">
+      <%= link_to "Start", "#", :id => "start", :class => "button" %>
+      <p id="start_hint">or press space bar</p>
     </div>
     
     <div id="list_container" class="left">
