@@ -36,6 +36,17 @@ function squashCallback(event) {
   }
 }
 
+function permissionCallback() {
+  var requestObject = $("#request_notification_permission a");
+  
+  if(NOTIFIER.HasPermission()) {
+    requestObject.html("Tomatoes is allowed to use desktop notifications");
+  }
+  else {
+    requestObject.html("Allow desktop notifications");
+  }
+}
+
 $(document).ready(function() {
   $("#start").click(startCallback);
   $("#squash").click(squashCallback);
@@ -62,6 +73,18 @@ $(document).ready(function() {
   
   if((typeof window.chrome == 'undefined') || (window.chrome && window.chrome.app && window.chrome.app.isInstalled)) {
     $("#add_to_chrome").hide();
+  }
+  
+  if(NOTIFIER.HasSupport()) {
+    permissionCallback();
+    
+    $("#request_notification_permission a").click(function(event) {
+      NOTIFIER.RequestPermission(permissionCallback());
+      event.preventDefault();
+    });
+  }
+  else {
+    $("#request_notification_permission").hide();
   }
 });
 

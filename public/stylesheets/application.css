@@ -351,3 +351,7 @@ p#squash_hint {
 	position: absolute;
 	z-index: 100;
 }
+
+#request_notification_permission {
+	margin-bottom: 20px;
+}
