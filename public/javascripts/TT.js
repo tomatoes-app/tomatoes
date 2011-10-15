@@ -91,7 +91,7 @@ var TT = function() {
     }
   }
 
-  var stateStop = function() {
+  var stateStop = function(squash) {
     log("stateStop");
 
     status = 'idle';
@@ -100,6 +100,12 @@ var TT = function() {
     $("#" + settings.progressBarId).css('width', 0);
     $("#" + settings.timerContainerId).css('right', 0);
     $("#" + settings.timerContainerId).css('left', '');
+    
+    if(typeof squash == 'undefined') {
+      if (!NOTIFIER.Notify("", "Tomatoes", "Break is over. It's time to work.")) {
+        log('Permission denied. Click "Request Permission" to give this domain access to send notifications to your desktop.');
+      }
+    }
     
     hide([settings.timerId, settings.squashButtonId, settings.squashHintId]);
     show([settings.startButtonId, settings.startHintId]);
@@ -111,6 +117,11 @@ var TT = function() {
     status = 'saving';
     document.title = originalTitle;
     $("#" + settings.formId + " input[type=text]").focus();
+    
+    // notify tomato end
+    if (!NOTIFIER.Notify("", "Tomatoes", "Pomodoro finished!")) {
+      log('Permission denied. Click "Request Permission" to give this domain access to send notifications to your desktop.');
+    }
 
     hide([settings.timerId, settings.squashButtonId, settings.squashHintId, settings.startButtonId, settings.startHintId]);
     show([settings.formId]);
@@ -143,7 +154,7 @@ var TT = function() {
       clearInterval(timerInterval);
       timerInterval = null;
       soundManager.play(settings.timerSquashSoundId);
-      stateStop();
+      stateStop(true);
     }
   }
 
