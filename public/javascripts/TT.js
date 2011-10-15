@@ -77,7 +77,6 @@ var TT = function() {
         timerContainerObj = $("#" + settings.timerContainerId);
     
     progressBarObj.css('width', factor*100 + '%');
-    progressBarObj.css('backgroundColor', 'rgba(' + Math.round(factor*255) + ', ' + Math.round((1-factor)*255) + ', 0, .5)');
     if(progressBarObj.width() < 400) {
       timerContainerObj.css('right', '');
       timerContainerObj.css('left', progressBarObj.width());
@@ -99,6 +98,8 @@ var TT = function() {
     document.title = originalTitle;
     $("#" + settings.flashId).html("");
     $("#" + settings.progressBarId).css('width', 0);
+    $("#" + settings.timerContainerId).css('right', 0);
+    $("#" + settings.timerContainerId).css('left', '');
     
     hide([settings.timerId, settings.squashButtonId, settings.squashHintId]);
     show([settings.startButtonId, settings.startHintId]);
