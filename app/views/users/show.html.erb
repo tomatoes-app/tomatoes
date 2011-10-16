@@ -28,8 +28,8 @@
         lines: { show: true, fill: true, fillColor: "rgba(255, 0, 0, 0.5)"}
       }],
       {
-        xaxis: { mode: "time", tickSize: [1, "day"] },
-        yaxis: {tickSize: 1, tickFormatter: function(n) {return n.toFixed(0)}}
+        xaxis: { mode: "time", ticks: 14 },
+        yaxis: { tickSize: 1, tickFormatter: function(n) { return n.toFixed(0) } }
       }
     );
   
@@ -42,7 +42,7 @@
       }],
       {
         xaxis: { mode: "time", tickSize: [1, "hour"] },
-        yaxis: {tickSize: 1, tickFormatter: function(n) {return n.toFixed(0)}}
+        yaxis: { tickSize: 1, tickFormatter: function(n) { return n.toFixed(0) } }
       }
     );
   });
