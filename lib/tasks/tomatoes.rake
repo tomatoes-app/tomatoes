@@ -44,6 +44,18 @@ namespace :tomatoes do
   task :new_release => [:start_release, :update_application, :generate_manifest, :bump_version] do |t, args|
     puts "New release v. #{version} started"
   end
+  
+  desc "Push and deploy"
+  task :push_and_deploy do |t, args|
+    sh "git push origin develop --tags"
+    puts "Pushed to origin/develop"
+    
+    sh "git push origin master"
+    puts "Pushed to origin/master"
+    
+    sh "git push heroku master"
+    puts "Pushed to heroku/master"
+  end
 end
 
 def version
