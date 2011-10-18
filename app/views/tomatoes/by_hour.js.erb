@@ -1,10 +1,6 @@
 var tomatoes_by_hour = [
-  <% Range.new(@tomatoes.keys.last.to_i, @tomatoes.keys.first.to_i).step(60*60) do |hour| %>
-    <% hour = Time.at(hour) %>
-    <% if @tomatoes[hour] %>
-      <%= raw([hour.to_i*1000, @tomatoes[hour].size].to_json) %>,
-    <% else %>
-      <%= raw([hour.to_i*1000, 0].to_json) %>,
-    <% end %>
+  <% (0..23).each do |hour| %>
+    <% millis = (Time.zone.now.beginning_of_day + hour*3600).to_i*1000 %>
+    <%= raw([millis, @tomatoes[hour] ? @tomatoes[hour].size : 0].to_json) %>,
   <% end %>
 ];

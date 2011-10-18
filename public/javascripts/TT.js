@@ -20,9 +20,13 @@ var TT = function() {
     $.extend(settings, options);
   }
   
-  var mapElements = function(ids, f) {
+  var mapElements = function() {
+    var ids = Array.prototype.shift.call(arguments),
+        f = Array.prototype.shift.call(arguments),
+        args = arguments;
+        
     ids.forEach(function(id) {
-      $("#"+id)[f]();
+      $("#"+id)[f].apply($("#"+id), args);
     });
   }
 
@@ -32,6 +36,22 @@ var TT = function() {
 
   var hide = function(ids) {
     mapElements(ids, 'hide');
+  }
+  
+  var disable = function(ids) {
+    mapElements(ids, 'prop', 'disable', true);
+  }
+  
+  var enable = function(ids) {
+    mapElements(ids, 'prop', 'disable', false);
+  }
+  
+  var blur = function(ids) {
+    mapElements(ids, 'css', 'opacity', .3);
+  }
+  
+  var unblur = function(ids) {
+    mapElements(ids, 'css', 'opacity', 1);
   }
 
   var pad = function(number, length) {
@@ -59,7 +79,9 @@ var TT = function() {
     timerContainerObj.removeClass('round_left');
     timerContainerObj.addClass('round_right');
 
-    hide([settings.startButtonId, settings.startHintId, settings.formId]);
+    disable([settings.startButtonId])
+    blur([settings.startButtonId, settings.startHintId])
+    hide([settings.formId]);
     show([settings.timerId, settings.squashButtonId, settings.squashHintId]);
   }
 
@@ -108,7 +130,8 @@ var TT = function() {
     }
     
     hide([settings.timerId, settings.squashButtonId, settings.squashHintId]);
-    show([settings.startButtonId, settings.startHintId]);
+    enable([settings.startButtonId])
+    unblur([settings.startButtonId, settings.startHintId])
   }
 
   var stateNewForm = function() {
@@ -123,7 +146,8 @@ var TT = function() {
       log('Permission denied. Click "Request Permission" to give this domain access to send notifications to your desktop.');
     }
 
-    hide([settings.timerId, settings.squashButtonId, settings.squashHintId, settings.startButtonId, settings.startHintId]);
+    
+    hide([settings.timerId, settings.squashButtonId, settings.squashHintId]);
     show([settings.formId]);
   }
 
@@ -134,17 +158,18 @@ var TT = function() {
     var timer = duration;
     stateStart(timer);
 
-    timerInterval = setInterval(function() {
-      timer--;
+    (function tick() {
       stateCounting(timer, duration);
       
       if(timer <= 0) {
-        clearInterval(timerInterval);
-        timerInterval = null;
-        soundManager.play(settings.timerEndSoundId);
         callback();
+        soundManager.play(settings.timerEndSoundId);
       }
-    }, 1000);
+      else {
+        timer--;
+        timerInterval = setTimeout(tick, 1000);
+      }
+    })();
   }
 
   var squash = function() {
@@ -152,9 +177,8 @@ var TT = function() {
 
     if(confirm("Sure?")) {
       clearInterval(timerInterval);
-      timerInterval = null;
-      soundManager.play(settings.timerSquashSoundId);
       stateStop(true);
+      soundManager.play(settings.timerSquashSoundId);
     }
   }
 

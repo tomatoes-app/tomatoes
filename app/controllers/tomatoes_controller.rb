@@ -26,11 +26,11 @@ class TomatoesController < ApplicationController
   
   # GET /users/1/tomatoes/by_hour.js
   def by_hour
-    @tomatoes = User.find(params[:user_id]).tomatoes.order_by([[:created_at, :desc]]).group_by do |tomato|
+    @tomatoes = Hash[User.find(params[:user_id]).tomatoes.group_by do |tomato|
       now = Time.zone.now
-      date = [0, 0, tomato.created_at.hour, 1, 1, 2011, now.wday, now.yday, now.isdst, now.zone]
-      Time.mktime(*date)
-    end
+      date = [2011, 1, 1, tomato.created_at.hour]
+      Time.gm(*date)
+    end.sort {|a, b| a[0].hour <=> b[0].hour}.map {|a| [a[0].hour, a[1]]}]
     
     respond_to do |format|
       format.js # tomatoes_by_hour.js.erb
