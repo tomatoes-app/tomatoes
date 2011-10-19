@@ -4,6 +4,11 @@ namespace :tomatoes do
     sh "git flow release start '#{version}'"
   end
   
+  desc "Finish new release"
+  task :finish_release do
+    sh "git flow release finish '#{version}'"
+  end
+  
   desc "Update app version"
   task :update_application do
     File.open(Rails.root.join('config', 'application.rb'), 'rb') do |f|
@@ -41,7 +46,7 @@ namespace :tomatoes do
   end
   
   desc "New release"
-  task :new_release => [:start_release, :update_application, :generate_manifest, :bump_version] do |t, args|
+  task :new_release => [:start_release, :update_application, :generate_manifest, :bump_version, :finish_release] do |t, args|
     puts "New release v. #{version} started"
   end
   
