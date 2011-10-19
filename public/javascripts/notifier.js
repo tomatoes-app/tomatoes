@@ -14,7 +14,7 @@ Notifier.prototype.RequestPermission = function(cb) {
 }
 
 Notifier.prototype.HasPermission = function() {
-  return window.webkitNotifications.checkPermission() == 0;
+  return this.HasSupport() ? window.webkitNotifications.checkPermission() == 0 : false;
 }
 
 // Popup a notification with icon, title, and body. Returns false if
