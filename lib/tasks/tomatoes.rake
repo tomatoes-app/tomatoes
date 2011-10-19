@@ -4,6 +4,11 @@ namespace :tomatoes do
     sh "git flow release start '#{version}'"
   end
   
+  desc "Finish new release"
+  task :finish_release do
+    sh "git flow release finish '#{version}'"
+  end
+  
   desc "Update app version"
   task :update_application do
     File.open(Rails.root.join('config', 'application.rb'), 'rb') do |f|
@@ -41,23 +46,32 @@ namespace :tomatoes do
   end
   
   desc "New release"
-  task :new_release => [:start_release, :update_application, :generate_manifest, :bump_version] do |t, args|
+  task :new_release => [:start_release, :update_application, :generate_manifest, :bump_version, :finish_release] do |t, args|
     puts "New release v. #{version} started"
   end
   
-  desc "Push and deploy"
-  task :push_and_deploy do |t, args|
+  desc "Push repo to origin"
+  task :push do
     sh "git push origin develop --tags"
     puts "Pushed to origin/develop"
     
     sh "git push origin master"
     puts "Pushed to origin/master"
-    
+  end
+  
+  desc "Deploy to Heroku"
+  task :deploy => [:new_release, :push] do
     sh "git push heroku master"
     puts "Pushed to heroku/master"
   end
 end
 
 def version
-  ENV["VERSION"] || TomatoesApp::VERSION
+  ENV["VERSION"] || next_minor_version
+end
+
+def next_minor_version
+  TomatoesApp::VERSION.split('.').map do |n|
+    2 == TomatoesApp::VERSION.split('.').index(n) ? n.to_i+1 : n
+  end.join('.')
 end
