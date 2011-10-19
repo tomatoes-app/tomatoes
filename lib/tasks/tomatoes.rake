@@ -62,5 +62,11 @@ namespace :tomatoes do
 end
 
 def version
-  ENV["VERSION"] || TomatoesApp::VERSION
+  ENV["VERSION"] || next_minor_version
+end
+
+def next_minor_version
+  TomatoesApp::VERSION.split('.').map do |n|
+    2 == TomatoesApp::VERSION.split('.').index(n) ? n.to_i+1 : n
+  end.join('.')
 end
