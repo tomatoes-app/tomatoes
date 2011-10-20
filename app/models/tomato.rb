@@ -36,8 +36,8 @@ class Tomato
     tomatoes_array
   end
   
-  def self.sort_limit_and_map(array)
-    array.sort { |a, b| b['count'] <=> a['count'] }.slice(0, 10).map do |r|
+  def self.sort_and_map(array)
+    array.sort { |a, b| b['count'] <=> a['count'] }.map do |r|
       begin
         if r['user_id'] && user = User.find(r['user_id'])
           {:user => user, :count => r['count'].to_i}
@@ -46,5 +46,27 @@ class Tomato
         puts "ERROR: #{e}"
       end
     end.compact
+  end
+  
+  def self.ranking(opts = {})
+    count_query_opts = {
+      :key => :user_id,
+      :initial => {:count => 0},
+      :reduce => "function(doc, prev) {prev.count += 1}"
+    }
+    
+    sort_and_map(collection.group(count_query_opts.merge(opts)))
+  end
+  
+  def self.ranking_today
+    ranking(:cond => {:created_at => {'$gt' => Time.zone.now.beginning_of_day.utc}})
+  end
+  
+  def self.ranking_this_week
+    ranking(:cond => {:created_at => {'$gt' => Time.zone.now.beginning_of_week.utc}})
+  end
+  
+  def self.ranking_this_month
+    ranking(:cond => {:created_at => {'$gt' => Time.zone.now.beginning_of_month.utc}})
   end
 end
