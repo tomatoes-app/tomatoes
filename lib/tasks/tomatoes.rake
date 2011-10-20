@@ -11,31 +11,21 @@ namespace :tomatoes do
   
   desc "Update app version"
   task :update_application do
-    File.open(Rails.root.join('config', 'application.rb'), 'rb') do |f|
-      # read file content
-      file_content = f.read
-      
-      File.open(f.path, 'w') do |f|
-        f.write(file_content.gsub(/VERSION = '(\d+\.\d+\.\d+)'/, "VERSION = '#{version}'"))
-      end
-    end
+    file_path = Rails.root.join('config', 'application.rb')
+    write_file(file_path, read_file(file_path).gsub(/VERSION = '\d+\.\d+\.\d+'/, "VERSION = '#{version}'"))
     
     puts "Application config file generated"
   end
   
   desc "Generate chrome app manifest"
   task :generate_manifest do
-    File.open(Rails.root.join('chrome_app', 'manifest.json'), 'rb') do |f|
-      # read file content
-      file_content = f.read
-      
-      manifest = ActiveSupport::JSON.decode(file_content)
-      manifest['version'] = version
-      
-      File.open(f.path, 'w') do |f|
-        f.write(manifest.to_json)
-      end
-    end
+    file_path = Rails.root.join('chrome_app', 'manifest.json')
+    file_content = read_file(file_path)
+    
+    manifest = ActiveSupport::JSON.decode(file_content)
+    manifest['version'] = version
+    
+    write_file(file_path, manifest.to_json)
     
     puts "Chrome app manifest file generated"
   end
@@ -74,4 +64,17 @@ def next_minor_version
   TomatoesApp::VERSION.split('.').map do |n|
     2 == TomatoesApp::VERSION.split('.').index(n) ? n.to_i+1 : n
   end.join('.')
+end
+
+def read_file(filename)
+  File.open(filename, 'rb') do |f|
+    # read file content
+    f.read
+  end
+end
+
+def write_file(filename, content)
+  File.open(filename, 'w') do |f|
+    f.write(content)
+  end
 end
