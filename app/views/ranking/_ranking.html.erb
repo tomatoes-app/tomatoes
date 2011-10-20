@@ -1,7 +1,7 @@
 <% unless leaderboard.empty? %>
   <ol>
   <% leaderboard.each do |item| %>
-    <li class="block">
+    <li class="block <%= "you" if current_user && current_user.id == item[:user].id %>">
       <%= render :partial => 'users/user', :locals => {:user => item[:user]} %>
       <div class="count"><%= pluralize(item[:count], 'tomato') %></div>
     </li>

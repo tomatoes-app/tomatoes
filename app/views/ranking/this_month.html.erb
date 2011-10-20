@@ -1,3 +1,5 @@
 <h1>This month's top tomatoers</h1>
 <%= render :partial => 'links' %>
-<%= render :partial => 'ranking', :locals => {:leaderboard => @leaderboard} %>
+<div class="leaderboard_list">
+  <%= render :partial => 'ranking', :locals => {:leaderboard => @leaderboard} %>
+</div>

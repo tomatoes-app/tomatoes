@@ -322,14 +322,22 @@ p#squash_hint {
 	margin-right: 5px;
 }
 
-#leaderboards .leaderboard_list li {
+.leaderboard_list li {
 	list-style-position: inside;
 	margin-bottom: 5px;
+	padding: 2px;
 }
 
-#leaderboards .leaderboard_list .count {
+.leaderboard_list .count {
 	margin-left: 43px;
 	font-size: 10px;
+}
+
+.leaderboard_list li.you {
+	background-color: #f0f0f0;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
 }
 
 #user {
