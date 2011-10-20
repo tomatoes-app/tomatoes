@@ -1,4 +1,12 @@
 TomatoesApp::Application.routes.draw do
+  get "ranking/today"
+
+  get "ranking/this_week"
+
+  get "ranking/this_month"
+
+  get "ranking/all_time"
+
   resources :tomatoes do
     member do
       post 'track'
