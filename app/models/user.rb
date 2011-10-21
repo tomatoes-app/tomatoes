@@ -13,6 +13,14 @@ class User
   
   has_many :tomatoes
   
+  def tags
+    tomatoes.collect(&:tags).flatten.inject(Hash.new(0)) do |hash, tag|
+      hash[tag] += 1; hash
+    end.sort do |a, b|
+      b[1] <=> a[1]
+    end
+  end
+  
   def self.find_by_omniauth(auth)
     where(:provider => auth['provider'], :uid => auth['uid']).first
   end

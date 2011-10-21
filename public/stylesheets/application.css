@@ -44,10 +44,25 @@ table {
 	border-spacing: 0;
 }
 
+table tr.even {
+	background: #f6f6f6;
+}
+table tr.odd {}
+
 table td,
 table th {
-	padding: 5px 10px 5px 0;
+	padding: 5px 10px;
 	border-bottom: 1px solid #ccc;
+}
+
+table th {
+	font-weight: normal;
+	background: #DDD;
+}
+
+table td.number,
+table td.time {
+	text-align: right;
 }
 
 label {
