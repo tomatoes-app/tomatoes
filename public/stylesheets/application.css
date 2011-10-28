@@ -199,6 +199,11 @@ a.button:hover {
 	font-weight: bold;
 }
 
+#logo.auth .text {
+	float: left;
+	margin-right: 20px;
+}
+
 #logo h1 {
 	font-size: 48px;
 	font-family: 'Leckerli One', cursive;
@@ -206,7 +211,7 @@ a.button:hover {
 	margin-bottom: -8px;
 }
 
-#logo h1.start {
+#logo.start h1 {
 	font-size: 158px;
 	margin-bottom: -45px;
 	text-align: center;
@@ -222,10 +227,33 @@ a.button:hover {
 	margin-left: 53px;
 }
 
-#logo h2.start {
+#logo.start h2 {
 	font-size: 20px;
 	margin-left: 436px;
-	margin-bottom: 50px;
+	margin-bottom: 0;
+}
+
+#logo.auth #sponsors {
+	margin-top: 41px;
+	float: right;
+}
+
+#logo.start #sponsors {
+	margin-left: 580px;
+}
+
+#logo #sponsors p {
+	margin: 0;
+	margin-top: 6px;
+	margin-right: 7px;
+}
+
+#logo #sponsors a#mongohq {
+	display: block;
+	text-indent: -9000px;
+	background-image: url(/images/sponsors/mongohq_small.png);
+	width: 100px;
+	height: 28px;
 }
 
 #container {
@@ -237,7 +265,9 @@ a.button:hover {
 	padding-bottom: 20px;
 }
 
-#intro {}
+#intro {
+	margin-bottom: 40px;
+}
 
 #sign_in {
 	margin: 80px 50px;
