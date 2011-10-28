@@ -53,11 +53,13 @@
           <div class="right"><%= link_to "Sign in with GitHub", signin_path %></div>
         <% end %>
       </div>
-  
+      
       <div id="logo">
         <h1 class="<%= "start" unless current_user %>"><%= link_to "Tomatoes", root_path %></h1>
         <h2 class="<%= "start" unless current_user %>">Pomodoro technique<sup>®</sup> time tracker</h2>
       </div>
+      
+      <%= render :partial => 'shared/announcement' %>
       
       <div id="flash">
         <%= render :partial => 'shared/flash', :locals => {:flash => flash} %>
