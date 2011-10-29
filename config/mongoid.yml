@@ -10,7 +10,7 @@ test:
 
 # set these environment variables on your prod server
 production:
-  uri: <%= ENV['MONGOHQ_URL'] %>
+  uri: <%= ENV['MONGOHQ_BIG_URL'] %>
   use_activesupport_time_zone: true
   # slaves:
   #   - host: slave1.local

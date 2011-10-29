@@ -1,15 +1,16 @@
 <% unless current_user %>
-  <div id="intro">
-    <h2>About Tomatoes</h2>
-    <p>Tomatoes is a web-based time tracker.</p>
-    <p>Use the Pomodoro technique® to track your working time in 25-minutes slot called <i>pomodoro</i>.</p>
-  </div>
   <div id="sign_in" class="block">
     <%= link_to signin_path, :class => "button" do %>
       <%= image_tag("Octocat.png", :width => "32") %>
       Sign in with GitHub
     <% end %>
     <p>Sign in with your GitHub account and start tracking your pomodoros.</p>
+  </div>
+  
+  <div id="intro">
+    <h2>About Tomatoes</h2>
+    <p>Tomatoes is a web-based time tracker.</p>
+    <p>Use the Pomodoro technique® to track your working time in 25-minutes slot called <i>pomodoro</i>.</p>
   </div>
 <% else %>
   <div id="progress_bar">
