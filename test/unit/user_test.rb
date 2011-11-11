@@ -24,10 +24,4 @@ class UserTest < ActiveSupport::TestCase
     
     assert true
   end
-  
-  test "user.track_tomatoes" do
-    pending
-    
-    assert true
-  end
 end

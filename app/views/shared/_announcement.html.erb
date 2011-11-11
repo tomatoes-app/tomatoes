@@ -1,6 +1,6 @@
 <% if ENV['ANNOUNCEMENT'] %>
   <div id="announcement">
     <div class="title">Announcement</div>
-    <%= ENV['ANNOUNCEMENT'] %>
+    <%= raw(ENV['ANNOUNCEMENT']) %>
   </div>
 <% end %>
