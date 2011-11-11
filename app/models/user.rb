@@ -7,9 +7,7 @@ class User
   field :email, :type => String
   field :gravatar_id, :type => String
   field :token, :type => String
-  field :freckle_login, :type => String
-  field :freckle_token, :type => String
-  attr_accessible :provider, :uid, :login, :name, :email, :gravatar_id, :token, :freckle_login, :freckle_token
+  attr_accessible :provider, :uid, :login, :name, :email, :gravatar_id, :token
   
   has_many :tomatoes
   
@@ -65,21 +63,5 @@ class User
     end
     
     attributes
-  end
-  
-  def track_tomatoes(ids)
-    conn = Faraday.new(:url => "https://#{freckle_login}.letsfreckle.com") do |builder|
-      builder.use Faraday::Request::JSON        # encode request params as json
-      builder.use Faraday::Adapter::NetHttp     # make http requests with Net::HTTP
-    end
-    
-    Tomato.to_freckle_set(tomatoes.where(:_id.in => ids)).map do |tomato_entry|
-      conn.post do |req|
-        req.url '/api/entries.json'
-        req.headers['Content-Type'] = 'application/json'
-        req.headers['X-FreckleToken'] = freckle_token
-        req.body = tomato_entry.to_json
-      end
-    end
   end
 end
