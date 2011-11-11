@@ -390,13 +390,23 @@ p#squash_hint {
 }
 
 #user {
-	margin-bottom: 20px;
+	margin-bottom: 40px;
 }
 
 .chart {
 	width: 900px;
 	height: 400px;
 	margin-bottom: 20px;
+}
+
+.chart.overview {
+	width: 900px;
+	height: 70px;
+	margin-bottom: 40px;
+}
+
+#tomatoes_by_hour.chart {
+	margin-bottom: 40px;
 }
 
 #progress_bar {

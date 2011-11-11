@@ -1,62 +1,37 @@
 <% content_for :head do %>
-  <%= javascript_include_tag 'jquery.flot', by_day_user_tomatoes_path(@user, :format => :js), by_hour_user_tomatoes_path(@user, :format => :js) %>
+  <%= javascript_include_tag 'jquery.flot', 'jquery.flot.selection', 'user_charts' %>
+  <%= javascript_include_tag by_day_user_tomatoes_path(@user, :format => :js) %>
+  <%= javascript_include_tag by_hour_user_tomatoes_path(@user, :format => :js) %>
 <% end %>
 
-<div id="user" class="block">
-  <div class="left avatar size48">
-    <%= avatar(@user, 48) %>
-    <div class="overlay"></div>
+<div id="user">
+  <div class="block">
+    <div class="left avatar size48">
+      <%= avatar(@user, 48) %>
+      <div class="overlay"></div>
+    </div>
+    <%= user_name(@user) %><br/>
+    <%= link_to "http://github.com/#{@user.login}", "http://github.com/#{@user.login}" %><br/>
+    Tomatoes: <%= @user.tomatoes.size %>
   </div>
-  <%= user_name(@user) %><br/>
-  <%= link_to "http://github.com/#{@user.login}", "http://github.com/#{@user.login}" %><br/>
-  Tomatoes: <%= @user.tomatoes.size %>
+  
+  <% if current_user && current_user.id == @user.id %>
+    <p>
+      <%= link_to 'Your tomatoes', tomatoes_path %> |
+      <%= link_to 'Edit', edit_user_path(@user) %>
+    </p>
+  <% end %>
 </div>
 
-<% if current_user && current_user.id == @user.id %>
-  <p>
-    <%= link_to 'Your tomatoes', tomatoes_path %> |
-    <%= link_to 'Edit', edit_user_path(@user) %>
-  </p>
-<% end %>
-
-<h3>Tomatoes by day</h3>
+<h2>Tomatoes by day</h2>
 <div class="chart" id="tomatoes_by_day"></div>
+<div class="chart overview" id="tomatoes_by_day_overview"></div>
 
-<h3>Tomatoes by hour</h3>
+<h2>Tomatoes by hour</h2>
 <div class="chart" id="tomatoes_by_hour"></div>
 
-<%= javascript_tag do %>
-  $(document).ready(function () {
-    $.plot(
-      $("#tomatoes_by_day"),
-      [{
-        data: tomatoes_by_day,
-        color: "rgba(255, 0, 0, 1)",
-        lines: { show: true, fill: true, fillColor: "rgba(255, 0, 0, 0.5)"}
-      }],
-      {
-        xaxis: { mode: "time", ticks: 14 },
-        yaxis: { tickSize: 1, tickFormatter: function(n) { return n.toFixed(0) } }
-      }
-    );
-  
-    $.plot(
-      $("#tomatoes_by_hour"),
-      [{
-        data: tomatoes_by_hour,
-        color: "rgba(255, 0, 0, 1)",
-        bars: { show: true, barWidth: 60*60*1000, fillColor: "rgba(255, 0, 0, 0.5)" }
-      }],
-      {
-        xaxis: { mode: "time", tickSize: [1, "hour"] },
-        yaxis: { tickSize: 1, tickFormatter: function(n) { return n.toFixed(0) } }
-      }
-    );
-  });
-<% end %>
-
 <% if current_user && current_user.id == @user.id %>
-  <h3>Tomatoes by tag</h3>
+  <h2>Tomatoes by tag</h2>
   <table>
     <thead>
       <tr>
