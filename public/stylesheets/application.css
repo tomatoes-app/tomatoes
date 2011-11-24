@@ -65,12 +65,6 @@ table td.time {
 	text-align: right;
 }
 
-label {
-	display: block;
-	float: left;
-	width: 120px;
-}
-
 input[type=text], select {
 	font-family: 'Varela Round', sans-serif;
 	margin: 0;
@@ -356,12 +350,6 @@ p#squash_hint {
 	text-align: left;
 }
 
-#new_tomato_form label {
-	display: block;
-	float: none;
-	width: auto;
-}
-
 #leaderboards {
 	margin-bottom: 50px;
 }
@@ -378,7 +366,7 @@ p#squash_hint {
 }
 
 .leaderboard_list .count {
-	margin-left: 43px;
+	margin-left: 30px;
 	font-size: 10px;
 }
 

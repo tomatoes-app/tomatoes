@@ -14,9 +14,10 @@ class TomatoesController < ApplicationController
   
   # GET /users/1/tomatoes/by_day.js
   def by_day
-    @tomatoes = User.find(params[:user_id]).tomatoes.order_by([[:created_at, :desc]]).group_by do |tomato|
+    @user = User.find(params[:user_id])
+    @tomatoes = @user.tomatoes.order_by([[:created_at, :desc]]).group_by do |tomato|
       date = tomato.created_at
-      Time.mktime(date.year, date.month, date.day)
+      Time.gm(date.year, date.month, date.day)
     end
     
     respond_to do |format|
@@ -26,7 +27,8 @@ class TomatoesController < ApplicationController
   
   # GET /users/1/tomatoes/by_hour.js
   def by_hour
-    @tomatoes = Hash[User.find(params[:user_id]).tomatoes.group_by do |tomato|
+    @user = User.find(params[:user_id])
+    @tomatoes = Hash[@user.tomatoes.group_by do |tomato|
       now = Time.zone.now
       date = [2011, 1, 1, tomato.created_at.hour]
       Time.gm(*date)
