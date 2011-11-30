@@ -162,7 +162,7 @@ a.button:hover {
 }
 
 .avatar .overlay {
-	background-image: url(/images/rounded-avatar-24.png);
+	background-image: url(<%= asset_path "rounded-avatar-24.png" %>);
 	position: absolute;
 	top: 0;
 	width: 24px;
@@ -176,7 +176,7 @@ a.button:hover {
 }
 
 .avatar.size48 .overlay {
-	background-image: url(/images/rounded-avatar-48.png);
+	background-image: url(<%= asset_path "rounded-avatar-48.png" %>);
 	width: 48px;
 	height: 48px;
 }
@@ -245,7 +245,7 @@ a.button:hover {
 #logo #sponsors a#mongohq {
 	display: block;
 	text-indent: -9000px;
-	background-image: url(/images/sponsors/mongohq_small.png);
+	background-image: url(<%= asset_path "sponsors/mongohq_small.png" %>);
 	width: 100px;
 	height: 28px;
 }

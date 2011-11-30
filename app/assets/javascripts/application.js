@@ -1,5 +1,20 @@
+// This is a manifest file that'll be compiled into including all the files listed below.
+// Add new JavaScript/Coffee code in separate files in this directory and they'll automatically
+// be included in the compiled file accessible from http://example.com/assets/application.js
+// It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
+// the compiled file.
+//
+//= require jquery
+//= require jquery_ujs
+//= require jquery.cookie
+//= require jquery.color
+//= require soundmanager2-nodebug-jsmin
+//= require time_zone
+//= require notifier
+//= require TT
+
 // sound manager setup
-soundManager.url = '/javascripts/sm/swf/';
+soundManager.url = '/sm/swf/';
 soundManager.flashVersion = 9; // optional: shiny features (default = 8)
 soundManager.useFlashBlock = false; // optionally, enable when you're ready to dive in
 soundManager.useHTML5Audio = true;

@@ -7,9 +7,12 @@ require "action_mailer/railtie"
 require "active_resource/railtie"
 require "rails/test_unit/railtie"
 
-# If you have a Gemfile, require the gems listed there, including any gems
-# you've limited to :test, :development, or :production.
-Bundler.require(:default, Rails.env) if defined?(Bundler)
+if defined?(Bundler)
+  # If you precompile assets before deploying to production, use this line
+  Bundler.require(*Rails.groups(:assets => %w(development test)))
+  # If you want your assets lazily compiled in production, use this line
+  # Bundler.require(:default, :assets, Rails.env)
+end
 
 module TomatoesApp
   VERSION = '0.5.29'
@@ -21,7 +24,7 @@ module TomatoesApp
     # -- all .rb files in that directory are automatically loaded.
 
     # Custom directories with classes and modules you want to be autoloadable.
-    config.autoload_paths += %W(#{config.root}/lib)
+    # config.autoload_paths += %W(#{config.root}/extras)
 
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.
@@ -38,9 +41,6 @@ module TomatoesApp
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
-    # JavaScript files you want as :defaults (application.js is always included).
-    config.action_view.javascript_expansions[:defaults] = %w(jquery jquery_ujs jquery.color jquery.cookie)
-
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
 
@@ -49,5 +49,11 @@ module TomatoesApp
     
     # disable mongoid model preloading (see http://mongoid.org/docs/rails/railties.html)
     config.mongoid.preload_models = false
+
+    # Enable the asset pipeline
+    config.assets.enabled = true
+
+    # Version of your assets, change this if you want to expire all your assets
+    config.assets.version = '1.0'
   end
 end
