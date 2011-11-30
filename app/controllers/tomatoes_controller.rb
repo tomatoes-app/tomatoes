@@ -4,7 +4,7 @@ class TomatoesController < ApplicationController
   # GET /tomatoes
   # GET /tomatoes.xml
   def index
-    @tomatoes = current_user.tomatoes.all
+    @tomatoes = current_user.tomatoes.order_by([[:created_at, :desc]])
 
     respond_to do |format|
       format.html # index.html.erb
