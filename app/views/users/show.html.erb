@@ -1,5 +1,5 @@
 <% content_for :head do %>
-  <%= javascript_include_tag 'jquery.flot', 'jquery.flot.selection', 'user_charts' %>
+  <%= javascript_include_tag "jquery.flot", "jquery.flot.selection", "user_charts" %>
   <%= javascript_include_tag by_day_user_tomatoes_path(@user, :format => :js) %>
   <%= javascript_include_tag by_hour_user_tomatoes_path(@user, :format => :js) %>
 <% end %>
