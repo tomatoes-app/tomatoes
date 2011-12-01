@@ -61,9 +61,15 @@ def version
 end
 
 def next_minor_version
-  TomatoesApp::VERSION.split('.').map do |n|
-    2 == TomatoesApp::VERSION.split('.').index(n) ? n.to_i+1 : n
-  end.join('.')
+  version_array = TomatoesApp::VERSION.split('.')
+  
+  if version_array.size > 2
+    version_array[2] = version_array[2].to_i+1
+  else
+    version_array[2] = 1
+  end
+  
+  version_array.join('.')
 end
 
 def read_file(filename)
