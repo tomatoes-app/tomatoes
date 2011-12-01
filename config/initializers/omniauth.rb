@@ -1,5 +1,5 @@
 if Rails.env.production?
-  GITHUB = {'client_id' => ENV['client_id'], 'client_secret' => ENV['client_secret']}
+  GITHUB = {'client_id' => ENV['GITHUB_CLIENT_ID'], 'client_secret' => ENV['GITHUB_CLIENT_SECRET']}
 else
   begin
     GITHUB = YAML.load_file("#{Rails.root}/config/github.yml")
