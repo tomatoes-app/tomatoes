@@ -1,4 +1,4 @@
-# ![Pomodoro technique®](https://github.com/potomak/tomatoes/raw/develop/public/images/pomodoro-technique_48.png "Pomodoro technique®") Tomatoes
+# ![Pomodoro technique®](https://github.com/potomak/tomatoes/raw/develop/app/assets/images/pomodoro-technique_48.png "Pomodoro technique®") Tomatoes
 
 [![Flattr Tomatoes](http://api.flattr.com/button/flattr-badge-large.png)](http://flattr.com/thing/376437/Tomatoes "Flattr Tomatoes")
 
