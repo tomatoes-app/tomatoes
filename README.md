@@ -2,7 +2,7 @@
 
 Try it for free at [http://tomatoes.heroku.com](http://tomatoes.heroku.com "Tomatoes")
 
-If you like the app [![Flattr Tomatoes](http://api.flattr.com/button/flattr-badge-large.png)](http://flattr.com/thing/376437/Tomatoes "Flattr Tomatoes").
+[![Flattr Tomatoes](http://api.flattr.com/button/flattr-badge-large.png)](http://flattr.com/thing/376437/Tomatoes "Flattr Tomatoes")
 
 ## Why?
 
