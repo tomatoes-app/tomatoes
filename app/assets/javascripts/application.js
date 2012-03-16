@@ -23,7 +23,7 @@ soundManager.useHTML5Audio = true;
 soundManager.onready(function() {
   if (soundManager.supported()) {
     // SM2 is ready to go!
-    ['ringing', 'squash'].forEach(function(sound) {
+    ['ringing', 'reset'].forEach(function(sound) {
       soundManager.createSound({
         id: sound,
         url: '/sounds/' + sound + '.mp3',
@@ -44,9 +44,9 @@ function startCallback(event) {
   }
 }
 
-function squashCallback(event) {
+function resetCallback(event) {
   if('running' == TT.getStatus()) {
-    TT.squash();
+    TT.reset();
     event.preventDefault();
   }
 }
@@ -64,7 +64,7 @@ function permissionCallback() {
 
 $(document).ready(function() {
   $("#start").click(startCallback);
-  $("#squash").click(squashCallback);
+  $("#reset").click(resetCallback);
   
   $("#new_tomato_form").live("ajax:beforeSend", function() {
     TT.log("ajax:beforeSend");
@@ -83,7 +83,7 @@ $(document).ready(function() {
     // SPACE key
     event.which == 32 && startCallback(event);
     // ESC key
-    event.which == 27 && squashCallback(event);
+    event.which == 27 && resetCallback(event);
   });
   
   if((typeof window.chrome == 'undefined') || (window.chrome && window.chrome.app && window.chrome.app.isInstalled)) {
