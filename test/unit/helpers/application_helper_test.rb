@@ -2,21 +2,15 @@ require 'test_helper'
 
 class ApplicationHelperTest < ActionView::TestCase
   test "relative_day should return the string 'Today' if date is the current day" do
-    pending
-    
-    assert true
+    assert relative_day(Time.now) == 'Today'
   end
   
   test "relative_day should return the string 'Yesterday' if date is the day before the current day" do
-    pending
-    
-    assert true
+    assert relative_day(Time.now - 1.day) == 'Yesterday'
   end
   
   test "relative_day should return the string a formatted date if it's not today or yesterday" do
-    pending
-    
-    assert true
+    assert relative_day(Time.now - 2.day) == (Time.now - 2.day).to_date.strftime("%A, %B %e")
   end
   
   [
