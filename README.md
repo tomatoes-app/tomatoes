@@ -1,10 +1,8 @@
 # ![Pomodoro technique®](https://github.com/potomak/tomatoes/raw/develop/app/assets/images/pomodoro-technique_48.png "Pomodoro technique®") Tomatoes
 
-[![Flattr Tomatoes](http://api.flattr.com/button/flattr-badge-large.png)](http://flattr.com/thing/376437/Tomatoes "Flattr Tomatoes")
-
 Try it for free at [http://tomatoes.heroku.com](http://tomatoes.heroku.com "Tomatoes")
 
-If you like the app [flattr it](http://flattr.com/thing/376437/Tomatoes "Flattr Tomatoes") or [fork it](http://github.com/potomak/tomatoes "Fork Tomatoes").
+If you like the app [![Flattr Tomatoes](http://api.flattr.com/button/flattr-badge-large.png)](http://flattr.com/thing/376437/Tomatoes "Flattr Tomatoes").
 
 ## Why?
 
