@@ -17,7 +17,7 @@ class Tomato
           {:user => user, :count => r['count'].to_i}
         end
       rescue => e
-        puts "ERROR: #{e}"
+        # puts "ERROR: #{e}"
       end
     end.compact
   end
