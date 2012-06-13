@@ -4,12 +4,12 @@ var TT = function() {
       status = 'idle',
       settings = {
         timerEndSoundId: 'ringing',
-        timerSquashSoundId: 'squash',
+        timerResetSoundId: 'reset',
         timerContainerId: 'timer_container',
         startButtonId: 'start',
         startHintId: 'start_hint',
-        squashButtonId: 'squash',
-        squashHintId: 'squash_hint',
+        resetButtonId: 'reset',
+        resetHintId: 'reset_hint',
         progressBarId: 'progress_bar',
         formId: 'new_tomato_form',
         timerId: 'timer',
@@ -82,7 +82,7 @@ var TT = function() {
     disable([settings.startButtonId])
     blur([settings.startButtonId, settings.startHintId])
     hide([settings.formId]);
-    show([settings.timerId, settings.squashButtonId, settings.squashHintId]);
+    show([settings.timerId, settings.resetButtonId, settings.resetHintId]);
   }
 
   var stateCounting = function(timer, duration) {
@@ -113,7 +113,7 @@ var TT = function() {
     }
   }
 
-  var stateStop = function(squash) {
+  var stateStop = function(reset) {
     log("stateStop");
 
     status = 'idle';
@@ -123,13 +123,13 @@ var TT = function() {
     $("#" + settings.timerContainerId).css('right', 0);
     $("#" + settings.timerContainerId).css('left', '');
     
-    if(typeof squash == 'undefined') {
+    if(typeof reset == 'undefined') {
       if (!NOTIFIER.Notify("", "Tomatoes", "Break is over. It's time to work.")) {
         log('Permission denied. Click "Request Permission" to give this domain access to send notifications to your desktop.');
       }
     }
     
-    hide([settings.timerId, settings.squashButtonId, settings.squashHintId]);
+    hide([settings.timerId, settings.resetButtonId, settings.resetHintId]);
     enable([settings.startButtonId])
     unblur([settings.startButtonId, settings.startHintId])
   }
@@ -147,7 +147,7 @@ var TT = function() {
     }
 
     
-    hide([settings.timerId, settings.squashButtonId, settings.squashHintId]);
+    hide([settings.timerId, settings.resetButtonId, settings.resetHintId]);
     show([settings.formId]);
   }
 
@@ -172,13 +172,13 @@ var TT = function() {
     })();
   }
 
-  var squash = function() {
-    log("squash tomato");
+  var reset = function() {
+    log("reset tomato");
 
     if(confirm("Sure?")) {
       clearInterval(timerInterval);
       stateStop(true);
-      soundManager.play(settings.timerSquashSoundId);
+      soundManager.play(settings.timerResetSoundId);
     }
   }
 
@@ -194,7 +194,7 @@ var TT = function() {
   
   return {
     start: start,
-    squash: squash,
+    reset: reset,
     stateNewForm: stateNewForm,
     stateStop: stateStop,
     log: log,

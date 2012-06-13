@@ -15,7 +15,7 @@
     <td><%= tomato.tags.join(', ') %></td>
     <td><%= link_to 'Show', tomato %></td>
     <td><%= link_to 'Edit', edit_tomato_path(tomato) %></td>
-    <td><%= link_to 'Destroy', tomato, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Destroy', tomato, :data => { :confirm => 'Are you sure?' }, :method => :delete %></td>
   </tr>
 <% end %>
 </table>

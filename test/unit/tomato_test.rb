@@ -1,31 +1,31 @@
 require 'test_helper'
 
 class TomatoTest < ActiveSupport::TestCase
-  test "Tomato.sort_and_map" do
+  test "self.sort_and_map" do
     pending
     
     assert true
   end
   
-  test "Tomato.ranking" do
+  test "self.ranking" do
     pending
     
     assert true
   end
   
-  test "Tomato.ranking_today" do
+  test "self.ranking_today" do
     pending
     
     assert true
   end
   
-  test "Tomato.ranking_this_week" do
+  test "self.ranking_this_week" do
     pending
     
     assert true
   end
   
-  test "Tomato.ranking_this_month" do
+  test "self.ranking_this_month" do
     pending
     
     assert true
