@@ -1,14 +1,19 @@
 class User
   include Mongoid::Document
-  field :provider, :type => String
-  field :uid, :type => String
-  field :login, :type => String
-  field :name, :type => String
-  field :email, :type => String
-  field :gravatar_id, :type => String
-  field :token, :type => String
-  attr_accessible :provider, :uid, :login, :name, :email, :gravatar_id, :token
   
+  # authorization fields (deprecated)
+  field :provider, :type => String
+  field :uid,      :type => String
+  field :token,    :type => String
+  
+  field :login,       :type => String
+  field :name,        :type => String
+  field :email,       :type => String
+  field :gravatar_id, :type => String
+  
+  attr_accessible :provider, :uid, :token, :login, :name, :email, :gravatar_id
+  
+  embeds_many :authorizations
   has_many :tomatoes
   
   def tags
@@ -20,15 +25,19 @@ class User
   end
   
   def self.find_by_omniauth(auth)
-    where(:provider => auth['provider'], :uid => auth['uid']).first
+    where(:authorizations => {
+      '$elemMatch' => {
+        :provider => auth['provider'],
+        :uid      => auth['uid']}},
+      :provider => auth['provider'], :uid => auth['uid']).first
   end
   
   def self.create_with_omniauth!(auth)
     begin
-      create!({
-        :provider => auth['provider'],
-        :uid => auth['uid']
-      }.merge(omniauth_attributes(auth)))
+      user = User.new(omniauth_attributes(auth))
+      user.authorizations.build(Authorization.omniauth_attributes(auth))
+      user.save!
+      user
     rescue Exception
       raise Exception, "Cannot create user"
     end
@@ -45,22 +54,13 @@ class User
   def self.omniauth_attributes(auth)
     attributes = {}
     
-    if auth['user_info']
-      attributes.merge!({
-        :name => auth['user_info']['name'], # Twitter, Google, Yahoo, GitHub
-        :email => auth['user_info']['email'], # Google, Yahoo, GitHub
-        :login => auth['user_info']['nickname'], # GitHub
-        :token => auth['credentials']['token'] # GitHub
-      })
-    end
-    
-    if auth['extra']['user_hash']
-      attributes.merge!({
-        :name => auth['extra']['user_hash']['name'], # Facebook
-        :email => auth['extra']['user_hash']['email'], # Facebook
-        :gravatar_id => auth['extra']['user_hash']['gravatar_id'] # GitHub
-      })
-    end
+    attributes.merge!({
+      name: auth['info']['name'],
+      email: auth['info']['email'],
+      login: auth['info']['nickname']
+    }) if auth['info']
+
+    attributes.merge!(gravatar_id: auth['extra']['raw_info']['gravatar_id']) if auth['extra'] && auth['extra']['raw_info']
     
     attributes
   end
