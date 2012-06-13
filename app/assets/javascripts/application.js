@@ -89,6 +89,12 @@ $(document).ready(function() {
   if((typeof window.chrome == 'undefined') || (window.chrome && window.chrome.app && window.chrome.app.isInstalled)) {
     $("#add_to_chrome").hide();
   }
+  else {
+    $("#add_to_chrome a").click(function() {
+      chrome.webstore.install();
+      return false;
+    });
+  }
   
   if(NOTIFIER.HasSupport()) {
     permissionCallback();
