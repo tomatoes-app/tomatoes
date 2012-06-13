@@ -25,11 +25,13 @@ class User
   end
   
   def self.find_by_omniauth(auth)
-    where(:authorizations => {
-      '$elemMatch' => {
-        :provider => auth['provider'],
-        :uid      => auth['uid']}},
-      :provider => auth['provider'], :uid => auth['uid']).first
+    any_of(
+      {:authorizations => {
+        '$elemMatch' => {
+          :provider => auth['provider'],
+          :uid      => auth['uid'] }}},
+      {:provider => auth['provider'], :uid => auth['uid']}
+    ).first
   end
   
   def self.create_with_omniauth!(auth)
