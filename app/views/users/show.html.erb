@@ -41,7 +41,7 @@
 <h2>Tomatoes by hour</h2>
 <div class="chart" id="tomatoes_by_hour"></div>
 
-<% if current_user && current_user.id == @user.id %>
+<%= content_for_user(@user) do %>
   <h2>Tomatoes by tag</h2>
   <table>
     <thead>
