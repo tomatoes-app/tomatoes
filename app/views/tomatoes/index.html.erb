@@ -20,6 +20,6 @@
 <% end %>
 </table>
 
-<br />
+<%= paginate @tomatoes %>
 
-<%= link_to 'New Tomato', new_tomato_path %>
+<%= link_to 'New Tomato', new_tomato_path, :class => 'button' %>

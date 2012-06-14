@@ -8,12 +8,13 @@ class User
   field :login,       :type => String
   field :gravatar_id, :type => String
 
-  field :name,  :type => String
-  field :email, :type => String
-  field :image, :type => String
+  field :name,      :type => String
+  field :email,     :type => String
+  field :image,     :type => String
+  field :time_zone, :type => String
   
   # attr_accessible :provider, :uid, :token, :login, :gravatar_id
-  attr_accessible :name, :email, :image
+  attr_accessible :name, :email, :image, :time_zone
   
   embeds_many :authorizations
   has_many :tomatoes

@@ -57,6 +57,9 @@ gem 'newrelic_rpm'
 # Memcached
 gem 'dalli'
 
+# Pagination
+gem 'kaminari'
+
 group :development, :test do
   gem 'mocha'
 end
