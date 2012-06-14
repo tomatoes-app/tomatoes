@@ -18,11 +18,10 @@ var TT = function() {
         timerContainerId: 'timer_container',
         startButtonId: 'start',
         startHintId: 'start_hint',
-        resetButtonId: 'reset',
-        resetHintId: 'reset_hint',
         progressBarId: 'progress_bar',
         formId: 'new_tomato_form',
         timerId: 'timer',
+        timerCounterId: 'timer_counter',
         flashId: 'flash'
       };
   
@@ -82,7 +81,7 @@ var TT = function() {
     log("stateStart");
     
     status = 'running';
-    $("#" + settings.timerId).html(secondsToString(timer));
+    $("#" + settings.timerCounterId).html(secondsToString(timer));
     originalTitle = document.title;
     
     var timerContainerObj = $("#" + settings.timerContainerId);
@@ -92,14 +91,14 @@ var TT = function() {
     disable([settings.startButtonId])
     blur([settings.startButtonId, settings.startHintId])
     hide([settings.formId]);
-    show([settings.timerId, settings.resetButtonId, settings.resetHintId]);
+    show([settings.timerId]);
   }
 
   var stateCounting = function(timer, duration) {
     log("stateCounting");
 
     var timerString = secondsToString(timer);
-    $("#" + settings.timerId).html(timerString);
+    $("#" + settings.timerCounterId).html(timerString);
     document.title = timerString + " - " + originalTitle;
     
     var factor = (duration-timer) / duration;
@@ -109,17 +108,15 @@ var TT = function() {
         timerContainerObj = $("#" + settings.timerContainerId);
     
     progressBarObj.css('width', factor*100 + '%');
-    if(progressBarObj.width() < 400) {
-      timerContainerObj.css('right', '');
+    if(progressBarObj.width() < 400+40) {
       timerContainerObj.css('left', progressBarObj.width());
     }
     else {
       if(!timerContainerObj.hasClass('round_left')) {
         timerContainerObj.removeClass('round_right');
         timerContainerObj.addClass('round_left');
-        timerContainerObj.css('left', '');
-        timerContainerObj.css('right', 0);
       }
+      timerContainerObj.css('left', progressBarObj.width() - (400+40+1));
     }
   }
 
@@ -139,7 +136,7 @@ var TT = function() {
       }
     }
     
-    hide([settings.timerId, settings.resetButtonId, settings.resetHintId]);
+    hide([settings.timerId]);
     enable([settings.startButtonId])
     unblur([settings.startButtonId, settings.startHintId])
   }
@@ -157,7 +154,7 @@ var TT = function() {
     }
 
     
-    hide([settings.timerId, settings.resetButtonId, settings.resetHintId]);
+    hide([settings.timerId]);
     show([settings.formId]);
   }
 

@@ -23,9 +23,11 @@
 
   <div id="progress_bar">
     <div id="timer_container">
-      <p id="timer" style="display: none"></p>
-      <%= link_to "Reset", "#", :id => "reset", :class => "button", :style => "display: none" %>
-      <p id="reset_hint">or press esc</p>
+      <div id="timer" style="display: none">
+        <p id="timer_counter"></p>
+        <%= link_to "Reset", "#", :id => "reset", :class => "button" %>
+        <p id="reset_hint">or press esc</p>
+      </div>
       <div id="new_tomato_form" style="display: none">
         <%= render 'tomato_form' %>
       </div>
