@@ -24,7 +24,12 @@
   <div id="progress_bar">
     <div id="timer_container">
       <div id="timer" style="display: none">
-        <p id="timer_counter"></p>
+        <div class="volume right block">
+          <div class="down left">-</div>
+          <div id="volume_icon" class="mute_toggle left"></div>
+          <div class="up left">+</div>
+        </div>
+        <div id="timer_counter"></div>
         <%= link_to "Reset", "#", :id => "reset", :class => "button" %>
         <p id="reset_hint">or press esc</p>
       </div>

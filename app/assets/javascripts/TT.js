@@ -12,6 +12,7 @@ var TT = function() {
   var timerInterval = null,
       originalTitle,
       status = 'idle',
+      volume = 50,
       settings = {
         timerEndSoundId: 'ringing',
         timerResetSoundId: 'reset',
@@ -170,7 +171,7 @@ var TT = function() {
       
       if(timer <= 0) {
         callback();
-        soundManager.play(settings.timerEndSoundId);
+        soundManager.setVolume(settings.timerEndSoundId, volume).play();
       }
       else {
         timer--;
@@ -185,7 +186,7 @@ var TT = function() {
     if(confirm("Sure?")) {
       clearInterval(timerInterval);
       stateStop(true);
-      soundManager.play(settings.timerResetSoundId);
+      soundManager.setVolume(settings.timerResetSoundId, volume).play();
     }
   }
 
@@ -198,6 +199,14 @@ var TT = function() {
   var getStatus = function() {
     return status;
   }
+
+  var getVolume = function() {
+    return volume;
+  }
+
+  var setVolume = function(newVolume) {
+    volume = Math.max(Math.min(newVolume, 100), 0);
+  }
   
   return {
     start: start,
@@ -205,6 +214,8 @@ var TT = function() {
     stateNewForm: stateNewForm,
     stateStop: stateStop,
     log: log,
-    getStatus: getStatus
+    getStatus: getStatus,
+    getVolume: getVolume,
+    setVolume: setVolume
   };
 }();

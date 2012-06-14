@@ -47,6 +47,13 @@ function permissionCallback() {
   }
 }
 
+function updateVolumeIcon() {
+  var level = Math.floor(TT.getVolume()/25);
+  level = Math.min(level, 3);
+  level = Math.max(level, 0);
+  $("#volume_icon").removeClass().addClass("mute_toggle left level_" + level);
+}
+
 $(document).ready(function() {
   $("#start").click(startCallback);
   $("#reset").click(resetCallback);
@@ -92,6 +99,21 @@ $(document).ready(function() {
   else {
     $("#request_notification_permission").hide();
   }
+
+  $(".volume .up").click(function() {
+    TT.setVolume(TT.getVolume() + 25);
+    updateVolumeIcon();
+  });
+  $(".volume .down").click(function() {
+    TT.setVolume(TT.getVolume() - 25);
+    updateVolumeIcon();
+  });
+  $(".volume .mute_toggle").click(function() {
+    TT.setVolume(0 == TT.getVolume() ? 50 : 0);
+    updateVolumeIcon();
+  });
+
+  updateVolumeIcon();
 });
 
 $(window).bind('beforeunload', function() {
