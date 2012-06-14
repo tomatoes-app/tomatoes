@@ -6,10 +6,18 @@ class Tomato
   include Mongoid::Timestamps
   
   belongs_to :user
+
+  validate :must_not_overlap
   
   DURATION       = Rails.env.development? ? 10 : 25*60 # pomodoro default duration in seconds
   BREAK_DURATION = Rails.env.development? ? 5  : 5*60  # pomodoro default break duration in seconds
   
+  def must_not_overlap
+    if user.tomatoes.where(:created_at => {'$gte' => Time.zone.now - DURATION.seconds}).first
+      errors.add(:base, "Must not overlap saved tomaotes")
+    end
+  end
+
   def self.sort_and_map(array)
     array.sort { |a, b| b['count'] <=> a['count'] }.map do |r|
       begin

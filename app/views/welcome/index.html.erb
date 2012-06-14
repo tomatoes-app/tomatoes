@@ -1,4 +1,9 @@
 <% unless current_user %>
+  <div id="intro">
+    <p>Tomatoes is a <i>pomodoro tracker</i>, a Pomodoro technique® driven time tracker.</p>
+    <p>Use the Pomodoro technique® to track your working time in 25-minutes slot called <i>pomodoro</i>.</p>
+  </div>
+
   <div class="sign_in block">
     <%= link_to signin_path('github'), :class => "button" do %>
       <%= image_tag("github.png", :width => "32") %>
@@ -11,13 +16,11 @@
     <% end %>
     <p>Sign in to start tracking your pomodoros.</p>
   </div>
-  
-  <div id="intro">
-    <h2>About Tomatoes</h2>
-    <p>Tomatoes is a <i>pomodoro tracker</i>, a Pomodoro technique® driven time tracker.</p>
-    <p>Use the Pomodoro technique® to track your working time in 25-minutes slot called <i>pomodoro</i>.</p>
-  </div>
 <% else %>
+  <% content_for :head do %>
+    <%= javascript_include_tag "TT_init" %>
+  <% end %>
+
   <div id="progress_bar">
     <div id="timer_container">
       <p id="timer" style="display: none"></p>

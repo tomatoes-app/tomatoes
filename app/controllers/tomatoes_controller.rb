@@ -91,6 +91,7 @@ class TomatoesController < ApplicationController
         format.html { redirect_to(root_url, :notice => 'Tomato created, now it\'s time for a break.') }
         format.xml  { render :xml => @tomato, :status => :created, :location => @tomato }
       else
+        # TODO: error format.js
         format.html { render :action => "new" }
         format.xml  { render :xml => @tomato.errors, :status => :unprocessable_entity }
       end
