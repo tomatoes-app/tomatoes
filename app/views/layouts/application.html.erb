@@ -49,7 +49,11 @@
           </div>
           <div class="right"><%= link_to "Sign out", signout_path %></div>
         <% else %>
-          <div class="right"><%= link_to "Sign in with GitHub", signin_path %></div>
+          <div class="right">
+            <%= link_to "Sign in with GitHub", signin_path('github') %>
+            or
+            <%= link_to "Sign in with Twitter", signin_path('twitter') %>
+          </div>
         <% end %>
       </div>
       

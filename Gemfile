@@ -37,14 +37,22 @@ end
 #   gem 'webrat'
 # end
 
+gem 'jquery-rails'
+
+# Mongo
 gem 'mongoid'
 gem 'bson_ext'
-gem 'jquery-rails'
+
+# Omniauth
 gem 'omniauth'
 gem 'omniauth-github'
-gem 'hubruby'
-gem 'faraday'
+gem 'omniauth-twitter'
+
+# Thin
 gem 'thin'
+
+# New Relic
+gem 'newrelic_rpm'
 
 group :development, :test do
   gem 'mocha'

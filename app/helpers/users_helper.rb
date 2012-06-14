@@ -1,6 +1,6 @@
 module UsersHelper
-  def avatar(user, size=24)
-    image_tag "http://gravatar.com/avatar/#{user.gravatar_id}?s=#{size}"
+  def profile_image(user, size=24)
+    image_tag user.authorizations && !user.authorizations.empty? ? user.authorizations.first.image : '', :width => size
   end
   
   def user_name(user)
