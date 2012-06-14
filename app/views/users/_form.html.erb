@@ -19,6 +19,10 @@
     <%= f.label :email %></br>
     <%= f.text_field :email %>
   </div>
+  <div class="field">
+    <%= f.label :time_zone %></br>
+    <%= time_zone_select 'user', 'time_zone' %>
+  </div>
   <div class="actions">
     <%= f.submit :class => "button" %>
   </div>
