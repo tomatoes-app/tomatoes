@@ -6,29 +6,27 @@
 
 <div id="user">
   <div class="block">
-    <div class="left profile_image size48">
-      <%= profile_image(@user, 48) %>
-      <div class="overlay"></div>
+    <div class="profile block">
+      <div class="left profile_image size48">
+        <%= profile_image(@user, 48) %>
+        <div class="overlay"></div>
+      </div>
+      <div class="left profile_info">
+        <%= user_name(@user) %><br/>
+        Tomatoes: <%= @user.tomatoes.size %></br>
+        <% @user.authorizations.each do |authorization| %>
+          <%= link_to authorization.url, authorization.url %><br/>
+        <% end %>
+      </div>
     </div>
-    <%= user_name(@user) %><br/>
-    <%= link_to "http://github.com/#{@user.login}", "http://github.com/#{@user.login}" %><br/>
-    Tomatoes: <%= @user.tomatoes.size %>
-    <% ['twitter', 'github'].each do |provider| %>
-      <h2>
-        <%= image_tag("#{provider}.png", :width => 32) %>
-        <%= provider.capitalize %>
-      </h2>
-      <% if authorization = @user.authorization_by_provider(provider) %>
-        <%= image_tag authorization.image %>
-        <%= link_to authorization.url, authorization.url %><br/>
-        <%= link_to "Reconnect with #{provider}", signin_path(provider) %>
-      <% else %>
-        <%= link_to "Connect with #{provider}", signin_path(provider) %>
+    <%= content_for_user(@user) do %>
+      <% ['twitter', 'github'].each do |provider| %>
+        <%= render :partial => 'authorizations/authorization', :locals => {:provider => provider, :user => @user} %>
       <% end %>
     <% end %>
   </div>
   
-  <% if current_user && current_user.id == @user.id %>
+  <%= content_for_user(@user) do %>
     <p>
       <%= link_to 'Your tomatoes', tomatoes_path %> |
       <%= link_to 'Edit', edit_user_path(@user) %>
@@ -43,7 +41,7 @@
 <h2>Tomatoes by hour</h2>
 <div class="chart" id="tomatoes_by_hour"></div>
 
-<% if current_user && current_user.id == @user.id %>
+<%= content_for_user(@user) do %>
   <h2>Tomatoes by tag</h2>
   <table>
     <thead>
