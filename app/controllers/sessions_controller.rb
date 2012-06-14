@@ -1,13 +1,17 @@
 class SessionsController < ApplicationController
   def new
-    redirect_to '/auth/github'
+    redirect_to "/auth/#{params[:provider]}"
   end
 
   def create
-    auth = request.env["omniauth.auth"]
-    user = User.find_by_omniauth(auth) || User.create_with_omniauth!(auth)
-    user.update_omniauth_attributes!(auth)
-    session[:user_id] = user.id
+    @user = current_user
+    logger.debug "@user: #{@user.inspect}"
+    @user ||= User.find_by_omniauth(auth)
+    logger.debug "@user: #{@user.inspect}"
+    @user ||= User.create_with_omniauth!(auth)
+    logger.debug "@user: #{@user.inspect}"
+    @user.update_omniauth_attributes!(auth)
+    session[:user_id] = @user.id
     
     logger.debug "auth hash: #{auth.inspect}"
     
@@ -21,5 +25,11 @@ class SessionsController < ApplicationController
 
   def failure
     redirect_to root_url, :alert => "Authentication error: #{params[:message].humanize}"
+  end
+
+  protected
+
+  def auth
+    request.env["omniauth.auth"]
   end
 end

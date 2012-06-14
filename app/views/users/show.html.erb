@@ -6,13 +6,26 @@
 
 <div id="user">
   <div class="block">
-    <div class="left avatar size48">
-      <%= avatar(@user, 48) %>
+    <div class="left profile_image size48">
+      <%= profile_image(@user, 48) %>
       <div class="overlay"></div>
     </div>
     <%= user_name(@user) %><br/>
     <%= link_to "http://github.com/#{@user.login}", "http://github.com/#{@user.login}" %><br/>
     Tomatoes: <%= @user.tomatoes.size %>
+    <% ['twitter', 'github'].each do |provider| %>
+      <h2>
+        <%= image_tag("#{provider}.png", :width => 32) %>
+        <%= provider.capitalize %>
+      </h2>
+      <% if authorization = @user.authorization_by_provider(provider) %>
+        <%= image_tag authorization.image %>
+        <%= link_to authorization.url, authorization.url %><br/>
+        <%= link_to "Reconnect with #{provider}", signin_path(provider) %>
+      <% else %>
+        <%= link_to "Connect with #{provider}", signin_path(provider) %>
+      <% end %>
+    <% end %>
   </div>
   
   <% if current_user && current_user.id == @user.id %>

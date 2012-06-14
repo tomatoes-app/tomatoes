@@ -1,10 +1,15 @@
 <% unless current_user %>
-  <div id="sign_in" class="block">
-    <%= link_to signin_path, :class => "button" do %>
-      <%= image_tag("Octocat.png", :width => "32") %>
+  <div class="sign_in block">
+    <%= link_to signin_path('github'), :class => "button" do %>
+      <%= image_tag("github.png", :width => "32") %>
       Sign in with GitHub
     <% end %>
-    <p>Sign in with your GitHub account and start tracking your pomodoros.</p>
+    or
+    <%= link_to signin_path('twitter'), :class => "button" do %>
+      <%= image_tag("twitter.png", :width => "32") %>
+      Sign in with Twitter
+    <% end %>
+    <p>Sign in to start tracking your pomodoros.</p>
   </div>
   
   <div id="intro">

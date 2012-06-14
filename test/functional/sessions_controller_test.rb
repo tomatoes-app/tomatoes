@@ -17,7 +17,7 @@ class SessionsControllerTest < ActionController::TestCase
   end
   
   test "should get new" do
-    get :new
+    get :new, :provider => 'github'
     assert_redirected_to '/auth/github'
   end
 

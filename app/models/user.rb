@@ -2,16 +2,18 @@ class User
   include Mongoid::Document
   
   # authorization fields (deprecated)
-  field :provider, :type => String
-  field :uid,      :type => String
-  field :token,    :type => String
-  
+  field :provider,    :type => String
+  field :uid,         :type => String
+  field :token,       :type => String
   field :login,       :type => String
-  field :name,        :type => String
-  field :email,       :type => String
   field :gravatar_id, :type => String
+
+  field :name,  :type => String
+  field :email, :type => String
+  field :image, :type => String
   
-  attr_accessible :provider, :uid, :token, :login, :name, :email, :gravatar_id
+  # attr_accessible :provider, :uid, :token, :login, :gravatar_id
+  attr_accessible :name, :email, :image
   
   embeds_many :authorizations
   has_many :tomatoes
@@ -25,16 +27,18 @@ class User
   end
   
   def self.find_by_omniauth(auth)
+    logger.debug "find_by_omniauth"
     any_of(
       {:authorizations => {
         '$elemMatch' => {
-          :provider => auth['provider'],
-          :uid      => auth['uid'] }}},
+          :provider => auth['provider'].to_s,
+          :uid      => auth['uid'].to_s }}},
       {:provider => auth['provider'], :uid => auth['uid']}
     ).first
   end
   
   def self.create_with_omniauth!(auth)
+    logger.debug "create_with_omniauth"
     begin
       user = User.new(omniauth_attributes(auth))
       user.authorizations.build(Authorization.omniauth_attributes(auth))
@@ -48,6 +52,13 @@ class User
   def update_omniauth_attributes!(auth)
     begin
       update_attributes!(User.omniauth_attributes(auth))
+
+      if authorization = authorization_by_provider(auth['provider'])
+        authorization.update_attributes!(Authorization.omniauth_attributes(auth))
+      else
+        # merge one more authorization provider
+        authorizations.create!(Authorization.omniauth_attributes(auth))
+      end
     rescue Exception
       raise Exception, "Cannot update user"
     end
@@ -59,11 +70,13 @@ class User
     attributes.merge!({
       name: auth['info']['name'],
       email: auth['info']['email'],
-      login: auth['info']['nickname']
+      image: auth['info']['image']
     }) if auth['info']
-
-    attributes.merge!(gravatar_id: auth['extra']['raw_info']['gravatar_id']) if auth['extra'] && auth['extra']['raw_info']
     
     attributes
+  end
+
+  def authorization_by_provider(provider)
+    authorizations.where(provider: provider).first
   end
 end

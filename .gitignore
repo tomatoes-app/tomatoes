@@ -3,5 +3,6 @@ db/*.sqlite3
 log/*.log
 tmp/
 config/github.yml
+config/twitter.yml
 .DS_Store
 public/assets

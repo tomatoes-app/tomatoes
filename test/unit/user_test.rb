@@ -2,18 +2,12 @@ require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
   setup do
-    @user = User.create(
-      :provider => "provider",
-      :uid => "uid",
-      :name => "name",
-      :email => "email",
-      :login => "login"
-    )
     @auth = {
       'info' => {
         'name'     => "John Doe",
         'email'    => "email@example.com",
-        'nickname' => "john"
+        'nickname' => "john",
+        'image'    => "image"
       },
       'credentials' => {
         'token' => "a token",
@@ -21,12 +15,14 @@ class UserTest < ActiveSupport::TestCase
       },
       'extra' => {
         'raw_info' => {
-          'gravatar_id' => "gravatar"
+          'gravatar_id' => "gravatar",
+          'avatar_url' => "avatar_url"
         }
       },
       'provider' => 'provider',
       'uid' => 'uid'
     }
+    @user = User.create_with_omniauth!(@auth)
   end
   
   teardown do
@@ -51,10 +47,9 @@ class UserTest < ActiveSupport::TestCase
   
   test "self.omniauth_attributes should parse auth hash and return user attributes" do
     expected = {
-      :name        => "John Doe",
-      :email       => "email@example.com",
-      :login       => "john",
-      :gravatar_id => "gravatar"
+      :name  => "John Doe",
+      :email => "email@example.com",
+      :image => "image"
     }
 
     assert User.omniauth_attributes(@auth) == expected
