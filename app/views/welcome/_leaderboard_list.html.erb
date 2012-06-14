@@ -1,4 +1,6 @@
-<div class="left leaderboard_list">
-  <h3><%= link_to ranking.humanize, send("ranking_#{ranking}_path") %></h3>
-  <%= render :partial => 'ranking/ranking', :locals => {:leaderboard => leaderboard} %>
-</div>
+<% cache("#{leaderboard}_leaderboard_list", :expires_in => 1.hour) do %>
+  <div class="left leaderboard_list">
+    <h3><%= link_to ranking.humanize, send("ranking_#{ranking}_path") %></h3>
+    <%= render :partial => 'ranking/ranking', :locals => {:leaderboard => leaderboard} %>
+  </div>
+<% end %>
