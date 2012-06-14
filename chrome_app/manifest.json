@@ -1,1 +1,1 @@
-{"name":"Tomatoes","app":{"urls":["http://tomatoes.heroku.com/"],"launch":{"web_url":"http://tomatoes.heroku.com/"}},"icons":{"128":"icon_128.png"},"version":"0.6.8","description":"Pomodoro technique\u00ae web-based time tracker"}
+{"name":"Tomatoes","app":{"urls":["http://tomatoes.heroku.com/"],"launch":{"web_url":"http://tomatoes.heroku.com/"}},"icons":{"128":"icon_128.png"},"version":"0.6.9","description":"Pomodoro technique\u00ae web-based time tracker"}
