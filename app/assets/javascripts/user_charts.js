@@ -7,7 +7,7 @@ $(document).ready(function () {
           lines: { show: true, fill: true, fillColor: light_red }
         },
         selection: { mode: "x" },
-        xaxis: { mode: "time", ticks: 14 },
+        xaxis: { mode: "time", ticks: 14, min: THIRTY_DAYS_AGO, max: TODAY },
         yaxis: { ticks: 14, tickFormatter: function(n) { return n.toFixed(0) } }
       };
   
@@ -23,6 +23,8 @@ $(document).ready(function () {
     xaxis: { mode: "time", ticks: [] },
     yaxis: { ticks: [], autoscaleMargin: 0.1, tickSize: 1 }
   });
+
+  tomatoes_by_day_chart_overview.setSelection({xaxis: {from: THIRTY_DAYS_AGO, to: TODAY}}, true);
   
   // connect charts
   $("#tomatoes_by_day").bind("plotselected", function (event, ranges) {
