@@ -54,6 +54,9 @@ gem 'thin'
 # New Relic
 gem 'newrelic_rpm'
 
+# Memcached
+gem 'dalli'
+
 group :development, :test do
   gem 'mocha'
 end
