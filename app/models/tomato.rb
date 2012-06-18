@@ -7,7 +7,7 @@ class Tomato
   
   belongs_to :user
 
-  validate :must_not_overlap
+  validate :must_not_overlap, :on => :create
   
   DURATION       = Rails.env.development? ? 10 : 25*60 # pomodoro default duration in seconds
   BREAK_DURATION = Rails.env.development? ? 5  : 5*60  # pomodoro default break duration in seconds
