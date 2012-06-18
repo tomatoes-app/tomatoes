@@ -39,7 +39,7 @@ function resetCallback(event) {
 function permissionCallback() {
   var requestObject = $("#request_notification_permission a");
   
-  if(NOTIFIER.HasPermission()) {
+  if(NOTIFIER.hasPermission()) {
     requestObject.html("Tomatoes is allowed to use desktop notifications");
   }
   else {
@@ -88,11 +88,11 @@ $(document).ready(function() {
     });
   }
   
-  if(NOTIFIER.HasSupport()) {
+  if(NOTIFIER.hasSupport()) {
     permissionCallback();
     
     $("#request_notification_permission a").click(function(event) {
-      NOTIFIER.RequestPermission(permissionCallback());
+      NOTIFIER.requestPermission(permissionCallback());
       event.preventDefault();
     });
   }
