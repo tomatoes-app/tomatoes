@@ -1,10 +1,9 @@
 TomatoesApp::Application.routes.draw do
+  get "statistics/index"
+
   get "ranking/today"
-
   get "ranking/this_week"
-
   get "ranking/this_month"
-
   get "ranking/all_time"
 
   resources :tomatoes do
