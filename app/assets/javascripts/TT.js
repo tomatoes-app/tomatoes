@@ -132,7 +132,7 @@ var TT = function() {
     $("#" + settings.timerContainerId).css('left', '');
     
     if(typeof reset == 'undefined') {
-      if (!NOTIFIER.Notify("", "Tomatoes", "Break is over. It's time to work.")) {
+      if (!NOTIFIER.notify(tomatoNotificationIcon, "Tomatoes", "Break is over. It's time to work.")) {
         log('Permission denied. Click "Request Permission" to give this domain access to send notifications to your desktop.');
       }
     }
@@ -150,7 +150,7 @@ var TT = function() {
     $("#" + settings.formId + " input[type=text]").focus();
     
     // notify tomato end
-    if (!NOTIFIER.Notify("", "Tomatoes", "Pomodoro finished!")) {
+    if (!NOTIFIER.notify(tomatoNotificationIcon, "Tomatoes", "Pomodoro finished!")) {
       log('Permission denied. Click "Request Permission" to give this domain access to send notifications to your desktop.');
     }
 

@@ -3,7 +3,7 @@
     var TODAY = <%= Time.zone.now.to_i*1000 %>;
     var THIRTY_DAYS_AGO = <%= (Time.zone.now - 30.days).to_i*1000 %>;
   <% end %>
-  <%= javascript_include_tag "jquery.flot.js", "jquery.flot.selection.js", "user_charts.js" %>
+  <%= javascript_include_tag "user_charts.js" %>
   <%= javascript_include_tag by_day_user_tomatoes_path(@user, :format => :js) %>
   <%= javascript_include_tag by_hour_user_tomatoes_path(@user, :format => :js) %>
 <% end %>

@@ -1,7 +1,7 @@
 module ApplicationHelper
   def relative_day(date)
     case date.to_date
-    when Date.today
+    when Date.current
       "Today"
     when Date.yesterday
       "Yesterday"

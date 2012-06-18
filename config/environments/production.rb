@@ -43,7 +43,7 @@ TomatoesApp::Application.configure do
   # config.action_controller.asset_host = "http://assets.example.com"
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
-  config.assets.precompile += %w( jquery.flot.js jquery.flot.selection.js user_charts.js TT.js )
+  config.assets.precompile += %w( user_charts.js statistics.js TT.js )
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false

@@ -12,6 +12,7 @@
   <%= javascript_tag do %>
     var tomatoDuration = <%= Tomato::DURATION/60.0 %>;
     var tomatoBreakDuration = <%= Tomato::BREAK_DURATION/60.0 %>;
+    var tomatoNotificationIcon = '<%= asset_path('pomodoro_notification_icon.png') %>';
     var DEBUG = <%= Rails.env.development? %>;
   <% end %>
   
