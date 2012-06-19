@@ -2,19 +2,19 @@ function Notifier() {}
 
 // Returns "true" if this browser supports notifications.
 Notifier.prototype.hasSupport = function() {
-  return window.webkitNotifications ? true : false;
+  return !!window.webkitNotifications;
 }
 
 // Request permission for this page to send notifications. If allowed,
 // calls function "cb" with true.
 Notifier.prototype.requestPermission = function(cb) {
   window.webkitNotifications.requestPermission(function() {
-    cb && cb(this.hasPermission());
+    cb && cb((new Notifier()).hasPermission());
   });
 }
 
 Notifier.prototype.hasPermission = function() {
-  return this.hasSupport() ? window.webkitNotifications.checkPermission() == 0 : false;
+  return this.hasSupport() && 0 == window.webkitNotifications.checkPermission();
 }
 
 // Popup a notification with icon, title, and body. Returns false if
