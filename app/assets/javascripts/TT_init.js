@@ -36,17 +36,6 @@ function resetCallback(event) {
   }
 }
 
-function permissionCallback() {
-  var requestObject = $("#request_notification_permission a");
-  
-  if(NOTIFIER.hasPermission()) {
-    requestObject.html("Tomatoes is allowed to use desktop notifications");
-  }
-  else {
-    requestObject.html("Allow desktop notifications");
-  }
-}
-
 function updateVolumeIcon() {
   var level = Math.floor(TT.getVolume()/25);
   level = Math.min(level, 3);
@@ -86,18 +75,6 @@ $(document).ready(function() {
       chrome.webstore.install();
       return false;
     });
-  }
-  
-  if(NOTIFIER.hasSupport()) {
-    permissionCallback();
-    
-    $("#request_notification_permission a").click(function(event) {
-      NOTIFIER.requestPermission(permissionCallback());
-      event.preventDefault();
-    });
-  }
-  else {
-    $("#request_notification_permission").hide();
   }
 
   $(".volume .up").click(function() {
