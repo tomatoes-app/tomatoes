@@ -22,56 +22,6 @@ class Tomato
     end
   end
 
-  def self.sort_and_map(array)
-    array.sort { |a, b| b['count'] <=> a['count'] }.map do |r|
-      begin
-        if r['user_id'] && user = User.find(r['user_id'])
-          {:user => user, :count => r['count'].to_i}
-        end
-      rescue => e
-        # puts "ERROR: #{e}"
-      end
-    end.compact
-  end
-  
-  def self.ranking(opts = {})
-    count_query_opts = {
-      :key => :user_id,
-      :initial => {:count => 0},
-      :reduce => "function(doc, prev) {prev.count += 1}"
-    }
-    
-    sort_and_map(collection.group(count_query_opts.merge(opts)))
-  end
-  
-  def self.ranking_today
-    ranking(:cond => {:created_at => {'$gt' => Time.zone.now.beginning_of_day.utc}})
-  end
-  
-  def self.ranking_this_week
-    ranking(:cond => {:created_at => {'$gt' => Time.zone.now.beginning_of_week.utc}})
-  end
-  
-  def self.ranking_this_month
-    ranking(:cond => {:created_at => {'$gt' => Time.zone.now.beginning_of_month.utc}})
-  end
-
-  def self.today
-    collection.find(:cond => {:created_at => {'$gt' => Time.zone.now.beginning_of_day.utc}})
-  end
-
-  def self.this_week
-    collection.find(:cond => {:created_at => {'$gt' => Time.zone.now.beginning_of_week.utc}})
-  end
-
-  def self.this_month
-    collection.find(:cond => {:created_at => {'$gt' => Time.zone.now.beginning_of_month.utc}})
-  end
-
-  def self.all_time
-    collection
-  end
-
   def self.ranking_map(type)
     if :all_time != type
       date = Time.zone.now.send("beginning_of_#{type}")
