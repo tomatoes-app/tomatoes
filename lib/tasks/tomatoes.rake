@@ -47,12 +47,14 @@ namespace :tomatoes do
     
     sh "git push origin master"
     puts "Pushed to origin/master"
+
+    sh "git push heroku master"
+    puts "Pushed to heroku/master"
   end
   
   desc "Deploy to Heroku.\nUse this task to deploy a new version of Tomatoes.\nExample 1: 'rake tomatoes:deploy'\nExample 2: 'rake tomatoes:deploy VERSION=0.6'"
   task :deploy => [:new_release, :push] do
-    sh "git push heroku master"
-    puts "Pushed to heroku/master"
+    puts "Deployment of version #{version} finished"
   end
 end
 
