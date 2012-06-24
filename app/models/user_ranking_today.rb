@@ -1,2 +1,0 @@
-class UserRankingToday < UserRanking
-end

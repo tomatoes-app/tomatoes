@@ -72,23 +72,32 @@ class Tomato
     collection
   end
 
-  def self.ranking_collection(collection, name)
-    map = %Q{
+  def self.ranking_map(type)
+    if :all_time != type
+      date = Time.zone.now.send("beginning_of_#{type}")
+      date = "(new Date(#{date.year}, #{date.month-1}, #{date.day}))"
+    end
+
+    %Q{
       function() {
-        emit(this.user_id, 1)
+        emit(this.user_id, #{:all_time != type ? "this.created_at > #{date} ? 1 : 0" : 1});
       }
     }
+  end
 
-    reduce = %Q{
+  def self.ranking_reduce
+    %Q{
       function(key, values) {
         var result = 0;
         values.forEach(function(v) {
-          result += v
+          result += v;
         });
         return result;
       }
     }
+  end
 
-    collection.map_reduce(map, reduce, {out: name})
+  def self.ranking_collection(type)
+    collection.map_reduce(ranking_map(type), ranking_reduce, {out: "user_ranking_#{type}s"})
   end
 end

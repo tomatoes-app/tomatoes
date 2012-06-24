@@ -1,7 +1,9 @@
 class UserRanking
-  include Mongoid::Document
+  def self.users
+    @@users ||= Hash[*User.find(all.entries.collect(&:_id)).collect {|u| [u._id, u] }.flatten]
+  end
 
   def user
-    User.find(_id)
+    @user ||= UserRankingAllTime.users[_id]
   end
 end

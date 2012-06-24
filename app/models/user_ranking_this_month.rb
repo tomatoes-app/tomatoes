@@ -1,2 +1,0 @@
-class UserRankingThisMonth < UserRanking
-end
