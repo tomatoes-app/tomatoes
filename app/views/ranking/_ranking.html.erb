@@ -1,10 +1,12 @@
 <% unless leaderboard.empty? %>
   <ol>
   <% leaderboard.each do |item| %>
-    <li class="block <%= content_for_user(item[:user]) { "you" } %>">
-      <%= render :partial => 'users/user', :locals => {:user => item[:user]} %>
-      <div class="count"><%= pluralize(item[:count], 'tomato') %></div>
-    </li>
+    <% if item.user %>
+      <li class="block <%= content_for_user(item.user) { "you" } %>">
+        <%= render :partial => 'users/user', :locals => {:user => item.user} %>
+        <div class="count"><%= pluralize(item.value.to_i, 'tomato') %></div>
+      </li>
+    <% end %>
   <% end %>
   </ol>
 <% else %>
