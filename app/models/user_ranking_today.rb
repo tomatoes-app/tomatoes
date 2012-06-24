@@ -1,0 +1,2 @@
+class UserRankingToday < UserRanking
+end

@@ -1,0 +1,2 @@
+class UserRankingThisMonth < UserRanking
+end

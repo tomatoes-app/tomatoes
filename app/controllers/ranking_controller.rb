@@ -1,17 +1,21 @@
 class RankingController < ApplicationController
   def today
-    @leaderboard = Tomato.ranking_today
+    Tomato.ranking_collection(Tomato.today, 'user_ranking_today')
+    @leaderboard = UserRankingToday.desc(:value)
   end
 
   def this_week
-    @leaderboard = Tomato.ranking_this_week
+    Tomato.ranking_collection(Tomato.this_week, 'user_ranking_this_week')
+    @leaderboard = UserRankingThisWeek.desc(:value)
   end
 
   def this_month
-    @leaderboard = Tomato.ranking_this_month
+    Tomato.ranking_collection(Tomato.this_month, 'user_ranking_this_month')
+    @leaderboard = UserRankingThisMonth.desc(:value)
   end
 
   def all_time
-    @leaderboard = Tomato.ranking
+    Tomato.ranking_collection(Tomato.all_time, 'user_ranking_all_time')
+    @leaderboard = UserRankingAllTime.desc(:value)
   end
 end

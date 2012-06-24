@@ -1,0 +1,2 @@
+class UserRankingThisWeek < UserRanking
+end

@@ -55,4 +55,40 @@ class Tomato
   def self.ranking_this_month
     ranking(:cond => {:created_at => {'$gt' => Time.zone.now.beginning_of_month.utc}})
   end
+
+  def self.today
+    collection.find(:cond => {:created_at => {'$gt' => Time.zone.now.beginning_of_day.utc}})
+  end
+
+  def self.this_week
+    collection.find(:cond => {:created_at => {'$gt' => Time.zone.now.beginning_of_week.utc}})
+  end
+
+  def self.this_month
+    collection.find(:cond => {:created_at => {'$gt' => Time.zone.now.beginning_of_month.utc}})
+  end
+
+  def self.all_time
+    collection
+  end
+
+  def self.ranking_collection(collection, name)
+    map = %Q{
+      function() {
+        emit(this.user_id, 1)
+      }
+    }
+
+    reduce = %Q{
+      function(key, values) {
+        var result = 0;
+        values.forEach(function(v) {
+          result += v
+        });
+        return result;
+      }
+    }
+
+    collection.map_reduce(map, reduce, {out: name})
+  end
 end
