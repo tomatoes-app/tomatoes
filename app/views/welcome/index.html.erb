@@ -50,11 +50,3 @@
     </div>
   </div>
 <% end %>
-
-<div id="leaderboards" class="block">
-  <h2>Leaderboards</h2>
-  <%= render :partial => 'leaderboard_list', :locals => {:ranking => "today", :leaderboard => @day_leaderboard} %>
-  <%= render :partial => 'leaderboard_list', :locals => {:ranking => "this_week", :leaderboard => @week_leaderboard} %>
-  <%= render :partial => 'leaderboard_list', :locals => {:ranking => "this_month", :leaderboard => @month_leaderboard} %>
-  <%= render :partial => 'leaderboard_list', :locals => {:ranking => "all_time", :leaderboard => @all_time_leaderboard} %>
-</div>
