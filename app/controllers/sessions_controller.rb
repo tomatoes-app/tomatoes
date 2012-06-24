@@ -5,16 +5,11 @@ class SessionsController < ApplicationController
 
   def create
     @user = current_user
-    logger.debug "@user: #{@user.inspect}"
     @user ||= User.find_by_omniauth(auth)
-    logger.debug "@user: #{@user.inspect}"
     @user ||= User.create_with_omniauth!(auth)
-    logger.debug "@user: #{@user.inspect}"
     @user.update_omniauth_attributes!(auth)
     session[:user_id] = @user.id
-    
-    logger.debug "auth hash: #{auth.inspect}"
-    
+        
     redirect_to root_url, :notice => 'Signed in!'
   end
 
