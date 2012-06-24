@@ -88,7 +88,8 @@
         <%= link_to "Tomatoes", TomatoesApp::REPO %> - <%= link_to "version #{TomatoesApp::VERSION}", "#{TomatoesApp::REPO}/tree/#{TomatoesApp::VERSION}" %>
       </p>
       <p class="right">
-        <%= render :partial => 'shared/statistics' %>
+        <%= link_to "Statistics", statistics_path %><br/>
+        <%= render partial: 'shared/ranking_links' %>
       </p>
     </footer>
   </div>

@@ -1,5 +1,5 @@
 <h1>This week's top tomatoers</h1>
-<%= render :partial => 'links' %>
+<p><%= render partial: 'shared/ranking_links' %></p>
 <div class="leaderboard_list">
   <%= render :partial => 'ranking', :locals => {:leaderboard => @leaderboard} %>
 </div>

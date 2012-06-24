@@ -1,5 +1,5 @@
 TomatoesApp::Application.routes.draw do
-  get "statistics/index"
+  get "statistics" => 'statistics#index'
 
   get "ranking/today"
   get "ranking/this_week"
