@@ -50,4 +50,18 @@ class Tomato
   def self.ranking_collection(type)
     collection.map_reduce(ranking_map(type), ranking_reduce, {out: "user_ranking_#{type}s"})
   end
+
+  def self.by_day(tomatoes)
+    Range.new(tomatoes.keys.last.to_i, tomatoes.keys.first.to_i).step(60*60*24) do |day|
+      day = Time.at(day)
+      [day.to_i*1000, tomatoes[day] ? tomatoes[day].size : 0]
+    end
+  end
+
+  def self.by_hour(tomatoes)
+    (0..23).each do |hour|
+      millis = (Time.zone.now.beginning_of_day + hour*3600).to_i*1000
+      [millis, tomatoes[hour] ? tomatoes[hour].size : 0]
+    end
+  end
 end

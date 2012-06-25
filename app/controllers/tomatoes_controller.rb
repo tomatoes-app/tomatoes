@@ -12,7 +12,7 @@ class TomatoesController < ApplicationController
     end
   end
   
-  # GET /users/1/tomatoes/by_day.js
+  # GET /users/1/tomatoes/by_day.json
   def by_day
     @user = User.find(params[:user_id])
     @tomatoes = @user.tomatoes.order_by([[:created_at, :desc]]).group_by do |tomato|
@@ -21,11 +21,11 @@ class TomatoesController < ApplicationController
     end
     
     respond_to do |format|
-      format.js # tomatoes_by_day.js.erb
+      format.json { render :json => Tomato.by_day(@tomatoes) }
     end
   end
   
-  # GET /users/1/tomatoes/by_hour.js
+  # GET /users/1/tomatoes/by_hour.json
   def by_hour
     @user = User.find(params[:user_id])
     @tomatoes = Hash[@user.tomatoes.group_by do |tomato|
@@ -35,7 +35,7 @@ class TomatoesController < ApplicationController
     end.sort {|a, b| a[0].hour <=> b[0].hour}.map {|a| [a[0].hour, a[1]]}]
     
     respond_to do |format|
-      format.js # tomatoes_by_hour.js.erb
+      format.json { render :json => Tomato.by_hour(@tomatoes) }
     end
   end
 

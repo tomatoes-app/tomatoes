@@ -1,6 +1,0 @@
-var tomatoes_by_hour = [
-  <% (0..23).each do |hour| %>
-    <% millis = (Time.zone.now.beginning_of_day + hour*3600).to_i*1000 %>
-    <%= raw([millis, @tomatoes[hour] ? @tomatoes[hour].size : 0].to_json) %>,
-  <% end %>
-];
