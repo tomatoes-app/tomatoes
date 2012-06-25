@@ -10,7 +10,7 @@ TomatoesApp::Application.routes.draw do
   end
 
   resources :users, :only => [:show, :edit, :update, :destroy] do
-    resources :tomatoes do
+    resources :tomatoes, :only => [] do
       collection do
         get 'by_day'
         get 'by_hour'
