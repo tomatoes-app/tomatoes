@@ -1,4 +1,4 @@
-<h1>This week's top tomatoers</h1>
+<h1><%= ranking_title(params[:time_period]) %></h1>
 <p><%= render partial: 'shared/ranking_links' %></p>
 <div class="leaderboard_list">
   <%= render :partial => 'ranking', :locals => {:leaderboard => @leaderboard} %>
