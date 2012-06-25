@@ -127,22 +127,6 @@ class TomatoesController < ApplicationController
       format.xml  { head :ok }
     end
   end
-  
-  # POST /tomatoes/track
-  def track
-    respond_to do |format|
-      begin
-        Tomato.track(params[:ids])
-        format.js do
-          flash.now[:notice] = 'Tomatoes successfully tracked to your Freckle account.'
-        end
-      rescue => e
-        format.js do
-          flash.now[:alert] = "Hey, something goes wrong: #{e}"
-        end
-      end
-    end
-  end
 
   protected
 
