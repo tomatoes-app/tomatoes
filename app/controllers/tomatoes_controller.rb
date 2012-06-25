@@ -76,17 +76,15 @@ class TomatoesController < ApplicationController
       if @tomato.save
         format.js do
           @highlight = @tomato
+          @tomato    = current_user.tomatoes.build
+          @tomatoes  = current_user.tomatoes_after(Time.zone.now.beginning_of_day)
           
-          today_tomatoes = current_user.tomatoes.where(:created_at.gt => Time.zone.now.beginning_of_day.utc)
-          @long_break = true if 0 == today_tomatoes.size % 4
+          @long_break = true if 0 == @tomatoes.size % 4
           if @long_break
-            flash.now[:notice] = "You just finished your #{ActiveSupport::Inflector::ordinalize(today_tomatoes.size)} pomodoro, you deserve a long break!"
+            flash.now[:notice] = "You just finished your #{ActiveSupport::Inflector::ordinalize(@tomatoes.size)} pomodoro, you deserve a long break!"
           else
             flash.now[:notice] = 'Pomodoro finished, tomato created, it\'s time for a break.'
           end
-          
-          @tomato = current_user.tomatoes.build
-          @tomatoes = current_user.tomatoes.where(:created_at => {'$gte' => Time.zone.now.beginning_of_day}).order_by([[:created_at, :desc]])
         end
         format.html { redirect_to(root_url, :notice => 'Tomato created, now it\'s time for a break.') }
         format.xml  { render :xml => @tomato, :status => :created, :location => @tomato }

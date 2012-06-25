@@ -16,7 +16,7 @@ class Tomato
   include ApplicationHelper
 
   def must_not_overlap
-    if last_tomato = user.tomatoes.where(:created_at => {'$gte' => Time.zone.now - DURATION.seconds}).order_by([[:created_at, :desc]]).first
+    if last_tomato = user.tomatoes_after(Time.zone.now - DURATION.seconds).first
       limit = (DURATION.seconds - (Time.zone.now - last_tomato.created_at)).seconds
       errors.add(:base, "Must not overlap saved tomaotes, please wait #{humanize(limit)}")
     end
