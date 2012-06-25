@@ -12,9 +12,10 @@ class User
   field :email,     :type => String
   field :image,     :type => String
   field :time_zone, :type => String
+  field :color,     :type => String
   
   # attr_accessible :provider, :uid, :token, :login, :gravatar_id
-  attr_accessible :name, :email, :image, :time_zone
+  attr_accessible :name, :email, :image, :time_zone, :color
   
   embeds_many :authorizations
   has_many :tomatoes
@@ -85,5 +86,11 @@ class User
 
   def tomatoes_after(time)
     tomatoes.where(:created_at => {'$gte' => time}).order_by([[:created_at, :desc]])
+  end
+
+  def grant(name, level)
+    badges.select do |badge|
+      name == badge.name && badge.level >= level
+    end.size > 0
   end
 end
