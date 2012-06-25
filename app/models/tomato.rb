@@ -24,7 +24,7 @@ class Tomato
 
   def self.ranking_map(type)
     if :all_time != type
-      date = Time.zone.now.send("beginning_of_#{type}")
+      date = Time.zone.now.send(beginning_of(type))
       date = "(new Date(#{date.year}, #{date.month-1}, #{date.day}))"
     end
 
@@ -62,6 +62,24 @@ class Tomato
     (0..23).map do |hour|
       millis = (Time.zone.now.beginning_of_day + hour*3600).to_i*1000
       [millis, tomatoes[hour] ? tomatoes[hour].size : 0]
+    end
+  end
+
+  private
+
+  def self.beginning_of(type)
+    method = "beginning_of_"
+    type = type.to_s
+
+    case type
+    when 'today'
+      method << 'day'
+    when 'this_week'
+      method << 'week'
+    when 'this_month'
+      method << 'month'
+    else
+      method << type
     end
   end
 end
