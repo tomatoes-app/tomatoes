@@ -22,15 +22,15 @@ class Tomato
     end
   end
 
-  def self.ranking_map(type)
-    if :all_time != type
-      date = Time.zone.now.send(beginning_of(type))
+  def self.ranking_map(time_period)
+    if :all_time != time_period
+      date = Time.zone.now.send(beginning_of(time_period))
       date = "(new Date(#{date.year}, #{date.month-1}, #{date.day}))"
     end
 
     %Q{
       function() {
-        emit(this.user_id, #{:all_time != type ? "this.created_at > #{date} ? 1 : 0" : 1});
+        emit(this.user_id, #{:all_time != time_period ? "this.created_at > #{date} ? 1 : 0" : 1});
       }
     }
   end
@@ -47,8 +47,8 @@ class Tomato
     }
   end
 
-  def self.ranking_collection(type)
-    collection.map_reduce(ranking_map(type), ranking_reduce, {out: "user_ranking_#{type}s"})
+  def self.ranking_collection(time_period)
+    collection.map_reduce(ranking_map(time_period), ranking_reduce, {out: "user_ranking_#{time_period}s"})
   end
 
   def self.by_day(tomatoes)
@@ -67,19 +67,14 @@ class Tomato
 
   private
 
-  def self.beginning_of(type)
-    method = "beginning_of_"
-    type = type.to_s
-
-    case type
-    when 'today'
-      method << 'day'
-    when 'this_week'
-      method << 'week'
-    when 'this_month'
-      method << 'month'
-    else
-      method << type
+  def self.beginning_of(time_period)
+    case time_period
+    when :today
+      'beginning_of_day'
+    when :this_week
+      'beginning_of_week'
+    when :this_month
+      'beginning_of_month'
     end
   end
 end
