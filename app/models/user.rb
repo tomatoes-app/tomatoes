@@ -18,6 +18,8 @@ class User
   
   embeds_many :authorizations
   has_many :tomatoes
+
+  has_merit
   
   def tags
     tomatoes.collect(&:tags).flatten.inject(Hash.new(0)) do |hash, tag|

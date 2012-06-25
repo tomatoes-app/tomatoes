@@ -1,0 +1,14 @@
+.badges {}
+
+.badges .badge {
+  width: 100px;
+  margin-right: 20px;
+}
+
+.badges .badge .image {
+  margin-right: 10px;
+}
+
+.badges .badge .description {
+  text-align: center;
+}
