@@ -1,6 +1,6 @@
 # ![Pomodoro technique®](https://github.com/potomak/tomatoes/raw/develop/app/assets/images/pomodoro-technique_48.png "Pomodoro technique®") Tomatoes
 
-Try it for free at [http://tomatoes.heroku.com](http://tomatoes.heroku.com "Tomatoes")
+Try it for free at [http://tomato.es](http://tomato.es "Tomatoes")
 
 [![Flattr Tomatoes](http://api.flattr.com/button/flattr-badge-large.png)](http://flattr.com/thing/376437/Tomatoes "Flattr Tomatoes")
 
