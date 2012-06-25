@@ -22,56 +22,6 @@ class Tomato
     end
   end
 
-  def self.sort_and_map(array)
-    array.sort { |a, b| b['count'] <=> a['count'] }.map do |r|
-      begin
-        if r['user_id'] && user = User.find(r['user_id'])
-          {:user => user, :count => r['count'].to_i}
-        end
-      rescue => e
-        # puts "ERROR: #{e}"
-      end
-    end.compact
-  end
-  
-  def self.ranking(opts = {})
-    count_query_opts = {
-      :key => :user_id,
-      :initial => {:count => 0},
-      :reduce => "function(doc, prev) {prev.count += 1}"
-    }
-    
-    sort_and_map(collection.group(count_query_opts.merge(opts)))
-  end
-  
-  def self.ranking_today
-    ranking(:cond => {:created_at => {'$gt' => Time.zone.now.beginning_of_day.utc}})
-  end
-  
-  def self.ranking_this_week
-    ranking(:cond => {:created_at => {'$gt' => Time.zone.now.beginning_of_week.utc}})
-  end
-  
-  def self.ranking_this_month
-    ranking(:cond => {:created_at => {'$gt' => Time.zone.now.beginning_of_month.utc}})
-  end
-
-  def self.today
-    collection.find(:cond => {:created_at => {'$gt' => Time.zone.now.beginning_of_day.utc}})
-  end
-
-  def self.this_week
-    collection.find(:cond => {:created_at => {'$gt' => Time.zone.now.beginning_of_week.utc}})
-  end
-
-  def self.this_month
-    collection.find(:cond => {:created_at => {'$gt' => Time.zone.now.beginning_of_month.utc}})
-  end
-
-  def self.all_time
-    collection
-  end
-
   def self.ranking_map(type)
     if :all_time != type
       date = Time.zone.now.send("beginning_of_#{type}")
@@ -99,5 +49,19 @@ class Tomato
 
   def self.ranking_collection(type)
     collection.map_reduce(ranking_map(type), ranking_reduce, {out: "user_ranking_#{type}s"})
+  end
+
+  def self.by_day(tomatoes)
+    Range.new(tomatoes.keys.last.to_i, tomatoes.keys.first.to_i).step(60*60*24) do |day|
+      day = Time.at(day)
+      [day.to_i*1000, tomatoes[day] ? tomatoes[day].size : 0]
+    end
+  end
+
+  def self.by_hour(tomatoes)
+    (0..23).each do |hour|
+      millis = (Time.zone.now.beginning_of_day + hour*3600).to_i*1000
+      [millis, tomatoes[hour] ? tomatoes[hour].size : 0]
+    end
   end
 end
