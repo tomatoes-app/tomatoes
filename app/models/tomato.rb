@@ -75,6 +75,9 @@ class Tomato
     end
   end
 
+  def self.tomatoes_by_time
+  end
+
   private
 
   def self.beginning_of(time_period)
