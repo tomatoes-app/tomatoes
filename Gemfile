@@ -9,6 +9,7 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'therubyracer'
   gem 'uglifier', '>= 1.0.3'
+  gem 'asset_sync'
 end
 
 # Bundle edge Rails instead:

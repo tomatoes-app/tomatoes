@@ -31,6 +31,9 @@ GEM
     addressable (2.2.7)
     ambry (0.3.1)
     arel (3.0.2)
+    asset_sync (0.4.2)
+      activemodel
+      fog
     bson (1.6.4)
     bson_ext (1.6.4)
       bson (~> 1.6.4)
@@ -51,6 +54,17 @@ GEM
       multi_json (~> 1.0)
     faraday (0.8.1)
       multipart-post (~> 1.1)
+    fog (1.4.0)
+      builder
+      excon (~> 0.14.0)
+      formatador (~> 0.2.0)
+      mime-types
+      multi_json (~> 1.0)
+      net-scp (~> 1.0.4)
+      net-ssh (>= 2.1.3)
+      nokogiri (~> 1.5.0)
+      ruby-hmac
+    formatador (0.2.3)
     hashie (1.2.0)
     heroku (2.26.7)
       heroku-api (~> 0.2.4)
@@ -93,8 +107,12 @@ GEM
       tzinfo (~> 0.3.22)
     multi_json (1.3.6)
     multipart-post (1.1.5)
+    net-scp (1.0.4)
+      net-ssh (>= 1.99.1)
+    net-ssh (2.5.2)
     netrc (0.7.4)
     newrelic_rpm (3.3.5)
+    nokogiri (1.5.5)
     oauth (0.4.6)
     oauth2 (0.6.1)
       faraday (~> 0.7)
@@ -143,6 +161,7 @@ GEM
       json (~> 1.4)
     rest-client (1.6.7)
       mime-types (>= 1.16)
+    ruby-hmac (0.4.0)
     rubyzip (0.9.8)
     sass (3.1.19)
     sass-rails (3.2.5)
@@ -173,6 +192,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  asset_sync
   bson_ext
   coffee-rails (~> 3.2.1)
   dalli
