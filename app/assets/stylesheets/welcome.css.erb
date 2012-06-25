@@ -181,10 +181,11 @@ p#reset_hint {
 	width: 32px;
 	height: 35px;
 	opacity: 0.7;
+	background-image: url(<%= asset_path "speaker_sprite.png" %>);
 }
 
-<% (0..3).each do |l| %>
-#volume_icon.level_<%= l %> {
-	background-image: url(<%= asset_path "speaker_#{l}.png" %>);
+<% (0..3).each do |level| %>
+#volume_icon.level_<%= level %> {
+	background-position: 0 -<%= level*35 %>px;
 }
 <% end %>
