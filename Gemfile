@@ -61,5 +61,6 @@ gem 'dalli'
 gem 'kaminari'
 
 group :development, :test do
+  gem 'heroku'
   gem 'mocha'
 end
