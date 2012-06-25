@@ -56,6 +56,16 @@ namespace :tomatoes do
   task :deploy => [:new_release, :push] do
     puts "Deployment of version #{version} finished"
   end
+
+  namespace :db do
+    desc "Make a copy of production db and load it to local mongodb"
+    task :dump do
+      mongodb_url = %x[heroku config | grep MONGO | awk '{print $2;}']
+      mongodb_url = URI.parse(mongodb_url)
+      system "mongodump -h #{mongodb_url.host}:#{mongodb_url.port} -d #{mongodb_url.path.tr('/', '')} -u #{mongodb_url.user} -p #{mongodb_url.password} -o db/backups/"
+      system "mongorestore -h localhost --drop -d tomatoes_app_development db/backups/#{mongodb_url.path.tr('/', '')}/"
+    end
+  end
 end
 
 def version
