@@ -40,13 +40,20 @@
       <% end %>
     <% end %>
   </div>
-  
+
   <%= content_for_user(@user) do %>
     <p>
       <%= link_to 'Your tomatoes', tomatoes_path %> |
       <%= link_to 'Export your tomatoes (csv)', tomatoes_path(format: :csv) %> |
       <%= link_to 'Edit profile', edit_user_path(@user) %>
     </p>
+  <% end %>
+
+  <% unless @user.badges.empty? %>
+    <h3>Badges</h3>
+    <div class="block badges">
+      <%= render :partial => 'badges/badge', :collection => @user.badges %>
+    </div>
   <% end %>
 </div>
 

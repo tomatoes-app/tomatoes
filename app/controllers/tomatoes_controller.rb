@@ -81,7 +81,6 @@ class TomatoesController < ApplicationController
       if @tomato.save
         format.js do
           @highlight = @tomato
-          @tomato    = current_user.tomatoes.build
           @tomatoes  = current_user.tomatoes_after(Time.zone.now.beginning_of_day)
           
           @long_break = true if 0 == @tomatoes.size % 4

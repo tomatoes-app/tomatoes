@@ -60,6 +60,9 @@ gem 'dalli'
 # Pagination
 gem 'kaminari'
 
+# Gamification
+gem 'merit'
+
 group :development, :test do
   gem 'heroku'
   gem 'mocha'
