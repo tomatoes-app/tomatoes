@@ -1,4 +1,5 @@
-require "mongoid_tags"
+require 'mongoid_tags'
+require 'csv'
 
 class Tomato
   include Mongoid::Document
@@ -62,6 +63,15 @@ class Tomato
     (0..23).map do |hour|
       millis = (Time.zone.now.beginning_of_day + hour*3600).to_i*1000
       [millis, tomatoes[hour] ? tomatoes[hour].size : 0]
+    end
+  end
+
+  # CSV representation.
+  def self.to_csv(tomatoes)
+    CSV.generate do |csv| 
+      tomatoes.each do |tomato|
+        csv << [tomato.created_at, tomato.tags.join(", ")]
+      end
     end
   end
 

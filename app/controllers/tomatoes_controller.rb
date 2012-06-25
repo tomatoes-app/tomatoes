@@ -3,12 +3,17 @@ class TomatoesController < ApplicationController
   
   # GET /tomatoes
   # GET /tomatoes.xml
+  # GET /tomatoes.csv
+  # GET /users/1/tomatoes
+  # GET /users/1/tomatoes.xml
+  # GET /users/1/tomatoes.csv
   def index
     @tomatoes = current_user.tomatoes.order_by([[:created_at, :desc]]).page params[:page]
 
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @tomatoes }
+      format.csv  { export_csv(current_user.tomatoes.order_by([[:created_at, :desc]])) }
     end
   end
   
@@ -138,5 +143,13 @@ class TomatoesController < ApplicationController
         end
       end
     end
+  end
+
+  protected
+
+  def export_csv(tomatoes)
+    filename = "my tomatoes #{I18n.l(Time.now)}.csv"
+    content = Tomato.to_csv(tomatoes)
+    send_data content, :filename => filename
   end
 end
