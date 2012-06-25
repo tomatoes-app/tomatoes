@@ -1,5 +1,5 @@
 TomatoesApp::Application.routes.draw do
-  get "statistics" => 'statistics#index'
+  resources :statistics, :only => :index
 
   resources :rankings, :only => :index
 
