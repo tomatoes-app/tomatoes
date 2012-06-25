@@ -5,28 +5,33 @@
     var by_day_user_tomatoes_path = '<%= by_day_user_tomatoes_url(@user, :format => :json) %>';
     var by_hour_user_tomatoes_path = '<%= by_hour_user_tomatoes_url(@user, :format => :json) %>';
   <% end %>
+<% end %>
+
+<% content_for :foot do %>
   <%= javascript_include_tag "user_charts.js" %>
   <%= javascript_include_tag "users.js" %>
 <% end %>
 
 <div id="user">
   <div class="block">
-    <div class="profile block">
-      <div class="left profile_image size48">
-        <%= profile_image(@user, 48) %>
-        <div class="overlay"></div>
-      </div>
-      <div class="left profile_info">
-        <%= user_name(@user) %><br/>
-        Tomatoes: <%= @user.tomatoes.size %></br>
-        <% @user.authorizations.each do |authorization| %>
-          <%= link_to authorization.url, authorization.url %><br/>
-        <% end %>
-        <%= content_for_user(@user) do %>
-          <div id="request_notification_permission">
-            <%= link_to "", "#" %>
-          </div>
-        <% end %>
+    <div class="profile left">
+      <div class="block">
+        <h2><%= user_name(@user) %></h2>
+        <div class="left profile_image size48">
+          <%= profile_image(@user, 48) %>
+          <div class="overlay"></div>
+        </div>
+        <div class="left profile_info">
+          Tomatoes: <%= @user.tomatoes.size %></br>
+          <% @user.authorizations.each do |authorization| %>
+            <%= link_to authorization.url, authorization.url %><br/>
+          <% end %>
+          <%= content_for_user(@user) do %>
+            <div id="request_notification_permission">
+              <%= link_to "", "#" %>
+            </div>
+          <% end %>
+        </div>
       </div>
     </div>
     <%= content_for_user(@user) do %>
@@ -45,11 +50,15 @@
 </div>
 
 <h2>Tomatoes by day</h2>
-<div class="chart" id="tomatoes_by_day"></div>
+<div class="chart" id="tomatoes_by_day">
+  <%= image_tag 'loading.gif', :class => 'loading' %>
+</div>
 <div class="chart overview" id="tomatoes_by_day_overview"></div>
 
 <h2>Tomatoes by hour</h2>
-<div class="chart" id="tomatoes_by_hour"></div>
+<div class="chart" id="tomatoes_by_hour">
+  <%= image_tag 'loading.gif', :class => 'loading' %>
+</div>
 
 <%= content_for_user(@user) do %>
   <h2>Tomatoes by tag</h2>
