@@ -80,4 +80,8 @@ class User
   def authorization_by_provider(provider)
     authorizations.where(provider: provider).first
   end
+
+  def tomatoes_after(time)
+    tomatoes.where(:created_at => {'$gte' => time}).order_by([[:created_at, :desc]])
+  end
 end

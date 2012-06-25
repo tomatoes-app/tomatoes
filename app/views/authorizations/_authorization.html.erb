@@ -1,7 +1,7 @@
 <div class="authorization left">
   <div class="block">
     <h2>
-      <%= image_tag("#{provider}.png", :width => 32) %>
+      <%= image_tag("#{provider}.png", :width => 16) %>
       <%= provider.capitalize %>
     </h2>
     <% if authorization = user.authorization_by_provider(provider) %>

@@ -1,5 +1,5 @@
 TomatoesApp::Application.routes.draw do
-  get "statistics" => 'statistics#index'
+  resources :statistics, :only => :index
 
   resources :rankings, :only => :index
 
@@ -10,7 +10,7 @@ TomatoesApp::Application.routes.draw do
   end
 
   resources :users, :only => [:show, :edit, :update, :destroy] do
-    resources :tomatoes do
+    resources :tomatoes, :only => [] do
       collection do
         get 'by_day'
         get 'by_hour'

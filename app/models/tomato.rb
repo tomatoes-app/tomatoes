@@ -1,4 +1,5 @@
-require "mongoid_tags"
+require 'mongoid_tags'
+require 'csv'
 
 class Tomato
   include Mongoid::Document
@@ -16,7 +17,7 @@ class Tomato
   include ApplicationHelper
 
   def must_not_overlap
-    if last_tomato = user.tomatoes.where(:created_at => {'$gte' => Time.zone.now - DURATION.seconds}).order_by([[:created_at, :desc]]).first
+    if last_tomato = user.tomatoes_after(Time.zone.now - DURATION.seconds).first
       limit = (DURATION.seconds - (Time.zone.now - last_tomato.created_at)).seconds
       errors.add(:base, "Must not overlap saved tomaotes, please wait #{humanize(limit)}")
     end
@@ -62,6 +63,15 @@ class Tomato
     (0..23).map do |hour|
       millis = (Time.zone.now.beginning_of_day + hour*3600).to_i*1000
       [millis, tomatoes[hour] ? tomatoes[hour].size : 0]
+    end
+  end
+
+  # CSV representation.
+  def self.to_csv(tomatoes)
+    CSV.generate do |csv| 
+      tomatoes.each do |tomato|
+        csv << [tomato.created_at, tomato.tags.join(", ")]
+      end
     end
   end
 
