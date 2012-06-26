@@ -8,6 +8,8 @@ class Tomato
   
   belongs_to :user
 
+  index :created_at
+
   validate :must_not_overlap, :on => :create
   
   DURATION       = Rails.env.development? ? 10 : 25*60 # pomodoro default duration in seconds

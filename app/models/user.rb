@@ -19,6 +19,9 @@ class User
   embeds_many :authorizations
   has_many :tomatoes
 
+  index "authorizations.uid"
+  index "authorizations.provider"
+
   has_merit
   
   def tags
@@ -71,7 +74,7 @@ class User
     attributes = {}
     
     attributes.merge!({
-      name: auth['info']['name'],
+      name:  auth['info']['name'],
       email: auth['info']['email'],
       image: auth['info']['image']
     }) if auth['info']
