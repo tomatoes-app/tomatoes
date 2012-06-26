@@ -9,6 +9,8 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'therubyracer'
   gem 'uglifier', '>= 1.0.3'
+
+  # Upload assets to AWS S3
   gem 'asset_sync'
 end
 
@@ -62,7 +64,7 @@ gem 'dalli'
 gem 'kaminari'
 
 # Gamification
-gem 'merit'
+gem 'merit', :git => 'https://github.com/potomak/merit'
 
 group :development, :test do
   gem 'heroku'
