@@ -64,7 +64,7 @@ gem 'dalli'
 gem 'kaminari'
 
 # Gamification
-gem 'merit', :git => 'https://github.com/potomak/merit'
+gem 'merit'
 
 group :development, :test do
   gem 'heroku'
