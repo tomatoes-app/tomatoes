@@ -54,11 +54,15 @@ class Tomato
     collection.map_reduce(ranking_map(time_period), ranking_reduce, {out: "user_ranking_#{time_period}s"})
   end
 
-  def self.by_day(tomatoes)
-    tomatoes = tomatoes.order_by([[:created_at, :desc]]).group_by do |tomato|
+  def self.group_by_day(tomatoes)
+    tomatoes.order_by([[:created_at, :desc]]).group_by do |tomato|
       date = tomato.created_at
       Time.gm(date.year, date.month, date.day)
     end
+  end
+
+  def self.by_day(tomatoes)
+    tomatoes = group_by_day(tomatoes)
 
     Range.new(tomatoes.keys.last.to_i, tomatoes.keys.first.to_i).step(60*60*24).map do |day|
       day = Time.at(day)
