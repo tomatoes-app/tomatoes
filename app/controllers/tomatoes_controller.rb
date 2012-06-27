@@ -1,5 +1,7 @@
 class TomatoesController < ApplicationController
   before_filter :authenticate_user!, :except => [:by_day, :by_hour]
+  before_filter :find_user, :only => [:by_day, :by_hour]
+  before_filter :find_tomato, :only => [:show, :edit, :update, :destroy]
   
   # GET /tomatoes
   # GET /tomatoes.xml
@@ -19,36 +21,21 @@ class TomatoesController < ApplicationController
   
   # GET /users/1/tomatoes/by_day.json
   def by_day
-    @user = User.find(params[:user_id])
-    @tomatoes = @user.tomatoes.order_by([[:created_at, :desc]]).group_by do |tomato|
-      date = tomato.created_at
-      Time.gm(date.year, date.month, date.day)
-    end
-    
     respond_to do |format|
-      format.json { render :json => Tomato.by_day(@tomatoes) }
+      format.json { render :json => Tomato.by_day(@user.tomatoes) }
     end
   end
   
   # GET /users/1/tomatoes/by_hour.json
   def by_hour
-    @user = User.find(params[:user_id])
-    @tomatoes = Hash[@user.tomatoes.group_by do |tomato|
-      now = Time.zone.now
-      date = [2011, 1, 1, tomato.created_at.hour]
-      Time.gm(*date)
-    end.sort {|a, b| a[0].hour <=> b[0].hour}.map {|a| [a[0].hour, a[1]]}]
-    
     respond_to do |format|
-      format.json { render :json => Tomato.by_hour(@tomatoes) }
+      format.json { render :json => Tomato.by_hour(@user.tomatoes) }
     end
   end
 
   # GET /tomatoes/1
   # GET /tomatoes/1.xml
   def show
-    @tomato = current_user.tomatoes.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @tomato }
@@ -68,7 +55,6 @@ class TomatoesController < ApplicationController
 
   # GET /tomatoes/1/edit
   def edit
-    @tomato = current_user.tomatoes.find(params[:id])
   end
 
   # POST /tomatoes
@@ -103,8 +89,6 @@ class TomatoesController < ApplicationController
   # PUT /tomatoes/1
   # PUT /tomatoes/1.xml
   def update
-    @tomato = current_user.tomatoes.find(params[:id])
-
     respond_to do |format|
       if @tomato.update_attributes(params[:tomato])
         format.html { redirect_to(@tomato, :notice => 'Tomato was successfully updated.') }
@@ -119,7 +103,6 @@ class TomatoesController < ApplicationController
   # DELETE /tomatoes/1
   # DELETE /tomatoes/1.xml
   def destroy
-    @tomato = current_user.tomatoes.find(params[:id])
     @tomato.destroy
 
     respond_to do |format|
@@ -134,5 +117,13 @@ class TomatoesController < ApplicationController
     filename = "my tomatoes #{I18n.l(Time.now)}.csv"
     content = Tomato.to_csv(tomatoes)
     send_data content, :filename => filename
+  end
+
+  def find_user
+    @user = User.find(params[:user_id])
+  end
+
+  def find_tomato
+    @tomato = current_user.tomatoes.find(params[:id])
   end
 end

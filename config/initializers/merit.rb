@@ -19,3 +19,27 @@ end
 end.each do |badge|
   Badge.create! badge
 end
+
+(1..10).map do |n|
+  {
+    :id          => n+5,
+    :name        => 'diligent_tomatoer',
+    :level       => n,
+    :description => "#{ActiveSupport::Inflector::ordinalize(4*n)} tomatoes in a row",
+    :image       => "diligent_tomatoer_level_#{n}.png"
+  }
+end.each do |badge|
+  Badge.create! badge
+end
+
+(1..10).map do |n|
+  {
+    :id          => n+5+10,
+    :name        => 'assiduous_tomatoer',
+    :level       => n,
+    :description => "#{ActiveSupport::Inflector::ordinalize(2**n)} days with tomatoes in a row",
+    :image       => "assiduous_tomatoer_level_#{n}.png"
+  }
+end.each do |badge|
+  Badge.create! badge
+end

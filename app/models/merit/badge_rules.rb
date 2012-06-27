@@ -19,10 +19,24 @@ module Merit
     include Merit::BadgeRulesMethods
 
     def initialize
-      # If it has n tomatoes, grant tomatoer-n badge
+      # If it has 10**(n-1) tomatoes, grant tomatoer-n badge
       (1..5).each do |n|
         grant_on 'tomatoes#create', :badge => 'tomatoer', :level => n, :to => :user do |tomato|
           tomato.user.tomatoes.count >= 10**(n-1)
+        end
+      end
+
+      # If it has 4*n tomatoes in a row, grant diligent-tomatoer-n badge
+      (1..10).each do |n|
+        grant_on 'tomatoes#create', :badge => 'diligent_tomatoer', :level => n, :to => :user do |tomato|
+          tomato.user.tomatoes_after(Time.zone.now.beginning_of_day).count >= 4*n
+        end
+      end
+
+      # If it has tomatoes for 2**n days in a row, grant assiduous-tomatoer-n badge
+      (1..10).each do |n|
+        grant_on 'tomatoes#create', :badge => 'assiduous_tomatoer', :level => n, :to => :user do |tomato|
+          # TODO
         end
       end
     end
