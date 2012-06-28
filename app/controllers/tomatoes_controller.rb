@@ -21,16 +21,12 @@ class TomatoesController < ApplicationController
   
   # GET /users/1/tomatoes/by_day.json
   def by_day
-    respond_to do |format|
-      format.json { render :json => Tomato.by_day(@user.tomatoes) }
-    end
+    respond_with_json(Tomato.by_day(@user.tomatoes))
   end
   
   # GET /users/1/tomatoes/by_hour.json
   def by_hour
-    respond_to do |format|
-      format.json { render :json => Tomato.by_hour(@user.tomatoes) }
-    end
+    respond_with_json(Tomato.by_hour(@user.tomatoes))
   end
 
   # GET /tomatoes/1
@@ -89,26 +85,13 @@ class TomatoesController < ApplicationController
   # PUT /tomatoes/1
   # PUT /tomatoes/1.xml
   def update
-    respond_to do |format|
-      if @tomato.update_attributes(params[:tomato])
-        format.html { redirect_to(@tomato, :notice => 'Tomato was successfully updated.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @tomato.errors, :status => :unprocessable_entity }
-      end
-    end
+    update_resource(@tomato)
   end
 
   # DELETE /tomatoes/1
   # DELETE /tomatoes/1.xml
   def destroy
-    @tomato.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(tomatoes_url) }
-      format.xml  { head :ok }
-    end
+    destroy_resource(@tomato, tomatoes_url)
   end
 
   protected
@@ -125,5 +108,11 @@ class TomatoesController < ApplicationController
 
   def find_tomato
     @tomato = current_user.tomatoes.find(params[:id])
+  end
+
+  def respond_with_json(content)
+    respond_to do |format|
+      format.json { render :json => content }
+    end
   end
 end
