@@ -64,13 +64,10 @@ class TomatoesController < ApplicationController
         format.js do
           @highlight = @tomato
           @tomatoes  = current_user.tomatoes_after(Time.zone.now.beginning_of_day)
-          
-          @long_break = true if 0 == @tomatoes.size % 4
-          if @long_break
-            flash.now[:notice] = "You just finished your #{ActiveSupport::Inflector::ordinalize(@tomatoes.size)} pomodoro, you deserve a long break!"
-          else
-            flash.now[:notice] = 'Pomodoro finished, tomato created, it\'s time for a break.'
-          end
+          define_break
+          flash.now[:notice] = notice_message
+
+          logger.debug "flash.now: #{flash.now.inspect}"
         end
         format.html { redirect_to(root_url, :notice => 'Tomato created, now it\'s time for a break.') }
         format.xml  { render :xml => @tomato, :status => :created, :location => @tomato }
@@ -113,6 +110,18 @@ class TomatoesController < ApplicationController
   def respond_with_json(content)
     respond_to do |format|
       format.json { render :json => content }
+    end
+  end
+
+  def define_break
+    @long_break = true if 0 == @tomatoes.size % 4
+  end
+
+  def notice_message
+    if @long_break
+      "You just finished your #{ActiveSupport::Inflector::ordinalize(@tomatoes.size)} pomodoro, you deserve a long break!"
+    else
+      'Pomodoro finished, tomato created, it\'s time for a break.'
     end
   end
 end
