@@ -1,6 +1,14 @@
 <h1>Statistics</h1>
+
+<h2>Users</h2>
 <p>
-  <%= pluralize(@users, 'user') %> already tracked <%= pluralize(@tomatoes, 'tomato') %><br/>
+  <%= pluralize(@users, 'user') %><br/>
+  about <%= pluralize(@tomatoes/@users, 'tomato') %> per user
+</p>
+
+<h2>Tomatoes</h2>
+<p>
+  <%= pluralize(@tomatoes, 'tomato') %><br/>
   about <%= humanize(@tomatoes*Tomato::DURATION) %> of work<br/>
   about <%= number_with_precision(@tomatoes/((Time.zone.now - @first_tomato.created_at) / 3600)) %> tomatoes per hour
 </p>

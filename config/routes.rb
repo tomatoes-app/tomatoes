@@ -1,5 +1,11 @@
 TomatoesApp::Application.routes.draw do
-  resources :statistics, :only => :index
+  resources :statistics, :only => :index do
+    collection do
+      get 'users_by_tomatoes'
+      get 'users_by_day'
+      get 'tomatoes_by_day'
+    end
+  end
 
   resources :rankings, :only => :index
 

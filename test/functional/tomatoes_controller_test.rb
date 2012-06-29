@@ -63,4 +63,14 @@ class TomatoesControllerTest < ActionController::TestCase
 
     assert_redirected_to tomatoes_path
   end
+
+  test "should get by_day" do
+    get :by_day, :user_id => @user.id, :format => :json
+    assert_response :success
+  end
+
+  test "should get by_hour" do
+    get :by_day, :user_id => @user.id, :format => :json
+    assert_response :success
+  end
 end
