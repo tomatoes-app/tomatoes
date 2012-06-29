@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class UsersController < ResourceController
   before_filter :authenticate_user!, :except => :show
   before_filter :same_user?, :except => :show
   
