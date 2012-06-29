@@ -7,6 +7,14 @@ class ApplicationController < ActionController::Base
   
   before_filter :set_time_zone
 
+  protected
+
+  def respond_with_json(content)
+    respond_to do |format|
+      format.json { render :json => content }
+    end
+  end
+
   private
 
   def set_time_zone

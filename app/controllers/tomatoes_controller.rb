@@ -107,12 +107,6 @@ class TomatoesController < ResourceController
     @tomato = current_user.tomatoes.find(params[:id])
   end
 
-  def respond_with_json(content)
-    respond_to do |format|
-      format.json { render :json => content }
-    end
-  end
-
   def define_break
     @long_break = true if 0 == @tomatoes.size % 4
   end
