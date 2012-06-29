@@ -53,7 +53,7 @@ namespace :tomatoes do
   end
   
   desc "Deploy to Heroku.\nUse this task to deploy a new version of Tomatoes.\nExample 1: 'rake tomatoes:deploy'\nExample 2: 'rake tomatoes:deploy VERSION=0.6'"
-  task :deploy => [:new_release, :push] do
+  task :deploy => [:test, :new_release, :push] do
     puts "Deployment of version #{version} finished"
   end
 
