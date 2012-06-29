@@ -87,9 +87,9 @@ class User
     tomatoes.where(:created_at => {'$gte' => time}).order_by([[:created_at, :desc]])
   end
 
-  def self.users_by_tomatoes
+  def self.by_tomatoes(users)
   end
 
-  def self.users_by_time
+  def self.by_day(users)
   end
 end

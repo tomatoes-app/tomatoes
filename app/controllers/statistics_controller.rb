@@ -9,21 +9,21 @@ class StatisticsController < ApplicationController
   # GET /statistics/users_by_tomatoes.json
   def users_by_tomatoes
     respond_to do |format|
-      format.json { render :json => User.users_by_tomatoes }
+      format.json { render :json => User.by_tomatoes(User.all) }
     end
   end
 
-  # GET /statistics/users_by_time.json
-  def users_by_time
+  # GET /statistics/users_by_day.json
+  def users_by_day
     respond_to do |format|
-      format.json { render :json => User.users_by_time }
+      format.json { render :json => User.by_day(User.all) }
     end
   end
 
-  # GET /statistics/tomatoes_by_time.json
-  def tomatoes_by_time
+  # GET /statistics/tomatoes_by_day.json
+  def tomatoes_by_day
     respond_to do |format|
-      format.json { render :json => Tomato.tomatoes_by_time }
+      format.json { render :json => Tomato.by_day(Tomato.all) }
     end
   end
 end
