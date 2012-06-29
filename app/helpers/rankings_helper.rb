@@ -6,7 +6,7 @@ module RankingsHelper
     when 'today'
       "Today's top tomatoers"
     when 'this_week'
-      "This month's top tomatoers"
+      "This week's top tomatoers"
     when 'this_month'
       "This month's top tomatoers"
     end

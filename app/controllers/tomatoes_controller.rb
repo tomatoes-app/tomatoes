@@ -1,4 +1,4 @@
-class TomatoesController < ApplicationController
+class TomatoesController < ResourceController
   before_filter :authenticate_user!, :except => [:by_day, :by_hour]
   before_filter :find_user, :only => [:by_day, :by_hour]
   before_filter :find_tomato, :only => [:show, :edit, :update, :destroy]
@@ -21,16 +21,12 @@ class TomatoesController < ApplicationController
   
   # GET /users/1/tomatoes/by_day.json
   def by_day
-    respond_to do |format|
-      format.json { render :json => Tomato.by_day(@user.tomatoes) }
-    end
+    respond_with_json(Tomato.by_day(@user.tomatoes))
   end
   
   # GET /users/1/tomatoes/by_hour.json
   def by_hour
-    respond_to do |format|
-      format.json { render :json => Tomato.by_hour(@user.tomatoes) }
-    end
+    respond_with_json(Tomato.by_hour(@user.tomatoes))
   end
 
   # GET /tomatoes/1
@@ -68,13 +64,10 @@ class TomatoesController < ApplicationController
         format.js do
           @highlight = @tomato
           @tomatoes  = current_user.tomatoes_after(Time.zone.now.beginning_of_day)
-          
-          @long_break = true if 0 == @tomatoes.size % 4
-          if @long_break
-            flash.now[:notice] = "You just finished your #{ActiveSupport::Inflector::ordinalize(@tomatoes.size)} pomodoro, you deserve a long break!"
-          else
-            flash.now[:notice] = 'Pomodoro finished, tomato created, it\'s time for a break.'
-          end
+          define_break
+          flash.now[:notice] = notice_message
+
+          logger.debug "flash.now: #{flash.now.inspect}"
         end
         format.html { redirect_to(root_url, :notice => 'Tomato created, now it\'s time for a break.') }
         format.xml  { render :xml => @tomato, :status => :created, :location => @tomato }
@@ -89,26 +82,13 @@ class TomatoesController < ApplicationController
   # PUT /tomatoes/1
   # PUT /tomatoes/1.xml
   def update
-    respond_to do |format|
-      if @tomato.update_attributes(params[:tomato])
-        format.html { redirect_to(@tomato, :notice => 'Tomato was successfully updated.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @tomato.errors, :status => :unprocessable_entity }
-      end
-    end
+    update_resource(@tomato)
   end
 
   # DELETE /tomatoes/1
   # DELETE /tomatoes/1.xml
   def destroy
-    @tomato.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(tomatoes_url) }
-      format.xml  { head :ok }
-    end
+    destroy_resource(@tomato, tomatoes_url)
   end
 
   protected
@@ -125,5 +105,17 @@ class TomatoesController < ApplicationController
 
   def find_tomato
     @tomato = current_user.tomatoes.find(params[:id])
+  end
+
+  def define_break
+    @long_break = true if 0 == @tomatoes.size % 4
+  end
+
+  def notice_message
+    if @long_break
+      "You just finished your #{ActiveSupport::Inflector::ordinalize(@tomatoes.size)} pomodoro, you deserve a long break!"
+    else
+      'Pomodoro finished, tomato created, it\'s time for a break.'
+    end
   end
 end

@@ -1,5 +1,7 @@
 class User
   include Mongoid::Document
+  include Mongoid::Timestamps
+  include GroupableByDay
   
   # authorization fields (deprecated)
   field :provider,    :type => String
@@ -19,8 +21,8 @@ class User
   embeds_many :authorizations
   has_many :tomatoes
 
-  index "authorizations.uid"
-  index "authorizations.provider"
+  index 'authorizations.uid'
+  index 'authorizations.provider'
 
   has_merit
   
@@ -88,5 +90,17 @@ class User
 
   def tomatoes_after(time)
     tomatoes.where(:created_at => {'$gte' => time}).order_by([[:created_at, :desc]])
+  end
+
+  def self.by_tomatoes(users)
+  end
+
+  def self.by_day(users)
+    users = group_by_day(users)
+
+    Range.new(users.keys.last.to_i, users.keys.first.to_i).step(60*60*24).map do |day|
+      day = Time.at(day)
+      [day.to_i*1000, users[day] ? users[day].size : 0]
+    end
   end
 end

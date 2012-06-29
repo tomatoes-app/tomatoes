@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class UsersController < ResourceController
   before_filter :authenticate_user!, :except => :show
   before_filter :same_user?, :except => :show
   
@@ -9,15 +9,7 @@ class UsersController < ApplicationController
   # PUT /users/1
   # PUT /users/1.xml
   def update
-    respond_to do |format|
-      if @user.update_attributes(params[:user])
-        format.html { redirect_to(@user, :notice => 'User was successfully updated.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
-      end
-    end
+    update_resource(@user)
   end
   
   # GET /users/1
@@ -34,11 +26,6 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.xml
   def destroy
-    @user.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(root_url) }
-      format.xml  { head :ok }
-    end
+    destroy_resource(@user, root_url)
   end
 end
