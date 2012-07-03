@@ -5,7 +5,7 @@ class Tomato
   include Mongoid::Document
   include Mongoid::Document::Taggable
   include Mongoid::Timestamps
-  include GroupableByDay
+  include Chartable
   
   belongs_to :user
 
@@ -56,11 +56,8 @@ class Tomato
   end
 
   def self.by_day(tomatoes)
-    tomatoes = group_by_day(tomatoes)
-
-    Range.new(tomatoes.keys.last.to_i, tomatoes.keys.first.to_i).step(60*60*24).map do |day|
-      day = Time.at(day)
-      [day.to_i*1000, tomatoes[day] ? tomatoes[day].size : 0]
+    to_lines(tomatoes) do |tomatoes_by_day|
+      tomatoes_by_day ? tomatoes_by_day.size : 0
     end
   end
 

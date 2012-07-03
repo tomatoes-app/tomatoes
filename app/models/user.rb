@@ -1,7 +1,7 @@
 class User
   include Mongoid::Document
   include Mongoid::Timestamps
-  include GroupableByDay
+  include Chartable
   
   # authorization fields (deprecated)
   field :provider,    :type => String
@@ -96,11 +96,11 @@ class User
   end
 
   def self.by_day(users)
-    users = group_by_day(users)
+    # NOTE: first 1687 users lack of created_at value
+    users_count = 1687
 
-    Range.new(users.keys.last.to_i, users.keys.first.to_i).step(60*60*24).map do |day|
-      day = Time.at(day)
-      [day.to_i*1000, users[day] ? users[day].size : 0]
+    to_lines(users) do |users_by_day|
+      users_count += users_by_day ? users_by_day.size : 0
     end
   end
 end

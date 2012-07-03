@@ -8,8 +8,7 @@
 <% end %>
 
 <% content_for :foot do %>
-  <%= javascript_include_tag "user_charts.js" %>
-  <%= javascript_include_tag "users.js" %>
+  <%= javascript_include_tag "users", "users_charts" %>
 <% end %>
 
 <div id="user">

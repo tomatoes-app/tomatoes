@@ -9,5 +9,6 @@
 //= require chart_helper
 
 $(document).ready(function () {
-  lines_chart(users_by_day_statistics_path, "#users_by_day", "#users_by_day_overview");
+  lines_chart(by_day_user_tomatoes_path, "#tomatoes_by_day", "#tomatoes_by_day_overview");
+  bars_chart(by_hour_user_tomatoes_path, "#tomatoes_by_hour");
 });

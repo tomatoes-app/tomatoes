@@ -1,3 +1,15 @@
+<% content_for :head do %>
+  <%= javascript_tag do %>
+    var TODAY = <%= Time.zone.now.to_i*1000 %>;
+    var THIRTY_DAYS_AGO = <%= (Time.zone.now - 30.days).to_i*1000 %>;
+    var users_by_day_statistics_path = '<%= users_by_day_statistics_url(:format => :json) %>';
+  <% end %>
+<% end %>
+
+<% content_for :foot do %>
+  <%= javascript_include_tag "statistics" %>
+<% end %>
+
 <h1>Statistics</h1>
 
 <h2>Users</h2>
@@ -5,6 +17,12 @@
   <%= pluralize(@users, 'user') %><br/>
   about <%= pluralize(@tomatoes/@users, 'tomato') %> per user
 </p>
+
+<h2>Users by day</h2>
+<div class="chart" id="users_by_day">
+  <%= image_tag 'loading.gif', :class => 'loading' %>
+</div>
+<div class="chart overview" id="users_by_day_overview"></div>
 
 <h2>Tomatoes</h2>
 <p>
