@@ -13,7 +13,7 @@ class StatisticsController < ApplicationController
 
   # GET /statistics/users_by_day.json
   def users_by_day
-    respond_with_json(User.by_day(User.all))
+    respond_with_json(User.by_day(User.excludes(:created_at => nil)))
   end
 
   # GET /statistics/tomatoes_by_day.json
