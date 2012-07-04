@@ -41,13 +41,15 @@
   <% end %>
 </head>
 <body>
-  <div id="container">
-    <header>
+  <div id="header_container">
+    <header class="container">
       <div class="block">
         <div id="logo" class="block <%= current_user ? "auth left" : "start" %>">
           <div class="text">
             <h1><%= link_to "Tomatoes", root_path %></h1>
-            <h2>Pomodoro technique<sup>®</sup> time tracker</h2>
+            <% unless current_user %>
+              <h2>Pomodoro technique<sup>®</sup> time tracker</h2>
+            <% end %>
           </div>
           <% unless current_user %>
             <div id="sponsors" class="block">
@@ -57,9 +59,13 @@
           <% end %>
         </div>
         <% if current_user %>
-          <div class="right"><%= link_to "Sign out", signout_path %></div>
-          <div class="right user">
-            <%= render :partial => 'users/user', :locals => {:user => current_user} %>
+          <div id="user_container" class="right">
+            <div class="block">
+              <div class="left user">
+                <%= render :partial => 'users/user', :locals => {:user => current_user} %>
+              </div>
+              <div class="left sign_out"><%= link_to "Sign out", signout_path %></div>
+            </div>
           </div>
         <% end %>
       </div>
@@ -70,7 +76,9 @@
         <%= render :partial => 'shared/flash', :locals => {:flash => flash} %>
       </div>
     </header>
+  </div>
 
+  <div class="container">
     <%= yield %>
 
     <footer class="block">
