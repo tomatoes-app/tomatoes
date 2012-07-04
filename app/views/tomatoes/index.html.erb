@@ -1,23 +1,27 @@
 <h3>Your tomatoes</h3>
 
 <table>
-  <tr>
-    <th>Started at</th>
-    <th>Tags</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+  <thead>
+    <tr>
+      <th>Started at</th>
+      <th>Tags</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
 
-<% @tomatoes.each do |tomato| %>
-  <tr>
-    <td><%= tomato.created_at - Tomato::DURATION %></td>
-    <td><%= tomato.tags.join(', ') %></td>
-    <td><%= link_to 'Show', tomato %></td>
-    <td><%= link_to 'Edit', edit_tomato_path(tomato) %></td>
-    <td><%= link_to 'Destroy', tomato, :data => { :confirm => 'Are you sure?' }, :method => :delete %></td>
-  </tr>
-<% end %>
+  <tbody>
+  <% @tomatoes.each do |tomato| %>
+    <tr class="<%= cycle :even, :odd %>">
+      <td><%= tomato.created_at - Tomato::DURATION %></td>
+      <td><%= tomato.tags.join(', ') %></td>
+      <td><%= link_to 'Show', tomato %></td>
+      <td><%= link_to 'Edit', edit_tomato_path(tomato) %></td>
+      <td><%= link_to 'Destroy', tomato, :data => { :confirm => 'Are you sure?' }, :method => :delete %></td>
+    </tr>
+  <% end %>
+  </tbody>
 </table>
 
 <%= paginate @tomatoes %>

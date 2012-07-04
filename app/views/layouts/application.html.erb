@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta content='Tomatoes is a "pomodoro tracker", a Pomodoro technique® driven time tracker. Track your time using 25 minutes slots called "pomodoros".' name='description' />
   <link rel="chrome-webstore-item" href="https://chrome.google.com/webstore/detail/jijbhneeenepenoolcdalnekggeialeo">
-  <link href='http://fonts.googleapis.com/css?family=Open+Sans:300|Leckerli+One&v2' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,300,600|Leckerli+One&v2' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tag %>
@@ -44,29 +44,24 @@
   <div id="container">
     <header>
       <div class="block">
+        <div id="logo" class="block <%= current_user ? "auth left" : "start" %>">
+          <div class="text">
+            <h1><%= link_to "Tomatoes", root_path %></h1>
+            <h2>Pomodoro technique<sup>®</sup> time tracker</h2>
+          </div>
+          <% unless current_user %>
+            <div id="sponsors" class="block">
+              <p class="left">Sponsored by</p>
+              <a id="mongohq" class="left" href="http://mongohq.com">MongoHQ</a>
+            </div>
+          <% end %>
+        </div>
         <% if current_user %>
-          <div class="left user">
+          <div class="right"><%= link_to "Sign out", signout_path %></div>
+          <div class="right user">
             <%= render :partial => 'users/user', :locals => {:user => current_user} %>
           </div>
-          <div class="right"><%= link_to "Sign out", signout_path %></div>
-        <% else %>
-          <div class="right">
-            <%= link_to "Sign in with GitHub", signin_path('github') %>
-            or
-            <%= link_to "Sign in with Twitter", signin_path('twitter') %>
-          </div>
         <% end %>
-      </div>
-      
-      <div id="logo" class="block <%= current_user ? "auth" : "start" %>">
-        <div class="text">
-          <h1><%= link_to "Tomatoes", root_path %></h1>
-          <h2>Pomodoro technique<sup>®</sup> time tracker</h2>
-        </div>
-        <div id="sponsors" class="block">
-          <p class="left">Sponsored by</p>
-          <a id="mongohq" class="left" href="http://mongohq.com">MongoHQ</a>
-        </div>
       </div>
       
       <%= render :partial => 'shared/announcement' %>

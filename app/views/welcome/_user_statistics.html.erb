@@ -1,0 +1,7 @@
+
+<% @tomatoes_count.each do |time_period, tomatoes_count| %>
+  <div class="<%= time_period %> counter button">
+    <div class="counter_value"><%= tomatoes_count %></div>
+    <div class="counter_label"><%= counter_label(time_period) %></div>
+  </div>
+<% end %>

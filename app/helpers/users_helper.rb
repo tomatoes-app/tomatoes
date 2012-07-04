@@ -4,6 +4,6 @@ module UsersHelper
   end
   
   def user_name(user)
-    link_to user.name ? user.name : user.login, user
+    link_to user.name ? user.name : user.login, user, :class => 'user_name'
   end
 end

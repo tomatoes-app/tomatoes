@@ -1,4 +1,4 @@
-<h3 class="<%= relative_day(day).parameterize %>"><%= relative_day(day) %> (<%= pluralize(tomatoes.count, 'tomato') %>)</h3>
+<h3 class="<%= relative_day(day).parameterize %>"><%= relative_day(day) %></h3>
 <table>
   <%= render :partial => 'tomatoes/tomato', :collection => tomatoes, :locals => {:high => high} %>
 </table>

@@ -22,7 +22,6 @@ div.field, div.actions {
 	width: 450px;
 	margin-bottom: 20px;
 	border: 1px solid #c00;
-	border-radius: 3px;
 }
 
 #error_explanation h2 {
