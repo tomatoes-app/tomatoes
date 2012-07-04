@@ -57,20 +57,13 @@ class Tomato
 
   def self.by_day(tomatoes)
     to_lines(tomatoes) do |tomatoes_by_day|
-      tomatoes_by_day ? tomatoes_by_day.size : 0
+      yield(tomatoes_by_day)
     end
   end
 
   def self.by_hour(tomatoes)
-    tomatoes = Hash[tomatoes.group_by do |tomato|
-      now = Time.zone.now
-      date = [2011, 1, 1, tomato.created_at.hour]
-      Time.gm(*date)
-    end.sort {|a, b| a[0].hour <=> b[0].hour}.map {|a| [a[0].hour, a[1]]}]
-
-    (0..23).map do |hour|
-      millis = (Time.zone.now.beginning_of_day + hour*3600).to_i*1000
-      [millis, tomatoes[hour] ? tomatoes[hour].size : 0]
+    to_hours_bars(tomatoes) do |tomatoes_by_hour|
+      tomatoes_by_hour ? tomatoes_by_hour.size : 0
     end
   end
 

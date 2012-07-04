@@ -1,8 +1,8 @@
 <% content_for :head do %>
   <%= javascript_tag do %>
-    var TODAY = <%= Time.zone.now.to_i*1000 %>;
-    var THIRTY_DAYS_AGO = <%= (Time.zone.now - 30.days).to_i*1000 %>;
-    var users_by_day_statistics_path = '<%= users_by_day_statistics_url(:format => :json) %>';
+    var USERS_BY_DAY_STATISTICS_URL = '<%= users_by_day_statistics_url(:format => :json) %>',
+        USERS_BY_TOMATOES_STATISTICS_URL = '<%= users_by_tomatoes_statistics_url(:format => :json) %>',
+        TOMATOES_BY_DAY_STATISTICS_URL = '<%= tomatoes_by_day_statistics_url(:format => :json) %>';
   <% end %>
 <% end %>
 
@@ -22,7 +22,11 @@
 <div class="chart" id="users_by_day">
   <%= image_tag 'loading.gif', :class => 'loading' %>
 </div>
-<div class="chart overview" id="users_by_day_overview"></div>
+
+<h2>Users by tomatoes</h2>
+<div class="chart" id="users_by_tomatoes">
+  <%= image_tag 'loading.gif', :class => 'loading' %>
+</div>
 
 <h2>Tomatoes</h2>
 <p>
@@ -30,3 +34,8 @@
   about <%= humanize(@tomatoes*Tomato::DURATION) %> of work<br/>
   about <%= number_with_precision(@tomatoes/((Time.zone.now - @first_tomato.created_at) / 3600)) %> tomatoes per hour
 </p>
+
+<h2>Tomatoes by day</h2>
+<div class="chart" id="tomatoes_by_day">
+  <%= image_tag 'loading.gif', :class => 'loading' %>
+</div>

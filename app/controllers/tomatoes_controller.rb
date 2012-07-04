@@ -21,12 +21,22 @@ class TomatoesController < ResourceController
   
   # GET /users/1/tomatoes/by_day.json
   def by_day
-    respond_with_json(Tomato.by_day(@user.tomatoes))
+    respond_with_json do
+      Rails.cache.fetch("tomatoes_by_day_user_#{@user.id}", :expires_in => 1.hour) do
+        Tomato.by_day(@user.tomatoes) do |tomatoes_by_day|
+          tomatoes_by_day ? tomatoes_by_day.size : 0
+        end
+      end
+    end
   end
   
   # GET /users/1/tomatoes/by_hour.json
   def by_hour
-    respond_with_json(Tomato.by_hour(@user.tomatoes))
+    respond_with_json do
+      Rails.cache.fetch("tomatoes_by_hour_user_#{@user.id}", :expires_in => 1.day) do
+        Tomato.by_hour(@user.tomatoes)
+      end
+    end
   end
 
   # GET /tomatoes/1
@@ -66,8 +76,6 @@ class TomatoesController < ResourceController
           @tomatoes  = current_user.tomatoes_after(Time.zone.now.beginning_of_day)
           define_break
           flash.now[:notice] = notice_message
-
-          logger.debug "flash.now: #{flash.now.inspect}"
         end
         format.html { redirect_to(root_url, :notice => 'Tomato created, now it\'s time for a break.') }
         format.xml  { render :xml => @tomato, :status => :created, :location => @tomato }

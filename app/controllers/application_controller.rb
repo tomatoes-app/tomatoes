@@ -9,9 +9,9 @@ class ApplicationController < ActionController::Base
 
   protected
 
-  def respond_with_json(content)
+  def respond_with_json
     respond_to do |format|
-      format.json { render :json => content }
+      format.json { render :json => yield }
     end
   end
 

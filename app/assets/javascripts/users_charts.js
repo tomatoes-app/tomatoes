@@ -9,6 +9,10 @@
 //= require chart_helper
 
 $(document).ready(function () {
-  lines_chart(by_day_user_tomatoes_path, "#tomatoes_by_day", "#tomatoes_by_day_overview");
-  bars_chart(by_hour_user_tomatoes_path, "#tomatoes_by_hour");
+  $.getJSON(BY_DAY_USER_TOMATOES_URL, function(tomatoes_by_day) {
+    lines_chart_with_overview(tomatoes_by_day, "#tomatoes_by_day", "#tomatoes_by_day_overview");
+  });
+  $.getJSON(BY_HOUR_USER_TOMATOES_URL, function(tomatoes_by_hour) {
+    hours_bars_chart(tomatoes_by_hour, "#tomatoes_by_hour");
+  });
 });

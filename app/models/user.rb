@@ -27,15 +27,14 @@ class User
   has_merit
   
   def tags
-    tomatoes.collect(&:tags).flatten.inject(Hash.new(0)) do |hash, tag|
-      hash[tag] += 1; hash
-    end.sort do |a, b|
-      b[1] <=> a[1]
+    Rails.cache.fetch("tomatoes_by_tag_#{id}", :expires_in => 1.hour) do
+      tomatoes.collect(&:tags).flatten.inject(Hash.new(0)) do |hash, tag|
+        hash[tag] += 1; hash
+      end.sort { |a, b| b[1] <=> a[1] }
     end
   end
   
   def self.find_by_omniauth(auth)
-    logger.debug "find_by_omniauth"
     any_of(
       {:authorizations => {
         '$elemMatch' => {
@@ -46,29 +45,20 @@ class User
   end
   
   def self.create_with_omniauth!(auth)
-    logger.debug "create_with_omniauth"
-    begin
-      user = User.new(omniauth_attributes(auth))
-      user.authorizations.build(Authorization.omniauth_attributes(auth))
-      user.save!
-      user
-    rescue Exception
-      raise Exception, "Cannot create user"
-    end
+    user = User.new(omniauth_attributes(auth))
+    user.authorizations.build(Authorization.omniauth_attributes(auth))
+    user.save!
+    user
   end
   
   def update_omniauth_attributes!(auth)
-    begin
-      update_attributes!(User.omniauth_attributes(auth))
+    update_attributes!(User.omniauth_attributes(auth))
 
-      if authorization = authorization_by_provider(auth['provider'])
-        authorization.update_attributes!(Authorization.omniauth_attributes(auth))
-      else
-        # merge one more authorization provider
-        authorizations.create!(Authorization.omniauth_attributes(auth))
-      end
-    rescue Exception
-      raise Exception, "Cannot update user"
+    if authorization = authorization_by_provider(auth['provider'])
+      authorization.update_attributes!(Authorization.omniauth_attributes(auth))
+    else
+      # merge one more authorization provider
+      authorizations.create!(Authorization.omniauth_attributes(auth))
     end
   end
   
@@ -93,6 +83,9 @@ class User
   end
 
   def self.by_tomatoes(users)
+    to_tomatoes_bars(users) do |users_by_tomatoes|
+      users_by_tomatoes ? users_by_tomatoes.size : 0
+    end
   end
 
   def self.by_day(users)
