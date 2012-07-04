@@ -1,5 +1,5 @@
 <% unless leaderboard.empty? %>
-  <ol>
+  <ol start="<%= (25*(params[:page].to_i-1))+1 if params[:page] %>">
   <% leaderboard.each do |item| %>
     <% if item.user %>
       <li class="block <%= content_for_user(item.user) { "you" } %>">
