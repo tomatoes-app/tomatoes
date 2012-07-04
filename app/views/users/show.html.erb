@@ -16,7 +16,6 @@
         <h2><%= user_name(@user) %></h2>
         <div class="left profile_image size48">
           <%= profile_image(@user, 48) %>
-          <div class="overlay"></div>
         </div>
         <div class="left profile_info">
           Tomatoes: <%= @user.tomatoes.size %></br>
@@ -66,24 +65,5 @@
 </div>
 
 <%= content_for_user(@user) do %>
-  <h2>Tomatoes by tag</h2>
-  <table>
-    <thead>
-      <tr>
-        <th>Tag</th>
-        <th>Tomatoes</th>
-        <th>Time</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @tags.each do |array| %>
-        <tr class="<%= cycle :even, :odd %>">
-          <td><%= array[0] %></td>
-          <td class="number"><%= array[1] %></td>
-          <td class="time"><%= humanize(array[1]*Tomato::DURATION) %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-  <%= paginate @tags %>
+  <%= render :partial => 'tags_list' %>
 <% end %>

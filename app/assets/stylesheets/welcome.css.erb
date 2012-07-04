@@ -38,6 +38,7 @@ tr.highlight {
 
 td.tomato_duration {
 	width: 110px;
+	padding-left: 1px;
 }
 
 #timer_container {
@@ -47,22 +48,16 @@ td.tomato_duration {
 	top: 20%;
 	left: -450px;
 	padding: 20px;
-	background: #F9F9F9;
-	border: 1px solid #EEE;
+	background: #f9f9f9;
+	border: 1px solid #eee;
 }
 
 #timer_container.round_left {
-	-moz-border-radius: 6px 0 0 6px;
-	-webkit-border-radius: 6px 0 0 6px;
-	border-radius: 6px 0 0 6px;
-	border: 1px solid #CCC;
+	border: 1px solid #666;
 	border-right: 0 none;
 }
 
 #timer_container.round_right {
-	-moz-border-radius: 0 6px 6px 0;
-	-webkit-border-radius: 0 6px 6px 0;
-	border-radius: 0 6px 6px 0;
 	border-left: 0 none;
 }
 
@@ -113,9 +108,6 @@ p#reset_hint {
 
 .leaderboard_list li.you {
 	background-color: #f0f0f0;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
-	border-radius: 3px;
 }
 
 #user {
@@ -143,7 +135,7 @@ p#reset_hint {
 	left: 0;
 	width: 0;
 	height: 100%;
-	background-color: rgba(0, 255, 0, .5);
+	background-color: rgba(0, 0, 0, .7);
 	position: absolute;
 	z-index: 100;
 }
@@ -189,3 +181,12 @@ p#reset_hint {
 	background-position: 0 -<%= level*35 %>px;
 }
 <% end %>
+
+.counter {
+	width: 100px;
+}
+
+.counter .counter_value {
+	font-size: 24px;
+	font-weight: bold;
+}
