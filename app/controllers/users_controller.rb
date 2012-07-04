@@ -17,8 +17,6 @@ class UsersController < ResourceController
   def show
     @user = User.find(params[:id])
     
-    logger.debug "same_user?: #{same_user?.inspect}"
-
     if same_user?
       @tags = Rails.cache.fetch("tomatoes_by_tag_#{@user.id}", :expires_in => 1.day) do
         Tomato.by_tags(@user.tomatoes)
