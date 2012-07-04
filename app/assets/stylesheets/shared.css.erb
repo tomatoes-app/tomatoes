@@ -3,7 +3,7 @@ body {
   color: #444;
   position: relative;
   margin: 0;
-  padding: 10px;
+  padding: 0;
 }
 
 body, p, ol, ul, td {
@@ -71,10 +71,6 @@ input[type=submit] {
   font-family: 'Open Sans', sans-serif;
   font-size: 13px;
   margin: 0;
-}
-
-header {
-  margin-bottom: 50px;
 }
 
 footer {
@@ -156,10 +152,9 @@ a.button:visited {
 }
 
 #logo h1 {
-  font-size: 48px;
+  font-size: 28px;
   font-family: 'Leckerli One', cursive;
-  margin-top: 0;
-  margin-bottom: -8px;
+  margin: 0;
 }
 
 #logo.start h1 {
@@ -206,11 +201,24 @@ a.button:visited {
   height: 28px;
 }
 
-#container {
+.container {
   margin: 0 auto;
   width: 960px;
 }
 
 #content {
   padding-bottom: 20px;
+}
+
+#header_container {
+  background-color: #ededed;
+  border-bottom: 1px solid #dcdcdc;
+  color: #777;
+  text-decoration: none;
+  text-shadow: 1px 1px 0px #fff;
+  margin-bottom: 50px;
+}
+
+#header_container #user_container {
+  margin-top: 3px;
 }
