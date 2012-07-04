@@ -76,7 +76,7 @@
       </tr>
     </thead>
     <tbody>
-      <% @user.tags.each do |array| %>
+      <% @tags.each do |array| %>
         <tr class="<%= cycle :even, :odd %>">
           <td><%= array[0] %></td>
           <td class="number"><%= array[1] %></td>
@@ -85,4 +85,5 @@
       <% end %>
     </tbody>
   </table>
+  <%= paginate @tags %>
 <% end %>
