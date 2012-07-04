@@ -63,13 +63,19 @@ class Tomato
 
   def self.by_hour(tomatoes)
     to_hours_bars(tomatoes) do |tomatoes_by_hour|
-      tomatoes_by_hour ? tomatoes_by_hour.size : 0
+      yield(tomatoes_by_hour)
     end
   end
 
+  def self.by_tags(tomatoes)
+    tomatoes.collect(&:tags).flatten.inject(Hash.new(0)) do |hash, tag|
+      hash[tag] += 1; hash
+    end.sort { |a, b| b[1] <=> a[1] }
+  end
+
   # CSV representation.
-  def self.to_csv(tomatoes)
-    CSV.generate do |csv| 
+  def self.to_csv(tomatoes, opts={})
+    CSV.generate(opts) do |csv| 
       tomatoes.each do |tomato|
         csv << [tomato.created_at, tomato.tags.join(", ")]
       end
