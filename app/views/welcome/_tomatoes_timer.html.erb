@@ -1,0 +1,51 @@
+<% content_for :head do %>
+  <%= javascript_tag do %>
+    var tomatoDuration = <%= Tomato::DURATION/60.0 %>;
+    var tomatoBreakDuration = <%= Tomato::BREAK_DURATION/60.0 %>;
+    var tomatoNotificationIcon = '<%= asset_path('pomodoro_notification_icon.png') %>';
+    var currentUser = <%= current_user ? 'true' : 'false' %>;
+    var DEBUG = <%= Rails.env.development? %>;
+  <% end %>
+  <%= javascript_include_tag "TT" %>
+<% end %>
+
+<div id="progress_bar">
+  <div id="timer_container">
+    <div id="timer" style="display: none">
+      <div class="volume right block">
+        <div class="down left">-</div>
+        <div id="volume_icon" class="mute_toggle left"></div>
+        <div class="up left">+</div>
+      </div>
+      <div id="timer_counter"></div>
+      <%= link_to "Reset", "#", :id => "reset", :class => "button" %>
+      <p id="reset_hint">or press esc</p>
+    </div>
+    <div id="new_tomato_form" style="display: none">
+    <% if current_user %>
+      <%= render 'tomato_form' %>
+    <% else %>
+      <div id="tomato_signin" class="block">
+        <h2>Sign in to start tracking your work.</h2>
+        <%= link_to signin_path('github'), :class => "button" do %>
+          <%= image_tag("github.png", :width => "24") %>
+          GitHub
+        <% end %>
+        or
+        <%= link_to signin_path('twitter'), :class => "button" do %>
+          <%= image_tag("twitter.png", :width => "24") %>
+          Twitter
+        <% end %>
+        <div id="cancel">
+          <%= link_to "Cancel", "#", :id => "reset_signin", :class => "button" %>
+        </div>
+      </div>
+    <% end %>
+    </div>
+  </div>
+</div>
+
+<div id="start_container">
+  <%= link_to "Start", "#", :id => "start", :class => "button" %>
+  <p id="start_hint">or press space bar</p>
+</div>
