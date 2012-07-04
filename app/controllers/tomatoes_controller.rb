@@ -34,7 +34,9 @@ class TomatoesController < ResourceController
   def by_hour
     respond_with_json do
       Rails.cache.fetch("tomatoes_by_hour_user_#{@user.id}", :expires_in => 1.day) do
-        Tomato.by_hour(@user.tomatoes)
+        Tomato.by_hour(@user.tomatoes) do |tomatoes_by_hour|
+          tomatoes_by_hour ? tomatoes_by_hour.size : 0
+        end
       end
     end
   end

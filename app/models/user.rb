@@ -26,14 +26,6 @@ class User
 
   has_merit
   
-  def tags
-    Rails.cache.fetch("tomatoes_by_tag_#{id}", :expires_in => 1.hour) do
-      tomatoes.collect(&:tags).flatten.inject(Hash.new(0)) do |hash, tag|
-        hash[tag] += 1; hash
-      end.sort { |a, b| b[1] <=> a[1] }
-    end
-  end
-  
   def self.find_by_omniauth(auth)
     any_of(
       {:authorizations => {

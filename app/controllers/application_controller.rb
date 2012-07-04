@@ -34,15 +34,15 @@ class ApplicationController < ActionController::Base
   end
 
   def same_user?
-    @user = User.find(params[:id])
-    unless current_user == @user
-      redirect_to root_url, :alert => "Access denied."
-    end
+    @user ||= User.find(params[:id])
+    return current_user == @user
+  end
+
+  def same_user!
+    redirect_to root_url, :alert => "Access denied." unless same_user?
   end
 
   def authenticate_user!
-    if !current_user
-      redirect_to root_url, :alert => 'You need to sign in for access to this page.'
-    end
+    redirect_to root_url, :alert => 'You need to sign in for access to this page.' unless current_user
   end
 end
