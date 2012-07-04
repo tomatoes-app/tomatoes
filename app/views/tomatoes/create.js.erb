@@ -1,6 +1,7 @@
 $("#flash").html("<%= escape_javascript(render(:partial => 'shared/flash', :locals => {:flash => flash})) %>");
 $("#progress_bar").css('width', 0);
 $("#list_container").html("<%= escape_javascript(render(:partial => 'welcome/tomatoes_list', :locals => {:high => @highlight})) %>");
+$("#user_statistics").html("<%= escape_javascript(render(:partial => 'welcome/user_statistics')) %>");
 $("#new_tomato_form").unbind("keypress");
 $(".highlight").animate({backgroundColor: "#fff"}, 3000);
 TT.start(tomatoBreakDuration<%= "*3" if @long_break %>, TT.stateStop);
