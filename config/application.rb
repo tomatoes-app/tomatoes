@@ -16,7 +16,7 @@ if defined?(Bundler)
 end
 
 module TomatoesApp
-  VERSION = '0.6.38'
+  VERSION = '0.6.39'
   REPO = 'https://github.com/potomak/tomatoes'
   
   class Application < Rails::Application
