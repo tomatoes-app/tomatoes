@@ -24,7 +24,7 @@ soundManager.onready(function() {
 
 function startCallback(event) {
   if('idle' == TT.getStatus()) {
-    TT.start(tomatoDuration, TT.stateNewForm);
+    TT.start(tomatoDuration, currentUser ? TT.stateNewForm : TT.stateSignIn);
     event.preventDefault();
   }
 }
@@ -34,6 +34,12 @@ function resetCallback(event) {
     TT.reset();
     event.preventDefault();
   }
+}
+
+function resetSigninCallback(event) {
+  $("#progress_bar").css('width', 0);
+  $("#new_tomato_form").unbind("keypress");
+  TT.start(tomatoBreakDuration, TT.stateStop);
 }
 
 function updateVolumeIcon() {
@@ -46,6 +52,7 @@ function updateVolumeIcon() {
 $(document).ready(function() {
   $("#start").click(startCallback);
   $("#reset").click(resetCallback);
+  $("#reset_signin").click(resetSigninCallback);
   
   $("#new_tomato_form").live("ajax:beforeSend", function() {
     TT.log("ajax:beforeSend");
@@ -69,12 +76,6 @@ $(document).ready(function() {
   
   if((typeof window.chrome == 'undefined') || (window.chrome && window.chrome.app && window.chrome.app.isInstalled)) {
     $("#add_to_chrome").hide();
-  }
-  else {
-    $("#add_to_chrome a").click(function() {
-      chrome.webstore.install();
-      return false;
-    });
   }
 
   $(".volume .up").click(function() {
