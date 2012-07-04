@@ -1,15 +1,12 @@
 <% content_for :head do %>
   <%= javascript_tag do %>
-    var TODAY = <%= Time.zone.now.to_i*1000 %>;
-    var THIRTY_DAYS_AGO = <%= (Time.zone.now - 30.days).to_i*1000 %>;
-    var by_day_user_tomatoes_path = '<%= by_day_user_tomatoes_url(@user, :format => :json) %>';
-    var by_hour_user_tomatoes_path = '<%= by_hour_user_tomatoes_url(@user, :format => :json) %>';
+    var BY_DAY_USER_TOMATOES_URL = '<%= by_day_user_tomatoes_url(@user, :format => :json) %>',
+        BY_HOUR_USER_TOMATOES_URL = '<%= by_hour_user_tomatoes_url(@user, :format => :json) %>';
   <% end %>
 <% end %>
 
 <% content_for :foot do %>
-  <%= javascript_include_tag "user_charts.js" %>
-  <%= javascript_include_tag "users.js" %>
+  <%= javascript_include_tag "users", "users_charts" %>
 <% end %>
 
 <div id="user">
