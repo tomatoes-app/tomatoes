@@ -35,9 +35,9 @@
   <% end %>
 </head>
 <body>
-  <div id="header_container" class="<%= current_user ? "auth" : "start" %>">
-    <header class="container">
-      <div class="block">
+  <div id="container">
+    <div id="header_container" class="<%= current_user ? "auth" : "start" %>">
+      <header class="block container">
         <div id="logo" class="block <%= current_user ? "auth left" : "start" %>">
           <div class="text">
             <h1><%= link_to "Tomatoes", root_path %></h1>
@@ -62,40 +62,44 @@
             </div>
           </div>
         <% end %>
-      </div>
-    </header>
-  </div>
-
-  <div class="container">
-    <%= render :partial => 'shared/announcement' %>
-      
-    <div id="flash">
-      <%= render :partial => 'shared/flash', :locals => {:flash => flash} %>
+      </header>
     </div>
 
-    <%= yield %>
+    <div id="main_container">
+      <div class="container">
+        <%= render :partial => 'shared/announcement' %>
+          
+        <div id="flash">
+          <%= render :partial => 'shared/flash', :locals => {:flash => flash} %>
+        </div>
 
-    <footer class="block">
-      <div class="left">
-        <div>
-          <a class="FlattrButton" style="display:none;" rev="flattr;button:compact;" href="http://tomatoes.heroku.com"></a>
-          <noscript><a href="http://flattr.com/thing/376437/Tomatoes" target="_blank">
-          <img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0" /></a></noscript>
-        </div>
-        <div id="add_to_chrome">
-          <%= link_to 'https://chrome.google.com/webstore/detail/jijbhneeenepenoolcdalnekggeialeo' do %>
-            <%= image_tag("chrome-icon.png") %>
-            Add to Chrome
-          <% end %>
-        </div>
-        Follow updates <%= link_to "@johnnyaboh", "http://twitter.com/johnnyaboh" %><br/>
-        <%= link_to "Tomatoes", TomatoesApp::REPO %> - <%= link_to "version #{TomatoesApp::VERSION}", "#{TomatoesApp::REPO}/tree/#{TomatoesApp::VERSION}" %>
+        <%= yield %>
       </div>
-      <div class="right">
-        <%= render partial: 'shared/ranking_links' %><br/>
-        <%= link_to "Statistics", statistics_path %>
-      </div>
-    </footer>
+    </div>
+
+    <div id="footer_container">
+      <footer class="container block">
+        <div class="left">
+          <div>
+            <a class="FlattrButton" style="display:none;" rev="flattr;button:compact;" href="http://tomatoes.heroku.com"></a>
+            <noscript><a href="http://flattr.com/thing/376437/Tomatoes" target="_blank">
+            <img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0" /></a></noscript>
+          </div>
+          <div id="add_to_chrome">
+            <%= link_to 'https://chrome.google.com/webstore/detail/jijbhneeenepenoolcdalnekggeialeo' do %>
+              <%= image_tag("chrome-icon.png") %>
+              Add to Chrome
+            <% end %>
+          </div>
+          Follow updates <%= link_to "@tomatoesapp", "http://twitter.com/tomatoesapp" %><br/>
+          <%= link_to "Tomatoes", TomatoesApp::REPO %> - <%= link_to "version #{TomatoesApp::VERSION}", "#{TomatoesApp::REPO}/tree/#{TomatoesApp::VERSION}" %>
+        </div>
+        <div class="right">
+          <%= render partial: 'shared/ranking_links' %><br/>
+          <%= link_to "Statistics", statistics_path %>
+        </div>
+      </footer>
+    </div>
   </div>
 
   <%= yield :foot %>
