@@ -50,6 +50,7 @@ function updateVolumeIcon() {
 }
 
 $(document).ready(function() {
+  TTFavicon.init();
   $("#start").click(startCallback);
   $("#reset").click(resetCallback);
   $("#reset_signin").click(resetSigninCallback);
