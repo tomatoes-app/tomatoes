@@ -1,3 +1,7 @@
+html, body {
+  height: 100%; /* needed for container min-height */
+}
+
 body {
   font-size: 13px;
   color: #444;
@@ -206,8 +210,11 @@ a.button:visited {
   width: 960px;
 }
 
-#content {
-  padding-bottom: 20px;
+#container {
+  position:relative;      /* needed for footer positioning*/
+  height:auto !important; /* real browsers */
+  height:100%;            /* IE6: treaded as min-height*/
+  min-height:100%;        /* real browsers */
 }
 
 #header_container {
@@ -224,6 +231,17 @@ a.button:visited {
 
 #header_container.auth #user_container {
   margin-top: 3px;
+}
+
+#main_container {
+  padding-bottom: 140px; /* bottom padding for footer */
+}
+
+#footer_container {
+  position: absolute;
+  width: 100%;
+  bottom: 0; /* stick to bottom */
+  margin-bottom: 5px;
 }
 
 #add_to_chrome {
