@@ -6,6 +6,7 @@
 //
 //= require soundmanager2-nodebug-jsmin
 //= require notifier
+//= require TT_favicon
 //= require TT_init
 
 var TT = function() {
@@ -80,6 +81,7 @@ var TT = function() {
 
   var stateStart = function(timer) {
     log("stateStart");
+    $(document).trigger('timer_start');
     
     status = 'running';
     $("#" + settings.timerCounterId).html(secondsToString(timer));
@@ -97,6 +99,7 @@ var TT = function() {
 
   var stateCounting = function(timer, duration) {
     log("stateCounting");
+    $(document).trigger('timer_tick', [(duration-timer), duration]);
 
     var timerString = secondsToString(timer);
     $("#" + settings.timerCounterId).html(timerString);
@@ -104,7 +107,7 @@ var TT = function() {
     
     var factor = (duration-timer) / duration;
     log("factor: " + factor);
-    
+
     var progressBarObj = $("#" + settings.progressBarId),
         timerContainerObj = $("#" + settings.timerContainerId);
     
@@ -123,6 +126,7 @@ var TT = function() {
 
   var stateStop = function(reset) {
     log("stateStop");
+    $(document).trigger('timer_stop');
 
     status = 'idle';
     document.title = originalTitle;
