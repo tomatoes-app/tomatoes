@@ -22,6 +22,7 @@ class User
   attr_accessible :name, :email, :image, :time_zone, :color
 
   validates_format_of :color, with: /\A#[A-Fa-f0-9]{6}\Z/, allow_blank: true
+  validate :color_update_grant, :unless => Proc.new { read_attribute(:color).nil? }
   
   embeds_many :authorizations
   has_many :tomatoes
@@ -30,6 +31,10 @@ class User
   index 'authorizations.provider'
 
   has_merit
+
+  def color_update_grant
+    errors.add(:color, 'can be customized only after 100 tomatoes tracked') unless granted?('tomatoer', 3)
+  end
   
   def self.find_by_omniauth(auth)
     any_of(
