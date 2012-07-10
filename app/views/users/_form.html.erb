@@ -23,9 +23,17 @@
     <%= f.label :time_zone %></br>
     <%= time_zone_select 'user', 'time_zone', nil, :include_blank => true %>
   </div>
-  <div class="field">
-    <%= f.label :color %></br>
-    <%= f.text_field :color %>
+  <div class="field block">
+    <div class="left">
+      <%= f.label :color %></br>
+      <%= f.text_field :color, :disabled => !@user.granted?('tomatoer', 3) %>
+      <% unless @user.granted?('tomatoer', 3) %>
+        <div class="hint">You must collect al least 100 tomatoes to get access to this feature</div>
+      <% end %>
+    </div>
+    <% if @user.granted?('tomatoer', 3) %>
+      <div id="colorpicker" class="left"></div>
+    <% end %>
   </div>
   <div class="actions">
     <%= f.submit :class => "button" %>

@@ -13,9 +13,11 @@ div.field, div.actions {
 }
 
 .field_with_errors {
-	padding: 2px;
-	background-color: red;
-	display: table;
+	display: inline;
+}
+.field_with_errors input[type="text"],
+.field_with_errors select {
+	border: 1px solid #c00;
 }
 
 #error_explanation {

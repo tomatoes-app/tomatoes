@@ -7,6 +7,12 @@
     var DEBUG = <%= Rails.env.development? %>;
   <% end %>
   <%= javascript_include_tag "TT" %>
+
+  <style type="text/css">
+    #progress_bar {
+      background-color: <%= hex_to_rgba(current_user ? current_user.color : User::DEFAULT_COLOR) %>;
+    }
+  </style>
 <% end %>
 
 <div id="progress_bar">

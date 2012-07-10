@@ -5,6 +5,7 @@
 // the compiled file.
 //
 //= require notifier
+//= require farbtastic
 
 function permissionCallback(hasPermission) {
   var permissionLabel = hasPermission ? "Tomatoes is allowed to use desktop notifications" : "Allow desktop notifications";
@@ -24,4 +25,6 @@ $(document).ready(function() {
   else {
     $("#request_notification_permission").hide();
   }
+
+  $('#colorpicker').farbtastic('#user_color');
 });

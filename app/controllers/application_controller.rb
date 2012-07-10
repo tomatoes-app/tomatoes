@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
   private
 
   def set_time_zone
-    Time.zone = (current_user && current_user.time_zone) || ActiveSupport::TimeZone[-cookies[:timezone].to_i.minutes]
+    Time.zone = current_user && current_user.time_zone && !current_user.time_zone.empty? ? current_user.time_zone : ActiveSupport::TimeZone[-cookies[:timezone].to_i.minutes]
   end
   
   def current_user
