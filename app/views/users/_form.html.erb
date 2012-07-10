@@ -21,7 +21,11 @@
   </div>
   <div class="field">
     <%= f.label :time_zone %></br>
-    <%= time_zone_select 'user', 'time_zone' %>
+    <%= time_zone_select 'user', 'time_zone', nil, :include_blank => true %>
+  </div>
+  <div class="field">
+    <%= f.label :color %></br>
+    <%= f.text_field :color %>
   </div>
   <div class="actions">
     <%= f.submit :class => "button" %>
