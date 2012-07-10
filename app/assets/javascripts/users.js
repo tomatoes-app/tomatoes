@@ -26,5 +26,7 @@ $(document).ready(function() {
     $("#request_notification_permission").hide();
   }
 
-  $('#colorpicker').farbtastic('#user_color');
+  if($('#colorpicker').length > 0) {
+    $('#colorpicker').farbtastic('#user_color');
+  }
 });
