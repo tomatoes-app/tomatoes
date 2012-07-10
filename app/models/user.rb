@@ -2,6 +2,8 @@ class User
   include Mongoid::Document
   include Mongoid::Timestamps
   include Chartable
+
+  DEFAULT_COLOR = '#000000'
   
   # authorization fields (deprecated)
   field :provider,    :type => String
@@ -14,9 +16,12 @@ class User
   field :email,     :type => String
   field :image,     :type => String
   field :time_zone, :type => String
+  field :color,     :type => String
   
   # attr_accessible :provider, :uid, :token, :login, :gravatar_id
-  attr_accessible :name, :email, :image, :time_zone
+  attr_accessible :name, :email, :image, :time_zone, :color
+
+  validates_format_of :color, with: /\A#[A-Fa-f0-9]{6}\Z/, allow_blank: true
   
   embeds_many :authorizations
   has_many :tomatoes
@@ -87,5 +92,16 @@ class User
     to_lines(users) do |users_by_day|
       users_count += users_by_day ? users_by_day.size : 0
     end
+  end
+
+  def granted?(name, level)
+    badges.select do |badge|
+      name == badge.name && badge.level >= level
+    end.size > 0
+  end
+
+  def color
+    color_value = read_attribute(:color)
+    color_value && !color_value.empty? ? color_value : User::DEFAULT_COLOR
   end
 end
