@@ -1,0 +1,44 @@
+SITE
+  remote: http://community.opscode.com/api/v1
+  specs:
+    bluepill (1.0.6)
+    build-essential (1.1.0)
+    nginx (0.101.6)
+      bluepill (>= 0.0.0)
+      build-essential (>= 0.0.0)
+      ohai (~> 1.0.2)
+      runit (>= 0.0.0)
+      yum (>= 0.0.0)
+    ohai (1.0.2)
+    runit (0.15.0)
+    vim (1.0.2)
+    yum (0.6.2)
+
+GIT
+  remote: git://github.com/fnichol/chef-ruby_build.git
+  ref: v0.6.0
+  sha: f5eae16a199571d15f151f118338b3b11c42f694
+  specs:
+    ruby_build (0.6.0)
+
+GIT
+  remote: https://github.com/fnichol/chef-apt
+  ref: master
+  sha: cb998dfdeffbcbb6805527b046b411206d6c77d6
+  specs:
+    apt (1.2.0)
+
+GIT
+  remote: https://github.com/fnichol/chef-rbenv
+  ref: v0.6.4
+  sha: 4e87a6d477cb6d675eed060e46910cb88d3f4448
+  specs:
+    rbenv (0.6.4)
+
+DEPENDENCIES
+  apt (>= 0)
+  nginx (>= 0)
+  rbenv (>= 0)
+  ruby_build (>= 0)
+  vim (>= 0)
+

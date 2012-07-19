@@ -54,6 +54,9 @@ gem 'omniauth-twitter'
 # Thin
 gem 'thin'
 
+# Unicorn
+gem 'unicorn'
+
 # New Relic
 gem 'newrelic_rpm'
 
@@ -69,4 +72,8 @@ gem 'merit'
 group :development, :test do
   gem 'heroku'
   gem 'mocha'
+
+  # Virtual box provisioning with vagrant and librarian gems
+  gem 'vagrant'
+  gem 'librarian'
 end
