@@ -23,7 +23,7 @@ $(document).ready(function () {
           label: "Sign ups",
           yaxis: 2,
           color: RED,
-          bars: { show: true, barWidth: -60*60*1000, fillColor: LIGHT_RED }
+          bars: { show: true, barWidth: -60*60*24*1000, fillColor: LIGHT_RED }
         },
       ], "#users_by_day");
     });
