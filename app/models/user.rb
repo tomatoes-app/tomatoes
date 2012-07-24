@@ -91,6 +91,12 @@ class User
   end
 
   def self.by_day(users)
+    to_lines(users) do |users_by_day|
+      users_by_day ? users_by_day.size : 0
+    end
+  end
+
+  def self.total_by_day(users)
     # NOTE: first 1687 users lack of created_at value
     users_count = 1687
 

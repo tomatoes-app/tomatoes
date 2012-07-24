@@ -1,0 +1,9 @@
+working_directory "<%=@app_dir%>"
+pid "/var/run/unicorn/master.pid"
+stderr_path "/var/log/unicorn.log"
+stdout_path "/var/log/unicorn.log"
+
+listen "/tmp/unicorn.todo.sock"
+worker_processes 2
+timeout 30
+

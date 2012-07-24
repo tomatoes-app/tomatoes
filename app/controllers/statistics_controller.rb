@@ -15,6 +15,15 @@ class StatisticsController < ApplicationController
     end
   end
 
+  # GET /statistics/total_users_by_day.json
+  def total_users_by_day
+    respond_with_json do
+      Rails.cache.fetch('total_users_by_day', :expires_in => 1.day) do
+        User.total_by_day(User.excludes(:created_at => nil))
+      end
+    end
+  end
+
   # GET /statistics/users_by_day.json
   def users_by_day
     respond_with_json do

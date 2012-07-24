@@ -11,6 +11,14 @@ var TODAY           = (new Date()).getTime(),
       xaxis: { mode: "time", ticks: 14 },
       yaxis: { ticks: 14, tickFormatter: function(n) { return n.toFixed(0) } }
     },
+    LINES_CHART_WITH_MULTIPLE_AXIS_OPTS = {
+      xaxes: [ { mode: "time", ticks: 14 } ],
+      yaxes: [
+        { ticks: 14, tickFormatter: function(n) { return n.toFixed(0) } },
+        { ticks: 14, tickFormatter: function(n) { return n.toFixed(0) }, position: 'right' }
+      ],
+      legend: false
+    },
     LINES_OVERVIEW_CHART_OPTS = $.extend(true, {}, LINES_CHART_OPTS, {
       series: {
         lines: { lineWidth: 1 },
@@ -60,6 +68,10 @@ function lines_chart_with_overview(collection, chart_id, chart_overview_id) {
 
 function lines_chart(collection, chart_id, opts) {
   return $.plot($(chart_id), [collection], $.extend(true, {}, LINES_CHART_OPTS, opts));
+}
+
+function lines_chart_with_multiple_axis(collections, chart_id, opts) {
+  return $.plot($(chart_id), collections, $.extend(true, {}, LINES_CHART_WITH_MULTIPLE_AXIS_OPTS, opts));
 }
 
 function bars_chart(collection, chart_id, opts) {
