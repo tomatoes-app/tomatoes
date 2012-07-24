@@ -2,6 +2,7 @@ TomatoesApp::Application.routes.draw do
   resources :statistics, :only => :index do
     collection do
       get 'users_by_tomatoes'
+      get 'total_users_by_day'
       get 'users_by_day'
       get 'tomatoes_by_day'
     end

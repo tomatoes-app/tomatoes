@@ -10,7 +10,23 @@
 
 $(document).ready(function () {
   $.getJSON(USERS_BY_DAY_STATISTICS_URL, function(users_by_day) {
-    lines_chart(users_by_day, "#users_by_day");
+    $.getJSON(TOTAL_USERS_BY_DAY_STATISTICS_URL, function(total_users_by_day) {
+      lines_chart_with_multiple_axis([
+        {
+          data: total_users_by_day,
+          label: "Total users",
+          color: RED,
+          lines: { show: true, fill: true, fillColor: LIGHT_RED }
+        },
+        {
+          data: users_by_day,
+          label: "Sign ups",
+          yaxis: 2,
+          color: RED,
+          bars: { show: true, barWidth: -60*60*1000, fillColor: LIGHT_RED }
+        },
+      ], "#users_by_day");
+    });
   });
   // FIX: this action is too slow!
   // $.getJSON(USERS_BY_TOMATOES_STATISTICS_URL, function(users_by_tomatoes) {
