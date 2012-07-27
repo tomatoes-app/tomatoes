@@ -26,6 +26,7 @@ class User
   
   embeds_many :authorizations
   has_many :tomatoes
+  has_many :projects
 
   index 'authorizations.uid'
   index 'authorizations.provider'

@@ -1,0 +1,22 @@
+<p>
+  <b>Name:</b>
+  <%= @project.name %>
+</p>
+
+<p>
+  <b>Tags:</b>
+  <%= @project.tags.join(', ') %>
+</p>
+
+<p>
+  <b>Budget:</b>
+  <%= @project.budget %>
+</p>
+
+<p>
+  <b>Time budget:</b>
+  <%= @project.time_budget %>
+</p>
+
+<%= link_to 'Edit', edit_project_path(@project) %> |
+<%= link_to 'Back', projects_path %>
