@@ -140,10 +140,14 @@ class User
   end
 
   def estimated_revenues
-    effective_work_time/60/60 * average_hourly_rate if average_hourly_rate
+    work_time*Project::TOMATO_TIME_FACTOR/60/60 * average_hourly_rate if average_hourly_rate
+  end
+
+  def work_time
+    (tomatoes.count * Tomato::DURATION)*60
   end
 
   def effective_work_time
-    (tomatoes.count * Tomato::DURATION)*60 * Project::WORK_TIME_FACTOR
+    work_time * Project::WORK_TIME_FACTOR
   end
 end
