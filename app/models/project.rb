@@ -19,7 +19,7 @@ class Project
   validates_presence_of :name
 
   def estimated_work_time
-    time_budget * WORK_TIME_FACTOR if time_budget
+    time_budget*60*60 * WORK_TIME_FACTOR if time_budget
   end
 
   def estimated_hourly_rate
