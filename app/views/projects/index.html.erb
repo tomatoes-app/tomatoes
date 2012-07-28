@@ -5,7 +5,7 @@
     <tr>
       <th>Name</th>
       <th>Tags</th>
-      <th>Budget</th>
+      <th>Money budget</th>
       <th>Time budget</th>
       <th></th>
       <th></th>
@@ -18,8 +18,8 @@
     <tr class="<%= cycle :even, :odd %>">
       <td><%= project.name %></td>
       <td><%= project.tags.join(', ') %></td>
-      <td><%= project.budget %></td>
-      <td><%= project.time_budget %></td>
+      <td><%= money_budget(project) %></td>
+      <td><%= distance_of_time_in_words(project.time_budget) if project.time_budget %></td>
       <td><%= link_to 'Show', project %></td>
       <td><%= link_to 'Edit', edit_project_path(project) %></td>
       <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>

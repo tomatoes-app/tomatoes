@@ -3,13 +3,13 @@
 one:
   name: MyString
   tags: 
-  budget: 1
+  money_budget: 1
   time_budget: 1
   user: 
 
 two:
   name: MyString
   tags: 
-  budget: 1
+  money_budget: 1
   time_budget: 1
   user: 
