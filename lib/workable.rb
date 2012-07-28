@@ -5,7 +5,7 @@ module Workable
   WORK_TIME_FACTOR     = DAYS_PER_WEEK_FACTOR * HOURS_PER_DAY_FACTOR * TOMATO_TIME_FACTOR
 
   def work_time
-    (tomatoes.count * Tomato::DURATION)*60
+    tomatoes.count * Tomato::DURATION
   end
 
   def effective_work_time
