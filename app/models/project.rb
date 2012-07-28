@@ -15,7 +15,7 @@ class Project
   validates_presence_of :name
 
   def estimated_work_time
-    time_budget*60*60 * WORK_TIME_FACTOR if time_budget
+    (time_budget*60*60 * Workable::WORK_TIME_FACTOR if time_budget).to_i
   end
 
   def estimated_hourly_rate
