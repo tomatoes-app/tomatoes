@@ -1,6 +1,13 @@
+<h3>Tomato <%= l(@tomato.created_at, format: :long) %></h3>
+
 <p>
   <b>Started at:</b>
-  <%= @tomato.created_at - Tomato::DURATION %>
+  <%= l(@tomato.created_at - Tomato::DURATION, format: :long) %>
+</p>
+
+<p>
+  <b>Duration:</b>
+  <%= tomato_duration(@tomato) %>
 </p>
 
 <p>

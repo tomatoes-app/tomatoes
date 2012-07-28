@@ -26,7 +26,7 @@ module ApplicationHelper
   end
 
   def money(number, currency)
-    number_to_currency(number, unit: User::CURRENCIES[currency])
+    number_to_currency(number, unit: User::CURRENCIES[currency], format: "%u %n", precision: 0)
   end
 
   def hourly_rate(number, currency)

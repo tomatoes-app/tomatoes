@@ -1,47 +1,84 @@
-<p>
-  <b>Name:</b>
-  <%= @project.name %>
-</p>
+<h3><%= @project.name %> project</h3>
 
-<p>
-  <b>Tags:</b>
-  <%= @project.tags.join(', ') %>
-</p>
+<div class="block">
+  <div class="project_statistics left">
+    <p>
+      <b>Tags:</b>
+      <%= @project.tags.join(', ') %>
+    </p>
 
-<p>
-  <b>Money budget:</b>
-  <%= money(@project.money_budget, @project.user.currency) %>
-</p>
+    <p>
+      <b>Tracked tomatoes:</b>
+      <%= pluralize(@project.tomatoes.count, 'tomato') %>
+    </p>
+  </div>
 
-<p>
-  <b>Time budget:</b>
-  <%= distance_of_time_in_words(@project.time_budget) if @project.time_budget %>
-</p>
+  <div class="project_statistics right">
+    <% [
+      {value: @project.money_budget ? money(@project.money_budget, @project.user.currency) : 'n/a', label: 'Money budget'},
+      {value: @project.time_budget ? distance_of_time_in_words(@project.time_budget) : 'n/a', label: 'Time budget'}
+    ].each do |statistic| %>
+      <div class="<%= statistic[:label].parameterize('_') %> counter button">
+        <div class="counter_value"><%= statistic[:value] %></div>
+        <div class="counter_label"><%= statistic[:label] %></div>
+      </div>
+    <% end %>
+  </div>
+</div>
 
-<p>
-  <b>Estimated hourly rate:</b>
-  <%= hourly_rate(@project.estimated_hourly_rate, @project.user.currency) %>
-</p>
+<h3>Project statistics</h3>
 
-<p>
-  <b>Estimated work time:</b>
-  <%= distance_of_time_in_words(@project.estimated_work_time) if @project.estimated_work_time %>
-</p>
+<div class="block">
+  <div class="project_statistics left">
+    <% [
+      {value: @project.estimated_hourly_rate ? hourly_rate(@project.estimated_hourly_rate, @project.user.currency) : 'n/a', label: 'Estimated hourly rate'},
+      {value: @project.effective_hourly_rate ? hourly_rate(@project.effective_hourly_rate, @project.user.currency) : 'n/a', label: 'Effective hourly rate'}
+    ].each do |statistic| %>
+      <div class="<%= statistic[:label].parameterize('_') %> counter button">
+        <div class="counter_value"><%= statistic[:value] %></div>
+        <div class="counter_label"><%= statistic[:label] %></div>
+      </div>
+    <% end %>
+    
+    <div class="delta counter button">
+      <% if @project.effective_work_time && @project.estimated_work_time %>
+        <div class="<%= @project.effective_hourly_rate - @project.estimated_hourly_rate < 0 ? 'red' : 'green' %> counter_value">
+          <%= '+' if @project.effective_hourly_rate - @project.estimated_hourly_rate > 0 %>
+          <%= hourly_rate(@project.effective_hourly_rate - @project.estimated_hourly_rate, @project.user.currency) %>
+        </div>
+      <% else %>
+        <div class="counter_value">n/a</div>
+      <% end %>
+      <div class="counter_label">Effective/estimated hourly rate</div>
+    </div>
+  </div>
+</div>
 
-<p>
-  <b>Tomatoes:</b>
-  <%= @project.tomatoes.count %>
-</p>
+<div class="block">
+  <div class="project_statistics left">
+    <% [
+      {value: @project.estimated_work_time ? distance_of_time_in_words(@project.estimated_work_time) : 'n/a', label: 'Estimated work time'},
+      {value: distance_of_time_in_words(@project.effective_work_time), label: 'Effective work time'}
+    ].each do |statistic| %>
+      <div class="<%= statistic[:label].parameterize('_') %> counter button">
+        <div class="counter_value"><%= statistic[:value] %></div>
+        <div class="counter_label"><%= statistic[:label] %></div>
+      </div>
+    <% end %>
 
-<p>
-  <b>Effective work time:</b>
-  <%= distance_of_time_in_words(@project.effective_work_time) %>
-</p>
-
-<p>
-  <b>Effective hourly rate:</b>
-  <%= hourly_rate(@project.effective_hourly_rate, @project.user.currency) %>
-</p>
+    <div class="delta counter button">
+      <% if @project.effective_work_time && @project.estimated_work_time %>
+        <div class="<%= @project.effective_work_time - @project.estimated_work_time > 0 ? 'red' : 'green' %> counter_value">
+          <%= @project.effective_work_time - @project.estimated_work_time > 0 ? '+' : '-' %>
+          <%= distance_of_time_in_words(@project.effective_work_time - @project.estimated_work_time) %>
+        </div>
+      <% else %>
+        <div class="counter_value">n/a</div>
+      <% end %>
+      <div class="counter_label">Effective/estimated work time</div>
+    </div>
+  </div>
+</div>
 
 <%= link_to 'Edit', edit_project_path(@project) %> |
 <%= link_to 'Back', projects_path %>
