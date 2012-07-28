@@ -25,4 +25,24 @@ class Project
   def estimated_hourly_rate
     money_budget / estimated_work_time*60*60 if money_budget && estimated_work_time
   end
+
+  def any_of_conditions
+    tags.map { |tag| {tags: tag} }
+  end
+
+  def tomatoes
+    user.tomatoes.any_of(any_of_conditions)
+  end
+
+  def work_time
+    (tomatoes.count * Tomato::DURATION)*60
+  end
+
+  def effective_work_time
+    work_time * Project::WORK_TIME_FACTOR
+  end
+
+  def effective_hourly_rate
+    money_budget / effective_work_time*60*60 if money_budget
+  end
 end
