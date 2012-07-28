@@ -39,7 +39,18 @@
 
   <%= content_for_user(@user) do %>
     <p>
+      <b>Time Zone:</b> <%= @user.time_zone %><br/>
+      <b>Currency:</b> <%= @user.currency %>
+    </p>
+    <p>
+      <b>Work hours per day:</b> <%= @user.work_hours_per_day %><br/>
+      <b>Average hourly rate:</b> <%= hourly_rate(@user.average_hourly_rate, @user.currency) %><br/>
+      <b>Effective work time:</b> <%= distance_of_time_in_words(@user.effective_work_time) if @user.effective_work_time %><br/>
+      <b>Estimated revenues:</b> <%= money(@user.estimated_revenues, @user.currency) %>
+    </p>
+    <p>
       <%= link_to 'Your tomatoes', tomatoes_path %> |
+      <%= link_to 'Your projects', projects_path %> |
       <%= link_to 'Export your tomatoes (csv)', tomatoes_path(format: :csv) %> |
       <%= link_to 'Edit profile', edit_user_path(@user) %>
     </p>
