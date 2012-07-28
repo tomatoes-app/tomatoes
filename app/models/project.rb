@@ -4,11 +4,7 @@ class Project
   include Mongoid::Document
   include Mongoid::Document::Taggable
   include Mongoid::Timestamps
-
-  TOMATO_TIME_FACTOR   = (Tomato::DURATION*4 + Tomato::BREAK_DURATION*(3+3))/(Tomato::DURATION*4).to_f
-  HOURS_PER_DAY_FACTOR = 24/8.0
-  DAYS_PER_WEEK_FACTOR = 7/5.0
-  WORK_TIME_FACTOR     = DAYS_PER_WEEK_FACTOR * HOURS_PER_DAY_FACTOR * TOMATO_TIME_FACTOR
+  include Workable
 
   field :name,         :type => String
   field :money_budget, :type => Integer
@@ -31,18 +27,18 @@ class Project
   end
 
   def tomatoes
-    user.tomatoes.any_of(any_of_conditions)
-  end
-
-  def work_time
-    (tomatoes.count * Tomato::DURATION)*60
-  end
-
-  def effective_work_time
-    work_time * Project::WORK_TIME_FACTOR
+    any_of_conditions.empty? ? [] : user.tomatoes.any_of(any_of_conditions)
   end
 
   def effective_hourly_rate
-    money_budget / effective_work_time*60*60 if money_budget
+    money_budget.to_f / effective_work_time*60*60 if money_budget
+  end
+
+  def hourly_rate_delta
+    effective_hourly_rate - estimated_hourly_rate
+  end
+
+  def work_time_delta
+    effective_work_time - estimated_work_time
   end
 end

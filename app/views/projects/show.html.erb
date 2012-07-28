@@ -18,10 +18,7 @@
       {value: @project.money_budget ? money(@project.money_budget, @project.user.currency) : 'n/a', label: 'Money budget'},
       {value: @project.time_budget ? distance_of_time_in_words(@project.time_budget*60*60) : 'n/a', label: 'Time budget'}
     ].each do |statistic| %>
-      <div class="<%= statistic[:label].parameterize('_') %> counter button">
-        <div class="counter_value"><%= statistic[:value] %></div>
-        <div class="counter_label"><%= statistic[:label] %></div>
-      </div>
+      <%= render partial: 'shared/counter', locals: {css_class: statistic[:label].parameterize('_'), value: statistic[:value], label: statistic[:label]} %>
     <% end %>
   </div>
 </div>
@@ -34,23 +31,14 @@
       {value: @project.estimated_hourly_rate ? hourly_rate(@project.estimated_hourly_rate, @project.user.currency) : 'n/a', label: 'Estimated hourly rate'},
       {value: @project.effective_hourly_rate ? hourly_rate(@project.effective_hourly_rate, @project.user.currency) : 'n/a', label: 'Effective hourly rate'}
     ].each do |statistic| %>
-      <div class="<%= statistic[:label].parameterize('_') %> counter button">
-        <div class="counter_value"><%= statistic[:value] %></div>
-        <div class="counter_label"><%= statistic[:label] %></div>
-      </div>
+      <%= render partial: 'shared/counter', locals: {css_class: statistic[:label].parameterize('_'), value: statistic[:value], label: statistic[:label]} %>
     <% end %>
     
-    <div class="delta counter button">
-      <% if @project.effective_work_time && @project.estimated_work_time %>
-        <div class="<%= @project.effective_hourly_rate - @project.estimated_hourly_rate < 0 ? 'red' : 'green' %> counter_value">
-          <%= '+' if @project.effective_hourly_rate - @project.estimated_hourly_rate > 0 %>
-          <%= hourly_rate(@project.effective_hourly_rate - @project.estimated_hourly_rate, @project.user.currency) %>
-        </div>
-      <% else %>
-        <div class="counter_value">n/a</div>
-      <% end %>
-      <div class="counter_label">Effective/estimated hourly rate</div>
-    </div>
+    <% if @project.effective_hourly_rate && @project.estimated_hourly_rate %>
+      <%= render partial: 'shared/counter', locals: {css_class: "delta #{@project.hourly_rate_delta < 0 ? 'red' : 'green'}", value: "#{'+' if @project.hourly_rate_delta > 0} #{hourly_rate(@project.hourly_rate_delta, @project.user.currency)}", label: 'Effective/estimated hourly rate'} %>
+    <% else %>
+      <%= render partial: 'shared/counter', locals: {css_class: nil, value: 'n/a', label: 'Effective/estimated hourly rate'} %>
+    <% end %>
   </div>
 </div>
 
@@ -60,23 +48,14 @@
       {value: @project.estimated_work_time ? distance_of_time_in_words(@project.estimated_work_time) : 'n/a', label: 'Estimated work time'},
       {value: distance_of_time_in_words(@project.effective_work_time), label: 'Effective work time'}
     ].each do |statistic| %>
-      <div class="<%= statistic[:label].parameterize('_') %> counter button">
-        <div class="counter_value"><%= statistic[:value] %></div>
-        <div class="counter_label"><%= statistic[:label] %></div>
-      </div>
+      <%= render partial: 'shared/counter', locals: {css_class: statistic[:label].parameterize('_'), value: statistic[:value], label: statistic[:label]} %>
     <% end %>
 
-    <div class="delta counter button">
-      <% if @project.effective_work_time && @project.estimated_work_time %>
-        <div class="<%= @project.effective_work_time - @project.estimated_work_time > 0 ? 'red' : 'green' %> counter_value">
-          <%= @project.effective_work_time - @project.estimated_work_time > 0 ? '+' : '-' %>
-          <%= distance_of_time_in_words(@project.effective_work_time - @project.estimated_work_time) %>
-        </div>
-      <% else %>
-        <div class="counter_value">n/a</div>
-      <% end %>
-      <div class="counter_label">Effective/estimated work time</div>
-    </div>
+    <% if @project.effective_work_time && @project.estimated_work_time %>
+      <%= render partial: 'shared/counter', locals: {css_class: "delta #{@project.work_time_delta > 0 ? 'red' : 'green'}", value: "#{@project.work_time_delta > 0 ? '+' : '-'} #{distance_of_time_in_words(@project.work_time_delta)}", label: 'Effective/estimated work time'} %>
+    <% else %>
+      <%= render partial: 'shared/counter', locals: {css_class: nil, value: 'n/a', label: 'Effective/estimated work time'} %>
+    <% end %>
   </div>
 </div>
 

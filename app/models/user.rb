@@ -4,6 +4,7 @@ class User
   include Mongoid::Document
   include Mongoid::Timestamps
   include Chartable
+  include Workable
 
   CURRENCIES = {
     'USD' => '$',
@@ -140,14 +141,6 @@ class User
   end
 
   def estimated_revenues
-    work_time*Project::TOMATO_TIME_FACTOR/60/60 * average_hourly_rate if average_hourly_rate
-  end
-
-  def work_time
-    (tomatoes.count * Tomato::DURATION)*60
-  end
-
-  def effective_work_time
-    work_time * Project::WORK_TIME_FACTOR
+    work_time*Workable::TOMATO_TIME_FACTOR/60/60 * average_hourly_rate if average_hourly_rate
   end
 end
