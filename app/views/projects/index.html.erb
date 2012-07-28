@@ -18,7 +18,7 @@
     <tr class="<%= cycle :even, :odd %>">
       <td><%= project.name %></td>
       <td><%= project.tags.join(', ') %></td>
-      <td><%= money_budget(project) %></td>
+      <td><%= money(project.money_budget, project.user.currency) %></td>
       <td><%= distance_of_time_in_words(project.time_budget) if project.time_budget %></td>
       <td><%= link_to 'Show', project %></td>
       <td><%= link_to 'Edit', edit_project_path(project) %></td>
