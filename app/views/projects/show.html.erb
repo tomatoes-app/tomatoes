@@ -1,0 +1,47 @@
+<p>
+  <b>Name:</b>
+  <%= @project.name %>
+</p>
+
+<p>
+  <b>Tags:</b>
+  <%= @project.tags.join(', ') %>
+</p>
+
+<p>
+  <b>Money budget:</b>
+  <%= money(@project.money_budget, @project.user.currency) %>
+</p>
+
+<p>
+  <b>Time budget:</b>
+  <%= distance_of_time_in_words(@project.time_budget) if @project.time_budget %>
+</p>
+
+<p>
+  <b>Estimated hourly rate:</b>
+  <%= hourly_rate(@project.estimated_hourly_rate, @project.user.currency) %>
+</p>
+
+<p>
+  <b>Estimated work time:</b>
+  <%= distance_of_time_in_words(@project.estimated_work_time) if @project.estimated_work_time %>
+</p>
+
+<p>
+  <b>Tomatoes:</b>
+  <%= @project.tomatoes.count %>
+</p>
+
+<p>
+  <b>Effective work time:</b>
+  <%= distance_of_time_in_words(@project.effective_work_time) %>
+</p>
+
+<p>
+  <b>Effective hourly rate:</b>
+  <%= hourly_rate(@project.effective_hourly_rate, @project.user.currency) %>
+</p>
+
+<%= link_to 'Edit', edit_project_path(@project) %> |
+<%= link_to 'Back', projects_path %>

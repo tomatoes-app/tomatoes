@@ -1,4 +1,6 @@
 TomatoesApp::Application.routes.draw do
+  resources :projects
+
   resources :statistics, :only => :index do
     collection do
       get 'users_by_tomatoes'

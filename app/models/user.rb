@@ -1,9 +1,20 @@
+# encoding: UTF-8
+
 class User
   include Mongoid::Document
   include Mongoid::Timestamps
   include Chartable
 
-  DEFAULT_COLOR = '#000000'
+  CURRENCIES = {
+    'USD' => '$',
+    'EUR' => '€',
+    'JPY' => '¥',
+    'GBP' => '£',
+    'CHF' => 'Fr.'
+  }
+
+  DEFAULT_COLOR    = '#000000'
+  DEFAULT_CURRENCY = 'USD'
   
   # authorization fields (deprecated)
   field :provider,    :type => String
@@ -17,15 +28,22 @@ class User
   field :image,     :type => String
   field :time_zone, :type => String
   field :color,     :type => String
+
+  field :work_hours_per_day,  :type => Integer
+  field :average_hourly_rate, :type => Float
+  field :currency,            :type => String
   
   # attr_accessible :provider, :uid, :token, :login, :gravatar_id
-  attr_accessible :name, :email, :image, :time_zone, :color
+  attr_accessible :name, :email, :image, :time_zone, :color, :work_hours_per_day, :average_hourly_rate, :currency
 
   validates_format_of :color, with: /\A#[A-Fa-f0-9]{6}\Z/, allow_blank: true
   validate :color_update_grant, :unless => Proc.new { read_attribute(:color).nil? }
+
+  validates_inclusion_of :currency, :in => CURRENCIES.keys
   
   embeds_many :authorizations
   has_many :tomatoes
+  has_many :projects
 
   index 'authorizations.uid'
   index 'authorizations.provider'
@@ -114,5 +132,22 @@ class User
   def color
     color_value = read_attribute(:color)
     color_value && !color_value.empty? ? color_value : User::DEFAULT_COLOR
+  end
+
+  def currency
+    currency_value = read_attribute(:currency)
+    currency_value && !currency_value.empty? ? currency_value : User::DEFAULT_CURRENCY
+  end
+
+  def estimated_revenues
+    work_time*Project::TOMATO_TIME_FACTOR/60/60 * average_hourly_rate if average_hourly_rate
+  end
+
+  def work_time
+    (tomatoes.count * Tomato::DURATION)*60
+  end
+
+  def effective_work_time
+    work_time * Project::WORK_TIME_FACTOR
   end
 end

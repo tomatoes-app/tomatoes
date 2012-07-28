@@ -23,6 +23,20 @@
     <%= f.label :time_zone %></br>
     <%= time_zone_select 'user', 'time_zone', nil, :include_blank => true %>
   </div>
+  <div class="field">
+    <%= f.label :currency %></br>
+    <%= f.select(:currency, options_for_select(User::CURRENCIES.invert)) %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :work_hours_per_day %></br>
+    <%= f.text_field :work_hours_per_day %>
+  </div>
+  <div class="field">
+    <%= f.label :average_hourly_rate %></br>
+    <%= f.text_field :average_hourly_rate %>
+  </div>
+
   <div class="field block">
     <div class="left">
       <%= f.label :color %></br>
@@ -35,6 +49,7 @@
       <div id="colorpicker" class="left"></div>
     <% end %>
   </div>
+  
   <div class="actions">
     <%= f.submit :class => "button" %>
   </div>
