@@ -19,7 +19,7 @@ class Project
   end
 
   def estimated_hourly_rate
-    money_budget / estimated_work_time*60*60 if money_budget && estimated_work_time
+    money_budget / (estimated_work_time/60/60).to_f if money_budget && estimated_work_time
   end
 
   def any_of_conditions
