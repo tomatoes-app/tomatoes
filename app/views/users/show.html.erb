@@ -44,6 +44,16 @@
       <%= link_to 'Export your tomatoes (csv)', tomatoes_path(format: :csv) %> |
       <%= link_to 'Edit profile', edit_user_path(@user) %>
     </p>
+    <p>
+      <b>Time Zone:</b> <%= @user.time_zone %><br/>
+      <b>Currency:</b> <%= @user.currency %>
+    </p>
+    <p>
+      <b>Work hours per day:</b> <%= @user.work_hours_per_day %><br/>
+      <b>Average hourly rate:</b> <%= number_with_precision(@user.average_hourly_rate, precision: 2, delimiter: ',') %> <%= User::CURRENCIES[@user.currency] %>/hour<br/>
+      <b>Effective work time:</b> <%= distance_of_time_in_words(@user.effective_work_time) if @user.effective_work_time %><br/>
+      <b>Estimated revenues:</b> <%= number_to_currency(@user.estimated_revenues, unit: User::CURRENCIES[@user.currency]) %>
+    </p>
   <% end %>
 
   <% unless @user.badges.empty? %>
