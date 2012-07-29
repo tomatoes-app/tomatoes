@@ -7,7 +7,7 @@ class SessionsControllerTest < ActionController::TestCase
       :provider => "provider",
       :uid => "uid",
       :name => "name",
-      :email => "email",
+      :email => "email@example.com",
       :login => "login"
     )
   end

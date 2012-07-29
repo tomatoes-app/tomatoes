@@ -4,10 +4,10 @@ class ProjectsControllerTest < ActionController::TestCase
   setup do
     @user = User.create(
       :provider => "provider",
-      :uid      => "uid",
-      :name     => "name",
-      :email    => "email",
-      :login    => "login"
+      :uid => "uid",
+      :name => "name",
+      :email => "email@example.com",
+      :login => "login"
     )
     @project = @user.projects.create(:name => "Test project", :tag_list => "one, two")
     

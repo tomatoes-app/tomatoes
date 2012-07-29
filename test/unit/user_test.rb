@@ -54,4 +54,11 @@ class UserTest < ActiveSupport::TestCase
 
     assert User.omniauth_attributes(@auth) == expected
   end
+
+  test "omniauth_attributes should parse auth hash and return user attributes" do
+    assert @user.omniauth_attributes(@auth) == {}
+    
+    @user.image = ''
+    assert @user.omniauth_attributes(@auth) == { :image => "image" }
+  end
 end
