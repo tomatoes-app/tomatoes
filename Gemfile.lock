@@ -50,6 +50,8 @@ GEM
     dalli (2.0.5)
     erubis (2.7.0)
     eventmachine (0.12.10)
+    exception_notification (2.6.1)
+      actionmailer (>= 3.0.4)
     excon (0.14.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
@@ -218,6 +220,7 @@ DEPENDENCIES
   bson_ext
   coffee-rails (~> 3.2.1)
   dalli
+  exception_notification
   heroku
   jquery-rails
   kaminari
