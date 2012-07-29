@@ -38,6 +38,7 @@ class User
   attr_accessible :name, :email, :image, :time_zone, :color, :work_hours_per_day, :average_hourly_rate, :currency
 
   validates_format_of :color, with: /\A#[A-Fa-f0-9]{6}\Z/, allow_blank: true
+  validates_format_of :email, with: /\A.+@.+\Z/, allow_blank: true
   validate :color_update_grant, :unless => Proc.new { read_attribute(:color).nil? }
 
   validates_inclusion_of :currency, :in => CURRENCIES.keys
@@ -73,7 +74,8 @@ class User
   end
   
   def update_omniauth_attributes!(auth)
-    update_attributes!(User.omniauth_attributes(auth))
+    # migrate users' data gracefully
+    update_attributes!(omniauth_attributes(auth))
 
     if authorization = authorization_by_provider(auth['provider'])
       authorization.update_attributes!(Authorization.omniauth_attributes(auth))
@@ -91,6 +93,16 @@ class User
       email: auth['info']['email'],
       image: auth['info']['image']
     }) if auth['info']
+    
+    attributes
+  end
+
+  def omniauth_attributes(auth)
+    attributes = self.class.omniauth_attributes(auth)
+
+    [:name, :email, :image].each do |attribute|
+      attributes.delete(attribute) if send(attribute) && !send(attribute).empty?
+    end
     
     attributes
   end
