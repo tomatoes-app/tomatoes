@@ -1,4 +1,6 @@
-<%= form_for(@tomato) do |f| %>
+<% remote = false if local_assigns[:remote].nil? %>
+
+<%= form_for(@tomato, :remote => remote) do |f| %>
   <% if @tomato.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@tomato.errors.count, "error") %> prohibited this tomato from being saved:</h2>
@@ -13,9 +15,9 @@
 
   <div class="field">
     <%= f.label :tag_list %><br/>
-    <%= f.text_field :tag_list %>
+    <%= f.text_field :tag_list, :tabindex => '1' %>
   </div>
   <div class="actions">
-    <%= f.submit :class => "button" %>
+    <%= f.submit :class => "button", :'data-disable-with' => "Saving..." %>
   </div>
 <% end %>

@@ -29,7 +29,7 @@
     </div>
     <div id="new_tomato_form" style="display: none">
     <% if current_user %>
-      <%= render 'tomato_form' %>
+      <%= render 'tomatoes/form', remote: true %>
     <% else %>
       <div id="tomato_signin" class="block">
         <h2>Sign in to start tracking your work.</h2>
