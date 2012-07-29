@@ -69,9 +69,15 @@ gem 'kaminari'
 # Gamification
 gem 'merit'
 
-group :development, :test do
-  gem 'heroku'
+# Notify exceptions
+gem 'exception_notification'
+
+group :test do
   gem 'mocha'
+end
+
+group :development do
+  gem 'heroku'
 
   # Virtual box provisioning with vagrant and librarian gems
   gem 'vagrant'
