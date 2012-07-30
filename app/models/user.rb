@@ -152,7 +152,21 @@ class User
     currency_value && !currency_value.empty? ? currency_value : User::DEFAULT_CURRENCY
   end
 
+  def currency_unit
+    User::CURRENCIES[currency]
+  end
+
   def estimated_revenues
     work_time*Workable::TOMATO_TIME_FACTOR/60/60 * average_hourly_rate if average_hourly_rate
+  end
+
+  def tomatoes_counter(time_period)
+    tomatoes_after(Time.zone.now.send("beginning_of_#{time_period}")).count
+  end
+
+  def tomatoes_counters
+    Hash[[:day, :week, :month].map do |time_period|
+      [time_period, tomatoes_counter(time_period)]
+    end]
   end
 end

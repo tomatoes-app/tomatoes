@@ -16,21 +16,14 @@ class ProjectsController < ResourceController
   # GET /projects/1
   # GET /projects/1.json
   def show
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @project }
-    end
+    show_resource(@project)
   end
 
   # GET /projects/new
   # GET /projects/new.json
   def new
     @project = current_user.projects.build
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @project }
-    end
+    show_resource(@project)
   end
 
   # GET /projects/1/edit
