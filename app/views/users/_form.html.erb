@@ -18,6 +18,7 @@
   <div class="field">
     <%= f.label :email %></br>
     <%= f.text_field :email %>
+    <div class="hint">Your email address.</div>
   </div>
   <div class="field">
     <%= f.label :time_zone %></br>
@@ -27,14 +28,15 @@
     <%= f.label :currency %></br>
     <%= f.select(:currency, options_for_select(User::CURRENCIES.invert)) %>
   </div>
-  
   <div class="field">
     <%= f.label :work_hours_per_day %></br>
     <%= f.text_field :work_hours_per_day %>
+    <div class="hint">How many hours do you work per day? Example: <em>8</em></div>
   </div>
   <div class="field">
     <%= f.label :average_hourly_rate %></br>
     <%= f.text_field :average_hourly_rate %>
+    <div class="hint">How much do you charge per hour? Example: <em>35.5</em></div>
   </div>
 
   <div class="field block">
@@ -43,6 +45,8 @@
       <%= f.text_field :color, :disabled => !@user.granted?('tomatoer', 3) %>
       <% unless @user.granted?('tomatoer', 3) %>
         <div class="hint">You must collect al least 100 tomatoes to get access to this feature</div>
+      <% else %>
+        <div class="hint">An hexadecimal color code. Example: <em>#ccff00</em></div>
       <% end %>
     </div>
     <% if @user.granted?('tomatoer', 3) %>

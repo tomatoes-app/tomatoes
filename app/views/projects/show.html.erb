@@ -15,7 +15,7 @@
 
   <div class="project_statistics right">
     <% [
-      {value: @project.money_budget ? money(@project.money_budget, @project.user.currency) : 'n/a', label: 'Money budget'},
+      {value: @project.money_budget ? money(@project.money_budget, @project.user.currency_unit) : 'n/a', label: 'Money budget'},
       {value: @project.time_budget ? distance_of_time_in_words(@project.time_budget*60*60) : 'n/a', label: 'Time budget'}
     ].each do |statistic| %>
       <%= render partial: 'shared/counter', locals: {css_class: statistic[:label].parameterize('_'), value: statistic[:value], label: statistic[:label]} %>

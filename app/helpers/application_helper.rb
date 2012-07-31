@@ -25,14 +25,12 @@ module ApplicationHelper
     end
   end
 
-  def money(number, currency)
-    number_to_currency(number, unit: User::CURRENCIES[currency], format: "%u %n", precision: 0)
+  def money(number, unit)
+    number_to_currency(number, unit: unit, format: "%u %n", precision: 0)
   end
 
-  def hourly_rate(number, currency)
-    unit   = "#{User::CURRENCIES[currency]}/hour"
+  def hourly_rate(number, unit)
     number = number_with_precision(number, precision: 2, delimiter: ',')
-
-    "#{number} #{unit}"
+    "#{number} #{unit}/hour"
   end
 end
