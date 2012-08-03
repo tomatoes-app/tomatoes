@@ -1,15 +1,4 @@
 module ApplicationHelper
-  def relative_day(date)
-    case date.to_date
-    when Date.current
-      "Today"
-    when Date.yesterday
-      "Yesterday"
-    else
-      date.strftime("%A, %B %e")
-    end
-  end
-  
   def humanize(secs)
     [[60, "second"], [60, "minute"], [24, "hour"], [365, "day"], [1000, "year"]].map do |count, name|
       if secs > 0
@@ -25,14 +14,12 @@ module ApplicationHelper
     end
   end
 
-  def money(number, currency)
-    number_to_currency(number, unit: User::CURRENCIES[currency], format: "%u %n", precision: 0)
+  def money(number, unit)
+    number_to_currency(number, unit: unit, format: "%u %n", precision: 0)
   end
 
-  def hourly_rate(number, currency)
-    unit   = "#{User::CURRENCIES[currency]}/hour"
+  def hourly_rate(number, unit)
     number = number_with_precision(number, precision: 2, delimiter: ',')
-
-    "#{number} #{unit}"
+    "#{number} #{unit}/hour"
   end
 end

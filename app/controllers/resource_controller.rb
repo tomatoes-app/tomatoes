@@ -1,4 +1,11 @@
 class ResourceController < ApplicationController
+  def show_resource(resource)
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: resource }
+    end
+  end
+
   def destroy_resource(resource, redirect_url)
     resource.destroy
 

@@ -18,15 +18,17 @@
   <div class="field">
     <%= f.label :tag_list %><br />
     <%= f.text_field :tag_list %>
+    <div class="hint">A list of tags. Example: <em>my project, deploy</em></div>
   </div>
   <div class="field">
     <%= f.label :money_budget %><br />
     <%= f.number_field :money_budget %>
+    <div class="hint">Project money budget in <%= current_user.currency_unit %>. Example: <em>1000</em></div>
   </div>
   <div class="field">
     <%= f.label :time_budget %><br />
     <%= f.number_field :time_budget %>
-    <div class="hint">Project time budget in hours</div>
+    <div class="hint">Project time budget in hours. Example: <em>16</em></div>
   </div>
   <div class="actions">
     <%= f.submit :class => "button" %>

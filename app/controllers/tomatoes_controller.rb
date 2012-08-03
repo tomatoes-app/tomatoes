@@ -44,21 +44,14 @@ class TomatoesController < ResourceController
   # GET /tomatoes/1
   # GET /tomatoes/1.xml
   def show
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @tomato }
-    end
+    show_resource(@tomato)
   end
 
   # GET /tomatoes/new
   # GET /tomatoes/new.xml
   def new
     @tomato = current_user.tomatoes.build
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @tomato }
-    end
+    show_resource(@tomato)
   end
 
   # GET /tomatoes/1/edit
@@ -74,11 +67,11 @@ class TomatoesController < ResourceController
     respond_to do |format|
       if @tomato.save
         format.js do
-          @highlight = @tomato
-          @tomatoes  = current_user.tomatoes_after(Time.zone.now.beginning_of_day)
-          @tomatoes_count = Hash[[:day, :week, :month].map do |time_period|
-            [time_period, current_user.tomatoes_after(Time.zone.now.send("beginning_of_#{time_period}")).count]
-          end]
+          @highlight      = @tomato
+          @tomatoes       = current_user.tomatoes_after(Time.zone.now.beginning_of_day)
+          @tomatoes_count = current_user.tomatoes_counters
+          @projects       = @tomatoes.collect(&:projects).flatten.uniq
+
           define_break
           flash.now[:notice] = notice_message
         end

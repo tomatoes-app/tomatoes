@@ -1,5 +1,8 @@
 <% unless @tomatoes.empty? %>
-  <%= render :partial => 'welcome/tomatoes_day_list', :locals => {:high => high, :day => Time.zone.now, :tomatoes => @tomatoes} %>
+  <h3><%= link_to "Today's tomatoes", tomatoes_path %></h3>
+  <table>
+    <%= render partial: 'tomatoes/tomato', collection: @tomatoes, locals: {high: high} %>
+  </table>
 <% else %>
   <p>No tomatoes here</p>
   <p>Click the Start button when you're ready to start your first tomato</p>

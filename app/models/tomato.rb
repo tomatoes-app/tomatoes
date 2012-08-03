@@ -82,6 +82,14 @@ class Tomato
     end
   end
 
+  def any_of_conditions
+    tags.map { |tag| {tags: tag} }
+  end
+
+  def projects
+    any_of_conditions.empty? ? [] : user.projects.any_of(any_of_conditions)
+  end
+
   private
 
   def self.beginning_of(time_period)

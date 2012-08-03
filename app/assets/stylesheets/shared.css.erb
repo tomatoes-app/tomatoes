@@ -74,6 +74,13 @@ table td.destroy a {
   text-indent: -9000px;
   width: 16px;
   height: 16px;
+  opacity: 0.5;
+}
+
+table td.show a:hover,
+table td.edit a:hover,
+table td.destroy a:hover {
+  opacity: 0.8;
 }
 
 table td.show a {
@@ -90,7 +97,7 @@ table td.destroy a {
 
 input[type=text], input[type=number], select {
   font-family: 'Open Sans', sans-serif;
-  margin: 0;
+  margin: 2px 0;
   padding: 3px;
   border: 1px solid #dcdcdc;
   font-size: 20px;
@@ -184,6 +191,10 @@ a.button:visited {
 
 .counter.green .counter_value {
   color: #008000;
+}
+
+.hint {
+  color: #999;
 }
 
 #flash {
