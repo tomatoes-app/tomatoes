@@ -3,3 +3,4 @@
 <div class="leaderboard_list">
   <%= render :partial => 'ranking', :locals => {:leaderboard => @leaderboard} %>
 </div>
+<p><strong>Note:</strong> leaderboard updates every <%= distance_of_time_in_words(@cache_expiration) %>.</p>
