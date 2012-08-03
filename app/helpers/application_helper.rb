@@ -1,15 +1,4 @@
 module ApplicationHelper
-  def relative_day(date)
-    case date.to_date
-    when Date.current
-      "Today"
-    when Date.yesterday
-      "Yesterday"
-    else
-      date.strftime("%A, %B %e")
-    end
-  end
-  
   def humanize(secs)
     [[60, "second"], [60, "minute"], [24, "hour"], [365, "day"], [1000, "year"]].map do |count, name|
       if secs > 0

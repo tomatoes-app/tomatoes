@@ -1,0 +1,8 @@
+<% unless @projects.empty? %>
+  <h3><%= link_to "Today's projects", projects_path %></h3>
+  <table>
+    <%= render partial: 'projects/project', collection: @projects %>
+  </table>
+<% else %>
+  <p>You're not working on any project</p>
+<% end %>

@@ -70,6 +70,7 @@ class TomatoesController < ResourceController
           @highlight      = @tomato
           @tomatoes       = current_user.tomatoes_after(Time.zone.now.beginning_of_day)
           @tomatoes_count = current_user.tomatoes_counters
+          @projects       = @tomatoes.collect(&:projects).flatten.uniq
 
           define_break
           flash.now[:notice] = notice_message
