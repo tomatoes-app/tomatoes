@@ -7,8 +7,7 @@ class TomatoesControllerTest < ActionController::TestCase
       :provider => "provider",
       :uid => "uid",
       :name => "name",
-      :email => "email@example.com",
-      :login => "login"
+      :email => "email@example.com"
     )
     @tomato = @user.tomatoes.create(:tag_list => "one, two", :created_at => Time.zone.now - 1.day)
     

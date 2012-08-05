@@ -7,8 +7,7 @@ class UsersControllerTest < ActionController::TestCase
       :provider => "provider",
       :uid => "uid",
       :name => "name",
-      :email => "email@example.com",
-      :login => "login"
+      :email => "email@example.com"
     )
     @controller.stubs(:current_user).returns(@user)
   end

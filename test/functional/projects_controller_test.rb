@@ -6,8 +6,7 @@ class ProjectsControllerTest < ActionController::TestCase
       :provider => "provider",
       :uid => "uid",
       :name => "name",
-      :email => "email@example.com",
-      :login => "login"
+      :email => "email@example.com"
     )
     @project = @user.projects.create(:name => "Test project", :tag_list => "one, two")
     
