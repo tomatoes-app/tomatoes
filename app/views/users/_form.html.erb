@@ -26,7 +26,7 @@
   </div>
   <div class="field">
     <%= f.label :currency %></br>
-    <%= f.select(:currency, options_for_select(User::CURRENCIES.invert)) %>
+    <%= f.select(:currency, options_for_select(User::CURRENCIES.invert, @user.currency)) %>
   </div>
   <div class="field">
     <%= f.label :work_hours_per_day %></br>

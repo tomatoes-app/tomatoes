@@ -16,14 +16,6 @@ class UsersController < ResourceController
   # GET /users/1.xml
   def show
     @user = User.find(params[:id])
-    
-    if same_user?
-      @tags = Rails.cache.fetch("tomatoes_by_tag_#{@user.id}", :expires_in => 1.day) do
-        Tomato.by_tags(@user.tomatoes)
-      end
-
-      @tags = Kaminari.paginate_array(@tags).page(params[:page])
-    end
 
     respond_to do |format|
       format.html # show.html.erb
