@@ -21,7 +21,6 @@ class User
   field :provider,    :type => String
   field :uid,         :type => String
   field :token,       :type => String
-  field :login,       :type => String
   field :gravatar_id, :type => String
 
   field :name,      :type => String
@@ -34,7 +33,7 @@ class User
   field :average_hourly_rate, :type => Float
   field :currency,            :type => String
   
-  # attr_accessible :provider, :uid, :token, :login, :gravatar_id
+  # attr_accessible :provider, :uid, :token, :gravatar_id
   attr_accessible :name, :email, :image, :time_zone, :color, :work_hours_per_day, :average_hourly_rate, :currency
 
   validates_format_of :color, with: /\A#[A-Fa-f0-9]{6}\Z/, allow_blank: true
