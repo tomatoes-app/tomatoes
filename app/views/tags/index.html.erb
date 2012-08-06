@@ -11,7 +11,7 @@
   <tbody>
     <% @tomatoes_by_tag.each do |tag, tomatoes_count| %>
       <tr class="<%= cycle :even, :odd %>">
-        <td><%= tag %></td>
+        <td><%= link_to h(tag), tag_path(h(tag)) %></td>
         <td class="number"><%= tomatoes_count %></td>
         <td class="time"><%= humanize(tomatoes_count*Tomato::DURATION) %></td>
       </tr>

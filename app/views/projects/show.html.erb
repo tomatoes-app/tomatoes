@@ -4,7 +4,7 @@
   <div class="project_statistics left">
     <p>
       <b>Tags:</b>
-      <%= @project.tags.join(', ') %>
+      <%= link_tags(@project.tags) %>
     </p>
 
     <p>
