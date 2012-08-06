@@ -1,4 +1,5 @@
 <h2>Your tags</h2>
+
 <table>
   <thead>
     <tr>
@@ -8,13 +9,14 @@
     </tr>
   </thead>
   <tbody>
-    <% @tags.each do |array| %>
+    <% @tomatoes_by_tag.each do |tag, tomatoes_count| %>
       <tr class="<%= cycle :even, :odd %>">
-        <td><%= array[0] %></td>
-        <td class="number"><%= array[1] %></td>
-        <td class="time"><%= humanize(array[1]*Tomato::DURATION) %></td>
+        <td><%= tag %></td>
+        <td class="number"><%= tomatoes_count %></td>
+        <td class="time"><%= humanize(tomatoes_count*Tomato::DURATION) %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-<%= paginate @tags %>
+
+<%= paginate @tomatoes_by_tag %>

@@ -168,4 +168,12 @@ class User
       [time_period, tomatoes_counter(time_period)]
     end]
   end
+
+  def any_of_conditions(tags)
+    tags.map { |tag| {tags: tag} }
+  end
+
+  def tomatoes_by_tags(tags)
+    any_of_conditions(tags).empty? ? [] : tomatoes.any_of(any_of_conditions(tags))
+  end
 end

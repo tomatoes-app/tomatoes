@@ -51,6 +51,7 @@
     <p>
       <%= link_to 'Your tomatoes', tomatoes_path %> |
       <%= link_to 'Your projects', projects_path %> |
+      <%= link_to 'Your tags', tags_path %> |
       <%= link_to 'Export your tomatoes (csv)', tomatoes_path(format: :csv) %> |
       <%= link_to 'Edit profile', edit_user_path(@user) %>
     </p>
@@ -74,7 +75,3 @@
 <div class="chart" id="tomatoes_by_hour">
   <%= image_tag 'loading.gif', :class => 'loading' %>
 </div>
-
-<%= content_for_user(@user) do %>
-  <%= render :partial => 'tags_list' %>
-<% end %>

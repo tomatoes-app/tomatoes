@@ -1,0 +1,8 @@
+<h3>Tag <%= @tag %></h3>
+
+<p>
+  <b>Tomatoes:</b>
+  <%= pluralize(@tomatoes.size, 'tomato') %>
+</p>
+
+<%= link_to 'Back', tags_path %>
