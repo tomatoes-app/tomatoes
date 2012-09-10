@@ -1,4 +1,4 @@
-# ![Pomodoro technique®](https://github.com/potomak/tomatoes/raw/develop/app/assets/images/pomodoro-technique_48.png "Pomodoro technique®") Tomatoes
+# ![Tomatoes](https://github.com/potomak/tomatoes/raw/develop/app/assets/images/tomatoes_logo_48.png "Tomatoes") Tomatoes
 
 Try it for free at [http://tomato.es](http://tomato.es "Tomatoes")
 

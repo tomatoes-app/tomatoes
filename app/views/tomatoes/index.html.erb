@@ -15,7 +15,7 @@
   <% @tomatoes.each do |tomato| %>
     <tr class="<%= cycle :even, :odd %>">
       <td><%= link_to l(tomato.created_at - Tomato::DURATION, format: :long), tomato %></td>
-      <td><%= tomato.tags.join(', ') %></td>
+      <td><%= link_tags(tomato.tags) %></td>
       <td class="show"><%= link_to 'Show', tomato %></td>
       <td class="edit"><%= link_to 'Edit', edit_tomato_path(tomato) %></td>
       <td class="destroy"><%= link_to 'Destroy', tomato, :data => { :confirm => 'Are you sure?' }, :method => :delete %></td>

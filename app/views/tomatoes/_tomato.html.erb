@@ -2,5 +2,5 @@
   <td class="tomato_duration">
     <%= link_to tomato_duration(tomato), tomato %>
   </td>
-  <td><%= tomato.tags.join(', ') %></td>
+  <td><%= link_tags(tomato.tags) %></td>
 </tr>

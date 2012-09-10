@@ -5,4 +5,9 @@
   <%= pluralize(@tomatoes.size, 'tomato') %>
 </p>
 
+<p>
+  <b>Total duration:</b>
+  <%= humanize(@tomatoes.size*Tomato::DURATION) %>
+</p>
+
 <%= link_to 'Back', tags_path %>
