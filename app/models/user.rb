@@ -156,7 +156,7 @@ class User
   end
 
   def estimated_revenues
-    work_time*Workable::TOMATO_TIME_FACTOR/60/60 * average_hourly_rate if average_hourly_rate
+    work_time*Workable::TOMATO_TIME_FACTOR/60/60 * average_hourly_rate.to_f if average_hourly_rate
   end
 
   def tomatoes_counter(time_period)
