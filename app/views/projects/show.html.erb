@@ -52,7 +52,7 @@
     <% end %>
 
     <% if @project.effective_work_time && @project.estimated_work_time %>
-      <%= render partial: 'shared/counter', locals: {css_class: "delta #{@project.work_time_delta > 0 ? 'red' : 'green'}", value: "#{@project.work_time_delta > 0 ? '+' : '-'} #{distance_of_time_in_words(@project.work_time_delta)}", label: 'Effective/estimated work time'} %>
+      <%= render partial: 'shared/counter', locals: {css_class: "delta #{@project.work_time_delta > 0 ? 'red' : 'green'}", value: "#{@project.work_time_delta > 0 ? '+' : '-'} #{distance_of_time_in_words(@project.work_time_delta.abs)}", label: 'Effective/estimated work time'} %>
     <% else %>
       <%= render partial: 'shared/counter', locals: {css_class: nil, value: 'n/a', label: 'Effective/estimated work time'} %>
     <% end %>

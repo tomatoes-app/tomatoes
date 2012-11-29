@@ -13,13 +13,15 @@ class Project
   belongs_to :user
 
   validates_presence_of :name
+  validates_numericality_of :money_budget, greater_than: 0, allow_blank: true
+  validates_numericality_of :time_budget, greater_than: 0, allow_blank: true
 
   def estimated_work_time
-    (time_budget*60*60 * Workable::WORK_TIME_FACTOR if time_budget).to_i
+    (time_budget.to_i*60*60 * Workable::WORK_TIME_FACTOR if time_budget).to_i
   end
 
   def estimated_hourly_rate
-    money_budget / (estimated_work_time/60/60).to_f if money_budget && estimated_work_time
+    money_budget.to_f / (estimated_work_time/60/60).to_f if money_budget && estimated_work_time
   end
 
   def any_of_conditions
@@ -31,7 +33,7 @@ class Project
   end
 
   def effective_hourly_rate
-    money_budget.to_f / effective_work_time*60*60 if money_budget
+    money_budget.to_f / (effective_work_time*60*60).to_f if money_budget
   end
 
   def hourly_rate_delta
