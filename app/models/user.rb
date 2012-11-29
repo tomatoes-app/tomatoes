@@ -41,6 +41,8 @@ class User
   validate :color_update_grant, :unless => Proc.new { read_attribute(:color).nil? }
 
   validates_inclusion_of :currency, :in => CURRENCIES.keys
+  validates_numericality_of :work_hours_per_day, greater_than: 0, allow_blank: true
+  validates_numericality_of :average_hourly_rate, greater_than: 0, allow_blank: true
   
   embeds_many :authorizations
   has_many :tomatoes
@@ -156,7 +158,7 @@ class User
   end
 
   def estimated_revenues
-    work_time*Workable::TOMATO_TIME_FACTOR/60/60 * average_hourly_rate if average_hourly_rate
+    work_time*Workable::TOMATO_TIME_FACTOR/60/60 * average_hourly_rate.to_f if average_hourly_rate
   end
 
   def tomatoes_counter(time_period)
