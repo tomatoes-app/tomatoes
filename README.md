@@ -38,5 +38,3 @@ If you want to contribute an enhancement or a fix:
 1. Send a pull request.
 
 ## Build Status [![Build Status](https://secure.travis-ci.org/potomak/tomatoes.png?branch=develop)](http://travis-ci.org/potomak/tomatoes)
-
-## Dependency Status [![Dependency Status](https://gemnasium.com/potomak/tomatoes.png?branch=develop)](https://gemnasium.com/potomak/tomatoes)
