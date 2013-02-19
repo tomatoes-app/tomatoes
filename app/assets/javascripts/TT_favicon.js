@@ -26,7 +26,7 @@ var TTFavicon = function() {
       drawFavicon(1);
     });
 
-    img.src = '/images/tomatoes-icon.png';
+    img.src = '/images/tomatoes_icon.png';
   }
 
   var drawFavicon = function(factor) {
