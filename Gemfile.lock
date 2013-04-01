@@ -106,7 +106,7 @@ GEM
       ambry (~> 0.3.0)
     metaclass (0.0.1)
     mime-types (1.22)
-    mocha (0.11.4)
+    mocha (0.13.3)
       metaclass (~> 0.0.1)
     mongo (1.6.2)
       bson (~> 1.6.2)

@@ -73,7 +73,7 @@ gem 'merit'
 gem 'exception_notification'
 
 group :test do
-  gem 'mocha'
+  gem 'mocha', :require => false
 end
 
 group :development do
