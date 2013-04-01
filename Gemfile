@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.12'
+gem 'rails', '3.2.13'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -73,7 +73,7 @@ gem 'merit'
 gem 'exception_notification'
 
 group :test do
-  gem 'mocha'
+  gem 'mocha', :require => false
 end
 
 group :development do
