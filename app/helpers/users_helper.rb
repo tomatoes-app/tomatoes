@@ -1,6 +1,7 @@
 module UsersHelper
   def profile_image(user, size=24)
-    image_tag user.authorizations && !user.authorizations.empty? ? user.authorizations.first.image : 'user.png', :width => size
+    user_image = user.authorizations && !user.authorizations.empty? ? user.authorizations.first.image : 'user.png'
+    image_tag user_image, :width => size
   end
   
   def user_name(user)
