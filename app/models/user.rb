@@ -37,7 +37,6 @@ class User
   attr_accessible :name, :email, :image, :time_zone, :color, :work_hours_per_day, :average_hourly_rate, :currency
 
   validates_format_of :color, with: /\A#[A-Fa-f0-9]{6}\Z/, allow_blank: true
-  validates_format_of :email, with: /\A.+@.+\Z/, allow_blank: true
   validate :color_update_grant, :unless => Proc.new { read_attribute(:color).nil? }
 
   validates_inclusion_of :currency, :in => CURRENCIES.keys
