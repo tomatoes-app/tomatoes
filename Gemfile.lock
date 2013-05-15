@@ -86,6 +86,7 @@ GEM
       rubyzip
     heroku-api (0.2.4)
       excon (~> 0.14.0)
+    high_voltage (1.2.2)
     hike (1.2.1)
     httpauth (0.1)
     i18n (0.6.1)
@@ -98,7 +99,6 @@ GEM
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
       railties (>= 3.0.0)
-    kgio (2.7.4)
     launchy (2.1.0)
       addressable (~> 2.2.6)
     librarian (0.0.4)
@@ -172,7 +172,6 @@ GEM
       rake (>= 0.8.7)
       rdoc (~> 3.4)
       thor (>= 0.14.6, < 2.0)
-    raindrops (0.10.0)
     rake (10.0.4)
     rdoc (3.12.2)
       json (~> 1.4)
@@ -205,10 +204,6 @@ GEM
     uglifier (1.2.4)
       execjs (>= 0.3.0)
       multi_json (>= 1.0.2)
-    unicorn (4.3.1)
-      kgio (~> 2.6)
-      rack
-      raindrops (~> 0.7)
     vagrant (0.5.4)
       archive-tar-minitar (= 0.5.2)
       erubis (>= 2.6.6)
@@ -232,6 +227,7 @@ DEPENDENCIES
   dalli
   exception_notification
   heroku
+  high_voltage
   jquery-rails
   kaminari
   librarian
@@ -247,5 +243,4 @@ DEPENDENCIES
   therubyracer
   thin
   uglifier (>= 1.0.3)
-  unicorn
   vagrant
