@@ -1,0 +1,22 @@
+<footer class="container block">
+  <div class="left">
+    <div>
+      <a class="FlattrButton" style="display:none;" rev="flattr;button:compact;" href="http://tomatoes.heroku.com"></a>
+      <noscript><a href="http://flattr.com/thing/376437/Tomatoes" target="_blank">
+      <img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0" /></a></noscript>
+    </div>
+    <div id="add_to_chrome">
+      <%= link_to 'https://chrome.google.com/webstore/detail/jijbhneeenepenoolcdalnekggeialeo' do %>
+        <%= image_tag("chrome-icon.png") %>
+        Add to Chrome
+      <% end %>
+    </div>
+    Follow updates <%= link_to "@tomatoesapp", "http://twitter.com/tomatoesapp" %><br/>
+    <%= link_to "Tomatoes", TomatoesApp::REPO %> - <%= link_to "version #{TomatoesApp::VERSION}", "#{TomatoesApp::REPO}/tree/#{TomatoesApp::VERSION}" %>
+  </div>
+  <div class="right">
+    <%= render partial: 'shared/ranking_links' %><br/>
+    <%= link_to "How to", page_path('how_to') %>,
+    <%= link_to "Statistics", statistics_path %>
+  </div>
+</footer>
