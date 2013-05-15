@@ -35,10 +35,16 @@ GEM
     asset_sync (0.4.2)
       activemodel
       fog
+    better_errors (0.8.0)
+      coderay (>= 1.0.0)
+      erubis (>= 2.6.6)
+    binding_of_caller (0.7.1)
+      debug_inspector (>= 0.0.1)
     bson (1.6.4)
     bson_ext (1.6.4)
       bson (~> 1.6.4)
     builder (3.0.4)
+    coderay (1.0.9)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
       railties (~> 3.2.0)
@@ -48,6 +54,7 @@ GEM
     coffee-script-source (1.3.3)
     daemons (1.1.8)
     dalli (2.0.5)
+    debug_inspector (0.0.2)
     erubis (2.7.0)
     eventmachine (0.12.10)
     exception_notification (2.6.1)
@@ -218,6 +225,8 @@ PLATFORMS
 
 DEPENDENCIES
   asset_sync
+  better_errors
+  binding_of_caller
   bson_ext
   coffee-rails (~> 3.2.1)
   dalli

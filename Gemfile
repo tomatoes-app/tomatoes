@@ -78,6 +78,8 @@ end
 
 group :development do
   gem 'heroku'
+  gem 'better_errors'
+  gem 'binding_of_caller'
 
   # Virtual box provisioning with vagrant and librarian gems
   gem 'vagrant'
