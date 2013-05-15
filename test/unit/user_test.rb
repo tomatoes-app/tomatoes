@@ -84,4 +84,22 @@ class UserTest < ActiveSupport::TestCase
 
     assert_equal user.omniauth_attributes(@auth), { :image => "image" }
   end
+
+  test "nickname should return first authorization's nickname" do
+    user = User.create_with_omniauth!(@auth)
+
+    assert_equal user.nickname, "john"
+  end
+
+  test "image_file should return user image" do
+    user = User.create_with_omniauth!(@auth)
+
+    assert_equal "image", user.image_file
+  end
+
+  test "image_file should return default image if image attribute is empty" do
+    user = User.create_with_omniauth!(@auth.merge('info' => { 'image' => '' }))
+
+    assert_equal User::DEFAULT_IMAGE_FILE, user.image_file
+  end
 end

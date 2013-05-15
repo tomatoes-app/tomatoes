@@ -14,8 +14,9 @@ class User
     'CHF' => 'Fr.'
   }
 
-  DEFAULT_COLOR    = '#000000'
-  DEFAULT_CURRENCY = 'USD'
+  DEFAULT_COLOR      = '#000000'
+  DEFAULT_CURRENCY   = 'USD'
+  DEFAULT_IMAGE_FILE = 'user.png'
   
   # authorization fields (deprecated)
   field :provider,    :type => String
@@ -150,6 +151,15 @@ class User
   def currency
     currency_value = read_attribute(:currency)
     currency_value && !currency_value.empty? ? currency_value : User::DEFAULT_CURRENCY
+  end
+
+  def nickname
+    authorizations.first.try(:nickname)
+  end
+
+  def image_file
+    image_value = read_attribute(:image) || authorizations.first.try(:image)
+    image_value && !image_value.empty? ? image_value : User::DEFAULT_IMAGE_FILE
   end
 
   def currency_unit
