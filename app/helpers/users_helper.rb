@@ -1,11 +1,10 @@
 module UsersHelper
-  def profile_image(user, size=24)
-    user_image = user.authorizations && !user.authorizations.empty? ? user.authorizations.first.image : 'user.png'
-    image_tag user_image, :width => size
+  def profile_image(user, size = 24)
+    image_tag user.image_file, :width => size
   end
   
   def user_name(user)
-    link_to user.name, user, :class => 'user_name'
+    link_to user.name || user.nickname, user, :class => 'user_name'
   end
 
   def hex_to_rgba(hex)
