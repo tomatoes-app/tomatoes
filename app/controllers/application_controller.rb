@@ -19,6 +19,10 @@ class ApplicationController < ActionController::Base
     raise ActionController::RoutingError.new('Not Found')
   end
 
+  def user_signed_in?
+    return true if current_user
+  end
+
   private
 
   def set_time_zone
@@ -31,10 +35,6 @@ class ApplicationController < ActionController::Base
     rescue Mongoid::Errors::DocumentNotFound
       nil
     end
-  end
-
-  def user_signed_in?
-    return true if current_user
   end
 
   def same_user?

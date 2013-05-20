@@ -14,8 +14,9 @@ class User
     'CHF' => 'Fr.'
   }
 
-  DEFAULT_COLOR    = '#000000'
-  DEFAULT_CURRENCY = 'USD'
+  DEFAULT_COLOR      = '#000000'
+  DEFAULT_CURRENCY   = 'USD'
+  DEFAULT_IMAGE_FILE = 'user.png'
   
   # authorization fields (deprecated)
   field :provider,    :type => String
@@ -37,7 +38,6 @@ class User
   attr_accessible :name, :email, :image, :time_zone, :color, :work_hours_per_day, :average_hourly_rate, :currency
 
   validates_format_of :color, with: /\A#[A-Fa-f0-9]{6}\Z/, allow_blank: true
-  validates_format_of :email, with: /\A.+@.+\Z/, allow_blank: true
   validate :color_update_grant, :unless => Proc.new { read_attribute(:color).nil? }
 
   validates_inclusion_of :currency, :in => CURRENCIES.keys
@@ -151,6 +151,15 @@ class User
   def currency
     currency_value = read_attribute(:currency)
     currency_value && !currency_value.empty? ? currency_value : User::DEFAULT_CURRENCY
+  end
+
+  def nickname
+    authorizations.first.try(:nickname)
+  end
+
+  def image_file
+    image_value = read_attribute(:image) || authorizations.first.try(:image)
+    image_value && !image_value.empty? ? image_value : User::DEFAULT_IMAGE_FILE
   end
 
   def currency_unit

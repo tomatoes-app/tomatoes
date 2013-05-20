@@ -22,43 +22,84 @@ class UserTest < ActiveSupport::TestCase
       'provider' => 'provider',
       'uid' => 'uid'
     }
-    @user = User.create_with_omniauth!(@auth)
   end
   
   teardown do
-    @user.destroy
+    User.destroy_all
   end
 
   test "self.find_by_omniauth" do
-    assert User.find_by_omniauth(@auth) == @user
+    user = User.create_with_omniauth!(@auth)
+
+    assert_equal User.find_by_omniauth(@auth), user
   end
   
   test "self.create_with_omniauth!" do
-    pending
+    user = User.create_with_omniauth!(@auth)
     
-    assert true
+    assert_equal user.name, 'John Doe'
+    assert_equal user.email, 'email@example.com'
+  end
+
+  test "self.create_with_omniauth! with invalid email" do
+    @auth['info']['email'] = 'invalid email'
+
+    assert_nothing_raised { User.create_with_omniauth!(@auth) }
   end
   
-  test "update_omniauth_attributes!" do
-    pending
+  test "update_omniauth_attributes! doesn't update existing user data" do
+    user = User.create_with_omniauth!(@auth)
+    user.update_omniauth_attributes!(@auth.merge('info' => { 'name' => 'Johnny Doe' }))
     
-    assert true
+    assert_equal user.name, 'John Doe'
+  end
+
+  test "update_omniauth_attributes! updates missing user data" do
+    user = User.create_with_omniauth!(@auth)
+    user.name = ''
+    user.update_omniauth_attributes!(@auth.merge('info' => { 'name' => 'Johnny Doe' }))
+    
+    assert_equal user.name, 'Johnny Doe'
   end
   
   test "self.omniauth_attributes should parse auth hash and return user attributes" do
     expected = {
-      :name  => "John Doe",
-      :email => "email@example.com",
-      :image => "image"
+      name:  "John Doe",
+      email: "email@example.com",
+      image: "image"
     }
 
-    assert User.omniauth_attributes(@auth) == expected
+    assert_equal User.omniauth_attributes(@auth), expected
   end
 
-  test "omniauth_attributes should parse auth hash and return user attributes" do
-    assert @user.omniauth_attributes(@auth) == {}
-    
-    @user.image = ''
-    assert @user.omniauth_attributes(@auth) == { :image => "image" }
+  test "omniauth_attributes shouldn't return auth data for existing attributes" do
+    user = User.create_with_omniauth!(@auth)
+
+    assert_equal user.omniauth_attributes(@auth), {}
+  end
+
+  test "omniauth_attributes should return auth data for empty user attributes" do
+    user = User.create_with_omniauth!(@auth)
+    user.image = ''
+
+    assert_equal user.omniauth_attributes(@auth), { :image => "image" }
+  end
+
+  test "nickname should return first authorization's nickname" do
+    user = User.create_with_omniauth!(@auth)
+
+    assert_equal user.nickname, "john"
+  end
+
+  test "image_file should return user image" do
+    user = User.create_with_omniauth!(@auth)
+
+    assert_equal "image", user.image_file
+  end
+
+  test "image_file should return default image if image attribute is empty" do
+    user = User.create_with_omniauth!(@auth.merge('info' => { 'image' => '' }))
+
+    assert_equal User::DEFAULT_IMAGE_FILE, user.image_file
   end
 end

@@ -16,7 +16,9 @@
 <h2>Users</h2>
 <p>
   <%= pluralize(@users, 'user') %><br/>
-  about <%= pluralize(@tomatoes/@users, 'tomato') %> per user
+  <% if @users > 0 %>
+    about <%= pluralize(@tomatoes/@users, 'tomato') %> per user
+  <% end %>
 </p>
 
 <h2>Users by day</h2>

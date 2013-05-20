@@ -30,7 +30,7 @@ module Chartable
       collection_by_tomatoes = group_by_tomatoes(collection)
       tomatoes = collection_by_tomatoes.keys
 
-      Range.new(tomatoes.first, tomatoes.last).map do |tomatoes_count|
+      Range.new(tomatoes.first || 0, tomatoes.last || 0).map do |tomatoes_count|
         [tomatoes_count, yield(collection_by_tomatoes[tomatoes_count])]
       end
     end
