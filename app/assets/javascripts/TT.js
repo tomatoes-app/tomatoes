@@ -181,10 +181,14 @@ var TT = function() {
     log("start timer for " + mins + " mins");
 
     var duration = Math.round(mins*60);
+    var startDate = new Date();
     var timer = duration;
     stateStart(timer);
 
     (function tick() {
+      var msPassed = new Date() - startDate;
+      timer = Math.round(duration - msPassed/1000);
+
       stateCounting(timer, duration);
       
       if(timer <= 0) {
@@ -192,7 +196,6 @@ var TT = function() {
         soundManager.setVolume(settings.timerEndSoundId, volume).play();
       }
       else {
-        timer--;
         timerInterval = setTimeout(tick, 1000);
       }
     })();
