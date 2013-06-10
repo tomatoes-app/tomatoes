@@ -25,8 +25,8 @@ gem 'omniauth'
 gem 'omniauth-github'
 gem 'omniauth-twitter'
 
-# Thin
-gem 'thin'
+# Unicorn
+gem 'unicorn'
 
 # New Relic
 gem 'newrelic_rpm'
@@ -54,6 +54,7 @@ group :development do
   gem 'heroku'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'quiet_assets'
 
   # Virtual box provisioning with vagrant and librarian gems
   gem 'vagrant'
