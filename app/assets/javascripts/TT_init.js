@@ -8,7 +8,7 @@ soundManager.useHTML5Audio = true;
 soundManager.onready(function() {
   if (soundManager.supported()) {
     // SM2 is ready to go!
-    ['ringing', 'reset'].forEach(function(sound) {
+    ['ringing', 'reset', 'tictac'].forEach(function(sound) {
       soundManager.createSound({
         id: sound,
         url: '/sounds/' + sound + '.mp3',
