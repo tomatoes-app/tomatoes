@@ -195,7 +195,9 @@ var TT = function() {
       else {
         timer--;
         timerInterval = setTimeout(tick, 1000);
-        soundManager.setVolume(settings.timerTickingSoundId, volume).play();
+        if ($('#ticking-sound-switch').is(':checked')) {
+          soundManager.setVolume(settings.timerTickingSoundId, volume).play();
+        }
       }
     })();
   }

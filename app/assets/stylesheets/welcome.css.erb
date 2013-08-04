@@ -198,6 +198,10 @@ p#reset_hint {
 	background-image: url(<%= asset_path "speaker_sprite.png" %>);
 }
 
+#ticking_sound_switch {
+  text-align: left;
+}
+
 <% (0..3).each do |level| %>
 #volume_icon.level_<%= level %> {
 	background-position: 0 -<%= level*35 %>px;
