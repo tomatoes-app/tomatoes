@@ -17,6 +17,8 @@ class User
   DEFAULT_COLOR      = '#000000'
   DEFAULT_CURRENCY   = 'USD'
   DEFAULT_IMAGE_FILE = 'user.png'
+  DEFAULT_VOLUME     = 2
+  DEFAULT_TICKING    = false
   
   # authorization fields (deprecated)
   field :provider,    :type => String
@@ -29,16 +31,19 @@ class User
   field :image,     :type => String
   field :time_zone, :type => String
   field :color,     :type => String
+  field :volume,    :type => Integer
+  field :ticking,   :type => Boolean
 
   field :work_hours_per_day,  :type => Integer
   field :average_hourly_rate, :type => Float
   field :currency,            :type => String
   
   # attr_accessible :provider, :uid, :token, :gravatar_id
-  attr_accessible :name, :email, :image, :time_zone, :color, :work_hours_per_day, :average_hourly_rate, :currency
+  attr_accessible :name, :email, :image, :time_zone, :color, :work_hours_per_day, :average_hourly_rate, :currency, :volume, :ticking
 
   validates_format_of :color, with: /\A#[A-Fa-f0-9]{6}\Z/, allow_blank: true
   validate :color_update_grant, :unless => Proc.new { read_attribute(:color).nil? }
+  validates_numericality_of :volume, greater_than_or_equal_to: 0, less_than: 4, allow_blank: true
 
   validates_inclusion_of :currency, :in => CURRENCIES.keys
   validates_numericality_of :work_hours_per_day, greater_than: 0, allow_blank: true
@@ -146,6 +151,16 @@ class User
   def color
     color_value = read_attribute(:color)
     color_value && !color_value.empty? ? color_value : User::DEFAULT_COLOR
+  end
+
+  def volume
+    volume_value = read_attribute(:volume)
+    volume_value.present? ? volume_value : User::DEFAULT_VOLUME
+  end
+
+  def ticking
+    ticking_value = read_attribute(:ticking)
+    ticking_value.present? ? ticking_value : User::DEFAULT_TICKING
   end
 
   def currency

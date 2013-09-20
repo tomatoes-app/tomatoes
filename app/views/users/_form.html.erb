@@ -38,6 +38,15 @@
     <%= f.text_field :average_hourly_rate %>
     <div class="hint">How much do you charge per hour? Example: <em>35.5</em></div>
   </div>
+  <div class="field">
+    <%= f.label :volume %></br>
+    <%= f.range_field :volume, :min => 0, :max => 3 %>
+    <div class="hint">Default timer volume. <em>0</em> is <em>mute</em>, <em>3</em> is <em>max volume</em>.</div>
+  </div>
+  <div class="field">
+    <%= f.check_box :ticking %><%= f.label :ticking %>
+    <div class="hint">Timer ticking effect.</div>
+  </div>
 
   <div class="field block">
     <div class="left">
