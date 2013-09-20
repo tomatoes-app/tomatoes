@@ -1,11 +1,8 @@
-<% content_for :head do %>
+<% content_for :foot do %>
   <%= javascript_tag do %>
     var BY_DAY_USER_TOMATOES_URL = '<%= by_day_user_tomatoes_url(@user, :format => :json) %>',
         BY_HOUR_USER_TOMATOES_URL = '<%= by_hour_user_tomatoes_url(@user, :format => :json) %>';
   <% end %>
-<% end %>
-
-<% content_for :foot do %>
   <%= javascript_include_tag "users", "users_charts" %>
 <% end %>
 
