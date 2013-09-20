@@ -76,14 +76,14 @@ td.tomato_duration {
 	margin: 20px 20px 40px;
 }
 
-#start_container {
-	width: 500px;
-	text-align: center;
-	margin: 0 auto 20px;
-}
-
-a#start {
-	font-size: 54px;
+a#start { @include radius;
+	background-color: $start-color;
+	color: darken($start-color, 45%);
+	border-color: darken($start-color, 25%);
+	padding: 0.5em 1.5em;
+	font-size: 2.5em;
+	font-weight: 300;
+	text-transform: uppercase;
 }
 
 a#reset {}

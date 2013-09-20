@@ -3,19 +3,18 @@ html, body {
 }
 
 body {
-  font-size: 13px;
-  color: #444;
   position: relative;
   margin: 0;
   padding: 0;
 }
 
 body, p, ol, ul, td {
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Roboto Slab', georgia, serif;
+  font-weight: 400; 
 }
 
 h1, h2, h3 {
-  font-weight: normal;
+  font-weight: 300;
 }
 
 ol, ul {
@@ -96,7 +95,8 @@ table td.destroy a {
 }
 
 input[type=text], input[type=number], select {
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Roboto Slab', georgia, serif;
+  font-weight: 400; 
   margin: 2px 0;
   padding: 3px;
   border: 1px solid #dcdcdc;
@@ -104,7 +104,7 @@ input[type=text], input[type=number], select {
 }
 
 input[type=submit] {
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Roboto Slab', georgia, serif;
   font-size: 13px;
   margin: 0;
 }
@@ -213,7 +213,7 @@ a.button:visited {
   font-size: 28px;
   font-family: 'Leckerli One', cursive;
   margin: 0;
-  padding-left: 28px;
+  padding-left: 15px;
   background-image: url(<%= asset_path "tomatoes_logo_24.png" %>);
   background-repeat: no-repeat;
   background-position: 0 50%;
@@ -266,18 +266,13 @@ a.button:visited {
   height: 28px;
 }
 
-.container {
-  margin: 0 auto;
-  width: 960px;
-}
-
 #container {
   position:relative;      /* needed for footer positioning*/
   height:auto !important; /* real browsers */
   height:100%;            /* IE6: treaded as min-height*/
   min-height:100%;        /* real browsers */
 }
-
+/*
 #header_container {
   text-decoration: none;
   text-shadow: 1px 1px 0px #fff;
@@ -300,13 +295,16 @@ a.button:visited {
 }
 
 #main_container {
-  padding-bottom: 140px; /* bottom padding for footer */
+  padding-bottom: 140px;  bottom padding for footer 
 }
+*/
+#top-menu { background: $topbar-bg;}
+nav.top-bar #logo { padding: 0 $block-grid-default-spacing; }
 
 #footer_container {
-  position: absolute;
+  /* position: absolute;
   width: 100%;
-  bottom: 0; /* stick to bottom */
+  bottom: 0; stick to bottom */
   margin-bottom: 5px;
 }
 
