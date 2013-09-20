@@ -9,7 +9,8 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'therubyracer'
   gem 'uglifier', '>= 1.0.3'
-
+  gem 'compass-rails'
+  gem 'zurb-foundation', '~> 4.0.0'
   # Upload assets to AWS S3
   gem 'asset_sync'
 end
