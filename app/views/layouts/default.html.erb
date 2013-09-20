@@ -1,14 +1,19 @@
 <!DOCTYPE html>
-<html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7 ]> <html class="ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
 <head>
-  <title>Tomatoes</title>
+  <title><%= content_for?(:title) ? yield(:title) : 'Tomatoes' %></title>
   <meta charset="UTF-8">
   <meta content='Tomatoes is a "pomodoro tracker", a Pomodoro technique® driven time tracker. Track your time using 25 minutes slots called "pomodoros".' name='description' />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="chrome-webstore-item" href="https://chrome.google.com/webstore/detail/jijbhneeenepenoolcdalnekggeialeo">
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,300,600|Leckerli+One&v2' rel='stylesheet' type='text/css'>
   <link id="favicon" rel="icon" type="image/png" href="<%= asset_path 'tomatoes_icon.png' %>">
   <%= stylesheet_link_tag    "application" %>
-  <%= javascript_include_tag "application" %>
+  <%= javascript_include_tag "vendor/custom.modernizr" %>
   <%= csrf_meta_tag %>
   
   <%= yield :head %>
@@ -57,5 +62,6 @@
   </div>
 
   <%= yield :foot %>
+  <%= javascript_include_tag "application" %>
 </body>
 </html>

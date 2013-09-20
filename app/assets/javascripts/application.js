@@ -6,6 +6,8 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require foundation
 //= require jquery.cookie
 //= require jquery.color
 //= require time_zone
+$(document).foundation();
