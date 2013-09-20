@@ -3,6 +3,7 @@
     var tomatoDuration = <%= Tomato::DURATION/60.0 %>;
     var tomatoBreakDuration = <%= Tomato::BREAK_DURATION/60.0 %>;
     var tomatoNotificationIcon = '<%= asset_path('notification_icon.png') %>';
+    var volume = <%= (current_user ? current_user.volume : User::DEFAULT_VOLUME)*25 %>;
     var currentUser = <%= current_user ? 'true' : 'false' %>;
     var DEBUG = <%= Rails.env.development? %>;
   <% end %>
@@ -19,7 +20,7 @@
   <div id="timer_container">
     <div id="timer" style="display: none">
       <div id="ticking_sound_switch_container">
-        <input id="ticking_sound_switch" type="checkbox">
+        <%= check_box_tag('ticking_sound_switch', '1', current_user ? current_user.ticking : User::DEFAULT_TICKING, :id => 'ticking_sound_switch') %>
         <label for="ticking_sound_switch">Ticking sound</label>
       </div>
       <div class="volume right block unselectable">

@@ -13,7 +13,6 @@ var TT = function() {
   var timerInterval = null,
       originalTitle,
       status = 'idle',
-      volume = 50,
       settings = {
         timerTickingSoundId: 'tictac',
         timerEndSoundId: 'ringing',
