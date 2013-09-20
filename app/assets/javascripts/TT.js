@@ -15,6 +15,7 @@ var TT = function() {
       status = 'idle',
       volume = 50,
       settings = {
+        timerTickingSoundId: 'tictac',
         timerEndSoundId: 'ringing',
         timerResetSoundId: 'reset',
         timerContainerId: 'timer_container',
@@ -197,6 +198,9 @@ var TT = function() {
       }
       else {
         timerInterval = setTimeout(tick, 1000);
+        if ($('#ticking-sound-switch').is(':checked')) {
+          soundManager.setVolume(settings.timerTickingSoundId, volume).play();
+        }
       }
     })();
   }
