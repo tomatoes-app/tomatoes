@@ -10,7 +10,7 @@
   <meta content='Tomatoes is a "pomodoro tracker", a Pomodoro technique® driven time tracker. Track your time using 25 minutes slots called "pomodoros".' name='description' />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="chrome-webstore-item" href="https://chrome.google.com/webstore/detail/jijbhneeenepenoolcdalnekggeialeo">
-  <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,300,600|Leckerli+One&v2' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:300,400|Leckerli+One&v2' rel='stylesheet' type='text/css'>
   <link id="favicon" rel="icon" type="image/png" href="<%= asset_path 'tomatoes_icon.png' %>">
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "vendor/custom.modernizr" %>
@@ -56,7 +56,7 @@
       </div>
     </div>
 
-    <div id="footer_container">
+    <div id="footer_container" class="row">
       <%= render partial: 'shared/footer' %>
     </div>
   </div>
