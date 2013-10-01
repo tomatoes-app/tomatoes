@@ -1,18 +1,22 @@
-<div id="index" class="row">
-  <div class="block">
-    <div class="left">
-      <div id="tomatoes_list">
-        <%= render :partial => 'tomatoes_list', :locals => {:high => nil} %>
-      </div>
-      <div id="projects_list">
-        <%= render :partial => 'projects_list' %>
-      </div>
+<div class="dashboard-wrapper">
+  <div id="index" class="row">
+    <div id="start_container" class="large-12 columns text-center">
+      <%= link_to "Start", "#", :id => "start", :class => "button large secondary radius" %>
+      <p id="start_hint">or press space bar</p>
     </div>
 
-    <div class="right">
-      <div id="user_statistics">
-        <%= render :partial => 'user_statistics' %>
+
+      <div class="left">
+        <div id="tomatoes_list">
+          <%= render :partial => 'tomatoes_list', :locals => {:high => nil} %>
+        </div>
+        <div id="projects_list">
+          <%= render :partial => 'projects_list' %>
+        </div>
       </div>
-    </div>
+
+      <div class="right">
+        
+      </div>
   </div>
 </div>

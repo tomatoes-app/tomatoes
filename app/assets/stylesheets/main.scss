@@ -1,3 +1,11 @@
 body {
-  background: $primary-color;
+  .timer-wrapper {
+    position: relative;
+    width: 100%;
+    height: 200px;
+  }
+  .dashboard-wrapper {
+    width: 100%;
+    background: #555;
+  }
 }

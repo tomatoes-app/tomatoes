@@ -17,50 +17,51 @@
   <% end %>
   <%= javascript_include_tag "TT" %>
 <% end %>
-
-<div id="progress_bar">
-  <div id="timer_container">
-    <div id="timer" style="display: none">
-      <div id="ticking_sound_switch_container">
-        <%= check_box_tag('ticking_sound_switch', '1', current_user ? current_user.ticking : User::DEFAULT_TICKING, :id => 'ticking_sound_switch') %>
-        <label for="ticking_sound_switch">Ticking sound</label>
-      </div>
-      <div class="volume right block unselectable">
-        <div class="down left">-</div>
-        <div id="volume_icon" class="mute_toggle left"></div>
-        <div class="up left">+</div>
-      </div>
-      <div id="timer_counter"></div>
-      <%= link_to "Reset", "#", :id => "reset", :class => "button" %>
-      <p id="reset_hint">or press esc</p>
-    </div>
-    <div id="new_tomato_form" style="display: none">
-    <% if current_user %>
-      <%= render 'tomatoes/form', remote: true %>
-    <% else %>
-      <div id="tomato_signin" class="block">
-        <h2>Sign in to start tracking your work.</h2>
-        <%= link_to signin_path('github'), :class => "button" do %>
-          <%= image_tag("github.png", :width => "24") %>
-          GitHub
-        <% end %>
-        or
-        <%= link_to signin_path('twitter'), :class => "button" do %>
-          <%= image_tag("twitter.png", :width => "24") %>
-          Twitter
-        <% end %>
-        <div id="cancel">
-          <%= link_to "Cancel", "#", :id => "reset_signin", :class => "button" %>
+<div class="timer-wrapper">
+  <div id="progress_bar">
+    <div id="timer_container">
+      <div id="timer" style="display: none">
+        <div id="ticking_sound_switch_container">
+          <%= check_box_tag('ticking_sound_switch', '1', current_user ? current_user.ticking : User::DEFAULT_TICKING, :id => 'ticking_sound_switch') %>
+          <label for="ticking_sound_switch">Ticking sound</label>
         </div>
+        <div class="volume right block unselectable">
+          <div class="down left">-</div>
+          <div id="volume_icon" class="mute_toggle left"></div>
+          <div class="up left">+</div>
+        </div>
+        <div id="timer_counter"></div>
+        <%= link_to "Reset", "#", :id => "reset", :class => "button" %>
+        <p id="reset_hint">or press esc</p>
       </div>
-    <% end %>
+      <div id="new_tomato_form" style="display: none">
+      <% if current_user %>
+        <%= render 'tomatoes/form', remote: true %>
+      <% else %>
+        <div id="tomato_signin" class="block">
+          <h2>Sign in to start tracking your work.</h2>
+          <%= link_to signin_path('github'), :class => "button" do %>
+            <%= image_tag("github.png", :width => "24") %>
+            GitHub
+          <% end %>
+          or
+          <%= link_to signin_path('twitter'), :class => "button" do %>
+            <%= image_tag("twitter.png", :width => "24") %>
+            Twitter
+          <% end %>
+          <div id="cancel">
+            <%= link_to "Cancel", "#", :id => "reset_signin", :class => "button" %>
+          </div>
+        </div>
+      <% end %>
+      </div>
     </div>
   </div>
-</div>
 
-<div class="row">
-  <div id="start_container" class="large-12 columns text-center">
-    <%= link_to "Start", "#", :id => "start", :class => "button" %>
-    <p id="start_hint">or press space bar</p>
+  <div class="row">
+    <div id="user_statistics" class="large-6 columns large-centered text-center">
+      <%= render :partial => 'user_statistics' %>
+    </div>
   </div>
-</div>
+
+</div> <!-- close wrapper -->

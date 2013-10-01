@@ -29,7 +29,8 @@
 #tomatoes_list,
 #projects_list,
 #user_statistics {
-	margin-bottom: 50px;
+	margin-top: 2em;
+	margin-bottom: 2em;
 }
 
 #tomatoes_list,
@@ -76,14 +77,18 @@ td.tomato_duration {
 	margin: 20px 20px 40px;
 }
 
-a#start { @include radius;
+a#start { 	/*
 	background-color: $start-color;
 	color: darken($start-color, 45%);
-	border-color: darken($start-color, 25%);
+	border-color: darken($start-color, 25%);*/
+	color: darken($secondary-color, 45%);
 	padding: 0.5em 1.5em;
 	font-size: 2.5em;
 	font-weight: 300;
 	text-transform: uppercase;
+}
+a#start:hover { 
+	text-decoration: none;
 }
 
 a#reset {}
