@@ -56,7 +56,6 @@ group :development do
   gem 'binding_of_caller'
   gem 'quiet_assets'
 
-  # Virtual box provisioning with vagrant and librarian gems
-  gem 'vagrant'
+  # Virtual box provisioning librarian gems
   gem 'librarian'
 end
