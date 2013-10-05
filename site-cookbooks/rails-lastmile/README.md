@@ -35,9 +35,9 @@ Vagrantfile something like this:
 
     chef.json = {
       'rvm' => {
-        'default_ruby' => 'ruby-1.9.2-p290',
+        'default_ruby' => 'ruby-1.9.3-p448',
         'gem_package' => {
-          'rvm_string' => 'ruby-1.9.2-p290'
+          'rvm_string' => 'ruby-1.9.3-p448'
         }
       }
     }
@@ -48,7 +48,7 @@ Vagrantfile something like this:
 Installation
 ============
 For a more thorough guide visit:
-http://blog.119labs.com/2012/03/rails-vagrant-chef/ 
+http://blog.119labs.com/2012/03/rails-vagrant-chef/
 
 I suggest installing through librarian-chef.  In order to do so add the
 following to your Cheffile:
