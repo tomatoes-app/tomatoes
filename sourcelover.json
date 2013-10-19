@@ -5,7 +5,7 @@
     "name": "Giovanni Cappellotto"
   },
   "languages": ["ruby"],
-  "version": "0.6.69",
+  "version": "0.6.70",
   "keywords": ["pomodoro", "timer", "tracker", "tomatoes"],
   "homepage": "http://tomato.es",
   "packages": [
