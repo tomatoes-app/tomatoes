@@ -16,9 +16,9 @@ if defined?(Bundler)
 end
 
 module TomatoesApp
-  VERSION = '0.6.69'
+  VERSION = '0.6.70'
   REPO = 'https://github.com/potomak/tomatoes'
-  
+
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
@@ -47,7 +47,7 @@ module TomatoesApp
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
-    
+
     # disable mongoid model preloading (see http://mongoid.org/docs/rails/railties.html)
     config.mongoid.preload_models = false
 
@@ -56,7 +56,7 @@ module TomatoesApp
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
-    
+
     # Skip initialization on assets precompiling
     # see http://stackoverflow.com/a/7894840/341061
     config.assets.initialize_on_precompile = false

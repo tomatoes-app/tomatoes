@@ -1,0 +1,23 @@
+{
+  "name": "Tomatoes",
+  "description": "A Pomodoro technique® driven time tracker.",
+  "author": {
+    "name": "Giovanni Cappellotto"
+  },
+  "languages": ["ruby"],
+  "version": "0.6.69",
+  "keywords": ["pomodoro", "timer", "tracker", "tomatoes"],
+  "homepage": "http://tomato.es",
+  "packages": [
+    {
+      "name": "Friend",
+      "description": "Help us with hosting stuff.",
+      "amount": "5.00"
+    },
+    {
+      "name": "Supporter",
+      "description": "You love this project and use Tomato.es everyday.",
+      "amount": "20.00"
+    }
+  ]
+}
