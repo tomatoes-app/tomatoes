@@ -15,7 +15,8 @@ Try it for free at [http://tomato.es](http://tomato.es "Tomatoes")
 1. Install Virtualbox (see https://www.virtualbox.org/wiki/Downloads).
 1. Fork the project on github and clone the repo.
 1. Run `bundle install` to install required gems.
-1. Run `librarian-chef` to install required cookbooks.
+1. Run `mkdir cookbooks` to create the cookbooks dir
+1. Run `librarian-chef install` to install required cookbooks.
 1. Run `vagrant up` to start a virtual machine containing the app (this process can take a few minutes).
 1. Open http://localhost:8080 on your browser.
 
