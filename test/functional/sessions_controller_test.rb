@@ -43,4 +43,11 @@ class SessionsControllerTest < ActionController::TestCase
     assert_redirected_to root_url
     assert_equal "Authentication error: #{'failure message'.humanize}", flash[:alert]
   end
+
+  test "should handle failure when no message passed" do
+    get :failure
+    assert_equal nil, session[:user_id]
+    assert_redirected_to root_url
+    assert_equal "Authentication error: Unknown", flash[:alert]
+  end
 end

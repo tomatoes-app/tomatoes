@@ -19,6 +19,7 @@ class SessionsController < ApplicationController
   end
 
   def failure
+    params[:message] ||= "Unknown"
     redirect_to root_url, :alert => "Authentication error: #{params[:message].humanize}"
   end
 
