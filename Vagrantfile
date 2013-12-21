@@ -57,9 +57,9 @@ Vagrant::Config.run do |config|
   # end
 
   # Enable provisioning with chef solo, specifying a cookbooks path, roles
-  # path, and data_bags path (all relative to this Vagrantfile), and adding 
+  # path, and data_bags path (all relative to this Vagrantfile), and adding
   # some recipes and/or roles.
-  
+
   config.vm.provision :chef_solo do |chef|
     chef.cookbooks_path = ["cookbooks", "site-cookbooks"]
 
@@ -73,9 +73,9 @@ Vagrant::Config.run do |config|
 
     chef.json = {
       'rvm' => {
-        'default_ruby' => 'ruby-1.9.2-p290',
+        'default_ruby' => 'ruby-1.9.3-p448',
         'gem_package' => {
-          'rvm_string' => 'ruby-1.9.2-p290'
+          'rvm_string' => 'ruby-1.9.3-p448'
         }
       }
     }

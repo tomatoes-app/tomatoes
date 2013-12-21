@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.13'
+gem 'rails', '3.2.16'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -32,6 +32,7 @@ gem 'unicorn'
 gem 'newrelic_rpm'
 
 # Memcached
+gem 'memcachier'
 gem 'dalli'
 
 # Pagination
@@ -56,7 +57,6 @@ group :development do
   gem 'binding_of_caller'
   gem 'quiet_assets'
 
-  # Virtual box provisioning with vagrant and librarian gems
-  gem 'vagrant'
+  # Virtual box provisioning librarian gems
   gem 'librarian'
 end

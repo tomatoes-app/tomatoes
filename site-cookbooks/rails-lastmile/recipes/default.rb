@@ -13,8 +13,8 @@ end
 
 app_dir = node['rails-lastmile']['app_dir']
 
-rbenv_ruby "1.9.2-p290"
-rbenv_global "1.9.2-p290"
+rbenv_ruby "1.9.3-p448"
+rbenv_global "1.9.3-p448"
 
 rbenv_gem "bundler"
 rbenv_gem "rails"
