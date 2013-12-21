@@ -36,6 +36,8 @@
   <% end %>
 </head>
 <body>
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
   <div id="container">
     <%= yield :header %>
 
@@ -62,10 +64,5 @@
   </div>
 
   <%= yield :foot %>
-
-  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  <%= javascript_tag do %>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-  <% end %>
 </body>
 </html>
