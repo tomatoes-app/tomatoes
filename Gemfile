@@ -32,6 +32,7 @@ gem 'unicorn'
 gem 'newrelic_rpm'
 
 # Memcached
+gem 'memcachier'
 gem 'dalli'
 
 # Pagination

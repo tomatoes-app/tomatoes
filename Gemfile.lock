@@ -103,6 +103,7 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    memcachier (0.0.2)
     merit (0.8.1)
       ambry (~> 0.3.0)
     metaclass (0.0.1)
@@ -218,6 +219,7 @@ DEPENDENCIES
   jquery-rails
   kaminari
   librarian
+  memcachier
   merit
   mocha
   mongoid
