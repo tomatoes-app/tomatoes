@@ -106,7 +106,7 @@ class User
   def omniauth_attributes(auth)
     attributes = self.class.omniauth_attributes(auth)
 
-    [:name, :email, :image].each do |attribute|
+    [:name, :email].each do |attribute|
       attributes.delete(attribute) if send(attribute) && !send(attribute).empty?
     end
     
