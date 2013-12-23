@@ -75,14 +75,14 @@ class UserTest < ActiveSupport::TestCase
   test "omniauth_attributes shouldn't return auth data for existing attributes" do
     user = User.create_with_omniauth!(@auth)
 
-    assert_equal user.omniauth_attributes(@auth), {}
+    assert_equal user.omniauth_attributes(@auth), { :image => "image" }
   end
 
   test "omniauth_attributes should return auth data for empty user attributes" do
     user = User.create_with_omniauth!(@auth)
-    user.image = ''
+    user.email = ''
 
-    assert_equal user.omniauth_attributes(@auth), { :image => "image" }
+    assert_equal user.omniauth_attributes(@auth), { :email => "email@example.com", :image => "image" }
   end
 
   test "nickname should return first authorization's nickname" do
