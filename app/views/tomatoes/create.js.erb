@@ -6,3 +6,5 @@ $("#user_statistics").html("<%= escape_javascript(render(:partial => 'welcome/us
 $("#new_tomato_form").unbind("keypress");
 $(".highlight").animate({backgroundColor: "#fff"}, 3000);
 TT.start(tomatoBreakDuration<%= "*3" if @long_break %>, TT.stateStop);
+window._fbq = window._fbq || [];
+window._fbq.push(['track', 'TomatoCreated', {longBreak: <%= @long_break ? 'true' : 'false' %>}]);
