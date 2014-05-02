@@ -51,16 +51,10 @@
   <div class="field block">
     <div class="left">
       <%= f.label :color %></br>
-      <%= f.text_field :color, :disabled => !@user.granted?('tomatoer', 3) %>
-      <% unless @user.granted?('tomatoer', 3) %>
-        <div class="hint">You must collect al least 100 tomatoes to get access to this feature</div>
-      <% else %>
-        <div class="hint">An hexadecimal color code. Example: <em>#ccff00</em></div>
-      <% end %>
+      <%= f.text_field :color %>
+      <div class="hint">An hexadecimal color code. Example: <em>#ccff00</em></div>
     </div>
-    <% if @user.granted?('tomatoer', 3) %>
-      <div id="colorpicker" class="left"></div>
-    <% end %>
+    <div id="colorpicker" class="left"></div>
   </div>
   
   <div class="actions">

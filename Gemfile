@@ -38,9 +38,6 @@ gem 'dalli'
 # Pagination
 gem 'kaminari'
 
-# Gamification
-gem 'merit'
-
 # Notify exceptions
 gem 'exception_notification'
 

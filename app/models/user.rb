@@ -42,7 +42,6 @@ class User
   attr_accessible :name, :email, :image, :time_zone, :color, :work_hours_per_day, :average_hourly_rate, :currency, :volume, :ticking
 
   validates_format_of :color, with: /\A#[A-Fa-f0-9]{6}\Z/, allow_blank: true
-  validate :color_update_grant, :unless => Proc.new { read_attribute(:color).nil? }
   validates_numericality_of :volume, greater_than_or_equal_to: 0, less_than: 4, allow_blank: true
 
   validates_inclusion_of :currency, :in => CURRENCIES.keys
@@ -55,12 +54,6 @@ class User
 
   index 'authorizations.uid'
   index 'authorizations.provider'
-
-  has_merit
-
-  def color_update_grant
-    errors.add(:color, 'can be customized only after 100 tomatoes tracked') unless granted?('tomatoer', 3)
-  end
   
   def self.find_by_omniauth(auth)
     any_of(
@@ -140,12 +133,6 @@ class User
     to_lines(users) do |users_by_day|
       users_count += users_by_day ? users_by_day.size : 0
     end
-  end
-
-  def granted?(name, level)
-    badges.select do |badge|
-      name == badge.name && badge.level >= level
-    end.size > 0
   end
 
   def color
