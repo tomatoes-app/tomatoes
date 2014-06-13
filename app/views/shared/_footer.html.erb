@@ -11,12 +11,21 @@
         Add to Chrome
       <% end %>
     </div>
-    Follow updates <%= link_to "@tomatoesapp", "http://twitter.com/tomatoesapp" %><br/>
-    <%= link_to "Tomatoes", TomatoesApp::REPO %> - <%= link_to "version #{TomatoesApp::VERSION}", "#{TomatoesApp::REPO}/tree/#{TomatoesApp::VERSION}" %>
+    <div>
+      Follow updates <%= link_to "@tomatoesapp", "http://twitter.com/tomatoesapp" %><br/>
+      <%= link_to "Tomatoes", TomatoesApp::REPO %> - <%= link_to "version #{TomatoesApp::VERSION}", "#{TomatoesApp::REPO}/tree/#{TomatoesApp::VERSION}" %>
+    </div>
+    <div class="trademarks">
+      This application is not affiliated, associated or endorsed by the Pomodoro Technique® or Francesco Cirillo.<br/>
+      The Pomodoro Technique® and Pomodoro™ are registered trademarks by Francesco Cirillo.
+    </div>
   </div>
   <div class="right">
     <%= render partial: 'shared/ranking_links' %><br/>
     <%= link_to "How to", page_path('how_to') %>,
-    <%= link_to "Statistics", statistics_path %>
+    <%= link_to "Statistics", statistics_path %><br/>
+    <%= link_to "Terms of service", page_path('terms') %>,
+    <%= link_to "Privacy policy", page_path('privacy') %>,
+    <%= link_to "Imprint", page_path('imprint') %>
   </div>
 </footer>
