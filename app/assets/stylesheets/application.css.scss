@@ -1,0 +1,14 @@
+$paragraph-font-family: 'Open Sans', sans-serif;
+$header-font-family: $paragraph-font-family;
+$paragraph-font-size: 1rem;
+$header-font-weight: normal;
+
+@import "foundation";
+@import "shared";
+
+@import "farbtastic";
+@import "pages";
+@import "projects";
+@import "scaffold";
+@import "users";
+@import "welcome";

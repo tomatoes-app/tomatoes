@@ -16,36 +16,42 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
+
 .farbtastic {
   position: relative;
-}
-.farbtastic * {
-  position: absolute;
-  cursor: crosshair;
-}
-.farbtastic, .farbtastic .wheel {
-  width: 195px;
-  height: 195px;
-}
-.farbtastic .color, .farbtastic .overlay {
-  top: 47px;
-  left: 47px;
-  width: 101px;
-  height: 101px;
-}
-.farbtastic .wheel {
-  background: url(<%= asset_path 'farbtastic/wheel.png' %>) no-repeat;
-  width: 195px;
-  height: 195px;
-}
-.farbtastic .overlay {
-  background: url(<%= asset_path 'farbtastic/mask.png' %>) no-repeat;
-}
-.farbtastic .marker {
-  width: 17px;
-  height: 17px;
-  margin: -8px 0 0 -8px;
-  overflow: hidden; 
-  background: url(<%= asset_path 'farbtastic/marker.png' %>) no-repeat;
-}
 
+  * {
+    position: absolute;
+    cursor: crosshair;
+  }
+
+  &, .wheel {
+    width: 195px;
+    height: 195px;
+  }
+
+  .color, .overlay {
+    top: 47px;
+    left: 47px;
+    width: 101px;
+    height: 101px;
+  }
+
+  .wheel {
+    background: url(image-path('farbtastic/wheel.png')) no-repeat;
+    width: 195px;
+    height: 195px;
+  }
+
+  .overlay {
+    background: url(image-path('farbtastic/mask.png')) no-repeat;
+  }
+
+  .marker {
+    width: 17px;
+    height: 17px;
+    margin: -8px 0 0 -8px;
+    overflow: hidden;
+    background: url(image-path('farbtastic/marker.png')) no-repeat;
+  }
+}

@@ -14,27 +14,27 @@ div.field, div.actions {
 
 .field_with_errors {
 	display: inline;
-}
-.field_with_errors input[type="text"],
-.field_with_errors select {
-	border: 1px solid #c00;
+
+	input[type="text"], select {
+		border: 1px solid #c00;
+	}
 }
 
 #error_explanation {
 	width: 450px;
 	margin-bottom: 20px;
 	border: 1px solid #c00;
-}
 
-#error_explanation h2 {
-	padding: 5px;
-	margin: 0;
-	font-size: 16px;
-	background-color: #c00;
-	color: #fff;
-}
+	h2 {
+		padding: 5px;
+		margin: 0;
+		font-size: 16px;
+		background-color: #c00;
+		color: #fff;
+	}
 
-#error_explanation ul li {
-	list-style: none;
-	padding: 5px;
+	ul li {
+		list-style: none;
+		padding: 5px;
+	}
 }
