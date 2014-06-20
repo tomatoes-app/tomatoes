@@ -273,8 +273,8 @@ a.button {
 }
 
 .container {
+  @include grid-row;
   margin: 0 auto;
-  width: 960px;
 }
 
 #container {

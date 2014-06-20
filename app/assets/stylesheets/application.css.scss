@@ -2,6 +2,7 @@ $paragraph-font-family: 'Open Sans', sans-serif;
 $header-font-family: $paragraph-font-family;
 $paragraph-font-size: 1rem;
 $header-font-weight: normal;
+$row-width: 960px;
 
 @import "foundation";
 @import "shared";
