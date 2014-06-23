@@ -1,9 +1,20 @@
-<% unless @projects.empty? %>
+<% if @todays_projects.present? %>
   <h3><%= link_to "Today's projects", projects_path %></h3>
   <table>
-    <%= render partial: 'projects/project', collection: @projects %>
+    <%= render partial: 'projects/project', collection: @todays_projects %>
   </table>
 <% else %>
   <p>You're not working on any project</p>
-  <p>Create a <%= link_to "new project", new_project_path %> to start collecting aggregate statistics</p>
+  <p>
+    To start collecting aggregate statistics create a <%= link_to "new project", new_project_path %>
+    <% if @projects.present? %>
+      or tag a pomodoro with one of the tags from the following projects</p>
+
+      <h3><%= link_to "Your projects", projects_path %></h3>
+      <table>
+        <%= render partial: 'projects/project', collection: @projects %>
+      </table>
+    <% else %>
+  </p>
+    <% end %>
 <% end %>
