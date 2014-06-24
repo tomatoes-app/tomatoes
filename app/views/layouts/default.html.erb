@@ -4,16 +4,15 @@
   <title>Tomatoes</title>
   <meta charset="UTF-8">
   <meta content='Tomatoes is a "pomodoro tracker", a Pomodoro technique® driven time tracker. Track your time using 25 minutes slots called "pomodoros".' name='description' />
-  <meta name="viewport" content="initial-scale=1.0" />
   <link rel="chrome-webstore-item" href="https://chrome.google.com/webstore/detail/jijbhneeenepenoolcdalnekggeialeo">
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,300,600|Leckerli+One&v2' rel='stylesheet' type='text/css'>
   <link id="favicon" rel="icon" type="image/png" href="<%= asset_path 'tomatoes_icon.png' %>">
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tag %>
-
+  
   <%= yield :head %>
-
+  
   <%= javascript_tag do %>
     var _gaq = _gaq || [];
     _gaq.push(['_setAccount', 'UA-2935139-19']);
@@ -25,7 +24,7 @@
       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
     })();
   <% end %>
-
+  
   <%= javascript_tag do %>
     (function() {
       var s = document.createElement('script'), t = document.getElementsByTagName('script')[0];
@@ -62,7 +61,7 @@
     <div id="main_container">
       <div class="container">
         <%= render :partial => 'shared/announcement' %>
-
+          
         <div id="flash">
           <%= render :partial => 'shared/flash', :locals => {:flash => flash} %>
         </div>

@@ -7,23 +7,23 @@
 .sign_in {
 	margin: 80px 50px;
 	text-align: center;
+}
 
-	.button {
-		font-size: 30px;
-	}
+.sign_in .button {
+	font-size: 30px;
+}
 
-	img {
-		margin-bottom: -6px;
-		margin-right: 6px;
-	}
+.sign_in img {
+	margin-bottom: -6px;
+	margin-right: 6px;
 }
 
 #index {
 	padding: 30px 0;
+}
 
-	h3 {
-		margin-top: 0;
-	}
+#index h3 {
+	margin-top: 0;
 }
 
 #tomatoes_list,
@@ -42,15 +42,13 @@ tr.highlight {
 	background-color: #dfd;
 }
 
-td {
-  &.tomato_duration,
-  &.project_name {
-	  padding-left: 1px;
-	}
+td.tomato_duration,
+td.project_name {
+	padding-left: 1px;
 }
 
 td.tomato_duration {
-	width: 150px;
+	width: 110px;
 }
 
 #timer_container {
@@ -62,15 +60,15 @@ td.tomato_duration {
 	padding: 20px;
 	background: #f9f9f9;
 	border: 1px solid #eee;
+}
 
-	&.round_left {
-		border: 1px solid #999;
-		border-right: 0 none;
-	}
+#timer_container.round_left {
+	border: 1px solid #999;
+	border-right: 0 none;
+}
 
-	&.round_right {
-		border-left: 0 none;
-	}
+#timer_container.round_right {
+	border-left: 0 none;
 }
 
 #timer_counter {
@@ -88,6 +86,8 @@ a#start {
 	font-size: 54px;
 }
 
+a#reset {}
+
 p#reset_hint {
 	font-size: 10px;
 }
@@ -98,28 +98,26 @@ p#reset_hint {
 
 #leaderboards {
 	margin-bottom: 50px;
-
-	.leaderboard_list {
-		width: 235px;
-		margin-right: 5px;
-	}
 }
 
-.leaderboard_list {
-	li {
-		list-style-position: inside;
-		margin-bottom: 5px;
-		padding: 2px;
-	}
+#leaderboards .leaderboard_list {
+	width: 235px;
+	margin-right: 5px;
+}
 
-	.count {
-		margin-left: 30px;
-		font-size: 10px;
-	}
+.leaderboard_list li {
+	list-style-position: inside;
+	margin-bottom: 5px;
+	padding: 2px;
+}
 
-	li.you {
-		background-color: #f0f0f0;
-	}
+.leaderboard_list .count {
+	margin-left: 30px;
+	font-size: 10px;
+}
+
+.leaderboard_list li.you {
+	background-color: #f0f0f0;
 }
 
 #user {
@@ -130,12 +128,12 @@ p#reset_hint {
 	width: 960px;
 	height: 480px;
 	margin-bottom: 20px;
+}
 
-	&.overview {
-		width: 960px;
-		height: 80px;
-		margin-bottom: 40px;
-	}
+.chart.overview {
+	width: 960px;
+	height: 80px;
+	margin-bottom: 40px;
 }
 
 #tomatoes_by_hour.chart {
@@ -172,60 +170,60 @@ p#reset_hint {
 .volume {
 	font-size: 18px;
 	margin-top: -20px;
+}
 
-	.up, .down {
-		margin-top: 4px;
-		font-weight: bold;
-	}
+.volume .up,
+.volume .down {
+	margin-top: 4px;
+	font-weight: bold;
+}
 
-	.down {
-		margin-right: 8px;
-	}
+.volume .down {
+	margin-right: 8px;
+}
+.volume .mute_toggle {
+	margin-right: 4px;
+}
 
-	.mute_toggle {
-		margin-right: 4px;
-	}
-
-	.up, .down, .mute_toggle {
-		cursor: pointer;
-	}
+.volume .up,
+.volume .down,
+.volume .mute_toggle {
+	cursor: pointer;
 }
 
 #volume_icon {
 	width: 32px;
 	height: 35px;
 	opacity: 0.7;
-	background-image: url(image-path("speaker_sprite.png"));
+	background-image: url(<%= asset_path "speaker_sprite.png" %>);
 }
 
 #ticking_sound_switch_container {
   text-align: left;
 }
 
-@for $level from 0 through 3 {
-	#volume_icon.level_#{$level} {
-		background-position: 0 -#{$level * 35}px;
-	}
+<% (0..3).each do |level| %>
+#volume_icon.level_<%= level %> {
+	background-position: 0 -<%= level*35 %>px;
+}
+<% end %>
+
+#tomato_signin h2 {
+	margin-top: 0;
 }
 
-#tomato_signin {
-	h2 {
-		margin-top: 0;
-	}
+#tomato_signin .button {
+	font-size: 24px;
+}
 
-	.button {
-		font-size: 24px;
-	}
+#tomato_signin .button img {
+	margin-bottom: -4px;
+}
 
-	.button img {
-		margin-bottom: -4px;
-	}
+#tomato_signin #cancel {
+	margin-top: 20px;
+}
 
-	#cancel {
-		margin-top: 20px;
-	}
-
-	#cancel .button {
-		font-size: 10px;
-	}
+#tomato_signin #cancel .button {
+	font-size: 10px;
 }
