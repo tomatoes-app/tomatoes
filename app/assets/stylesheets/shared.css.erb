@@ -1,0 +1,325 @@
+html, body {
+  height: 100%; /* needed for container min-height */
+}
+
+body {
+  font-size: 13px;
+  color: #444;
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+
+body, p, ol, ul, td {
+  font-family: 'Open Sans', sans-serif;
+}
+
+h1, h2, h3 {
+  font-weight: normal;
+}
+
+ol, ul {
+  padding: 0;
+  margin: 0;
+}
+
+a, a:visited {
+  color: #333;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+table {
+  margin-bottom: 20px;
+  width: 100%;
+  border-top: 1px solid #ccc;
+  border-spacing: 0;
+}
+
+table tr.even {
+  background: #f6f6f6;
+}
+table tr.odd {}
+
+table td, table th {
+  padding: 5px 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+table th {
+  font-weight: normal;
+  background: #DDD;
+  text-align: left;
+}
+
+table td.number, table th.number,
+table td.time, table th.time {
+  text-align: right;
+}
+
+table td.show, table th.show,
+table td.edit, table th.edit,
+table td.destroy, table th.destroy {
+  width: 18px;
+  text-align: center;
+}
+
+table td.show a,
+table td.edit a,
+table td.destroy a {
+  display: block;
+  text-indent: -9000px;
+  width: 16px;
+  height: 16px;
+  opacity: 0.5;
+}
+
+table td.show a:hover,
+table td.edit a:hover,
+table td.destroy a:hover {
+  opacity: 0.8;
+}
+
+table td.show a {
+  background-image: url(<%= asset_path "icons/show.png" %>)
+}
+
+table td.edit a {
+  background-image: url(<%= asset_path "icons/edit.png" %>)
+}
+
+table td.destroy a {
+  background-image: url(<%= asset_path "icons/destroy.png" %>)
+}
+
+input[type=text], input[type=number], select {
+  font-family: 'Open Sans', sans-serif;
+  margin: 2px 0;
+  padding: 3px;
+  border: 1px solid #dcdcdc;
+  font-size: 20px;
+}
+
+input[type=submit] {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 13px;
+  margin: 0;
+}
+
+footer {
+  margin-top: 100px;
+}
+
+footer .right {
+  text-align: right;
+}
+
+footer .trademarks {
+  margin: 10px 0;
+  font-size: 10px;
+  color: #888888;
+}
+
+.right {
+  float: right;
+}
+
+.left {
+  float: left;
+}
+
+.block {
+  overflow: hidden;
+}
+
+.notice {
+  color: #090;
+}
+
+.alert {
+  color: #f00;
+}
+
+.button {
+  background-color: #ededed;
+  border: 1px solid #dcdcdc;
+  display: inline-block;
+  color: #777;
+  padding: 6px 24px;
+  text-decoration: none;
+  text-shadow: 1px 1px 0px #ffffff;
+}
+
+.button:hover {
+  background-color: #e6e6e6;
+}
+
+.button:active {
+  position: relative;
+  top: 1px;
+}
+
+.button.big {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+a.button:hover {
+  text-decoration: none;
+}
+
+a.button:visited {
+  color: #777;
+}
+
+.loading {}
+
+.pagination {
+  text-align: right;
+}
+
+.counter {
+  vertical-align: top;
+  width: 100px;
+}
+
+.counter .counter_value {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.counter.red .counter_value {
+  color: #f00;
+}
+
+.counter.green .counter_value {
+  color: #008000;
+}
+
+.hint {
+  color: #999;
+}
+
+#flash {
+  text-align: center;
+}
+
+#announcement {
+  margin: 20px 0;
+}
+
+#announcement .title {
+  font-weight: bold;
+}
+
+#logo h1 {
+  font-size: 28px;
+  font-family: 'Leckerli One', cursive;
+  margin: 0;
+  padding-left: 28px;
+  background-image: url(<%= asset_path "tomatoes_logo_24.png" %>);
+  background-repeat: no-repeat;
+  background-position: 0 50%;
+}
+
+#logo.start h1 {
+  font-size: 158px;
+  margin-bottom: -45px;
+  text-align: center;
+  padding-left: 136px;
+  background-image: url(<%= asset_path "tomatoes_logo_128.png" %>);
+  background-position: 64px 50%;
+}
+
+#logo h1 a:hover {
+  text-decoration: none;
+}
+
+#logo h2 {
+  font-size: 9px;
+  margin-top: 0;
+  margin-left: 58px;
+}
+
+#logo.start h2 {
+  font-size: 20px;
+  margin-left: 476px;
+  margin-bottom: 0;
+}
+
+#logo.start #sponsors {
+  margin-left: 612px;
+}
+
+#logo.auth .text {
+  margin-right: 20px;
+}
+
+#logo #sponsors p {
+  margin: 0;
+  margin-top: 6px;
+  margin-right: 7px;
+}
+
+#logo #sponsors a#mongohq {
+  display: block;
+  text-indent: -9000px;
+  background-image: url(<%= asset_path "sponsors/mongohq_small.png" %>);
+  width: 100px;
+  height: 28px;
+}
+
+.container {
+  margin: 0 auto;
+  width: 960px;
+}
+
+#container {
+  position:relative;      /* needed for footer positioning*/
+  height:auto !important; /* real browsers */
+  height:100%;            /* IE6: treaded as min-height*/
+  min-height:100%;        /* real browsers */
+}
+
+#header_container {
+  text-decoration: none;
+  text-shadow: 1px 1px 0px #fff;
+  margin-bottom: 50px;
+}
+
+#header_container.auth {
+  background-color: #f9f9f9;
+  border-bottom: 1px solid #f2f2f2;
+  color: #777;
+}
+
+#header_container #user_container,
+#header_container #sign_in_container {
+  margin-top: 3px;
+}
+
+#header_container #sign_in_container a img {
+  margin-bottom: -8px;
+}
+
+#main_container {
+  padding-bottom: 140px; /* bottom padding for footer */
+}
+
+#footer_container {
+  position: absolute;
+  width: 100%;
+  bottom: 0; /* stick to bottom */
+  margin-bottom: 5px;
+}
+
+#add_to_chrome {
+  margin: 10px 0;
+}
+
+#add_to_chrome img {
+  margin-bottom: -6px;
+}

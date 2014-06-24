@@ -71,9 +71,6 @@ GEM
       nokogiri (~> 1.5.0)
       ruby-hmac
     formatador (0.2.3)
-    foundation-rails (5.3.0.1)
-      railties (>= 3.1.0)
-      sass (>= 3.2.0)
     hashie (2.0.5)
     heroku (2.26.7)
       heroku-api (~> 0.2.4)
@@ -178,8 +175,8 @@ GEM
       mime-types (>= 1.16)
     ruby-hmac (0.4.0)
     rubyzip (0.9.8)
-    sass (3.3.8)
-    sass-rails (3.2.6)
+    sass (3.1.19)
+    sass-rails (3.2.5)
       railties (~> 3.2.0)
       sass (>= 3.1.10)
       tilt (~> 1.3)
@@ -216,7 +213,6 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   dalli
   exception_notification
-  foundation-rails
   heroku
   high_voltage
   jquery-rails

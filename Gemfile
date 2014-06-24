@@ -16,7 +16,6 @@ group :assets do
   gem 'asset_sync'
 end
 
-gem 'foundation-rails'
 gem 'jquery-rails'
 
 # Mongo
