@@ -60,8 +60,5 @@ module TomatoesApp
     # Skip initialization on assets precompiling
     # see http://stackoverflow.com/a/7894840/341061
     config.assets.initialize_on_precompile = false
-
-    # Redirect requests to herokuapp.com domain to tomato.es
-    config.middleware.use "NoHeroku"
   end
 end
