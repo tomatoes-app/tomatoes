@@ -63,8 +63,5 @@ module TomatoesApp
 
     # Redirect requests to herokuapp.com domain to tomato.es
     config.middleware.use "NoHeroku"
-
-    # Redirect requests to www.tomato.es domain to tomato.es
-    config.middleware.use "NoWww"
   end
 end
