@@ -16,14 +16,14 @@ function permissionCallback(hasPermission) {
 $(document).ready(function() {
   if(NOTIFIER.hasSupport()) {
     permissionCallback(NOTIFIER.hasPermission());
-    
+
     $("#request_notification_permission a").click(function(event) {
       NOTIFIER.requestPermission(permissionCallback);
       event.preventDefault();
     });
   }
   else {
-    $("#request_notification_permission").hide();
+    $("#notification_not_supported").show();
   }
 
   if($('#colorpicker').length > 0) {

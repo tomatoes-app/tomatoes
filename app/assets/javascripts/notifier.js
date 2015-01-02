@@ -1,42 +1,46 @@
+// See:
+//  * https://developer.mozilla.org/en-US/docs/Web/API/notification
+//  * https://developer.chrome.com/apps/notifications
 function Notifier() {}
 
 // Returns "true" if this browser supports notifications.
 Notifier.prototype.hasSupport = function() {
-  return !!window.webkitNotifications;
-}
+  return "Notification" in window;
+};
 
-// Request permission for this page to send notifications. If allowed,
-// calls function "cb" with true.
-Notifier.prototype.requestPermission = function(cb) {
-  window.webkitNotifications.requestPermission(function() {
-    cb && cb((new Notifier()).hasPermission());
+// Request permission for this page to send notifications.
+Notifier.prototype.requestPermission = function(callback) {
+  Notification.requestPermission(function(permission) {
+    callback(permission === "granted");
   });
-}
+};
 
 Notifier.prototype.hasPermission = function() {
-  return this.hasSupport() && 0 == window.webkitNotifications.checkPermission();
-}
+  return Notification.permission === "granted";
+};
 
 // Popup a notification with icon, title, and body. Returns false if
 // permission was not granted.
 Notifier.prototype.notify = function(icon, title, body) {
   if (this.hasPermission()) {
-    var popup = window.webkitNotifications.createNotification(icon, title, body);
-    popup.show();
-    
-    popup.onclick = function(x) {
+    console.log(icon, title, body);
+
+    var notification = new Notification(body, { icon: icon, title: title });
+    console.log(notification);
+
+    notification.onclick = function() {
       window.focus();
-      this.cancel();
+      notification.close();
     };
 
-    setTimeout(function(){
-      popup.cancel();
+    setTimeout(function() {
+      notification.close();
     }, 10000);
 
     return true;
   }
 
   return false;
-}
+};
 
 var NOTIFIER = new Notifier();
