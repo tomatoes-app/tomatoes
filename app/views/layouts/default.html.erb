@@ -10,9 +10,9 @@
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tag %>
-  
+
   <%= yield :head %>
-  
+
   <%= javascript_tag do %>
     var _gaq = _gaq || [];
     _gaq.push(['_setAccount', 'UA-2935139-19']);
@@ -51,7 +51,7 @@
     <div id="main_container">
       <div class="container">
         <%= render :partial => 'shared/announcement' %>
-          
+
         <div id="flash">
           <%= render :partial => 'shared/flash', :locals => {:flash => flash} %>
         </div>
