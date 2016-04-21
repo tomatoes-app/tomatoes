@@ -1,8 +1,8 @@
 # ![Tomatoes](https://github.com/potomak/tomatoes/raw/develop/app/assets/images/tomatoes_logo_48.png "Tomatoes") Tomatoes
 
-Try it for free at [http://tomato.es](http://tomato.es "Tomatoes")
+Try it for free at [http://tomato.es](http://tomato.es "Tomatoes").
 
-[![Flattr Tomatoes](http://api.flattr.com/button/flattr-badge-large.png)](http://flattr.com/thing/376437/Tomatoes "Flattr Tomatoes")
+Support the project at [backerpass.com/tomatoes](https://backerpass.com/tomatoes).
 
 ## Why?
 

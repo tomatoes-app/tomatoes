@@ -28,9 +28,6 @@
         <div id="volume_icon" class="mute_toggle left"></div>
         <div class="up left">+</div>
       </div>
-      <% if current_user %>
-        <%= render :partial => 'shared/adv_rectangle' %>
-      <% end %>
       <div id="timer_counter"></div>
       <%= link_to "Reset", "#", :id => "reset", :class => "button" %>
       <p id="reset_hint">or press esc</p>
