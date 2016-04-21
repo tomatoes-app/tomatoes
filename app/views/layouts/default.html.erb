@@ -66,11 +66,15 @@
           <%= render :partial => 'shared/flash', :locals => {:flash => flash} %>
         </div>
 
-        <%= render :partial => 'shared/adv_leaderboard' %>
+        <% unless current_user %>
+          <%= render :partial => 'shared/adv_leaderboard' %>
+        <% end %>
 
         <%= yield %>
 
-        <%= render :partial => 'shared/adv_leaderboard' %>
+        <% unless current_user %>
+          <%= render :partial => 'shared/adv_leaderboard' %>
+        <% end %>
 
       </div>
     </div>
