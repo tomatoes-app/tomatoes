@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.16'
+gem 'rails', '3.2.22.4'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -17,7 +17,7 @@ end
 gem 'jquery-rails'
 
 # Mongo
-gem 'mongoid'
+gem 'mongoid', '~> 2.4.12'
 gem 'bson_ext'
 
 # Omniauth
