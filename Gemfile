@@ -6,18 +6,18 @@ gem 'rails', '3.2.22.4'
 # in production environments by default.
 group :assets do
   gem 'sass-rails', '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
+  # gem 'coffee-rails', '~> 3.2.1'
   gem 'therubyracer'
   gem 'uglifier', '>= 1.0.3'
 
   # Upload assets to AWS S3
-  gem 'asset_sync'
+  gem 'asset_sync', '~> 0.4.3'
 end
 
 gem 'jquery-rails'
 
 # Mongo
-gem 'mongoid', '~> 2.6.0'
+gem 'mongoid', '~> 3.0.23'
 gem 'bson_ext'
 
 # Omniauth
@@ -29,14 +29,14 @@ gem 'omniauth-twitter'
 gem 'unicorn'
 
 # New Relic
-gem 'newrelic_rpm'
+gem 'newrelic_rpm', '~> 3.5.8'
 
 # Memcached
 gem 'memcachier'
 gem 'dalli'
 
 # Pagination
-gem 'kaminari'
+gem 'kaminari', '~> 0.13.0'
 
 # Notify exceptions
 gem 'exception_notification'
@@ -56,4 +56,8 @@ group :development do
 
   # Virtual box provisioning librarian gems
   gem 'librarian'
+end
+
+group :development, :test do
+  gem 'pry'
 end

@@ -6,16 +6,16 @@ class Tomato
   include Mongoid::Document::Taggable
   include Mongoid::Timestamps
   include Chartable
-  
+
   belongs_to :user
 
-  index :created_at
+  index({:created_at => 1})
 
   validate :must_not_overlap, :on => :create
-  
+
   DURATION       = Rails.env.development? ? 25 : 25*60 # pomodoro default duration in seconds
   BREAK_DURATION = Rails.env.development? ? 5  : 5*60  # pomodoro default break duration in seconds
-  
+
   include ActionView::Helpers::TextHelper
   include ApplicationHelper
 
@@ -52,7 +52,7 @@ class Tomato
   end
 
   def self.ranking_collection(time_period)
-    collection.map_reduce(ranking_map(time_period), ranking_reduce, {out: "user_ranking_#{time_period}s"})
+    map_reduce(ranking_map(time_period), ranking_reduce).out({:replace => "user_ranking_#{time_period}s"})
   end
 
   def self.by_day(tomatoes)
@@ -75,7 +75,7 @@ class Tomato
 
   # CSV representation.
   def self.to_csv(tomatoes, opts={})
-    CSV.generate(opts) do |csv| 
+    CSV.generate(opts) do |csv|
       tomatoes.each do |tomato|
         csv << [tomato.created_at, tomato.tags.join(", ")]
       end

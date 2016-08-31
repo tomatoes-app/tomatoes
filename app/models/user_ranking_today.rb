@@ -1,4 +1,4 @@
 class UserRankingToday < UserRanking
   include Mongoid::Document
-  index :value
+  index({:value => 1})
 end
