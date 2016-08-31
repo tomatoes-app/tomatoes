@@ -17,7 +17,7 @@ end
 gem 'jquery-rails'
 
 # Mongo
-gem 'mongoid', '~> 2.4.12'
+gem 'mongoid', '~> 2.6.0'
 gem 'bson_ext'
 
 # Omniauth

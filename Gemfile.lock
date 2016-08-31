@@ -38,9 +38,9 @@ GEM
       erubis (>= 2.6.6)
     binding_of_caller (0.7.1)
       debug_inspector (>= 0.0.1)
-    bson (1.6.4)
-    bson_ext (1.6.4)
-      bson (~> 1.6.4)
+    bson (1.12.5)
+    bson_ext (1.12.5)
+      bson (~> 1.12.5)
     builder (3.0.4)
     coderay (1.0.9)
     coffee-rails (3.2.2)
@@ -107,11 +107,11 @@ GEM
     mime-types (1.25.1)
     mocha (0.13.3)
       metaclass (~> 0.0.1)
-    mongo (1.6.2)
-      bson (~> 1.6.2)
-    mongoid (2.4.12)
+    mongo (1.12.5)
+      bson (= 1.12.5)
+    mongoid (2.6.0)
       activemodel (~> 3.1)
-      mongo (<= 1.6.2)
+      mongo (~> 1.7)
       tzinfo (~> 0.3.22)
     multi_json (1.12.1)
     multipart-post (1.1.5)
@@ -218,7 +218,7 @@ DEPENDENCIES
   librarian
   memcachier
   mocha
-  mongoid (~> 2.4.12)
+  mongoid (~> 2.6.0)
   newrelic_rpm
   omniauth
   omniauth-github
