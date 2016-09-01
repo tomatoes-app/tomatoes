@@ -11,7 +11,7 @@ class RankingsController < ApplicationController
   protected
 
   def cached_leatherboard
-    Rails.cache.fetch([:user_ranking, params[:time_period], params[:page]], :expires_in => @cache_expiration) do
+    Rails.cache.fetch([:user_ranking, params[:time_period]], :expires_in => @cache_expiration) do
       Tomato.ranking_collection(params[:time_period].to_sym)
       ranking_collection(params[:time_period]).where(:value.gt => 0).desc(:value).to_a
     end
