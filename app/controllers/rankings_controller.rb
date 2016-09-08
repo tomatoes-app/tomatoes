@@ -2,16 +2,20 @@ class RankingsController < ApplicationController
   def index
     if %w(today this_week this_month all_time).include?(params[:time_period])
       @cache_expiration = expires_in(params[:time_period])
-      @leaderboard = Rails.cache.fetch("user_ranking_#{params[:time_period]}", :expires_in => @cache_expiration) do
-        Tomato.ranking_collection(params[:time_period].to_sym)
-        ranking_collection(params[:time_period]).where(:value.gt => 0).desc(:value)
-      end.page(params[:page])
+      @leaderboard = Kaminari.paginate_array(cached_leaderboard).page(params[:page])
     else
       not_found
     end
   end
 
   protected
+
+  def cached_leaderboard
+    Rails.cache.fetch([:user_ranking, params[:time_period]], :expires_in => @cache_expiration) do
+      Tomato.ranking_collection(params[:time_period].to_sym)
+      ranking_collection(params[:time_period]).where(:value.gt => 0).desc(:value).to_a
+    end
+  end
 
   def expires_in(time_period)
     case time_period

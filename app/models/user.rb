@@ -19,7 +19,7 @@ class User
   DEFAULT_IMAGE_FILE = 'user.png'
   DEFAULT_VOLUME     = 2
   DEFAULT_TICKING    = false
-  
+
   # authorization fields (deprecated)
   field :provider,    :type => String
   field :uid,         :type => String
@@ -37,7 +37,7 @@ class User
   field :work_hours_per_day,  :type => Integer
   field :average_hourly_rate, :type => Float
   field :currency,            :type => String
-  
+
   # attr_accessible :provider, :uid, :token, :gravatar_id
   attr_accessible :name, :email, :image, :time_zone, :color, :work_hours_per_day, :average_hourly_rate, :currency, :volume, :ticking
 
@@ -47,14 +47,14 @@ class User
   validates_inclusion_of :currency, :in => CURRENCIES.keys
   validates_numericality_of :work_hours_per_day, greater_than: 0, allow_blank: true
   validates_numericality_of :average_hourly_rate, greater_than: 0, allow_blank: true
-  
+
   embeds_many :authorizations
   has_many :tomatoes
   has_many :projects
 
-  index 'authorizations.uid'
-  index 'authorizations.provider'
-  
+  index({'authorizations.uid' => 1})
+  index({'authorizations.provider' => 1})
+
   def self.find_by_omniauth(auth)
     any_of(
       {:authorizations => {
@@ -64,14 +64,14 @@ class User
       {:provider => auth['provider'], :uid => auth['uid']}
     ).first
   end
-  
+
   def self.create_with_omniauth!(auth)
     user = User.new(omniauth_attributes(auth))
     user.authorizations.build(Authorization.omniauth_attributes(auth))
     user.save!
     user
   end
-  
+
   def update_omniauth_attributes!(auth)
     # migrate users' data gracefully
     update_attributes!(omniauth_attributes(auth))
@@ -83,16 +83,16 @@ class User
       authorizations.create!(Authorization.omniauth_attributes(auth))
     end
   end
-  
+
   def self.omniauth_attributes(auth)
     attributes = {}
-    
+
     attributes.merge!({
       name:  auth['info']['name'],
       email: auth['info']['email'],
       image: auth['info']['image']
     }) if auth['info']
-    
+
     attributes
   end
 
@@ -102,7 +102,7 @@ class User
     [:name, :email].each do |attribute|
       attributes.delete(attribute) if send(attribute) && !send(attribute).empty?
     end
-    
+
     attributes
   end
 

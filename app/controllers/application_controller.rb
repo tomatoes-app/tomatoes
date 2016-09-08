@@ -1,10 +1,10 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  
+
   helper_method :current_user
   helper_method :user_signed_in?
   helper_method :correct_user?
-  
+
   before_filter :set_time_zone
 
   protected
@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
   def set_time_zone
     Time.zone = current_user && current_user.time_zone && !current_user.time_zone.empty? ? current_user.time_zone : ActiveSupport::TimeZone[-cookies[:timezone].to_i.minutes]
   end
-  
+
   def current_user
     begin
       @current_user ||= User.find(session[:user_id]) if session[:user_id]
