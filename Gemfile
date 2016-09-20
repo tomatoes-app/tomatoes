@@ -27,7 +27,7 @@ gem 'omniauth-github'
 gem 'omniauth-twitter'
 
 # Unicorn
-gem 'unicorn'
+gem 'unicorn', '~> 4.9.0'
 
 # New Relic
 gem 'newrelic_rpm', '~> 3.5.8'
