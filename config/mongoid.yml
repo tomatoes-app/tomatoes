@@ -83,7 +83,12 @@ test:
 production:
   sessions:
     default:
-      uri: <%= ENV["MONGOHQ_REPL_URI"]%>
+      database: <%= ENV["MONGOHQ_DATABASE"]%>
+      username: <%= ENV["MONGOHQ_USERNAME"]%>
+      password: <%= ENV["MONGOHQ_PASSWORD"]%>
+      hosts:
+        - <%= ENV["MONGOHQ_REPL_HOST_1"]%>
+        - <%= ENV["MONGOHQ_REPL_HOST_2"]%>
       options:
         # Change whether the session persists in safe mode by default.
         # (default: false)
