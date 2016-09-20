@@ -45,6 +45,10 @@ gem 'exception_notification'
 # Static pages
 gem 'high_voltage'
 
+group :production do
+  gem 'rails_12factor'
+end
+
 group :test do
   gem 'mocha', :require => false
 end
