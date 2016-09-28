@@ -45,6 +45,9 @@ gem 'exception_notification'
 # Static pages
 gem 'high_voltage'
 
+# Asyn tasks
+gem 'sucker_punch', '~> 2.0'
+
 group :production do
   gem 'rails_12factor'
 end
