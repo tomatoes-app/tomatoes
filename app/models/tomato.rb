@@ -52,7 +52,7 @@ class Tomato
   end
 
   def self.ranking_collection(time_period)
-    map_reduce(ranking_map(time_period), ranking_reduce).out({:replace => "user_ranking_#{time_period}s"})
+    map_reduce(ranking_map(time_period), ranking_reduce).out({:replace => "user_ranking_#{time_period}s"}).entries
   end
 
   def self.by_day(tomatoes)
