@@ -8,3 +8,4 @@ config/twitter.yml
 .DS_Store
 public/assets
 cookbooks/
+.env
