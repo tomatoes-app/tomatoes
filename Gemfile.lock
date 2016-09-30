@@ -89,8 +89,6 @@ GEM
       railties (>= 3.0.0)
     launchy (2.1.0)
       addressable (~> 2.2.6)
-    librarian (0.0.4)
-      thor
     libv8 (3.16.14.15)
     mail (2.5.4)
       mime-types (~> 1.16)
@@ -219,7 +217,6 @@ DEPENDENCIES
   high_voltage
   jquery-rails
   kaminari (~> 0.13.0)
-  librarian
   memcachier
   mocha
   mongoid (~> 3.1.7)

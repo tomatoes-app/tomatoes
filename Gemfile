@@ -61,9 +61,6 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'quiet_assets'
-
-  # Virtual box provisioning librarian gems
-  gem 'librarian'
 end
 
 group :development, :test do
