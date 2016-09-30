@@ -1,16 +1,18 @@
 class UserRanking
-  def self.users_array
-    User.find(all.entries.collect(&:_id))
-  rescue Mongoid::Errors::DocumentNotFound
-    []
-  end
+  class << self
+    def users_array
+      User.find(all.entries.collect(&:_id))
+    rescue Mongoid::Errors::DocumentNotFound
+      []
+    end
 
-  def self.users_hash
-    Hash[*users_array.collect { |u| [u._id, u] }.flatten]
-  end
+    def users_hash
+      Hash[*users_array.collect { |u| [u._id, u] }.flatten]
+    end
 
-  def self.users
-    @@users ||= users_hash
+    def users
+      @users ||= users_hash
+    end
   end
 
   def user
