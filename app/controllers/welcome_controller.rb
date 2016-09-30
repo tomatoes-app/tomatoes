@@ -1,5 +1,5 @@
 class WelcomeController < ApplicationController
-  layout Proc.new { |controller| controller.user_signed_in? ? 'application' : 'public' }
+  layout proc { |controller| controller.user_signed_in? ? 'application' : 'public' }
 
   def index
     if current_user

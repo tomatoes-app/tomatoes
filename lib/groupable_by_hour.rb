@@ -7,7 +7,7 @@ module GroupableByHour
     def group_by_hour(collection)
       Hash[collection.group_by do |item|
         item.created_at.hour
-      end.sort {|a, b| a[0] <=> b[0]}.map {|a| [a[0], a[1]]}]
+      end.sort { |a, b| a[0] <=> b[0] }.map { |a| [a[0], a[1]] }]
     end
   end
 end

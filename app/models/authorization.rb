@@ -1,30 +1,30 @@
 class Authorization
   include Mongoid::Document
-  
-  field :provider, :type => String
-  field :uid,      :type => String
-  field :token,    :type => String
-  field :secret,   :type => String
-  field :nickname, :type => String
-  field :image,    :type => String
-  
+
+  field :provider, type: String
+  field :uid,      type: String
+  field :token,    type: String
+  field :secret,   type: String
+  field :nickname, type: String
+  field :image,    type: String
+
   embedded_in :user
 
   def self.omniauth_attributes(auth)
     attributes = {
       provider: auth['provider'],
       uid: auth['uid'] }
-    
-    attributes.merge!({
-      token: auth['credentials']['token'],
-      secret: auth['credentials']['secret']
-    }) if auth['credentials']
 
-    attributes.merge!({
-      nickname: auth['info']['nickname'],
-      image: omniauth_image(auth)
-    }) if auth['info']
-    
+    if auth['credentials']
+      attributes[:token] = auth['credentials']['token']
+      attributes[:secret] = auth['credentials']['secret']
+    end
+
+    if auth['info']
+      attributes[:nickname] = auth['info']['nickname']
+      attributes[:image] = omniauth_image(auth)
+    end
+
     attributes
   end
 

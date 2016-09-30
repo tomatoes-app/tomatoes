@@ -9,12 +9,12 @@ class Tomato
 
   belongs_to :user
 
-  index({:created_at => 1})
+  index(created_at: 1)
 
-  validate :must_not_overlap, :on => :create
+  validate :must_not_overlap, on: :create
 
-  DURATION       = Rails.env.development? ? 25 : 25*60 # pomodoro default duration in seconds
-  BREAK_DURATION = Rails.env.development? ? 5  : 5*60  # pomodoro default break duration in seconds
+  DURATION       = Rails.env.development? ? 25 : 25 * 60 # pomodoro default duration in seconds
+  BREAK_DURATION = Rails.env.development? ? 5  : 5 * 60  # pomodoro default break duration in seconds
 
   include ActionView::Helpers::TextHelper
   include ApplicationHelper
@@ -29,10 +29,10 @@ class Tomato
   def self.ranking_map(time_period)
     if :all_time != time_period
       date = Time.zone.now.send(beginning_of(time_period))
-      date = "(new Date(#{date.year}, #{date.month-1}, #{date.day}))"
+      date = "(new Date(#{date.year}, #{date.month - 1}, #{date.day}))"
     end
 
-    %Q{
+    %{
       function() {
         emit(this.user_id, #{:all_time != time_period ? "this.created_at > #{date} ? 1 : 0" : 1});
       }
@@ -40,7 +40,7 @@ class Tomato
   end
 
   def self.ranking_reduce
-    %Q{
+    %{
       function(key, values) {
         var result = 0;
         values.forEach(function(v) {
@@ -52,7 +52,7 @@ class Tomato
   end
 
   def self.ranking_collection(time_period)
-    map_reduce(ranking_map(time_period), ranking_reduce).out({:replace => "user_ranking_#{time_period}s"}).entries
+    map_reduce(ranking_map(time_period), ranking_reduce).out(replace: "user_ranking_#{time_period}s").entries
   end
 
   def self.by_day(tomatoes)
@@ -74,16 +74,16 @@ class Tomato
   end
 
   # CSV representation.
-  def self.to_csv(tomatoes, opts={})
+  def self.to_csv(tomatoes, opts = {})
     CSV.generate(opts) do |csv|
       tomatoes.each do |tomato|
-        csv << [tomato.created_at, tomato.tags.join(", ")]
+        csv << [tomato.created_at, tomato.tags.join(', ')]
       end
     end
   end
 
   def any_of_conditions
-    tags.map { |tag| {tags: tag} }
+    tags.map { |tag| { tags: tag } }
   end
 
   def projects

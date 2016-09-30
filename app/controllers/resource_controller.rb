@@ -20,11 +20,11 @@ class ResourceController < ApplicationController
 
     respond_to do |format|
       if resource.update_attributes(params[class_name.underscore.to_sym])
-        format.html { redirect_to(resource, :notice => "#{class_name.titleize} was successfully updated.") }
+        format.html { redirect_to(resource, notice: "#{class_name.titleize} was successfully updated.") }
         format.xml  { head :ok }
       else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => resource.errors, :status => :unprocessable_entity }
+        format.html { render action: 'edit' }
+        format.xml  { render xml: resource.errors, status: :unprocessable_entity }
       end
     end
   end

@@ -2,11 +2,11 @@ module WelcomeHelper
   def counter_label(time_period)
     case time_period
     when :day
-      "Today"
+      'Today'
     when :week
-      "This week"
+      'This week'
     when :month
-      "This month"
+      'This month'
     end
   end
 end

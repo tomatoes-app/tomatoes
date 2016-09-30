@@ -53,7 +53,7 @@ group :production do
 end
 
 group :test do
-  gem 'mocha', :require => false
+  gem 'mocha', require: false
 end
 
 group :development do

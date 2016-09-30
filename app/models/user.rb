@@ -12,31 +12,31 @@ class User
     'JPY' => '¥',
     'GBP' => '£',
     'CHF' => 'Fr.'
-  }
+  }.freeze
 
-  DEFAULT_COLOR      = '#000000'
-  DEFAULT_CURRENCY   = 'USD'
-  DEFAULT_IMAGE_FILE = 'user.png'
+  DEFAULT_COLOR      = '#000000'.freeze
+  DEFAULT_CURRENCY   = 'USD'.freeze
+  DEFAULT_IMAGE_FILE = 'user.png'.freeze
   DEFAULT_VOLUME     = 2
   DEFAULT_TICKING    = false
 
   # authorization fields (deprecated)
-  field :provider,    :type => String
-  field :uid,         :type => String
-  field :token,       :type => String
-  field :gravatar_id, :type => String
+  field :provider,    type: String
+  field :uid,         type: String
+  field :token,       type: String
+  field :gravatar_id, type: String
 
-  field :name,      :type => String
-  field :email,     :type => String
-  field :image,     :type => String
-  field :time_zone, :type => String
-  field :color,     :type => String
-  field :volume,    :type => Integer
-  field :ticking,   :type => Boolean
+  field :name,      type: String
+  field :email,     type: String
+  field :image,     type: String
+  field :time_zone, type: String
+  field :color,     type: String
+  field :volume,    type: Integer
+  field :ticking,   type: Boolean
 
-  field :work_hours_per_day,  :type => Integer
-  field :average_hourly_rate, :type => Float
-  field :currency,            :type => String
+  field :work_hours_per_day,  type: Integer
+  field :average_hourly_rate, type: Float
+  field :currency,            type: String
 
   # attr_accessible :provider, :uid, :token, :gravatar_id
   attr_accessible :name, :email, :image, :time_zone, :color, :work_hours_per_day, :average_hourly_rate, :currency, :volume, :ticking
@@ -44,7 +44,7 @@ class User
   validates_format_of :color, with: /\A#[A-Fa-f0-9]{6}\Z/, allow_blank: true
   validates_numericality_of :volume, greater_than_or_equal_to: 0, less_than: 4, allow_blank: true
 
-  validates_inclusion_of :currency, :in => CURRENCIES.keys
+  validates_inclusion_of :currency, in: CURRENCIES.keys
   validates_numericality_of :work_hours_per_day, greater_than: 0, allow_blank: true
   validates_numericality_of :average_hourly_rate, greater_than: 0, allow_blank: true
 
@@ -52,16 +52,16 @@ class User
   has_many :tomatoes
   has_many :projects
 
-  index({'authorizations.uid' => 1})
-  index({'authorizations.provider' => 1})
+  index('authorizations.uid' => 1)
+  index('authorizations.provider' => 1)
 
   def self.find_by_omniauth(auth)
     any_of(
-      {:authorizations => {
+      { authorizations: {
         '$elemMatch' => {
-          :provider => auth['provider'].to_s,
-          :uid      => auth['uid'].to_s }}},
-      {:provider => auth['provider'], :uid => auth['uid']}
+          provider: auth['provider'].to_s,
+          uid: auth['uid'].to_s } } },
+      provider: auth['provider'], uid: auth['uid']
     ).first
   end
 
@@ -87,11 +87,9 @@ class User
   def self.omniauth_attributes(auth)
     attributes = {}
 
-    attributes.merge!({
-      name:  auth['info']['name'],
-      email: auth['info']['email'],
-      image: auth['info']['image']
-    }) if auth['info']
+    attributes.merge!(name:  auth['info']['name'],
+                      email: auth['info']['email'],
+                      image: auth['info']['image']) if auth['info']
 
     attributes
   end
@@ -111,7 +109,7 @@ class User
   end
 
   def tomatoes_after(time)
-    tomatoes.where(:created_at => {'$gte' => time}).order_by([[:created_at, :desc]])
+    tomatoes.where(created_at: { '$gte' => time }).order_by([[:created_at, :desc]])
   end
 
   def self.by_tomatoes(users)
@@ -136,22 +134,22 @@ class User
   end
 
   def color
-    color_value = read_attribute(:color)
+    color_value = self[:color]
     color_value && !color_value.empty? ? color_value : User::DEFAULT_COLOR
   end
 
   def volume
-    volume_value = read_attribute(:volume)
+    volume_value = self[:volume]
     volume_value.present? ? volume_value : User::DEFAULT_VOLUME
   end
 
   def ticking
-    ticking_value = read_attribute(:ticking)
+    ticking_value = self[:ticking]
     ticking_value.present? ? ticking_value : User::DEFAULT_TICKING
   end
 
   def currency
-    currency_value = read_attribute(:currency)
+    currency_value = self[:currency]
     currency_value && !currency_value.empty? ? currency_value : User::DEFAULT_CURRENCY
   end
 
@@ -160,7 +158,7 @@ class User
   end
 
   def image_file
-    image_value = read_attribute(:image) || authorizations.first.try(:image)
+    image_value = self[:image] || authorizations.first.try(:image)
     image_value && !image_value.empty? ? image_value : User::DEFAULT_IMAGE_FILE
   end
 
@@ -169,7 +167,7 @@ class User
   end
 
   def estimated_revenues
-    work_time*Workable::TOMATO_TIME_FACTOR/60/60 * average_hourly_rate.to_f if average_hourly_rate
+    work_time * Workable::TOMATO_TIME_FACTOR / 60 / 60 * average_hourly_rate.to_f if average_hourly_rate
   end
 
   def tomatoes_counter(time_period)
@@ -183,7 +181,7 @@ class User
   end
 
   def any_of_conditions(tags)
-    tags.map { |tag| {tags: tag} }
+    tags.map { |tag| { tags: tag } }
   end
 
   def tomatoes_by_tags(tags)

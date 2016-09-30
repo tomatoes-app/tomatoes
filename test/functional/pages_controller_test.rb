@@ -5,8 +5,8 @@ class PagesControllerTest < ActionController::TestCase
     @controller = HighVoltage::PagesController.new
   end
 
-  test "should get how_to" do
-    get :show, :id => 'how_to'
+  test 'should get how_to' do
+    get :show, id: 'how_to'
     assert_response :success
     assert_template :how_to
   end
