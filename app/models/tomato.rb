@@ -20,7 +20,8 @@ class Tomato
   include ApplicationHelper
 
   def must_not_overlap
-    if last_tomato = user.tomatoes_after(Time.zone.now - DURATION.seconds).first
+    last_tomato = user.tomatoes_after(Time.zone.now - DURATION.seconds).first
+    if last_tomato
       limit = (DURATION.seconds - (Time.zone.now - last_tomato.created_at)).seconds
       errors.add(:base, "Must not overlap saved tomaotes, please wait #{humanize(limit)}")
     end

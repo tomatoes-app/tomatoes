@@ -76,7 +76,8 @@ class User
     # migrate users' data gracefully
     update_attributes!(omniauth_attributes(auth))
 
-    if authorization = authorization_by_provider(auth['provider'])
+    authorization = authorization_by_provider(auth['provider'])
+    if authorization
       authorization.update_attributes!(Authorization.omniauth_attributes(auth))
     else
       # merge one more authorization provider
