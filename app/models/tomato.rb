@@ -62,9 +62,12 @@ class Tomato
     end
 
     def by_tags(tomatoes)
-      tomatoes.collect(&:tags).flatten.inject(Hash.new(0)) do |hash, tag|
-        hash[tag] += 1; hash
-      end.sort { |a, b| b[1] <=> a[1] }
+      tomatoes
+        .map(&:tags)
+        .flatten
+        .group_by(&:itself)
+        .map { |tag, tags| [tag, tags.size] }
+        .sort { |a, b| b[1] <=> a[1] }
     end
 
     # CSV representation.
