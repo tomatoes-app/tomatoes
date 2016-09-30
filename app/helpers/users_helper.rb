@@ -8,7 +8,7 @@ module UsersHelper
   end
 
   def hex_to_rgba(hex)
-    m = hex.match /#(..)(..)(..)/
+    m = hex.match(/#(..)(..)(..)/)
     "rgba(#{m[1].hex}, #{m[2].hex}, #{m[3].hex}, .7)"
   end
 end
