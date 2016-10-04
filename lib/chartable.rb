@@ -4,7 +4,7 @@ module Chartable
   include GroupableByHour
   include GroupableByTomatoes
 
-  ONE_DAY = 60*60*24
+  ONE_DAY = 60 * 60 * 24
 
   module ClassMethods
     def to_lines(collection)
@@ -13,7 +13,7 @@ module Chartable
 
       Range.new(days.last.to_i, days.first.to_i).step(ONE_DAY).map do |day|
         day = Time.at(day)
-        [day.to_i*1000, yield(collection_by_day[day])]
+        [day.to_i * 1000, yield(collection_by_day[day])]
       end
     end
 
@@ -21,7 +21,7 @@ module Chartable
       collection_by_hour = group_by_hour(collection)
 
       (0..23).map do |hour|
-        millis = (Time.zone.now.beginning_of_day + hour*3600).to_i*1000
+        millis = (Time.zone.now.beginning_of_day + hour * 3600).to_i * 1000
         [millis, yield(collection_by_hour[hour])]
       end
     end

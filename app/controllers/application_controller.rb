@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
 
   def respond_with_json
     respond_to do |format|
-      format.json { render :json => yield }
+      format.json { render json: yield }
     end
   end
 
@@ -26,27 +26,33 @@ class ApplicationController < ActionController::Base
   private
 
   def set_time_zone
-    Time.zone = current_user && current_user.time_zone && !current_user.time_zone.empty? ? current_user.time_zone : ActiveSupport::TimeZone[-cookies[:timezone].to_i.minutes]
+    Time.zone = find_time_zone
+  end
+
+  def find_time_zone
+    if current_user && current_user.time_zone && !current_user.time_zone.empty?
+      current_user.time_zone
+    else
+      ActiveSupport::TimeZone[-cookies[:timezone].to_i.minutes]
+    end
   end
 
   def current_user
-    begin
-      @current_user ||= User.find(session[:user_id]) if session[:user_id]
-    rescue Mongoid::Errors::DocumentNotFound
-      nil
-    end
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+  rescue Mongoid::Errors::DocumentNotFound
+    nil
   end
 
   def same_user?
     @user ||= User.find(params[:id])
-    return current_user == @user
+    current_user == @user
   end
 
   def same_user!
-    redirect_to root_url, :alert => "Access denied." unless same_user?
+    redirect_to root_url, alert: 'Access denied.' unless same_user?
   end
 
   def authenticate_user!
-    redirect_to root_url, :alert => 'You need to sign in for access to this page.' unless current_user
+    redirect_to root_url, alert: 'You need to sign in for access to this page.' unless current_user
   end
 end

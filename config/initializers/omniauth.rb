@@ -1,5 +1,5 @@
 if Rails.env.production?
-  GITHUB = {'client_id' => ENV['GITHUB_CLIENT_ID'], 'client_secret' => ENV['GITHUB_CLIENT_SECRET']}
+  GITHUB = { 'client_id' => ENV['GITHUB_CLIENT_ID'], 'client_secret' => ENV['GITHUB_CLIENT_SECRET'] }.freeze
 else
   begin
     GITHUB = YAML.load_file("#{Rails.root}/config/github.yml")
@@ -10,7 +10,7 @@ else
 end
 
 if Rails.env.production?
-  TWITTER = {'consumer_key' => ENV['TWITTER_CONSUMER_KEY'], 'consumer_secret' => ENV['TWITTER_CONSUMER_SECRET']}
+  TWITTER = { 'consumer_key' => ENV['TWITTER_CONSUMER_KEY'], 'consumer_secret' => ENV['TWITTER_CONSUMER_SECRET'] }.freeze
 else
   begin
     TWITTER = YAML.load_file("#{Rails.root}/config/twitter.yml")

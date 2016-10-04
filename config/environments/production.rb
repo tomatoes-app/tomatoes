@@ -59,7 +59,7 @@ TomatoesApp::Application.configure do
   config.active_support.deprecation = :notify
 
   config.middleware.use ExceptionNotifier,
-    :email_prefix         => "[TomatoesApp] ",
-    :sender_address       => %{"Exception Notifier" <exception@tomato.es>},
-    :exception_recipients => ENV['EXCEPTION_RECIPIENTS']
+                        email_prefix: '[TomatoesApp] ',
+                        sender_address: %("Exception Notifier" <exception@tomato.es>),
+                        exception_recipients: ENV['EXCEPTION_RECIPIENTS']
 end

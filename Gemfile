@@ -53,7 +53,7 @@ group :production do
 end
 
 group :test do
-  gem 'mocha', :require => false
+  gem 'mocha', require: false
 end
 
 group :development do
@@ -61,6 +61,7 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'quiet_assets'
+  gem 'rubocop', '~> 0.43.0', require: false
 end
 
 group :development, :test do

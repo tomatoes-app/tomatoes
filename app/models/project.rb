@@ -6,9 +6,9 @@ class Project
   include Mongoid::Timestamps
   include Workable
 
-  field :name,         :type => String
-  field :money_budget, :type => Integer
-  field :time_budget,  :type => Integer
+  field :name,         type: String
+  field :money_budget, type: Integer
+  field :time_budget,  type: Integer
 
   belongs_to :user
 
@@ -17,15 +17,15 @@ class Project
   validates_numericality_of :time_budget, greater_than: 0, allow_blank: true
 
   def estimated_work_time
-    (time_budget.to_i*60*60 * Workable::WORK_TIME_FACTOR if time_budget).to_i
+    (time_budget.to_i * 60 * 60 * Workable::WORK_TIME_FACTOR if time_budget).to_i
   end
 
   def estimated_hourly_rate
-    money_budget.to_f / (estimated_work_time/60/60).to_f if money_budget && estimated_work_time
+    money_budget.to_f / (estimated_work_time / 60 / 60).to_f if money_budget && estimated_work_time
   end
 
   def any_of_conditions
-    tags.map { |tag| {tags: tag} }
+    tags.map { |tag| { tags: tag } }
   end
 
   def tomatoes
@@ -33,7 +33,7 @@ class Project
   end
 
   def effective_hourly_rate
-    money_budget.to_f / (effective_work_time*60*60).to_f if money_budget
+    money_budget.to_f / (effective_work_time * 60 * 60).to_f if money_budget
   end
 
   def hourly_rate_delta

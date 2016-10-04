@@ -3,13 +3,13 @@ class StatisticsController < ApplicationController
   def index
     @users        = User.count
     @tomatoes     = Tomato.count
-    @first_tomato = Tomato.order_by([[:created_at, :desc]]).last || Tomato.new(:created_at => Time.now)
+    @first_tomato = Tomato.order_by([[:created_at, :desc]]).last || Tomato.new(created_at: Time.now)
   end
 
   # GET /statistics/users_by_tomatoes.json
   def users_by_tomatoes
     respond_with_json do
-      Rails.cache.fetch('users_by_tomatoes', :expires_in => 1.day) do
+      Rails.cache.fetch('users_by_tomatoes', expires_in: 1.day) do
         User.by_tomatoes(User.all)
       end
     end
@@ -18,8 +18,8 @@ class StatisticsController < ApplicationController
   # GET /statistics/total_users_by_day.json
   def total_users_by_day
     respond_with_json do
-      Rails.cache.fetch('total_users_by_day', :expires_in => 1.day) do
-        User.total_by_day(User.excludes(:created_at => nil))
+      Rails.cache.fetch('total_users_by_day', expires_in: 1.day) do
+        User.total_by_day(User.excludes(created_at: nil))
       end
     end
   end
@@ -27,8 +27,8 @@ class StatisticsController < ApplicationController
   # GET /statistics/users_by_day.json
   def users_by_day
     respond_with_json do
-      Rails.cache.fetch('users_by_day', :expires_in => 1.day) do
-        User.by_day(User.excludes(:created_at => nil))
+      Rails.cache.fetch('users_by_day', expires_in: 1.day) do
+        User.by_day(User.excludes(created_at: nil))
       end
     end
   end
@@ -38,7 +38,7 @@ class StatisticsController < ApplicationController
     tomatoes_count = 0
 
     respond_with_json do
-      Rails.cache.fetch('tomatoes_by_day', :expires_in => 1.day) do
+      Rails.cache.fetch('tomatoes_by_day', expires_in: 1.day) do
         Tomato.by_day(Tomato.all) do |tomatoes_by_day|
           tomatoes_count += tomatoes_by_day ? tomatoes_by_day.size : 0
         end

@@ -2,7 +2,7 @@ class TagsController < ResourceController
   before_filter :authenticate_user!
 
   def index
-    @tomatoes_by_tag = Rails.cache.fetch("tomatoes_by_tag_#{current_user.id}", :expires_in => 1.day) do
+    @tomatoes_by_tag = Rails.cache.fetch("tomatoes_by_tag_#{current_user.id}", expires_in: 1.day) do
       Tomato.by_tags(current_user.tomatoes)
     end
 

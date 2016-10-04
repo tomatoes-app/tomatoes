@@ -1,6 +1,6 @@
 class ProjectsController < ResourceController
   before_filter :authenticate_user!
-  before_filter :find_project, :only => [:show, :edit, :update, :destroy]
+  before_filter :find_project, only: [:show, :edit, :update, :destroy]
 
   # GET /projects
   # GET /projects.json
@@ -40,7 +40,7 @@ class ProjectsController < ResourceController
         format.html { redirect_to @project, notice: 'Project was successfully created.' }
         format.json { render json: @project, status: :created, location: @project }
       else
-        format.html { render action: "new" }
+        format.html { render action: 'new' }
         format.json { render json: @project.errors, status: :unprocessable_entity }
       end
     end

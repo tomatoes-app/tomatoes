@@ -1,9 +1,9 @@
 TomatoesApp::Application.routes.draw do
-  resources :tags, :only => [:index, :show]
+  resources :tags, only: [:index, :show]
 
   resources :projects
 
-  resources :statistics, :only => :index do
+  resources :statistics, only: :index do
     collection do
       get 'users_by_tomatoes'
       get 'total_users_by_day'
@@ -12,7 +12,7 @@ TomatoesApp::Application.routes.draw do
     end
   end
 
-  resources :rankings, :only => :index
+  resources :rankings, only: :index
 
   resources :tomatoes do
     member do
@@ -20,15 +20,15 @@ TomatoesApp::Application.routes.draw do
     end
   end
 
-  resources :users, :only => [:show, :edit, :update, :destroy] do
-    resources :tomatoes, :only => [] do
+  resources :users, only: [:show, :edit, :update, :destroy] do
+    resources :tomatoes, only: [] do
       collection do
         get 'by_day'
         get 'by_hour'
       end
     end
   end
-  
+
   match '/auth/:provider/callback' => 'sessions#create'
   match '/signin/:provider' => 'sessions#new', :as => :signin
   match '/signout' => 'sessions#destroy', :as => :signout
@@ -83,7 +83,7 @@ TomatoesApp::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => "welcome#index"
+  root to: 'welcome#index'
 
   # See how all your routes lay out with "rake routes"
 

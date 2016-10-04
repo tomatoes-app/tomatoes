@@ -25,8 +25,8 @@ module Mongoid
     module Taggable
       def self.included(base)
         base.class_eval do |base1|
-          base1.field :tags, :type => Array
-          base1.index({:tags => 1})
+          base1.field :tags, type: Array
+          base1.index(tags: 1)
 
           include InstanceMethods
           extend ClassMethods
@@ -35,18 +35,18 @@ module Mongoid
 
       module InstanceMethods
         def tag_list=(tags)
-          self.tags = tags.split(",").collect{ |t| t.strip }.delete_if{ |t| t.blank? }
+          self.tags = tags.split(',').collect(&:strip).delete_if(&:blank?)
         end
 
         def tag_list
-          self.tags.join(", ") if tags
+          tags.join(', ') if tags
         end
       end
 
       module ClassMethods
         # let's return only :tags
         def tags
-          all.only(:tags).collect{ |ms| ms.tags }.flatten.uniq.compact
+          all.only(:tags).collect(&:tags).flatten.uniq.compact
         end
 
         def tagged_like(_perm)
@@ -56,10 +56,9 @@ module Mongoid
 
         def tagged_with(_tags)
           _tags = [_tags] unless _tags.is_a? Array
-          criteria.in(:tags => _tags).to_a
+          criteria.in(tags: _tags).to_a
         end
       end
-
     end
   end
 end
