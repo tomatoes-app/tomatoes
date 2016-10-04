@@ -33,7 +33,7 @@ class ProjectsController < ResourceController
   # POST /projects
   # POST /projects.json
   def create
-    @project = current_user.projects.build(params[:project])
+    @project = current_user.projects.build(resource_params)
 
     respond_to do |format|
       if @project.save
@@ -62,5 +62,9 @@ class ProjectsController < ResourceController
 
   def find_project
     @project = current_user.projects.find(params[:id])
+  end
+
+  def resource_params
+    params.require(:project).permit(:name, :tag_list, :money_budget, :time_budget)
   end
 end

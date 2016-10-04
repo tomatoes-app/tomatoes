@@ -62,7 +62,7 @@ class TomatoesController < ResourceController
   # POST /tomatoes.js
   # POST /tomatoes.xml
   def create
-    @tomato = current_user.tomatoes.build(params[:tomato])
+    @tomato = current_user.tomatoes.build(resource_params)
 
     respond_to do |format|
       if @tomato.save
@@ -123,5 +123,9 @@ class TomatoesController < ResourceController
     else
       'Pomodoro finished, tomato created, it\'s time for a break.'
     end
+  end
+
+  def resource_params
+    params.require(:tomato).permit(:tag_list)
   end
 end

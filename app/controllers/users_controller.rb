@@ -28,4 +28,20 @@ class UsersController < ResourceController
   def destroy
     destroy_resource(@user, root_url)
   end
+
+  private
+
+  def resource_params
+    params.require(:user).permit(
+      :name,
+      :email,
+      :image,
+      :time_zone,
+      :color,
+      :work_hours_per_day,
+      :average_hourly_rate,
+      :currency,
+      :volume,
+      :ticking)
+  end
 end
