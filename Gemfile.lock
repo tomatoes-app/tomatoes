@@ -264,7 +264,6 @@ GEM
     origin (2.2.0)
     parser (2.3.1.4)
       ast (~> 2.2)
-    pkg-config (1.1.7)
     powerpack (0.1.1)
     pry (0.9.12.6)
       coderay (~> 1.0)
@@ -334,6 +333,8 @@ GEM
       sprockets (>= 3.0.0)
     sucker_punch (2.0.2)
       concurrent-ruby (~> 1.0.0)
+    test-unit (3.1.5)
+      power_assert
     therubyracer (0.12.2)
       libv8 (~> 3.16.14.0)
       ref
@@ -378,6 +379,7 @@ DEPENDENCIES
   rubocop (~> 0.43.0)
   sass-rails
   sucker_punch (~> 2.0)
+  test-unit (~> 3.0)
   therubyracer
   uglifier (>= 1.0.3)
 

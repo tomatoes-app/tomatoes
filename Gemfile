@@ -65,4 +65,5 @@ end
 
 group :development, :test do
   gem 'pry'
+  gem 'test-unit', '~> 3.0'
 end
