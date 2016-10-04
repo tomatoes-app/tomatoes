@@ -45,7 +45,7 @@ gem 'exception_notification'
 # Static pages
 gem 'high_voltage'
 
-# Asyn tasks
+# Async tasks
 gem 'sucker_punch', '~> 2.0'
 
 group :production do
