@@ -54,6 +54,7 @@ end
 
 group :test do
   gem 'mocha', require: false
+  gem 'minitest-reporters'
 end
 
 group :development do

@@ -37,6 +37,7 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
+    ansi (1.5.0)
     arel (6.0.3)
     asset_sync (0.5.4)
       activemodel
@@ -213,14 +214,19 @@ GEM
     mail (2.6.4)
       mime-types (>= 1.16, < 4)
     memcachier (0.0.2)
-    metaclass (0.0.1)
+    metaclass (0.0.4)
     method_source (0.8.2)
     mime-types (3.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
     mini_portile2 (2.1.0)
     minitest (5.9.1)
-    mocha (0.13.3)
+    minitest-reporters (1.1.11)
+      ansi
+      builder
+      minitest (>= 5.0)
+      ruby-progressbar
+    mocha (1.1.0)
       metaclass (~> 0.0.1)
     mongo (2.3.0)
       bson (~> 4.1)
@@ -358,6 +364,7 @@ DEPENDENCIES
   kaminari
   kaminari-mongoid
   memcachier
+  minitest-reporters
   mocha
   mongoid
   newrelic_rpm
