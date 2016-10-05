@@ -48,6 +48,8 @@ gem 'high_voltage'
 # Async tasks
 gem 'sucker_punch', '~> 2.0'
 
+gem 'octokit'
+
 group :production do
   gem 'rails_12factor'
 end
