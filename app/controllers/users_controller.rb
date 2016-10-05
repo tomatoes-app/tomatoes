@@ -1,6 +1,6 @@
 class UsersController < ResourceController
-  before_filter :authenticate_user!, except: :show
-  before_filter :same_user!, except: :show
+  before_action :authenticate_user!, except: :show
+  before_action :same_user!, except: :show
 
   # GET /users/1/edit
   def edit
@@ -27,5 +27,21 @@ class UsersController < ResourceController
   # DELETE /users/1.xml
   def destroy
     destroy_resource(@user, root_url)
+  end
+
+  private
+
+  def resource_params
+    params.require(:user).permit(
+      :name,
+      :email,
+      :image,
+      :time_zone,
+      :color,
+      :work_hours_per_day,
+      :average_hourly_rate,
+      :currency,
+      :volume,
+      :ticking)
   end
 end

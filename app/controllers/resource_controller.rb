@@ -16,11 +16,9 @@ class ResourceController < ApplicationController
   end
 
   def update_resource(resource)
-    class_name = resource.class.to_s
-
     respond_to do |format|
-      if resource.update_attributes(params[class_name.underscore.to_sym])
-        format.html { redirect_to(resource, notice: "#{class_name.titleize} was successfully updated.") }
+      if resource.update_attributes(resource_params)
+        format.html { redirect_to(resource, notice: "#{resource.class.to_s.titleize} was successfully updated.") }
         format.xml  { head :ok }
       else
         format.html { render action: 'edit' }

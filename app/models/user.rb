@@ -38,9 +38,6 @@ class User
   field :average_hourly_rate, type: Float
   field :currency,            type: String
 
-  # attr_accessible :provider, :uid, :token, :gravatar_id
-  attr_accessible :name, :email, :image, :time_zone, :color, :work_hours_per_day, :average_hourly_rate, :currency, :volume, :ticking
-
   validates_format_of :color, with: /\A#[A-Fa-f0-9]{6}\Z/, allow_blank: true
   validates_numericality_of :volume, greater_than_or_equal_to: 0, less_than: 4, allow_blank: true
 

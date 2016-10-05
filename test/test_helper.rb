@@ -1,7 +1,10 @@
 ENV['RAILS_ENV'] = 'test'
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
-require 'mocha/setup'
+require 'mocha/mini_test'
+
+require 'minitest/reporters'
+Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 
 module ActiveSupport
   class TestCase
