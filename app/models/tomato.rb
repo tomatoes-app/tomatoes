@@ -20,33 +20,29 @@ class Tomato
   include ApplicationHelper
 
   class << self
-    def ranking_map(time_period)
-      if :all_time != time_period
-        date = Time.zone.now.send(beginning_of(time_period))
-        date = "(new Date(#{date.year}, #{date.month - 1}, #{date.day}))"
-      end
-
-      %{
-        function() {
-          emit(this.user_id, #{:all_time != time_period ? "this.created_at > #{date} ? 1 : 0" : 1});
-        }
-      }
+    def ranking_map
+      %{ function() { emit(this.user_id, 1); } }
     end
 
     def ranking_reduce
-      %{
-        function(key, values) {
-          var result = 0;
-          values.forEach(function(v) {
-            result += v;
-          });
-          return result;
-        }
-      }
+      %{ function(key, values) { return Array.sum( values ); } }
+    end
+
+    def time_period_scope(time_period)
+      if :all_time != time_period
+        where(:created_at.gt => Time.current.send(beginning_of(time_period)))
+      else
+        all
+      end
+    end
+
+    def time_period_map_reduce(time_period = 'today')
+      time_period_scope(time_period).map_reduce(ranking_map, ranking_reduce)
     end
 
     def ranking_collection(time_period)
-      map_reduce(ranking_map(time_period), ranking_reduce).out(replace: "user_ranking_#{time_period}s").entries
+      time_period_map_reduce(time_period)
+        .out(replace: "user_ranking_#{time_period}s")
     end
 
     def by_day(tomatoes)
