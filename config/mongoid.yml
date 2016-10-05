@@ -145,8 +145,9 @@ production:
   clients:
     default:
       database: <%= ENV["MONGOHQ_DATABASE"] %>
-      username: <%= ENV["MONGOHQ_USERNAME"] %>
-      password: <%= ENV["MONGOHQ_PASSWORD"] %>
       hosts:
         - <%= ENV["MONGOHQ_REPL_HOST_1"] %>
         - <%= ENV["MONGOHQ_REPL_HOST_2"] %>
+      options:
+        username: <%= ENV["MONGOHQ_USERNAME"] %>
+        password: <%= ENV["MONGOHQ_PASSWORD"] %>
