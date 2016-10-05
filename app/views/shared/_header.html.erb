@@ -10,7 +10,7 @@
         <div class="left user">
           <%= render :partial => 'users/user', :locals => {:user => current_user} %>
         </div>
-        <div class="left sign_out"><%= link_to "Sign out", signout_path %></div>
+        <div class="left sign_out"><%= link_to "Sign out", signout_path, :method => :delete %></div>
       </div>
     </div>
   <% else %>
