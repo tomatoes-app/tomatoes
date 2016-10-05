@@ -1,7 +1,7 @@
 class TomatoesController < ResourceController
-  before_filter :authenticate_user!, except: [:by_day, :by_hour]
-  before_filter :find_user, only: [:by_day, :by_hour]
-  before_filter :find_tomato, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:by_day, :by_hour]
+  before_action :find_user, only: [:by_day, :by_hour]
+  before_action :find_tomato, only: [:show, :edit, :update, :destroy]
 
   # GET /tomatoes
   # GET /tomatoes.xml

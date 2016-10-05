@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   helper_method :user_signed_in?
   helper_method :correct_user?
 
-  before_filter :set_time_zone
+  before_action :set_time_zone
 
   protected
 

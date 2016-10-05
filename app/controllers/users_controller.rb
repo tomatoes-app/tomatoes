@@ -1,6 +1,6 @@
 class UsersController < ResourceController
-  before_filter :authenticate_user!, except: :show
-  before_filter :same_user!, except: :show
+  before_action :authenticate_user!, except: :show
+  before_action :same_user!, except: :show
 
   # GET /users/1/edit
   def edit

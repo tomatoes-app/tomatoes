@@ -1,6 +1,6 @@
 class ProjectsController < ResourceController
-  before_filter :authenticate_user!
-  before_filter :find_project, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+  before_action :find_project, only: [:show, :edit, :update, :destroy]
 
   # GET /projects
   # GET /projects.json
