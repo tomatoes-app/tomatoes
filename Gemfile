@@ -1,5 +1,5 @@
 source 'http://rubygems.org'
-ruby '2.0.0'
+ruby '2.3.1'
 
 gem 'rails', '4.2.7.1'
 
@@ -45,7 +45,7 @@ gem 'exception_notification'
 # Static pages
 gem 'high_voltage'
 
-# Asyn tasks
+# Async tasks
 gem 'sucker_punch', '~> 2.0'
 
 group :production do
@@ -65,4 +65,5 @@ end
 
 group :development, :test do
   gem 'pry'
+  gem 'test-unit', '~> 3.0'
 end
