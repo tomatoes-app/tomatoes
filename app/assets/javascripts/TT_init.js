@@ -55,7 +55,7 @@ $(document).ready(function() {
   $("#reset").click(resetCallback);
   $("#reset_signin").click(resetSigninCallback);
   
-  $("#new_tomato_form").live("ajax:beforeSend", function() {
+  $("#new_tomato_form").on("ajax:beforeSend", function() {
     TT.log("ajax:beforeSend");
     
     $(this).keypress(function(event) {
