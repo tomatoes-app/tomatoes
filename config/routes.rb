@@ -32,7 +32,7 @@ Rails.application.routes.draw do
     end
   end
 
-  post '/auth/:provider/callback' => 'sessions#create'
+  get '/auth/:provider/callback' => 'sessions#create'
   get '/signin/:provider' => 'sessions#new', :as => :signin
   delete '/signout' => 'sessions#destroy', :as => :signout
   get '/auth/failure' => 'sessions#failure'
