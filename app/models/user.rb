@@ -53,12 +53,17 @@ class User
   index('authorizations.provider' => 1)
 
   def self.find_by_omniauth(auth)
+    find_by_auth_provider(provider: auth['provider'].to_s, uid: auth['uid'].to_s)
+  end
+
+  def self.find_by_auth_provider(provider:, uid:)
     any_of(
-      { authorizations: {
-        '$elemMatch' => {
-          provider: auth['provider'].to_s,
-          uid: auth['uid'].to_s } } },
-      provider: auth['provider'], uid: auth['uid']
+      {
+        authorizations: {
+          '$elemMatch' => { provider: provider, uid: uid }
+        }
+      },
+      provider: provider, uid: uid
     ).first
   end
 
