@@ -10,8 +10,8 @@ class Api::SessionsController < Api::BaseController
         raise StandardError('TODO: create a new user')
       end
 
-      tomatoes_auth = user.authorizations.where(provider: 'tomatoes').first_or_initialize
-      tomatoes_auth.refresh_token unless tomatoes_auth.token
+      tomatoes_auth = user.authorizations.new(provider: 'tomatoes')
+      tomatoes_auth.generate_token
       tomatoes_auth.save!
 
       render json: { token: tomatoes_auth.token }

@@ -43,7 +43,7 @@ class Authorization
     "http://#{provider}.com/#{nickname}"
   end
 
-  def refresh_token
+  def generate_token
     self.token = SecureRandom.hex
   end
 end

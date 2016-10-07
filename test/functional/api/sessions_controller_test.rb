@@ -40,7 +40,7 @@ class Api::SessionsControllerTest < ActionController::TestCase
     end
     assert_response :success
     assert_equal 'application/json', @response.content_type
-    assert JSON.parse(@response.body).has_key?('token')
+    assert JSON.parse(@response.body).key?('token')
   end
 
   test 'given a github access token it should return an existing session' do
@@ -48,11 +48,11 @@ class Api::SessionsControllerTest < ActionController::TestCase
     github_client.expects(:user).returns('id' => 'github_user_with_api_auth_id')
     Octokit::Client.expects(:new).with(access_token: 'github_access_token').returns(github_client)
 
-    assert_no_difference('@github_user_with_api_auth.reload.authorizations.count') do
+    assert_difference('@github_user_with_api_auth.reload.authorizations.count') do
       post :create, provider: 'github', access_token: 'github_access_token'
     end
     assert_response :success
     assert_equal 'application/json', @response.content_type
-    assert_equal({ token: 'tomatoes_token' }.to_json, @response.body)
+    assert JSON.parse(@response.body).key?('token')
   end
 end
