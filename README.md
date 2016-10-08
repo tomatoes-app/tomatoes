@@ -14,4 +14,7 @@ Support the project at [backerpass.com/tomatoes](https://backerpass.com/tomatoes
 
 Tomatoes is released under the [MIT license](https://raw.github.com/potomak/tomatoes/develop/MIT-LICENSE).
 
-## Build Status [![Build Status](https://travis-ci.org/potomak/tomatoes.svg?branch=master)](https://travis-ci.org/potomak/tomatoes)
+## Build Status 
+
+[![Build Status](https://travis-ci.org/potomak/tomatoes.svg?branch=master)](https://travis-ci.org/potomak/tomatoes)
+[![Code Climate](https://codeclimate.com/github/potomak/tomatoes/badges/gpa.svg)](https://codeclimate.com/github/potomak/tomatoes)
