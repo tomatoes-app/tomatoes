@@ -49,8 +49,17 @@ class User
   has_many :tomatoes
   has_many :projects
 
-  index('authorizations.uid' => 1)
-  index('authorizations.provider' => 1)
+  # TODO: this could be a composite index
+  # TODO: this should be a unique index (unique: true)
+  index 'authorizations.uid': 1
+  index 'authorizations.provider': 1
+
+  # TODO: this should be a unique index (unique: true)
+  index 'authorizations.token': 1
+
+  def self.find_by_token(token)
+    User.where('authorizations.token': token).first
+  end
 
   def self.find_by_omniauth(auth)
     find_by_auth_provider(provider: auth['provider'].to_s, uid: auth['uid'].to_s)

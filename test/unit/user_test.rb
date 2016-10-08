@@ -28,6 +28,13 @@ class UserTest < ActiveSupport::TestCase
     User.destroy_all
   end
 
+  test 'self.find_by_token' do
+    user = User.create!
+    user.authorizations.create!(token: '123')
+
+    assert_equal User.find_by_token('123'), user
+  end
+
   test 'self.find_by_omniauth' do
     user = User.create_with_omniauth!(@auth)
 
