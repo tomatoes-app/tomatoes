@@ -24,6 +24,8 @@ module Api
         provider: 'tomatoes',
         token: 'tomatoes_token'
       )
+
+      @github_client = Octokit::Client.new
     end
 
     teardown do
@@ -32,9 +34,8 @@ module Api
     end
 
     test 'given a github access token it should create a new session' do
-      github_client = Octokit::Client.new
-      github_client.expects(:user).returns('id' => 'github_user_id')
-      Octokit::Client.expects(:new).with(access_token: 'github_access_token').returns(github_client)
+      Octokit::Client.expects(:new).with(access_token: 'github_access_token').returns(@github_client)
+      @github_client.expects(:user).returns('id' => 'github_user_id')
 
       assert_difference('@github_user.reload.authorizations.count') do
         post :create, provider: 'github', access_token: 'github_access_token'
@@ -45,9 +46,8 @@ module Api
     end
 
     test 'given a github access token it should return an existing session' do
-      github_client = Octokit::Client.new
-      github_client.expects(:user).returns('id' => 'github_user_with_api_auth_id')
-      Octokit::Client.expects(:new).with(access_token: 'github_access_token').returns(github_client)
+      Octokit::Client.expects(:new).with(access_token: 'github_access_token').returns(@github_client)
+      @github_client.expects(:user).returns('id' => 'github_user_with_api_auth_id')
 
       assert_difference('@github_user_with_api_auth.reload.authorizations.count') do
         post :create, provider: 'github', access_token: 'github_access_token'
@@ -58,9 +58,8 @@ module Api
     end
 
     test 'given an invalid github access token it should return an error' do
-      github_client = Octokit::Client.new
-      github_client.expects(:user).raises(Octokit::Unauthorized)
-      Octokit::Client.expects(:new).with(access_token: 'github_access_token').returns(github_client)
+      Octokit::Client.expects(:new).with(access_token: 'github_access_token').returns(@github_client)
+      @github_client.expects(:user).raises(Octokit::Unauthorized)
 
       post :create, provider: 'github', access_token: 'github_access_token'
       assert_response :unauthorized
