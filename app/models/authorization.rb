@@ -1,3 +1,5 @@
+require 'securerandom'
+
 class Authorization
   include Mongoid::Document
 
@@ -39,5 +41,9 @@ class Authorization
 
   def url
     "http://#{provider}.com/#{nickname}"
+  end
+
+  def generate_token
+    self.token = SecureRandom.hex
   end
 end

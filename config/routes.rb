@@ -2,6 +2,10 @@ Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
+  namespace :api do
+    resource :session, only: [:create]
+  end
+
   resources :tags, only: [:index, :show]
 
   resources :projects

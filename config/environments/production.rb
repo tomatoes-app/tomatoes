@@ -80,7 +80,7 @@ Rails.application.configure do
   config.middleware.use ExceptionNotification::Rack,
                         email: {
                           email_prefix: '[TomatoesApp] ',
-                          sender_address: %{"Exception Notifier" <exception@tomato.es>},
+                          sender_address: %("Exception Notifier" <exception@tomato.es>),
                           exception_recipients: ENV['EXCEPTION_RECIPIENTS']
                         }
 end
