@@ -1,4 +1,4 @@
-class UsersController < ResourceController
+class UsersController < ApplicationController
   before_action :authenticate_user!, except: :show
   before_action :same_user!, except: :show
 
@@ -7,26 +7,23 @@ class UsersController < ResourceController
   end
 
   # PUT /users/1
-  # PUT /users/1.xml
   def update
-    update_resource(@user)
-  end
-
-  # GET /users/1
-  # GET /users/1.xml
-  def show
-    @user = User.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render xml: @user }
+    if @user.update_attributes(resource_params)
+      redirect_to @user, notice: 'User was successfully updated'
+    else
+      render action: 'edit'
     end
   end
 
+  # GET /users/1
+  def show
+    @user = User.find(params[:id])
+  end
+
   # DELETE /users/1
-  # DELETE /users/1.xml
   def destroy
-    destroy_resource(@user, root_url)
+    @user.destroy
+    redirect_to root_url
   end
 
   private

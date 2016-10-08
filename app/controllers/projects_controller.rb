@@ -1,4 +1,4 @@
-class ProjectsController < ResourceController
+class ProjectsController < ApplicationController
   before_action :authenticate_user!
   before_action :find_project, only: [:show, :edit, :update, :destroy]
 
@@ -14,16 +14,12 @@ class ProjectsController < ResourceController
   end
 
   # GET /projects/1
-  # GET /projects/1.json
   def show
-    show_resource(@project)
   end
 
   # GET /projects/new
-  # GET /projects/new.json
   def new
     @project = current_user.projects.build
-    show_resource(@project)
   end
 
   # GET /projects/1/edit
@@ -47,15 +43,19 @@ class ProjectsController < ResourceController
   end
 
   # PUT /projects/1
-  # PUT /projects/1.json
   def update
-    update_resource(@project)
+    if @project.update_attributes(resource_params)
+      redirect_to @project, notice: 'Project was successfully updated'
+    else
+      render action: 'edit'
+    end
   end
 
   # DELETE /projects/1
-  # DELETE /projects/1.json
   def destroy
-    destroy_resource(@project, projects_url)
+    @project.destroy
+
+    redirect_to projects_url
   end
 
   protected
