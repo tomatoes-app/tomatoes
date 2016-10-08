@@ -1,4 +1,4 @@
-class TomatoesController < ResourceController
+class TomatoesController < ApplicationController
   before_action :authenticate_user!, except: [:by_day, :by_hour]
   before_action :find_user, only: [:by_day, :by_hour]
   before_action :find_tomato, only: [:show, :edit, :update, :destroy]
@@ -42,16 +42,23 @@ class TomatoesController < ResourceController
   end
 
   # GET /tomatoes/1
-  # GET /tomatoes/1.xml
+  # GET /tomatoes/1.json
   def show
-    show_resource(@tomato)
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @tomato }
+    end
   end
 
   # GET /tomatoes/new
-  # GET /tomatoes/new.xml
+  # GET /tomatoes/new.json
   def new
     @tomato = current_user.tomatoes.build
-    show_resource(@tomato)
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render json: @tomato }
+    end
   end
 
   # GET /tomatoes/1/edit
@@ -86,15 +93,19 @@ class TomatoesController < ResourceController
   end
 
   # PUT /tomatoes/1
-  # PUT /tomatoes/1.xml
   def update
-    update_resource(@tomato)
+    if @tomato.update_attributes(resource_params)
+      redirect_to @tomato, notice: 'Tomato was successfully updated'
+    else
+      render action: 'edit'
+    end
   end
 
   # DELETE /tomatoes/1
-  # DELETE /tomatoes/1.xml
   def destroy
-    destroy_resource(@tomato, tomatoes_url)
+    @tomato.destroy
+
+    redirect_to tomatoes_url
   end
 
   protected
