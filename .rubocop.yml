@@ -6,6 +6,16 @@
 # Note that changes in the inspected code, or installation of new
 # versions of RuboCop, may require this file to be generated again.
 
+AllCops:
+  TargetRubyVersion: 2.3
+
+# Offense count: 97
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+# SupportedStyles: when_needed, always
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
 # Offense count: 3
 Lint/UnderscorePrefixedVariableName:
   Exclude:
@@ -18,7 +28,7 @@ Metrics/AbcSize:
 # Offense count: 1
 # Configuration parameters: CountComments.
 Metrics/ClassLength:
-  Max: 144
+  Max: 147
 
 # Offense count: 100
 # Configuration parameters: AllowHeredoc, AllowURI, URISchemes.
