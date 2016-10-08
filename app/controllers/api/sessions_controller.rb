@@ -5,7 +5,7 @@ module Api
       user = auth_provider.find_user
       user = auth_provider.create_user! unless user
 
-      tomatoes_auth = user.authorizations.new(provider: 'tomatoes')
+      tomatoes_auth = user.authorizations.build(provider: 'tomatoes')
       tomatoes_auth.generate_token
       tomatoes_auth.save!
 
