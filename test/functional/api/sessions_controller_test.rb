@@ -35,7 +35,7 @@ module Api
 
     test 'given a github access token it should create a new session' do
       Octokit::Client.expects(:new).with(access_token: 'github_access_token').returns(@github_client)
-      @github_client.expects(:user).returns('id' => 'github_user_id')
+      @github_client.expects(:user).returns(id: 'github_user_id')
 
       assert_difference('@github_user.reload.authorizations.count') do
         post :create, provider: 'github', access_token: 'github_access_token'
@@ -47,7 +47,7 @@ module Api
 
     test 'given a github access token it should return an existing session' do
       Octokit::Client.expects(:new).with(access_token: 'github_access_token').returns(@github_client)
-      @github_client.expects(:user).returns('id' => 'github_user_with_api_auth_id')
+      @github_client.expects(:user).returns(id: 'github_user_with_api_auth_id')
 
       assert_difference('@github_user_with_api_auth.reload.authorizations.count') do
         post :create, provider: 'github', access_token: 'github_access_token'
