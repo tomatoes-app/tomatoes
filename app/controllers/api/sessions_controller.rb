@@ -3,11 +3,7 @@ module Api
     def create
       auth_provider = AuthFactory.build(params)
       user = auth_provider.find_user
-
-      if user.nil?
-        # TODO: create a new user
-        raise StandardError.new('TODO: create a new user')
-      end
+      user = auth_provider.create_user! unless user
 
       tomatoes_auth = user.authorizations.new(provider: 'tomatoes')
       tomatoes_auth.generate_token
