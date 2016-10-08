@@ -56,5 +56,23 @@ module Api
       assert_equal 'application/json', @response.content_type
       assert JSON.parse(@response.body).key?('token')
     end
+
+    test 'given an invalid github access token it should return an error' do
+      github_client = Octokit::Client.new
+      github_client.expects(:user).raises(Octokit::Unauthorized)
+      Octokit::Client.expects(:new).with(access_token: 'github_access_token').returns(github_client)
+
+      post :create, provider: 'github', access_token: 'github_access_token'
+      assert_response :unauthorized
+      assert_equal 'application/json', @response.content_type
+      assert_equal({ error: 'authentication failed' }.to_json, @response.body)
+    end
+
+    test 'given an invalid provider it should return an error' do
+      post :create, provider: 'invalid_provider'
+      assert_response :bad_request
+      assert_equal 'application/json', @response.content_type
+      assert_equal({ error: 'provider not supported' }.to_json, @response.body)
+    end
   end
 end

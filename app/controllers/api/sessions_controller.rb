@@ -14,6 +14,8 @@ module Api
       tomatoes_auth.save!
 
       render json: { token: tomatoes_auth.token }
+    rescue Error::ProviderNotSupported
+      bad_request 'provider not supported'
     rescue Error::Unauthorized
       unauthorized 'authentication failed'
     end

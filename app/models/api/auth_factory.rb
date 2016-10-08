@@ -8,7 +8,7 @@ module Api
         # TODO: support twitter provider
         raise StandardError.new('TODO: support twitter provider')
       else
-        raise Error::ProviderNotSupported.new("Provider '#{provider}' not supported")
+        raise Error::ProviderNotSupported.new("Provider '#{params[:provider]}' not supported")
       end
     end
   end
