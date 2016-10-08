@@ -1,6 +1,19 @@
 require 'test_helper'
 
 class RankingsControllerTest < ActionController::TestCase
+  setup do
+    @user = User.create(
+      name: 'name',
+      email: 'email@example.com'
+    )
+    @tomato = @user.tomatoes.create(tag_list: 'one, two')
+  end
+
+  teardown do
+    User.destroy_all
+    Tomato.destroy_all
+  end
+
   test 'should get today' do
     get :index, time_period: 'today'
     assert_response :success

@@ -29,8 +29,7 @@ module Api
     end
 
     teardown do
-      @github_user.destroy
-      @github_user_with_api_auth.destroy
+      User.destroy_all
     end
 
     test 'given a github access token, '\
