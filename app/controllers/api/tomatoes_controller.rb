@@ -1,6 +1,7 @@
 module Api
   class TomatoesController < BaseController
     before_action :authenticate_user!
+    before_action :find_tomato, only: [:show, :update, :destroy]
 
     def index
       @tomatoes = current_user.tomatoes.order_by([[:created_at, :desc]]).page params[:page]
@@ -9,8 +10,6 @@ module Api
     end
 
     def show
-      @tomato = current_user.tomatoes.find(params[:id])
-
       render json: Presenter::Tomato.new(@tomato)
     end
 
@@ -25,8 +24,6 @@ module Api
     end
 
     def update
-      @tomato = current_user.tomatoes.find(params[:id])
-
       if @tomato.update_attributes(resource_params)
         render json: Presenter::Tomato.new(@tomato), location: api_tomato_url(@tomato)
       else
@@ -35,13 +32,16 @@ module Api
     end
 
     def destroy
-      @tomato = current_user.tomatoes.find(params[:id])
-
       @tomato.destroy
+
       head :no_content
     end
 
     private
+
+    def find_tomato
+      @tomato = current_user.tomatoes.find(params[:id])
+    end
 
     def resource_params
       params.require(:tomato).permit(:tag_list)
