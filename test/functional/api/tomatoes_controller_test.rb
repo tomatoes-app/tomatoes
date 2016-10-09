@@ -90,5 +90,34 @@ module Api
       parsed_response = JSON.parse(@response.body)
       assert_match /Must not overlap saved tomaotes/, parsed_response['base'].first
     end
+
+    test 'PATCH /update, given an invalid token, it should return an error' do
+      patch :update, token: 'invalid_token', id: @tomato_1.id, tomato: { tag_list: 'three' }
+      assert_response :unauthorized
+      assert_equal 'application/json', @response.content_type
+      assert_equal({ error: 'authentication failed' }.to_json, @response.body)
+    end
+
+    test 'PATCH /update, given valid params, it should create a tomato' do
+      patch :update, token: '123', id: @tomato_1.id, tomato: { tag_list: 'three' }
+      assert_response :success
+      assert_equal 'application/json', @response.content_type
+      @tomato_1.reload
+      assert_equal Api::Presenter::Tomato.new(@tomato_1).to_json, @response.body
+      assert_match /#{api_tomato_path(@tomato_1)}/, @response.headers['Location']
+      assert_equal %w(three), @tomato_1.tags
+    end
+
+    test 'PATCH /update, given a validation error, it should return an error' do
+      @controller.stubs(:current_user).returns(@user)
+      tomatoes = []
+      @user.stubs(:tomatoes).returns(tomatoes)
+      tomatoes.stubs(:find).returns(@tomato_1)
+      @tomato_1.expects(:update_attributes).returns(false)
+
+      patch :update, token: '123', id: @tomato_1.id, tomato: { tag_list: 'three' }
+      assert_response :unprocessable_entity
+      assert_equal 'application/json', @response.content_type
+    end
   end
 end

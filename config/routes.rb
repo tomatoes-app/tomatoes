@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     resource :session, only: [:create, :destroy]
-    resources :tomatoes, only: [:index, :show, :create]
+    resources :tomatoes, only: [:index, :show, :create, :update]
   end
 
   resources :tags, only: [:index, :show]

@@ -24,6 +24,16 @@ module Api
       end
     end
 
+    def update
+      @tomato = current_user.tomatoes.find(params[:id])
+
+      if @tomato.update_attributes(resource_params)
+        render json: Presenter::Tomato.new(@tomato), location: api_tomato_url(@tomato)
+      else
+        render status: :unprocessable_entity, json: @tomato.errors
+      end
+    end
+
     private
 
     def resource_params
