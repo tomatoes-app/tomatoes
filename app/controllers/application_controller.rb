@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   end
 
   def not_found
-    raise ActionController::RoutingError.new('Not Found')
+    raise ActionController::RoutingError.new('Not found')
   end
 
   def user_signed_in?
@@ -49,10 +49,10 @@ class ApplicationController < ActionController::Base
   end
 
   def same_user!
-    redirect_to root_url, alert: 'Access denied.' unless same_user?
+    redirect_to root_url, alert: 'Access denied' unless same_user?
   end
 
   def authenticate_user!
-    redirect_to root_url, alert: 'You need to sign in for access to this page.' unless current_user
+    redirect_to root_url, alert: 'You need to sign in' unless current_user
   end
 end
