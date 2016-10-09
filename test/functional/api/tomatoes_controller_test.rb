@@ -98,7 +98,7 @@ module Api
       assert_equal({ error: 'authentication failed' }.to_json, @response.body)
     end
 
-    test 'PATCH /update, given valid params, it should create a tomato' do
+    test 'PATCH /update, given valid params, it should update the tomato' do
       patch :update, token: '123', id: @tomato_1.id, tomato: { tag_list: 'three' }
       assert_response :success
       assert_equal 'application/json', @response.content_type
