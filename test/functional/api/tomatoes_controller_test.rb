@@ -6,9 +6,11 @@ module Api
       @user = User.create!(name: 'name', email: 'email@example.com')
       @user.authorizations.create!(provider: 'tomatoes', token: '123')
       @tomato_1 = @user.tomatoes.build
-      @tomato_1.created_at = 1.hour.ago
+      @tomato_1.created_at = 2.hour.ago
       @tomato_1.save!
-      @tomato_2 = @user.tomatoes.create!(tag_list: 'one, two')
+      @tomato_2 = @user.tomatoes.build(tag_list: 'one, two')
+      @tomato_2.created_at = 1.hour.ago
+      @tomato_2.save!
 
       @other_user = User.create!
       @tomato_3 = @other_user.tomatoes.create!
@@ -55,6 +57,38 @@ module Api
       assert_raises(Mongoid::Errors::DocumentNotFound) do
         get :show, token: '123', id: @tomato_3.id.to_s
       end
+    end
+
+    test 'POST /create, given an invalid token, it should return an error' do
+      post :create, token: 'invalid_token', tomato: { tag_list: 'one, two' }
+      assert_response :unauthorized
+      assert_equal 'application/json', @response.content_type
+      assert_equal({ error: 'authentication failed' }.to_json, @response.body)
+    end
+
+    test 'POST /create, given valid params, it should create a tomato' do
+      assert_difference('@user.tomatoes.size') do
+        post :create, token: '123', tomato: { tag_list: 'one, two' }
+      end
+      assert_response :created
+      new_tomato = @user.reload.tomatoes.order_by([[:created_at, :desc]]).first
+      assert_equal 'application/json', @response.content_type
+      assert_equal Api::Presenter::Tomato.new(new_tomato).to_json, @response.body
+      assert_match /#{api_tomato_path(new_tomato)}/, @response.headers['Location']
+    end
+
+    test 'POST /create, given a validation error, it should return an error' do
+      @user.tomatoes.create!
+
+      assert_no_difference('@user.tomatoes.size') do
+        # this request should fail because another tomato has been created
+        # less than 25 minutes ago
+        post :create, token: '123', tomato: { tag_list: 'one, two' }
+      end
+      assert_response :unprocessable_entity
+      assert_equal 'application/json', @response.content_type
+      parsed_response = JSON.parse(@response.body)
+      assert_match /Must not overlap saved tomaotes/, parsed_response['base'].first
     end
   end
 end

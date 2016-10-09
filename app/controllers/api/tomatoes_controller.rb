@@ -13,5 +13,21 @@ module Api
 
       render json: Presenter::Tomato.new(@tomato)
     end
+
+    def create
+      @tomato = current_user.tomatoes.build(resource_params)
+
+      if @tomato.save
+        render status: :created, json: Presenter::Tomato.new(@tomato), location: api_tomato_url(@tomato)
+      else
+        render status: :unprocessable_entity, json: @tomato.errors
+      end
+    end
+
+    private
+
+    def resource_params
+      params.require(:tomato).permit(:tag_list)
+    end
   end
 end
