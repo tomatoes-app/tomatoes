@@ -30,7 +30,8 @@ module Api
       get :index, token: '123'
       assert_response :success
       assert_equal 'application/json', @response.content_type
-      tomatoes_ids = JSON.parse(@response.body).map { |t| t['id'] }
+      parsed_response = JSON.parse(@response.body)
+      tomatoes_ids = parsed_response['tomatoes'].map { |t| t['id'] }
       assert_includes tomatoes_ids, @tomato_1.id.to_s
       assert_includes tomatoes_ids, @tomato_2.id.to_s
       assert_not_includes tomatoes_ids, @tomato_3.id.to_s

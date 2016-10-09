@@ -5,7 +5,7 @@ module Api
     def index
       @tomatoes = current_user.tomatoes.order_by([[:created_at, :desc]]).page params[:page]
 
-      render json: @tomatoes.map(&Presenter::Tomato.method(:new))
+      render json: Presenter::Tomatoes.new(@tomatoes)
     end
 
     def show
