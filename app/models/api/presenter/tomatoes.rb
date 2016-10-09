@@ -7,7 +7,7 @@ module Api
 
       def as_json(options = {})
         {
-          tomatoes: @tomatoes.map(&Tomato.method(:new)),
+          tomatoes: @tomatoes.map(&Api::Presenter::Tomato.method(:new)),
           pagination: {
             current_page: @tomatoes.current_page,
             total_pages: @tomatoes.total_pages,
