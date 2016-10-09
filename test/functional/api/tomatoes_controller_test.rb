@@ -119,5 +119,19 @@ module Api
       assert_response :unprocessable_entity
       assert_equal 'application/json', @response.content_type
     end
+
+    test 'DELETE /destroy, given an invalid token, it should return an error' do
+      delete :destroy, token: 'invalid_token', id: @tomato_1.id
+      assert_response :unauthorized
+      assert_equal 'application/json', @response.content_type
+      assert_equal({ error: 'authentication failed' }.to_json, @response.body)
+    end
+
+    test 'DELETE /destroy, given valid params, it should destroy the tomato' do
+      assert_difference('@user.tomatoes.count', -1) do
+        delete :destroy, token: '123', id: @tomato_1.id
+      end
+      assert_response :no_content
+    end
   end
 end

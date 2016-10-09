@@ -34,6 +34,13 @@ module Api
       end
     end
 
+    def destroy
+      @tomato = current_user.tomatoes.find(params[:id])
+
+      @tomato.destroy
+      head :no_content
+    end
+
     private
 
     def resource_params
