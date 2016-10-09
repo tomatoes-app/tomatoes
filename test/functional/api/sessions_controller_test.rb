@@ -91,5 +91,26 @@ module Api
       assert_equal 'application/json', @response.content_type
       assert_equal({ error: 'provider not supported' }.to_json, @response.body)
     end
+
+    test 'given an authenticated user, it should destroy any tomatoes session' do
+      Octokit::Client.stubs(:new).returns(@github_client)
+      @github_client.stubs(:user).returns(id: 'github_user_with_api_auth_id')
+
+      post :create, provider: 'github', access_token: 'github_access_token'
+      tomatoes_auth = @github_user_with_api_auth.reload.authorizations.where(provider: 'tomatoes').first
+
+      assert_difference('@github_user_with_api_auth.reload.authorizations.count', -2) do
+        delete :destroy, token: tomatoes_auth.token
+      end
+      assert_empty @github_user_with_api_auth.authorizations.where(provider: 'tomatoes')
+      assert_response :no_content
+    end
+
+    test 'given an invalid token, it should return an error' do
+      delete :destroy, token: 'invalid_token'
+      assert_response :unauthorized
+      assert_equal 'application/json', @response.content_type
+      assert_equal({ error: 'authentication failed' }.to_json, @response.body)
+    end
   end
 end

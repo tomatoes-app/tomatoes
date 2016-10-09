@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   namespace :api do
-    resource :session, only: [:create]
+    resource :session, only: [:create, :destroy]
   end
 
   resources :tags, only: [:index, :show]

@@ -1,5 +1,8 @@
 module Api
   class SessionsController < BaseController
+    before_action :authenticate_user!, only: :destroy
+
+    # POST /session
     def create
       auth_provider = AuthFactory.build(params)
       user = auth_provider.find_user
@@ -14,6 +17,13 @@ module Api
       bad_request 'provider not supported'
     rescue Error::Unauthorized
       unauthorized 'authentication failed'
+    end
+
+    # DELETE /session
+    def destroy
+      @current_user.authorizations.where(provider: 'tomatoes').destroy_all
+
+      head :no_content
     end
   end
 end
