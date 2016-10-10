@@ -2,8 +2,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   helper_method :current_user
-  helper_method :user_signed_in?
-  helper_method :correct_user?
 
   before_action :set_time_zone
 
@@ -16,11 +14,7 @@ class ApplicationController < ActionController::Base
   end
 
   def not_found
-    raise ActionController::RoutingError.new('Not Found')
-  end
-
-  def user_signed_in?
-    return true if current_user
+    raise ActionController::RoutingError.new('Not found')
   end
 
   private
@@ -49,10 +43,10 @@ class ApplicationController < ActionController::Base
   end
 
   def same_user!
-    redirect_to root_url, alert: 'Access denied.' unless same_user?
+    redirect_to root_url, alert: 'Access denied' unless same_user?
   end
 
   def authenticate_user!
-    redirect_to root_url, alert: 'You need to sign in for access to this page.' unless current_user
+    redirect_to root_url, alert: 'You need to sign in' unless current_user
   end
 end
