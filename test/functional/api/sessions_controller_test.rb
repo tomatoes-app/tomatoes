@@ -32,7 +32,8 @@ module Api
       User.destroy_all
     end
 
-    test 'given a github access token, '\
+    test 'POST /create, '\
+        'given a github access token, '\
         'associated with an existing user, '\
         'it should create a new session' do
       Octokit::Client.expects(:new).with(access_token: 'github_access_token').returns(@github_client)
@@ -46,7 +47,8 @@ module Api
       assert JSON.parse(@response.body).key?('token')
     end
 
-    test 'given a github access token, '\
+    test 'POST /create, '\
+        'given a github access token, '\
         'associated with an existing user, '\
         'with an existing session, '\
         'it should create a new session' do
@@ -61,7 +63,8 @@ module Api
       assert JSON.parse(@response.body).key?('token')
     end
 
-    test 'given a github access token, '\
+    test 'POST /create, '\
+        'given a github access token, '\
         'not associated with any user, '\
         'it should create a new user' do
       Octokit::Client.expects(:new).with(access_token: 'github_access_token').returns(@github_client)
@@ -75,7 +78,7 @@ module Api
       assert JSON.parse(@response.body).key?('token')
     end
 
-    test 'given an invalid github access token, it should return an error' do
+    test 'POST /create, given an invalid github access token, it should return an error' do
       Octokit::Client.expects(:new).with(access_token: 'github_access_token').returns(@github_client)
       @github_client.expects(:user).raises(Octokit::Unauthorized)
 
@@ -85,14 +88,14 @@ module Api
       assert_equal({ error: 'authentication failed' }.to_json, @response.body)
     end
 
-    test 'given an invalid provider, it should return an error' do
+    test 'POST /create, given an invalid provider, it should return an error' do
       post :create, provider: 'invalid_provider'
       assert_response :bad_request
       assert_equal 'application/json', @response.content_type
       assert_equal({ error: 'provider not supported' }.to_json, @response.body)
     end
 
-    test 'given an authenticated user, it should destroy any tomatoes session' do
+    test 'DELETE /destroy, given an authenticated user, it should destroy any tomatoes session' do
       Octokit::Client.stubs(:new).returns(@github_client)
       @github_client.stubs(:user).returns(id: 'github_user_with_api_auth_id')
 
@@ -106,7 +109,7 @@ module Api
       assert_response :no_content
     end
 
-    test 'given an invalid token, it should return an error' do
+    test 'DELETE /destroy, given an invalid token, it should return an error' do
       delete :destroy, token: 'invalid_token'
       assert_response :unauthorized
       assert_equal 'application/json', @response.content_type
