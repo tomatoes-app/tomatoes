@@ -24,12 +24,8 @@ class Project
     money_budget.to_f / (estimated_work_time / 60 / 60).to_f if money_budget && estimated_work_time
   end
 
-  def any_of_conditions
-    tags.map { |tag| { tags: tag } }
-  end
-
   def tomatoes
-    any_of_conditions.empty? ? [] : user.tomatoes.any_of(any_of_conditions)
+    user.tomatoes.tagged_with(tags)
   end
 
   def effective_hourly_rate

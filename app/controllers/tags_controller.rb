@@ -11,6 +11,6 @@ class TagsController < ApplicationController
 
   def show
     @tag = params[:id]
-    @tomatoes = current_user.tomatoes_by_tags([@tag])
+    @tomatoes = current_user.tomatoes.tagged_with(@tag)
   end
 end
