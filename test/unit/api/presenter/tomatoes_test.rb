@@ -2,7 +2,7 @@ require 'test_helper'
 
 module Api
   module Presenter
-    class TomatoTest < ActiveSupport::TestCase
+    class TomatoesTest < ActiveSupport::TestCase
       setup do
         @user = User.create!
         tomato = @user.tomatoes.build
