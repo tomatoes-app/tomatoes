@@ -120,10 +120,6 @@ class User
     authorizations.where(provider: provider).first
   end
 
-  def tomatoes_after(time)
-    tomatoes.where(created_at: { '$gte' => time }).order_by([[:created_at, :desc]])
-  end
-
   def self.by_tomatoes(users)
     to_tomatoes_bars(users) do |users_by_tomatoes|
       users_by_tomatoes ? users_by_tomatoes.size : 0
@@ -182,21 +178,15 @@ class User
     work_time * Workable::TOMATO_TIME_FACTOR / 60 / 60 * average_hourly_rate.to_f if average_hourly_rate
   end
 
-  def tomatoes_counter(time_period)
-    tomatoes_after(Time.zone.now.send("beginning_of_#{time_period}")).count
-  end
-
   def tomatoes_counters
     Hash[[:day, :week, :month].map do |time_period|
       [time_period, tomatoes_counter(time_period)]
     end]
   end
 
-  def any_of_conditions(tags)
-    tags.map { |tag| { tags: tag } }
-  end
+  private
 
-  def tomatoes_by_tags(tags)
-    any_of_conditions(tags).empty? ? [] : tomatoes.any_of(any_of_conditions(tags))
+  def tomatoes_counter(time_period)
+    tomatoes.after(Time.zone.now.send("beginning_of_#{time_period}")).count
   end
 end

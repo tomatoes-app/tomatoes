@@ -20,6 +20,10 @@ class Tomato
   include ApplicationHelper
 
   class << self
+    def after(time)
+      where(created_at: { '$gte': time }).order_by([[:created_at, :desc]])
+    end
+
     def ranking_map
       %{ function() { emit(this.user_id, 1); } }
     end
@@ -89,18 +93,14 @@ class Tomato
     end
   end
 
-  def any_of_conditions
-    tags.map { |tag| { tags: tag } }
-  end
-
   def projects
-    any_of_conditions.empty? ? [] : user.projects.any_of(any_of_conditions)
+    user.projects.tagged_with(tags)
   end
 
   private
 
   def must_not_overlap
-    last_tomato = user.tomatoes_after(Time.zone.now - DURATION.seconds).first
+    last_tomato = user.tomatoes.after(Time.zone.now - DURATION.seconds).first
     if last_tomato
       limit = (DURATION.seconds - (Time.zone.now - last_tomato.created_at)).seconds
       errors.add(:base, "Must not overlap saved tomaotes, please wait #{humanize(limit)}")

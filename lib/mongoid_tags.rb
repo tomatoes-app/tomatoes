@@ -54,9 +54,9 @@ module Mongoid
           _tags.delete_if { |t| !t.include?(_perm) }
         end
 
-        def tagged_with(_tags)
-          _tags = [_tags] unless _tags.is_a? Array
-          criteria.in(tags: _tags).to_a
+        def tagged_with(tags)
+          tags = Array.wrap(tags)
+          criteria.in(tags: tags)
         end
       end
     end
