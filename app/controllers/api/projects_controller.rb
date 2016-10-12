@@ -4,7 +4,7 @@ module Api
     before_action :find_project, only: [:show, :update, :destroy]
 
     def index
-      @projects = current_user.projects.order_by([[:created_at, :desc]]).page params[:page]
+      @projects = current_user.projects.order_by([[:created_at, :desc], [:_id, :desc]]).page params[:page]
 
       render json: Presenter::Projects.new(@projects)
     end

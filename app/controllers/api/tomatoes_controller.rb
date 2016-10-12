@@ -4,7 +4,7 @@ module Api
     before_action :find_tomato, only: [:show, :update, :destroy]
 
     def index
-      @tomatoes = current_user.tomatoes.order_by([[:created_at, :desc]]).page params[:page]
+      @tomatoes = current_user.tomatoes.order_by([[:created_at, :desc], [:_id, :desc]]).page params[:page]
 
       render json: Presenter::Tomatoes.new(@tomatoes)
     end
