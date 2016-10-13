@@ -8,7 +8,8 @@ module Api
     end
 
     test 'self.build twitter provider' do
-      skip('TODO: support twitter provider')
+      auth = AuthFactory.build(provider: 'twitter')
+      assert_kind_of TwitterAuth, auth
     end
 
     test 'self.build invalid provider' do

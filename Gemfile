@@ -49,6 +49,7 @@ gem 'high_voltage'
 gem 'sucker_punch', '~> 2.0'
 
 gem 'octokit'
+gem 'twitter'
 
 group :production do
   gem 'rails_12factor'
