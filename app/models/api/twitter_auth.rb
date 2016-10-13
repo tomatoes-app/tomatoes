@@ -3,7 +3,7 @@ module Api
     def initialize(access_token, secret)
       @access_token = access_token
       @secret = secret
-      @client  = Twitter::REST::Client.new do |config|
+      @client = Twitter::REST::Client.new do |config|
         config.consumer_key = TWITTER['consumer_key']
         config.consumer_secret = TWITTER['consumer_secret']
         config.access_token = @access_token
@@ -35,7 +35,7 @@ module Api
     def user_attributes
       {
         name: twitter_user.name,
-        image: "#{twitter_user.profile_image_uri_https}"
+        image: twitter_user.profile_image_uri_https.to_s
       }
     end
 
@@ -46,7 +46,7 @@ module Api
         token: @access_token,
         secret: @secret,
         nickname: twitter_user.screen_name,
-        image: "#{twitter_user.profile_image_uri_https}"
+        image: twitter_user.profile_image_uri_https.to_s
       }
     end
   end

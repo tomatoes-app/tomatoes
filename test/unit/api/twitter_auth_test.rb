@@ -23,7 +23,7 @@ module Api
     end
 
     teardown do
-      @twitter_user.destroy
+      User.destroy_all
     end
 
     test 'find_user returns the right twitter user if present' do
