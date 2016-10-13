@@ -3,29 +3,38 @@ require 'test_helper'
 module Api
   class SessionsControllerTest < ActionController::TestCase
     setup do
-      @github_user = User.create!(
+      @user = User.create!(
         name: 'name',
         email: 'email@example.com'
       )
-      @github_user.authorizations.create!(
+      @user.authorizations.create!(
         provider: 'github',
         uid: 'github_user_id'
       )
+      @user.authorizations.create!(
+        provider: 'twitter',
+        uid: 'twitter_user_id'
+      )
 
-      @github_user_with_api_auth = User.create!(
+      @user_with_api_auth = User.create!(
         name: 'name',
         email: 'email@example.com'
       )
-      @github_user_with_api_auth.authorizations.create!(
+      @user_with_api_auth.authorizations.create!(
         provider: 'github',
         uid: 'github_user_with_api_auth_id'
       )
-      @github_user_with_api_auth.authorizations.create!(
+      @user_with_api_auth.authorizations.create!(
+        provider: 'twitter',
+        uid: 'twitter_user_with_api_auth_id'
+      )
+      @user_with_api_auth.authorizations.create!(
         provider: 'tomatoes',
         token: 'tomatoes_token'
       )
 
       @github_client = Octokit::Client.new
+      @twitter_client = Twitter::REST::Client
     end
 
     teardown do
@@ -39,7 +48,7 @@ module Api
       Octokit::Client.expects(:new).with(access_token: 'github_access_token').returns(@github_client)
       @github_client.expects(:user).returns(id: 'github_user_id')
 
-      assert_difference('@github_user.reload.authorizations.count') do
+      assert_difference('@user.reload.authorizations.count') do
         post :create, provider: 'github', access_token: 'github_access_token'
       end
       assert_response :success
@@ -55,7 +64,7 @@ module Api
       Octokit::Client.expects(:new).with(access_token: 'github_access_token').returns(@github_client)
       @github_client.expects(:user).returns(id: 'github_user_with_api_auth_id')
 
-      assert_difference('@github_user_with_api_auth.reload.authorizations.count') do
+      assert_difference('@user_with_api_auth.reload.authorizations.count') do
         post :create, provider: 'github', access_token: 'github_access_token'
       end
       assert_response :success
@@ -100,12 +109,12 @@ module Api
       @github_client.stubs(:user).returns(id: 'github_user_with_api_auth_id')
 
       post :create, provider: 'github', access_token: 'github_access_token'
-      tomatoes_auth = @github_user_with_api_auth.reload.authorizations.where(provider: 'tomatoes').first
+      tomatoes_auth = @user_with_api_auth.reload.authorizations.where(provider: 'tomatoes').first
 
-      assert_difference('@github_user_with_api_auth.reload.authorizations.count', -2) do
+      assert_difference('@user_with_api_auth.reload.authorizations.count', -2) do
         delete :destroy, token: tomatoes_auth.token
       end
-      assert_empty @github_user_with_api_auth.authorizations.where(provider: 'tomatoes')
+      assert_empty @user_with_api_auth.authorizations.where(provider: 'tomatoes')
       assert_response :no_content
     end
 
