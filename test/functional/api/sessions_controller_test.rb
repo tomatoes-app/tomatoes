@@ -33,6 +33,22 @@ module Api
         token: 'tomatoes_token'
       )
 
+      @twitter_user = Twitter::User.new(
+        id: 'twitter_user_id',
+        name: 'Giovanni',
+        screen_name: 'potomak'
+      )
+      @twitter_user_with_api_auth = Twitter::User.new(
+        id: 'twitter_user_with_api_auth_id',
+        name: 'Giovanni',
+        screen_name: 'potomak'
+      )
+      @new_twitter_user = Twitter::User.new(
+        id: 'new_twitter_user',
+        name: 'Giovanni',
+        screen_name: 'potomak'
+      )
+
       @github_client = Octokit::Client.new
       @twitter_client = Twitter::REST::Client
     end
@@ -102,6 +118,62 @@ module Api
       assert_response :bad_request
       assert_equal 'application/json', @response.content_type
       assert_equal({ error: 'provider not supported' }.to_json, @response.body)
+    end
+
+    test 'POST /create, '\
+        'given a twitter access token and secret, '\
+        'associated with an existing user, '\
+        'it should create a new session' do
+      Twitter::REST::Client.expects(:new).returns(@twitter_client)
+      @twitter_client.expects(:user).returns(@twitter_user)
+
+      assert_difference('@user.reload.authorizations.count') do
+        post :create, provider: 'twitter', access_token: 'twitter_access_token', secret: 'twitter_secret'
+      end
+      assert_response :success
+      assert_equal 'application/json', @response.content_type
+      assert JSON.parse(@response.body).key?('token')
+    end
+
+    test 'POST /create, '\
+        'given a twitter access token and secret, '\
+        'associated with an existing user, '\
+        'with an existing session, '\
+        'it should create a new session' do
+      Twitter::REST::Client.expects(:new).returns(@twitter_client)
+      @twitter_client.expects(:user).returns(@twitter_user_with_api_auth)
+
+      assert_difference('@user_with_api_auth.reload.authorizations.count') do
+        post :create, provider: 'twitter', access_token: 'twitter_access_token', secret: 'twitter_secret'
+      end
+      assert_response :success
+      assert_equal 'application/json', @response.content_type
+      assert JSON.parse(@response.body).key?('token')
+    end
+
+    test 'POST /create, '\
+        'given a twitter access token and secret, '\
+        'not associated with any user, '\
+        'it should create a new user' do
+      Twitter::REST::Client.expects(:new).returns(@twitter_client)
+      @twitter_client.expects(:user).returns(@new_twitter_user)
+
+      assert_difference('User.count') do
+        post :create, provider: 'twitter', access_token: 'twitter_access_token', secret: 'twitter_secret'
+      end
+      assert_response :success
+      assert_equal 'application/json', @response.content_type
+      assert JSON.parse(@response.body).key?('token')
+    end
+
+    test 'POST /create, given an invalid twitter access token and secret, it should return an error' do
+      Twitter::REST::Client.expects(:new).returns(@twitter_client)
+      @twitter_client.expects(:user).raises(Twitter::Error::Unauthorized)
+
+      post :create, provider: 'twitter', access_token: 'twitter_access_token', secret: 'twitter_secret'
+      assert_response :unauthorized
+      assert_equal 'application/json', @response.content_type
+      assert_equal({ error: 'authentication failed' }.to_json, @response.body)
     end
 
     test 'DELETE /destroy, given an authenticated user, it should destroy any tomatoes session' do
