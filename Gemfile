@@ -44,6 +44,7 @@ gem 'exception_notification'
 
 # Static pages
 gem 'high_voltage'
+gem 'rdiscount'
 
 # Async tasks
 gem 'sucker_punch', '~> 2.0'
