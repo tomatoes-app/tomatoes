@@ -4,7 +4,7 @@ module Api
   module Presenter
     class TomatoTest < ActiveSupport::TestCase
       setup do
-        @user = User.create!
+        @user = ::User.create!
         @tomato = @user.tomatoes.build
         @tomato.created_at = 1.hour.ago
         @tomato.save!
@@ -12,7 +12,7 @@ module Api
       end
 
       teardown do
-        User.destroy_all
+        ::User.destroy_all
         ::Tomato.destroy_all
       end
 

@@ -4,7 +4,7 @@ module Api
   module Presenter
     class ProjectTest < ActiveSupport::TestCase
       setup do
-        @user = User.create!
+        @user = ::User.create!
         @project = @user.projects.create!(
           name: 'Test project',
           money_budget: 123,
@@ -12,7 +12,7 @@ module Api
       end
 
       teardown do
-        User.destroy_all
+        ::User.destroy_all
         ::Project.destroy_all
       end
 
