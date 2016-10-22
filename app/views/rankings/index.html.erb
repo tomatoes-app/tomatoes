@@ -1,6 +1,10 @@
 <h1><%= ranking_title(params[:time_period]) %></h1>
 <p><%= render partial: 'shared/ranking_links' %></p>
-<div class="leaderboard_list">
-  <%= render :partial => 'ranking', :locals => {:leaderboard => @leaderboard} %>
-</div>
-<p><strong>Note:</strong> leaderboard updates every <%= distance_of_time_in_words(@cache_expiration) %>.</p>
+
+<% cache [:user_ranking_partial, params[:time_period]] do %>
+  <%= render :partial => 'ranking', :locals => { :leaderboard => @leaderboard } %>
+<% end %>
+
+<p>
+  <strong>Note:</strong> leaderboard updates every <%= distance_of_time_in_words(@cache_expiration) %>.
+</p>
