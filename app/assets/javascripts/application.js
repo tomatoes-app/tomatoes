@@ -9,3 +9,7 @@
 //= require jquery.cookie
 //= require jquery.color-2.1.2
 //= require time_zone
+//
+//= require_tree ./application
+
+window.Tomatoes = window.Tomatoes || {};
