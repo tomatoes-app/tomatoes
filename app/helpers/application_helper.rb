@@ -1,9 +1,9 @@
 module ApplicationHelper
   def humanize(secs)
     [[60, 'second'], [60, 'minute'], [24, 'hour'], [365, 'day'], [1000, 'year']].map do |count, name|
-      if secs > 0
+      if secs.positive?
         secs, n = secs.divmod(count)
-        pluralize(n.to_i, name) if n.to_i > 0
+        pluralize(n.to_i, name) if n.to_i.positive?
       end
     end.compact.reverse.join(', ')
   end
