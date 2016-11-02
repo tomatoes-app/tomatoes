@@ -1,21 +1,25 @@
 class ScoreOnLeaderboardJob
   include SuckerPunch::Job
 
-  def perform(user_id)
-    today_rank = UserRankingToday.where(_id: user_id).first
-    if today_rank && today_rank.created_at.to_date != Time.now.to_date
-      SuckerPunch.logger.info("deleting old today ranking for user #{user_id}")
-      today_rank.destroy
-      today_rank = nil
+  def perform(user_id, score=1)
+    rank_on_leaderboard(user_id, score, UserRankingToday, 'to_date')
+  end
+
+  def rank_on_leaderboard(user_id, score, leaderboard_klass, time_method)
+    rank = leaderboard_klass.where(_id: user_id).first
+    if rank && rank.created_at.try(time_method) != Time.now.try(time_method)
+      SuckerPunch.logger.info("deleting old #{leaderboard_klass.name} ranking for user #{user_id}")
+      rank.destroy
+      rank = nil
     end
 
-    if today_rank.nil?
-      SuckerPunch.logger.info("creating new today ranking for user #{user_id}")
-      today_rank = UserRankingToday.create!(_id: user_id, value: 1)
+    if rank.nil?
+      SuckerPunch.logger.info("creating new #{leaderboard_klass.name} ranking for user #{user_id}")
+      rank = leaderboard_klass.create!(_id: user_id, value: score)
       return
     end
 
-    today_rank.value += 1
-    today_rank.save!
+    rank.value += score
+    rank.save!
   end
 end
