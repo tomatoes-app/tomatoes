@@ -24,10 +24,6 @@ module Api
         t1.created_at = 1.month.ago
         t1.save!
 
-        t2 = @user.tomatoes.build
-        t2.created_at = 1.week.ago
-        t2.save!
-
         @user.tomatoes.create!
       end
 
@@ -63,7 +59,7 @@ module Api
         presenter = Api::Presenter::User.new(@user)
 
         assert_equal({
-                       month: 2,
+                       month: 1,
                        week: 1,
                        day: 1
                      }, presenter.as_json[:tomatoes_counters])
