@@ -27,6 +27,18 @@ module Api
       assert_equal @github_user, auth.find_user
     end
 
+    test 'find_user returns the right github user if present with numeric ID' do
+      @github_user.authorizations.create!(
+        provider: 'github',
+        uid: '1'
+      )
+      Octokit::Client.stubs(:new).with(access_token: 'github_access_token').returns(@github_client)
+      @github_client.expects(:user).returns(id: 1)
+
+      auth = GithubAuth.new('github_access_token')
+      assert_equal @github_user, auth.find_user
+    end
+
     test 'find_user does not return any user if not present' do
       Octokit::Client.stubs(:new).with(access_token: 'github_access_token').returns(@github_client)
       @github_client.expects(:user).returns(id: 'missing_user')

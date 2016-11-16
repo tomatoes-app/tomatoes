@@ -6,7 +6,7 @@ module Api
     end
 
     def find_user
-      User.find_by_auth_provider(provider: 'github', uid: github_user[:id])
+      User.find_by_auth_provider(provider: 'github', uid: github_user[:id].to_s)
     end
 
     def create_user!
