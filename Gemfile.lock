@@ -402,7 +402,7 @@ DEPENDENCIES
   binding_of_caller
   dalli
   exception_notification
-  fog (~> 1.20)
+  fog-aws (~> 0.12.0)
   high_voltage
   jquery-rails
   kaminari
@@ -433,4 +433,4 @@ RUBY VERSION
    ruby 2.3.1p112
 
 BUNDLED WITH
-   1.13.1
+   1.13.2

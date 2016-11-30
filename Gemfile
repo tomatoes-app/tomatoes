@@ -12,7 +12,7 @@ group :assets do
 
   # Upload assets to AWS S3
   gem 'asset_sync'
-  gem 'fog', '~>1.20', require: 'fog/aws/storage'
+  gem 'fog-aws', '~> 0.12.0', require: 'fog/aws/storage'
 end
 
 gem 'jquery-rails'
