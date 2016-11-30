@@ -7,6 +7,7 @@ class MonthlyScoreTest < ActiveSupport::TestCase
 
   teardown do
     User.destroy_all
+    MonthlyScore.destroy_all
   end
 
   test 'creates a new monthly score' do

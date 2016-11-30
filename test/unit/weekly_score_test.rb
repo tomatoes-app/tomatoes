@@ -7,6 +7,7 @@ class WeeklyScoreTest < ActiveSupport::TestCase
 
   teardown do
     User.destroy_all
+    WeeklyScore.destroy_all
   end
 
   test 'creates a new weekly score' do

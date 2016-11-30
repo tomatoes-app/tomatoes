@@ -7,6 +7,7 @@ class OverallScoreTest < ActiveSupport::TestCase
 
   teardown do
     User.destroy_all
+    OverallScore.destroy_all
   end
 
   test 'creates a new overall score' do

@@ -48,7 +48,7 @@ class User
   embeds_many :authorizations
   has_many :tomatoes
   has_many :projects
-  has_one :daily_score
+  has_one :daily_score, inverse_of: :user, foreign_key: :uid
   has_one :weekly_score
   has_one :monthly_score
   has_one :overall_score
