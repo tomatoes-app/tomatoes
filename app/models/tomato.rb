@@ -12,6 +12,7 @@ class Tomato
   index(created_at: 1)
 
   validate :must_not_overlap, on: :create
+  after_create :score_on_leaderboard
 
   DURATION       = Rails.env.development? ? 25 : 25 * 60 # pomodoro default duration in seconds
   BREAK_DURATION = Rails.env.development? ? 5  : 5 * 60  # pomodoro default break duration in seconds
@@ -105,5 +106,9 @@ class Tomato
       limit = (DURATION.seconds - (Time.zone.now - last_tomato.created_at)).seconds
       errors.add(:base, "Must not overlap saved tomaotes, please wait #{humanize(limit)}")
     end
+  end
+
+  def score_on_leaderboard
+    ScoreOnLeaderboardJob.perform_async(self.user._id)
   end
 end
