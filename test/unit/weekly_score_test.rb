@@ -13,5 +13,6 @@ class WeeklyScoreTest < ActiveSupport::TestCase
     score = WeeklyScore.create(user: @user, s: 10)
     assert_equal score.s, 10
     assert_equal score.user, @user
+    assert_equal @user.weekly_score, score
   end
 end

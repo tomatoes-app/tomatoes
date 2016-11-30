@@ -48,6 +48,10 @@ class User
   embeds_many :authorizations
   has_many :tomatoes
   has_many :projects
+  has_one :daily_score
+  has_one :weekly_score
+  has_one :monthly_score
+  has_one :overall_score
 
   # TODO: this could be a composite index
   # TODO: this should be a unique index (unique: true)

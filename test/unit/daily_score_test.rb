@@ -13,5 +13,6 @@ class DailyScoreTest < ActiveSupport::TestCase
     score = DailyScore.create(user: @user, s: 10)
     assert_equal score.s, 10
     assert_equal score.user, @user
+    assert_equal @user.daily_score, score
   end
 end
