@@ -11,7 +11,7 @@ class OverallScoreTest < ActiveSupport::TestCase
   end
 
   test 'creates a new overall score' do
-    score = OverallScore.create(user: @user, s: 10)
+    score = OverallScore.create(user: @user, score: 10)
     assert_equal score.s, 10
     assert_equal score.user, @user
     assert_equal @user.overall_score, score

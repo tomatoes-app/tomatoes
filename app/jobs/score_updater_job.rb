@@ -12,11 +12,11 @@ class ScoreUpdaterJob
     user_score = score_klass.where(uid: user_id).first
     if user_score.nil?
       SuckerPunch.logger.info("creating new #{score_klass.name} for user #{user_id}")
-      user_score = score_klass.create!(uid: user_id, s: delta)
+      user_score = score_klass.create!(uid: user_id, score: delta)
       return
     end
 
-    user_score.s += delta
+    user_score.score += delta
     user_score.save!
   end
 end

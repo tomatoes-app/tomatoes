@@ -21,7 +21,7 @@ class ScoreUpdaterJobTest < ActiveSupport::TestCase
   end
 
   test 'updates a new daily score' do
-    score = DailyScore.create(user: @user, s: 10)
+    score = DailyScore.create(user: @user, score: 10)
     @user.reload
     assert_equal @user.daily_score, score
     ScoreUpdaterJob.new.perform(@user._id, 2)
