@@ -16,7 +16,6 @@ class ScoreUpdaterJob
       return
     end
 
-    user_score.score += delta
-    user_score.save!
+    user_score.inc(score: delta)
   end
 end
