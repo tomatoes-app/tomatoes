@@ -17,5 +17,8 @@ class ScoreUpdaterJob
     end
 
     user_score.inc(score: delta)
+  rescue Mongo::Error::OperationFailure => err
+    SuckerPunch.logger.error("Error while creating new score: #{err}")
+    retry
   end
 end
