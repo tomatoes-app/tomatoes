@@ -22,6 +22,8 @@ class IncrementScore
     if user_score.nil?
       self.logger.info("creating new #{score_klass.name} for user #{user_id}")
       user_score = score_klass.new(uid: user_id, score: score)
+      user_score.expires_at = expires_at if expires_at
+      return user_score.save!
     end
 
     user_score.inc(score: score)
