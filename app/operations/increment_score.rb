@@ -1,10 +1,10 @@
 class IncrementScore
   attr_accessor :user_id, :score, :logger
 
-  def initialize(user_id, score, logger=nil)
+  def initialize(user_id, score, logger=Rails.logger)
     self.user_id = user_id
     self.score = score
-    self.logger = logger || Rails.logger
+    self.logger = logger
   end
 
   def process
