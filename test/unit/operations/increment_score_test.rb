@@ -19,6 +19,7 @@ class IncrementScoreTest < ActiveSupport::TestCase
     @inc_operation.process()
     @user.reload
     assert_equal @user.daily_score, DailyScore.last
+    assert_equal @user.daily_score.score, 10
   end
 
   test 'updates a daily score' do
