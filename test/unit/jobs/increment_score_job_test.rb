@@ -2,15 +2,13 @@ require 'test_helper'
 
 class IncrementScoreJobTest < ActiveSupport::TestCase
   setup do
-    @user = User.create!
-  end
-
-  teardown do
     User.destroy_all
     DailyScore.destroy_all
     WeeklyScore.destroy_all
     MonthlyScore.destroy_all
     OverallScore.destroy_all
+
+    @user = User.create!
   end
 
   test 'creates a new daily score' do
