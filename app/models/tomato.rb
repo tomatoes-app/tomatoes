@@ -111,10 +111,10 @@ class Tomato
   end
 
   def increment_score
-    IncrementScoreJob.perform_async(self.user_id)
+    IncrementScoreJob.perform_async(user_id)
   end
 
   def decrement_score
-    IncrementScoreJob.perform_async(self.user_id, -1)
+    IncrementScoreJob.perform_async(user_id, -1)
   end
 end
