@@ -15,7 +15,7 @@ module Api
 
       teardown do
         ::User.destroy_all
-        ::Tomato.destroy_all
+        ::Tomato.delete_all
       end
 
       test '#as_json should include tomatoes and pagination data' do

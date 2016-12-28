@@ -15,8 +15,8 @@ class TomatoesControllerTest < ActionController::TestCase
   end
 
   teardown do
-    @user.destroy
     @tomato.destroy
+    @user.destroy
   end
 
   test 'should get index' do
