@@ -1,4 +1,4 @@
-class ScoreUpdaterJob
+class IncrementScoreJob
   include SuckerPunch::Job
 
   def perform(user_id, score=1)

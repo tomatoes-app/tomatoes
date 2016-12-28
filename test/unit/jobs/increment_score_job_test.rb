@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ScoreUpdaterJobTest < ActiveSupport::TestCase
+class IncrementScoreJobTest < ActiveSupport::TestCase
   setup do
     @user = User.create!
   end
@@ -15,7 +15,7 @@ class ScoreUpdaterJobTest < ActiveSupport::TestCase
 
   test 'creates a new daily score' do
     assert_equal @user.daily_score, nil
-    ScoreUpdaterJob.new.perform(@user._id)
+    IncrementScoreJob.new.perform(@user._id)
     @user.reload
     assert_equal @user.daily_score, DailyScore.last
   end
@@ -24,7 +24,7 @@ class ScoreUpdaterJobTest < ActiveSupport::TestCase
     score = DailyScore.create(user: @user, score: 10)
     @user.reload
     assert_equal @user.daily_score, score
-    ScoreUpdaterJob.new.perform(@user._id, 2)
+    IncrementScoreJob.new.perform(@user._id, 2)
     @user.reload
     score.reload
     assert_equal score.score, 12
