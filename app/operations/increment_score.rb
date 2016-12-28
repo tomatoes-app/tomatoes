@@ -20,7 +20,7 @@ class IncrementScore
   def upsert_score(score_klass, expires_at=nil)
     user_score = score_klass.where(uid: user_id).first
     if user_score.nil?
-      self.logger.info("creating new #{score_klass.name} for user #{user_id}")
+      logger.info("creating new #{score_klass.name} for user #{user_id}")
       user_score = score_klass.new(uid: user_id, score: amount)
       user_score.expires_at = expires_at if expires_at
       return user_score.save!
@@ -28,12 +28,12 @@ class IncrementScore
 
     user_score.inc(score: amount)
   rescue Mongo::Error::OperationFailure => err
-    self.logger.error("Error while creating new score: #{err}")
+    logger.error("Error while creating new score: #{err}")
     retry
   end
 
   def user
-    @user ||= User.find(self.user_id)
+    @user ||= User.find(user_id)
   end
 
   def to_user_timezone(t)
