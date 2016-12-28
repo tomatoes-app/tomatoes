@@ -9,15 +9,15 @@ class IncrementScore
 
   def process
     now = Time.current
-    add_score(self.user_id, self.amount, DailyScore, to_user_timezone(now.end_of_day))
-    add_score(self.user_id, self.amount, WeeklyScore, to_user_timezone(now.end_of_week))
-    add_score(self.user_id, self.amount, MonthlyScore, to_user_timezone(now.end_of_month))
-    add_score(self.user_id, self.amount, OverallScore)
+    add_score(DailyScore, to_user_timezone(now.end_of_day))
+    add_score(WeeklyScore, to_user_timezone(now.end_of_week))
+    add_score(MonthlyScore, to_user_timezone(now.end_of_month))
+    add_score(OverallScore)
   end
 
   private
 
-  def add_score(user_id, amount, score_klass, expires_at=nil)
+  def add_score(score_klass, expires_at=nil)
     user_score = score_klass.where(uid: user_id).first
     if user_score.nil?
       self.logger.info("creating new #{score_klass.name} for user #{user_id}")
