@@ -20,22 +20,22 @@ module Api
         presenter = Api::Presenter::Tomato.new(@tomato)
 
         assert_equal({
-          id: @tomato.id.to_s,
-          created_at: @tomato.created_at,
-          updated_at: @tomato.updated_at,
-          tags: []
-        }, presenter.as_json)
+                       id: @tomato.id.to_s,
+                       created_at: @tomato.created_at,
+                       updated_at: @tomato.updated_at,
+                       tags: []
+                     }, presenter.as_json)
       end
 
       test '#as_json should include tomato\'s id, timestamps, and tags (with tags)' do
         presenter = Api::Presenter::Tomato.new(@tomato_with_tags)
 
         assert_equal({
-          id: @tomato_with_tags.id.to_s,
-          created_at: @tomato_with_tags.created_at,
-          updated_at: @tomato_with_tags.updated_at,
-          tags: %w(one two)
-        }, presenter.as_json)
+                       id: @tomato_with_tags.id.to_s,
+                       created_at: @tomato_with_tags.created_at,
+                       updated_at: @tomato_with_tags.updated_at,
+                       tags: %w(one two)
+                     }, presenter.as_json)
       end
     end
   end

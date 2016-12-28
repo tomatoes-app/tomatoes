@@ -55,6 +55,7 @@ GEM
     bson (4.1.1)
     buftok (0.2.0)
     builder (3.2.2)
+    byebug (9.0.6)
     coderay (1.1.1)
     concurrent-ruby (1.0.2)
     dalli (2.7.6)
@@ -400,6 +401,7 @@ DEPENDENCIES
   asset_sync
   better_errors
   binding_of_caller
+  byebug
   dalli
   exception_notification
   fog (~> 1.20)

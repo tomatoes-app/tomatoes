@@ -7,10 +7,11 @@ class WeeklyScoreTest < ActiveSupport::TestCase
 
   teardown do
     User.destroy_all
+    WeeklyScore.destroy_all
   end
 
   test 'creates a new weekly score' do
-    score = WeeklyScore.create(user: @user, s: 10)
+    score = WeeklyScore.create(user: @user, score: 10)
     assert_equal score.s, 10
     assert_equal score.user, @user
     assert_equal @user.weekly_score, score

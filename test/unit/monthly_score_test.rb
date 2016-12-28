@@ -7,10 +7,11 @@ class MonthlyScoreTest < ActiveSupport::TestCase
 
   teardown do
     User.destroy_all
+    MonthlyScore.destroy_all
   end
 
   test 'creates a new monthly score' do
-    score = MonthlyScore.create(user: @user, s: 10)
+    score = MonthlyScore.create(user: @user, score: 10)
     assert_equal score.s, 10
     assert_equal score.user, @user
     assert_equal @user.monthly_score, score
