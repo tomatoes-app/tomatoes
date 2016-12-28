@@ -5,7 +5,7 @@ module Api
         @user = user
       end
 
-      def as_json(options = {})
+      def as_json(_options = {})
         {
           id: @user.id.to_s,
           name: @user.name,

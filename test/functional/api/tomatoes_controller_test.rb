@@ -74,7 +74,7 @@ module Api
       new_tomato = @user.reload.tomatoes.order_by([[:created_at, :desc]]).first
       assert_equal 'application/json', @response.content_type
       assert_equal Api::Presenter::Tomato.new(new_tomato).to_json, @response.body
-      assert_match /#{api_tomato_path(new_tomato)}/, @response.headers['Location']
+      assert_match(/#{api_tomato_path(new_tomato)}/, @response.headers['Location'])
     end
 
     test 'POST /create, given a validation error, it should return an error' do
@@ -88,7 +88,7 @@ module Api
       assert_response :unprocessable_entity
       assert_equal 'application/json', @response.content_type
       parsed_response = JSON.parse(@response.body)
-      assert_match /Must not overlap saved tomaotes/, parsed_response['base'].first
+      assert_match(/Must not overlap saved tomaotes/, parsed_response['base'].first)
     end
 
     test 'PATCH /update, given an invalid token, it should return an error' do
@@ -104,7 +104,7 @@ module Api
       assert_equal 'application/json', @response.content_type
       @tomato_1.reload
       assert_equal Api::Presenter::Tomato.new(@tomato_1).to_json, @response.body
-      assert_match /#{api_tomato_path(@tomato_1)}/, @response.headers['Location']
+      assert_match(/#{api_tomato_path(@tomato_1)}/, @response.headers['Location'])
       assert_equal %w(three), @tomato_1.tags
     end
 

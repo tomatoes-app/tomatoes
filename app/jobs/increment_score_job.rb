@@ -1,8 +1,8 @@
 class IncrementScoreJob
   include SuckerPunch::Job
 
-  def perform(user_id, amount=1)
+  def perform(user_id, amount = 1)
     increment = IncrementScore.new(user_id, amount, SuckerPunch.logger)
-    increment.process()
+    increment.process
   end
 end

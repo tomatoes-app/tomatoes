@@ -5,7 +5,7 @@ module Api
         @projects = projects
       end
 
-      def as_json(options = {})
+      def as_json(_options = {})
         {
           projects: @projects.map(&Api::Presenter::Project.method(:new)),
           pagination: {

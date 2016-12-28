@@ -5,7 +5,7 @@ module Api
         @tomato = tomato
       end
 
-      def as_json(options = {})
+      def as_json(_options = {})
         {
           id: @tomato.id.to_s,
           created_at: @tomato.created_at,

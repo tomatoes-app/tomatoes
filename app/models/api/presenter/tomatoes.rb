@@ -5,7 +5,7 @@ module Api
         @tomatoes = tomatoes
       end
 
-      def as_json(options = {})
+      def as_json(_options = {})
         {
           tomatoes: @tomatoes.map(&Api::Presenter::Tomato.method(:new)),
           pagination: {

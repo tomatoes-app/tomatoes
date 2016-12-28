@@ -38,7 +38,7 @@ module Api
       assert_equal 'application/json', @response.content_type
       @user.reload
       assert_equal Api::Presenter::User.new(@user).to_json, @response.body
-      assert_match /#{api_user_path}/, @response.headers['Location']
+      assert_match(/#{api_user_path}/, @response.headers['Location'])
       assert_equal 'Foo', @user.name
     end
 

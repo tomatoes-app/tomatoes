@@ -77,7 +77,7 @@ module Api
       new_project = @user.reload.projects.order_by([[:created_at, :desc]]).first
       assert_equal 'application/json', @response.content_type
       assert_equal Api::Presenter::Project.new(new_project).to_json, @response.body
-      assert_match /#{api_project_path(new_project)}/, @response.headers['Location']
+      assert_match(/#{api_project_path(new_project)}/, @response.headers['Location'])
     end
 
     test 'POST /create, given a validation error, it should return an error' do
@@ -87,7 +87,7 @@ module Api
       assert_response :unprocessable_entity
       assert_equal 'application/json', @response.content_type
       parsed_response = JSON.parse(@response.body)
-      assert_match /can't be blank/, parsed_response['name'].first
+      assert_match(/can't be blank/, parsed_response['name'].first)
     end
 
     test 'PATCH /update, given an invalid token, it should return an error' do
@@ -108,7 +108,7 @@ module Api
       assert_equal 'application/json', @response.content_type
       @project.reload
       assert_equal Api::Presenter::Project.new(@project).to_json, @response.body
-      assert_match /#{api_project_path(@project)}/, @response.headers['Location']
+      assert_match(/#{api_project_path(@project)}/, @response.headers['Location'])
       assert_equal %w(three), @project.tags
     end
 

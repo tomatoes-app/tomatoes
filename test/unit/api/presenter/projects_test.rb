@@ -23,10 +23,10 @@ module Api
 
         assert_equal 1, presenter.as_json[:projects].size
         assert_equal({
-          current_page: 1,
-          total_pages: 1,
-          total_count: 1
-        }, presenter.as_json[:pagination])
+                       current_page: 1,
+                       total_pages: 1,
+                       total_count: 1
+                     }, presenter.as_json[:pagination])
       end
     end
   end

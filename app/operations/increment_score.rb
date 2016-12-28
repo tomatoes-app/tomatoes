@@ -1,7 +1,7 @@
 class IncrementScore
   attr_accessor :user_id, :amount, :logger
 
-  def initialize(user_id, amount, logger=Rails.logger)
+  def initialize(user_id, amount, logger = Rails.logger)
     self.user_id = user_id
     self.amount = amount
     self.logger = logger
@@ -17,7 +17,7 @@ class IncrementScore
 
   private
 
-  def upsert_score(score_klass, expires_at=nil)
+  def upsert_score(score_klass, expires_at = nil)
     user_score = score_klass.where(uid: user_id).first
     if user_score.nil?
       logger.info("creating new #{score_klass.name} for user #{user_id}")

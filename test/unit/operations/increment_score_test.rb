@@ -16,7 +16,7 @@ class IncrementScoreTest < ActiveSupport::TestCase
 
   test 'creates a new daily score' do
     assert_equal @user.daily_score, nil
-    @inc_operation.process()
+    @inc_operation.process
     @user.reload
     assert_equal @user.daily_score, DailyScore.last
     assert_equal @user.daily_score.score, 10
@@ -26,7 +26,7 @@ class IncrementScoreTest < ActiveSupport::TestCase
     score = DailyScore.create(user: @user, score: 2)
     @user.reload
     assert_equal @user.daily_score, score
-    @inc_operation.process()
+    @inc_operation.process
     @user.reload
     score.reload
     assert_equal score.score, 12

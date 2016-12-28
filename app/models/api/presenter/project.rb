@@ -5,7 +5,7 @@ module Api
         @project = project
       end
 
-      def as_json(options = {})
+      def as_json(_options = {})
         {
           id: @project.id.to_s,
           created_at: @project.created_at,

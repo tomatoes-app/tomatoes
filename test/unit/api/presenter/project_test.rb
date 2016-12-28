@@ -20,14 +20,14 @@ module Api
         presenter = Api::Presenter::Project.new(@project)
 
         assert_equal({
-          id: @project.id.to_s,
-          created_at: @project.created_at,
-          updated_at: @project.updated_at,
-          tags: [],
-          name: 'Test project',
-          money_budget: 123,
-          time_budget: 234
-        }, presenter.as_json)
+                       id: @project.id.to_s,
+                       created_at: @project.created_at,
+                       updated_at: @project.updated_at,
+                       tags: [],
+                       name: 'Test project',
+                       money_budget: 123,
+                       time_budget: 234
+                     }, presenter.as_json)
       end
     end
   end
