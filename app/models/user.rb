@@ -49,9 +49,9 @@ class User
   has_many :tomatoes
   has_many :projects
   has_one :daily_score, inverse_of: :user, foreign_key: :uid
-  has_one :weekly_score
-  has_one :monthly_score
-  has_one :overall_score
+  has_one :weekly_score, inverse_of: :user, foreign_key: :uid
+  has_one :monthly_score, inverse_of: :user, foreign_key: :uid
+  has_one :overall_score, inverse_of: :user, foreign_key: :uid
 
   # TODO: this could be a composite index
   # TODO: this should be a unique index (unique: true)
