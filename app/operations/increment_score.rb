@@ -8,6 +8,7 @@ class IncrementScore
   end
 
   def process
+    return unless user
     now = Time.current
     upsert_score(DailyScore, to_user_timezone(now.end_of_day))
     upsert_score(WeeklyScore, to_user_timezone(now.end_of_week))
@@ -33,7 +34,7 @@ class IncrementScore
   end
 
   def user
-    @user ||= User.find(user_id)
+    @user ||= User.where(_id: user_id).first
   end
 
   def to_user_timezone(t)
