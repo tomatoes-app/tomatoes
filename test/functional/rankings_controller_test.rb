@@ -11,7 +11,7 @@ class RankingsControllerTest < ActionController::TestCase
 
   teardown do
     User.destroy_all
-    Tomato.destroy_all
+    Tomato.delete_all
   end
 
   test 'should get today' do

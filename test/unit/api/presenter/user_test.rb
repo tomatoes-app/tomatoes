@@ -33,7 +33,7 @@ module Api
 
       teardown do
         ::User.destroy_all
-        ::Tomato.destroy_all
+        ::Tomato.delete_all
       end
 
       test '#as_json should include user\'s basic attributes' do

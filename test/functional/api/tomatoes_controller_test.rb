@@ -18,7 +18,7 @@ module Api
 
     teardown do
       User.destroy_all
-      Tomato.destroy_all
+      Tomato.delete_all
     end
 
     test 'GET /index, given an invalid token, it should return an error' do
