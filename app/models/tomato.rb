@@ -13,6 +13,9 @@ class Tomato
 
   validate :must_not_overlap, on: :create
 
+  after_create :increment_score
+  after_destroy :decrement_score
+
   DURATION       = Rails.env.development? ? 25 : 25 * 60 # pomodoro default duration in seconds
   BREAK_DURATION = Rails.env.development? ? 5  : 5 * 60  # pomodoro default break duration in seconds
 
@@ -105,5 +108,13 @@ class Tomato
       limit = (DURATION.seconds - (Time.zone.now - last_tomato.created_at)).seconds
       errors.add(:base, "Must not overlap saved tomaotes, please wait #{humanize(limit)}")
     end
+  end
+
+  def increment_score
+    IncrementScoreJob.perform_async(self.user_id)
+  end
+
+  def decrement_score
+    IncrementScoreJob.perform_async(self.user_id, -1)
   end
 end
