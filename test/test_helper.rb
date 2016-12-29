@@ -7,6 +7,8 @@ require 'sucker_punch/testing/inline'
 require 'minitest/reporters'
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 
+Dir[Rails.root.join('test/support/**/*.rb')].each { |f| require f }
+
 module ActiveSupport
   class TestCase
     # Setup all fixtures in test/fixtures/*.(yml|csv) for all tests in alphabetical order.

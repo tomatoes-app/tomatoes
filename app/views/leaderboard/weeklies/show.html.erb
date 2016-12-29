@@ -1,0 +1,7 @@
+<h1>Weekly leaderboard</h1>
+
+<p><%= render partial: 'leaderboard/links' %></p>
+
+<div class="leaderboard_list">
+  <%= render partial: 'leaderboard/leaderboard', locals: { leaderboard: @leaderboard } %>
+</div>
