@@ -23,6 +23,12 @@ Rails.application.routes.draw do
   end
 
   resources :rankings, only: :index
+  namespace :leaderboard do
+    resource :daily, only: :show
+    resource :weekly, only: :show
+    resource :monthly, only: :show
+    resource :overall, only: :show
+  end
 
   resources :tomatoes do
     member do
