@@ -2,6 +2,6 @@ require 'test_helper'
 
 module Leaderboard
   class DailiesControllerTest < ActionController::TestCase
-    include BaseControllerTest
+    include LeaderboardControllerTest
   end
 end
