@@ -1,5 +1,6 @@
 module Leaderboard
-  class OverallsController < BaseController
+  class OverallsController < ApplicationController
+    include LeaderboardController
 
     private
 

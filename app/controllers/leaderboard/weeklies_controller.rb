@@ -1,5 +1,6 @@
 module Leaderboard
-  class WeekliesController < BaseController
+  class WeekliesController < ApplicationController
+    include LeaderboardController
 
     private
 

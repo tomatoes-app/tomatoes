@@ -1,5 +1,6 @@
 module Leaderboard
-  class DailiesController < BaseController
+  class DailiesController < ApplicationController
+    include LeaderboardController
 
     private
 
