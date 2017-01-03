@@ -4,8 +4,8 @@ module Leaderboard
 
     private
 
-    def collection
-      MonthlyScore
+    def scope
+      MonthlyScore.scoped
     end
   end
 end

@@ -4,8 +4,8 @@ module Leaderboard
 
     private
 
-    def collection
-      OverallScore
+    def scope
+      OverallScore.scoped
     end
   end
 end

@@ -4,8 +4,8 @@ module Leaderboard
 
     private
 
-    def collection
-      WeeklyScore
+    def scope
+      WeeklyScore.scoped
     end
   end
 end

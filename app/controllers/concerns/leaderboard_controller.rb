@@ -9,6 +9,6 @@ module LeaderboardController
   end
 
   def find_scores
-    @leaderboard = collection.includes(:user).desc(:score).page(params[:page])
+    @leaderboard = scope.includes(:user).desc(:score).page(params[:page])
   end
 end

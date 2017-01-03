@@ -4,8 +4,8 @@ module Leaderboard
 
     private
 
-    def collection
-      DailyScore
+    def scope
+      DailyScore.scoped
     end
   end
 end
