@@ -19,34 +19,28 @@
 <body>
   <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
-  <div id="container">
-    <%= yield :header %>
+  <%= yield :header %>
 
-    <div id="main_container">
-      <div class="container">
-        <%= render :partial => 'shared/announcement' %>
+  <div class="container">
+    <%= render :partial => 'shared/announcement' %>
 
-        <div id="flash">
-          <%= render :partial => 'shared/flash', :locals => {:flash => flash} %>
-        </div>
-
-        <% unless current_user %>
-          <%= render :partial => 'shared/adv_leaderboard' %>
-        <% end %>
-
-        <%= yield %>
-
-        <% unless current_user %>
-          <%= render :partial => 'shared/adv_leaderboard' %>
-        <% end %>
-
-      </div>
+    <div id="flash">
+      <%= render :partial => 'shared/flash', :locals => {:flash => flash} %>
     </div>
 
-    <div id="footer_container">
-      <%= render partial: 'shared/footer' %>
-    </div>
+    <% unless current_user %>
+      <%= render :partial => 'shared/adv_leaderboard' %>
+    <% end %>
+
+    <%= yield %>
+
+    <% unless current_user %>
+      <%= render :partial => 'shared/adv_leaderboard' %>
+    <% end %>
+
   </div>
+
+  <%= render partial: 'shared/footer' %>
 
   <%= yield :foot %>
 </body>
