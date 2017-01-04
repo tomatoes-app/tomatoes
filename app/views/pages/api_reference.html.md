@@ -536,3 +536,48 @@ Deletes one of current user's projects.
 * `204 No Content`
 * `401 Unauthorized`, invalid token
 * `404 Not Found`
+
+---
+
+## Leaderboards
+
+### GET /api/leaderboard/:period
+
+Returns the users leaderboard for the selected period.
+
+The `period` segment could be `daily`, `weekly`, `monthly`, and `overall`.
+
+The list of leaderboard items is ordered by descending score and it's paginated.
+Each page contains 25 records, by default the first page is retuned, use the
+`page` parameter to get any other page in the range [1, `total_pages`].
+
+#### Request parameters
+
+* `page` a positive integer value to select a page in the range
+  [1, `total_pages`]
+
+#### Response
+
+* `200 Ok`
+
+#### Response content
+
+```json
+{
+  "scores": [
+    {
+      "user": {
+        "id": "586c2be37c8402b5d1db406c",
+        "name": "Giovanni Cappellotto",
+        "image": "http://tomato.es/images/users/586c2be37c8402b5d1db406c.png"
+      },
+      "score": 2
+    }
+  ],
+  "pagination": {
+    "current_page": 1,
+    "total_pages": 1,
+    "total_count": 1
+  }
+}
+```
