@@ -1,10 +1,11 @@
 module Leaderboard
-  class DailiesController < BaseController
+  class DailiesController < ApplicationController
+    include LeaderboardController
 
     private
 
-    def collection
-      DailyScore
+    def scope
+      DailyScore.scoped
     end
   end
 end

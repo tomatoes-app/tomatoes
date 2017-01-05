@@ -7,6 +7,13 @@ Rails.application.routes.draw do
     resource :user, only: [:show, :update]
     resources :tomatoes, only: [:index, :show, :create, :update, :destroy]
     resources :projects, only: [:index, :show, :create, :update, :destroy]
+
+    namespace :leaderboard do
+      resource :daily, only: :show
+      resource :weekly, only: :show
+      resource :monthly, only: :show
+      resource :overall, only: :show
+    end
   end
 
   resources :tags, only: [:index, :show]

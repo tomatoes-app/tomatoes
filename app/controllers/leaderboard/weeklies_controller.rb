@@ -1,10 +1,11 @@
 module Leaderboard
-  class WeekliesController < BaseController
+  class WeekliesController < ApplicationController
+    include LeaderboardController
 
     private
 
-    def collection
-      WeeklyScore
+    def scope
+      WeeklyScore.scoped
     end
   end
 end

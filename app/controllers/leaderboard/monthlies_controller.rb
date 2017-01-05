@@ -1,10 +1,11 @@
 module Leaderboard
-  class MonthliesController < BaseController
+  class MonthliesController < ApplicationController
+    include LeaderboardController
 
     private
 
-    def collection
-      MonthlyScore
+    def scope
+      MonthlyScore.scoped
     end
   end
 end

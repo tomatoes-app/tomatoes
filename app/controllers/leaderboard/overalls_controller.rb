@@ -1,10 +1,11 @@
 module Leaderboard
-  class OverallsController < BaseController
+  class OverallsController < ApplicationController
+    include LeaderboardController
 
     private
 
-    def collection
-      OverallScore
+    def scope
+      OverallScore.scoped
     end
   end
 end

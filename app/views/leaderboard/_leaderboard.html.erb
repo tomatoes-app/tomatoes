@@ -1,6 +1,6 @@
-<% unless leaderboard.empty? %>
+<% unless scores.empty? %>
   <ol start="<%= (25*(params[:page].to_i-1))+1 if params[:page] %>">
-    <% leaderboard.each do |item| %>
+    <% scores.each do |item| %>
       <% if item.user %>
         <li class="block <%= content_for_user(item.user) { 'you' } %>">
           <%= render partial: 'users/user', locals: { user: item.user } %>
@@ -10,7 +10,7 @@
     <% end %>
   </ol>
 
-  <%= paginate leaderboard %>
+  <%= paginate scores %>
 <% else %>
-  <p>No tomatoers here</p>
+  <p>No scores in this leaderboard</p>
 <% end %>
