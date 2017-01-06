@@ -1,12 +1,12 @@
 <div class="authorization left">
   <div class="block">
     <h2>
-      <%= image_tag("#{provider}.png", :width => 16) %>
+      <%= image_tag("#{provider}.png", width: 16) %>
       <%= provider.capitalize %>
     </h2>
     <% if authorization = user.authorization_by_provider(provider) %>
       <div class="left profile_image size48">
-        <%= image_tag authorization.image, :width => 48 %>
+        <%= image_tag authorization.image, width: 48 %>
       </div>
       <%= link_to authorization.url, authorization.url %><br/>
       <%= link_to "Reconnect with #{provider}", signin_path(provider) %>

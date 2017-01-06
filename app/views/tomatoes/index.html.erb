@@ -18,7 +18,7 @@
       <td><%= link_tags(tomato.tags) %></td>
       <td class="show"><%= link_to 'Show', tomato %></td>
       <td class="edit"><%= link_to 'Edit', edit_tomato_path(tomato) %></td>
-      <td class="destroy"><%= link_to 'Destroy', tomato, :data => { :confirm => 'Are you sure?' }, :method => :delete %></td>
+      <td class="destroy"><%= link_to 'Destroy', tomato, data: { confirm: 'Are you sure?' }, method: :delete %></td>
     </tr>
   <% end %>
   </tbody>
@@ -26,4 +26,4 @@
 
 <%= paginate @tomatoes %>
 
-<%= link_to 'New Tomato', new_tomato_path, :class => 'button' %>
+<%= link_to 'New Tomato', new_tomato_path, class: 'button' %>

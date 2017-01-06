@@ -1,7 +1,7 @@
-<%= render :partial => 'tomatoes_timer' %>
+<%= render partial: 'tomatoes_timer' %>
 
 <% unless current_user %>
-  <%= render :partial => 'public' %>
+  <%= render partial: 'public' %>
 <% else %>
-  <%= render :partial => 'dashboard' %>
+  <%= render partial: 'dashboard' %>
 <% end %>

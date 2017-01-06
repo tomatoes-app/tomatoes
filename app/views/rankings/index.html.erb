@@ -2,7 +2,7 @@
 <p><%= render partial: 'shared/ranking_links' %></p>
 
 <% cache [:user_ranking_partial, params[:time_period], params.fetch(:page, 1)] do %>
-  <%= render :partial => 'ranking', :locals => { :leaderboard => @leaderboard } %>
+  <%= render partial: 'ranking', locals: { leaderboard: @leaderboard } %>
 <% end %>
 
 <p>

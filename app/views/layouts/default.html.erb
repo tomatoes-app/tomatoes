@@ -14,8 +14,8 @@
 
   <%= yield :head %>
 
-  <%= render :partial => 'shared/ga' %>
-  <%= render :partial => 'shared/fb' %>
+  <%= render partial: 'shared/ga' %>
+  <%= render partial: 'shared/fb' %>
 </head>
 <body>
   <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -23,20 +23,20 @@
   <%= yield :header %>
 
   <div class="container">
-    <%= render :partial => 'shared/announcement' %>
+    <%= render partial: 'shared/announcement' %>
 
     <div id="flash">
-      <%= render :partial => 'shared/flash', :locals => {:flash => flash} %>
+      <%= render partial: 'shared/flash', locals: {flash: flash} %>
     </div>
 
     <% unless current_user %>
-      <%= render :partial => 'shared/adv_leaderboard' %>
+      <%= render partial: 'shared/adv_leaderboard' %>
     <% end %>
 
     <%= yield %>
 
     <% unless current_user %>
-      <%= render :partial => 'shared/adv_leaderboard' %>
+      <%= render partial: 'shared/adv_leaderboard' %>
     <% end %>
 
   </div>
