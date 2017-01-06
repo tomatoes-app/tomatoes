@@ -4,7 +4,7 @@
       <% leaderboard.each do |item| %>
         <% if item.user %>
           <li class="block" data-user-id="<%= item.user.id %>">
-            <%= render :partial => 'users/user', :locals => {:user => item.user} %>
+            <%= render partial: 'users/user', locals: {user: item.user} %>
             <div class="count"><%= pluralize(item.value.to_i, 'tomato') %></div>
           </li>
         <% end %>

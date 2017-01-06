@@ -22,7 +22,7 @@
   </div>
   <div class="field">
     <%= f.label :time_zone %></br>
-    <%= time_zone_select 'user', 'time_zone', nil, :include_blank => true %>
+    <%= time_zone_select 'user', 'time_zone', nil, include_blank: true %>
   </div>
   <div class="field">
     <%= f.label :currency %></br>
@@ -40,7 +40,7 @@
   </div>
   <div class="field">
     <%= f.label :volume %></br>
-    <%= f.range_field :volume, :min => 0, :max => 3 %>
+    <%= f.range_field :volume, min: 0, max: 3 %>
     <div class="hint">Default timer volume. <em>0</em> is <em>mute</em>, <em>3</em> is <em>max volume</em>.</div>
   </div>
   <div class="field">
@@ -58,6 +58,6 @@
   </div>
   
   <div class="actions">
-    <%= f.submit :class => "button" %>
+    <%= f.submit class: "button" %>
   </div>
 <% end %>

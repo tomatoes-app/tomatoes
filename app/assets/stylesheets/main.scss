@@ -1,0 +1,46 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  color: #404040;
+  font-family: 'Roboto', sans-serif;
+}
+
+a, a:visited {
+  color: #303030;
+}
+
+nav {
+  @include span(25%);
+}
+
+.container {
+  @include container(68em);
+}
+
+header {
+  h1.header-logo {
+    @include span(12);
+    font-family: 'Leckerli One', serif;
+    margin-top: 0;
+    margin-bottom: 0;
+    @include susy-breakpoint(34em, $susy) {
+      @include span(6);
+    }
+  }
+
+  .header-user-info {
+    @include span(12);
+    @include susy-breakpoint(34em, $susy) {
+      @include span(6 last);
+    }
+  }
+}
+
+footer {
+  .footer-section {
+    @include span(12);
+    @include susy-breakpoint(34em, $susy) {
+      @include gallery(6);
+    }
+  }
+}

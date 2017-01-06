@@ -6,7 +6,7 @@
 #   include Mongoid::Document::Taggable
 # end
 #
-# @user = User.new(:name => "Bobby")
+# @user = User.new(name: "Bobby")
 # @user.tag_list = "awesome, slick, hefty"
 # @user.tags     # => ["awesome","slick","hefty"]
 # @user.save
@@ -14,7 +14,7 @@
 # User.tagged_with("awesome") # => @user
 # User.tagged_with(["slick", "hefty"]) # => @user
 #
-# @user2 = User.new(:name => "Bubba")
+# @user2 = User.new(name: "Bubba")
 # @user2.tag_list = "slick"
 # @user2.save
 #

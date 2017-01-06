@@ -2,10 +2,11 @@
 <html>
 <head>
   <title>Tomatoes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="UTF-8">
   <meta content='Tomatoes is a "pomodoro tracker", a Pomodoro technique® driven time tracker. Track your time using 25 minutes slots called "pomodoros".' name='description' />
   <link rel="chrome-webstore-item" href="https://chrome.google.com/webstore/detail/jijbhneeenepenoolcdalnekggeialeo">
-  <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,300,600|Leckerli+One&v2' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,400i,700|Leckerli+One' rel='stylesheet' type='text/css'>
   <link id="favicon" rel="icon" type="image/png" href="<%= asset_path 'tomatoes_icon.png' %>">
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>
@@ -13,66 +14,34 @@
 
   <%= yield :head %>
 
-  <%= javascript_tag do %>
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-2935139-19']);
-    _gaq.push(['_trackPageview']);
-
-    (function() {
-      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-  <% end %>
-
-  <script>(function() {
-  var _fbq = window._fbq || (window._fbq = []);
-  if (!_fbq.loaded) {
-    var fbds = document.createElement('script');
-    fbds.async = true;
-    fbds.src = '//connect.facebook.net/en_US/fbds.js';
-    var s = document.getElementsByTagName('script')[0];
-    s.parentNode.insertBefore(fbds, s);
-    _fbq.loaded = true;
-  }
-  _fbq.push(['addPixelId', '1469176326651099']);
-  })();
-  window._fbq = window._fbq || [];
-  window._fbq.push(['track', 'PixelInitialized', {}]);
-  </script>
-  <noscript><img height="1" width="1" border="0" alt="" style="display:none" src="https://www.facebook.com/tr?id=1469176326651099&amp;ev=NoScript" /></noscript>
+  <%= render partial: 'shared/ga' %>
+  <%= render partial: 'shared/fb' %>
 </head>
 <body>
   <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
-  <div id="container">
-    <%= yield :header %>
+  <%= yield :header %>
 
-    <div id="main_container">
-      <div class="container">
-        <%= render :partial => 'shared/announcement' %>
+  <div class="container">
+    <%= render partial: 'shared/announcement' %>
 
-        <div id="flash">
-          <%= render :partial => 'shared/flash', :locals => {:flash => flash} %>
-        </div>
-
-        <% unless current_user %>
-          <%= render :partial => 'shared/adv_leaderboard' %>
-        <% end %>
-
-        <%= yield %>
-
-        <% unless current_user %>
-          <%= render :partial => 'shared/adv_leaderboard' %>
-        <% end %>
-
-      </div>
+    <div id="flash">
+      <%= render partial: 'shared/flash', locals: {flash: flash} %>
     </div>
 
-    <div id="footer_container">
-      <%= render partial: 'shared/footer' %>
-    </div>
+    <% unless current_user %>
+      <%= render partial: 'shared/adv_leaderboard' %>
+    <% end %>
+
+    <%= yield %>
+
+    <% unless current_user %>
+      <%= render partial: 'shared/adv_leaderboard' %>
+    <% end %>
+
   </div>
+
+  <%= render partial: 'shared/footer' %>
 
   <%= yield :foot %>
 </body>

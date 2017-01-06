@@ -1,29 +1,23 @@
-<header class="block container">
-  <div id="logo" class="block auth left">
-    <div class="text">
-      <h1><%= link_to "Tomatoes", root_path %></h1>
-    </div>
-  </div>
-  <% if current_user %>
-    <div id="user_container" class="right">
-      <div class="block">
+<header>
+  <div class="container">
+    <h1 class="header-logo"><%= link_to "Tomatoes", root_path %></h1>
+    <div class="header-user-info">
+      <% if current_user %>
         <div class="left user">
-          <%= render :partial => 'users/user', :locals => {:user => current_user} %>
+          <%= render partial: 'users/user', locals: {user: current_user} %>
         </div>
-        <div class="left sign_out"><%= link_to "Sign out", signout_path, :method => :delete %></div>
-      </div>
-    </div>
-  <% else %>
-    <div id="sign_in_container" class="right">
-      <%= link_to signin_path('github') do %>
-        <%= image_tag("github.png", :width => "24") %>
-        Sign in with GitHub
-      <% end %>
-      or
-      <%= link_to signin_path('twitter') do %>
-        <%= image_tag("twitter.png", :width => "24") %>
-        Sign in with Twitter
+        <div class="left sign_out"><%= link_to "Sign out", signout_path, method: :delete %></div>
+      <% else %>
+        <%= link_to signin_path('github') do %>
+          <%= image_tag("github.png", width: "24") %>
+          Sign in with GitHub
+        <% end %>
+        or
+        <%= link_to signin_path('twitter') do %>
+          <%= image_tag("twitter.png", width: "24") %>
+          Sign in with Twitter
+        <% end %>
       <% end %>
     </div>
-  <% end %>
+  <div>
 </header>

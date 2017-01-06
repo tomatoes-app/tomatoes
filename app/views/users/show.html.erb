@@ -1,7 +1,7 @@
 <% content_for :head do %>
   <%= javascript_tag do %>
-    var BY_DAY_USER_TOMATOES_URL = '<%= by_day_user_tomatoes_url(@user, :format => :json) %>',
-        BY_HOUR_USER_TOMATOES_URL = '<%= by_hour_user_tomatoes_url(@user, :format => :json) %>';
+    var BY_DAY_USER_TOMATOES_URL = '<%= by_day_user_tomatoes_url(@user, format: :json) %>',
+        BY_HOUR_USER_TOMATOES_URL = '<%= by_hour_user_tomatoes_url(@user, format: :json) %>';
   <% end %>
 <% end %>
 
@@ -32,7 +32,7 @@
     </div>
     <%= content_for_user(@user) do %>
       <% ['twitter', 'github'].each do |provider| %>
-        <%= render :partial => 'authorizations/authorization', :locals => {:provider => provider, :user => @user} %>
+        <%= render partial: 'authorizations/authorization', locals: {provider: provider, user: @user} %>
       <% end %>
     <% end %>
   </div>
@@ -60,11 +60,11 @@
 
 <h2>Tomatoes by day</h2>
 <div class="chart" id="tomatoes_by_day">
-  <%= image_tag 'loading.gif', :class => 'loading' %>
+  <%= image_tag 'loading.gif', class: 'loading' %>
 </div>
 <div class="chart overview" id="tomatoes_by_day_overview"></div>
 
 <h2>Tomatoes by hour</h2>
 <div class="chart" id="tomatoes_by_hour">
-  <%= image_tag 'loading.gif', :class => 'loading' %>
+  <%= image_tag 'loading.gif', class: 'loading' %>
 </div>

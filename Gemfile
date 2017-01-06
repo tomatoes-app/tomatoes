@@ -6,7 +6,10 @@ gem 'rails', '4.2.7.1'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails'
+  gem 'sass-rails', '~> 5.0.0'
+  gem 'susy'
+  gem 'compass-rails', '~> 2.0.0'
+
   gem 'therubyracer'
   gem 'uglifier', '>= 1.0.3'
 
