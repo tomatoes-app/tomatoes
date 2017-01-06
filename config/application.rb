@@ -10,7 +10,7 @@ require 'sprockets/railtie'
 Bundler.require(*Rails.groups)
 
 module TomatoesApp
-  VERSION = '0.10.0'.freeze
+  VERSION = '0.11.0'.freeze
   REPO = 'https://github.com/potomak/tomatoes'.freeze
 
   class Application < Rails::Application
