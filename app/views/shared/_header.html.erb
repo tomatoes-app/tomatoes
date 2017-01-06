@@ -4,17 +4,17 @@
     <div class="header-user-info">
       <% if current_user %>
         <div class="left user">
-          <%= render :partial => 'users/user', :locals => {:user => current_user} %>
+          <%= render partial: 'users/user', locals: {user: current_user} %>
         </div>
-        <div class="left sign_out"><%= link_to "Sign out", signout_path, :method => :delete %></div>
+        <div class="left sign_out"><%= link_to "Sign out", signout_path, method: :delete %></div>
       <% else %>
         <%= link_to signin_path('github') do %>
-          <%= image_tag("github.png", :width => "24") %>
+          <%= image_tag("github.png", width: "24") %>
           Sign in with GitHub
         <% end %>
         or
         <%= link_to signin_path('twitter') do %>
-          <%= image_tag("twitter.png", :width => "24") %>
+          <%= image_tag("twitter.png", width: "24") %>
           Sign in with Twitter
         <% end %>
       <% end %>

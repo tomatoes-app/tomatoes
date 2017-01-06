@@ -4,13 +4,13 @@
 </div>
 
 <div class="sign_in block">
-  <%= link_to signin_path('github'), :class => "button" do %>
-    <%= image_tag("github.png", :width => "32") %>
+  <%= link_to signin_path('github'), class: "button" do %>
+    <%= image_tag("github.png", width: "32") %>
     Sign in with GitHub
   <% end %>
   or
-  <%= link_to signin_path('twitter'), :class => "button" do %>
-    <%= image_tag("twitter.png", :width => "32") %>
+  <%= link_to signin_path('twitter'), class: "button" do %>
+    <%= image_tag("twitter.png", width: "32") %>
     Sign in with Twitter
   <% end %>
   <p>Sign in to start tracking your pomodoros.</p>

@@ -1,9 +1,9 @@
 <% content_for :head do %>
   <%= javascript_tag do %>
-    var TOTAL_USERS_BY_DAY_STATISTICS_URL = '<%= total_users_by_day_statistics_url(:format => :json) %>',
-        USERS_BY_DAY_STATISTICS_URL = '<%= users_by_day_statistics_url(:format => :json) %>'
-        USERS_BY_TOMATOES_STATISTICS_URL = '<%= users_by_tomatoes_statistics_url(:format => :json) %>',
-        TOMATOES_BY_DAY_STATISTICS_URL = '<%= tomatoes_by_day_statistics_url(:format => :json) %>';
+    var TOTAL_USERS_BY_DAY_STATISTICS_URL = '<%= total_users_by_day_statistics_url(format: :json) %>',
+        USERS_BY_DAY_STATISTICS_URL = '<%= users_by_day_statistics_url(format: :json) %>'
+        USERS_BY_TOMATOES_STATISTICS_URL = '<%= users_by_tomatoes_statistics_url(format: :json) %>',
+        TOMATOES_BY_DAY_STATISTICS_URL = '<%= tomatoes_by_day_statistics_url(format: :json) %>';
   <% end %>
 <% end %>
 
@@ -23,13 +23,13 @@
 
 <h2>Users by day</h2>
 <div class="chart" id="users_by_day">
-  <%= image_tag 'loading.gif', :class => 'loading' %>
+  <%= image_tag 'loading.gif', class: 'loading' %>
 </div>
 
 <!--
 <h2>Users by tomatoes</h2>
 <div class="chart" id="users_by_tomatoes">
-  <%= image_tag 'loading.gif', :class => 'loading' %>
+  <%= image_tag 'loading.gif', class: 'loading' %>
 </div>
 -->
 
@@ -42,5 +42,5 @@
 
 <h2>Tomatoes by day</h2>
 <div class="chart" id="tomatoes_by_day">
-  <%= image_tag 'loading.gif', :class => 'loading' %>
+  <%= image_tag 'loading.gif', class: 'loading' %>
 </div>

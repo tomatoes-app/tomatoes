@@ -53,8 +53,8 @@ Rails.application.routes.draw do
   end
 
   get '/auth/:provider/callback' => 'sessions#create'
-  get '/signin/:provider' => 'sessions#new', :as => :signin
-  delete '/signout' => 'sessions#destroy', :as => :signout
+  get '/signin/:provider' => 'sessions#new', as: :signin
+  delete '/signout' => 'sessions#destroy', as: :signout
   get '/auth/failure' => 'sessions#failure'
 
   # You can have the root of your site routed with "root"
