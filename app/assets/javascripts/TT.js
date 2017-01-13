@@ -185,10 +185,6 @@ var TT = function() {
     var timer = duration;
     stateStart(timer);
 
-    // fb event
-    window._fbq = window._fbq || [];
-    window._fbq.push(['track', 'TomatoStart', {}]);
-
     (function tick() {
       var msPassed = new Date() - startDate;
       timer = Math.round(duration - msPassed/1000);
@@ -215,9 +211,6 @@ var TT = function() {
       clearInterval(timerInterval);
       stateStop(true);
       soundManager.setVolume(settings.timerResetSoundId, volume).play();
-      // fb event
-      window._fbq = window._fbq || [];
-      window._fbq.push(['track', 'TomatoReset', {}]);
     }
   }
 
