@@ -34,6 +34,14 @@ module Api
       assert_equal({ error: 'authentication failed' }.to_json, @response.body)
     end
 
+    test 'GET /show, given a headr authorization token, it should return current user' do
+      @request.headers['Authorization'] = '123'
+      get :show
+      assert_response :success
+      assert_equal 'application/json', @response.content_type
+      assert_equal Api::Presenter::User.new(@user).to_json, @response.body
+    end
+
     test 'GET /show, it should return current user' do
       get :show, token: '123'
       assert_response :success
