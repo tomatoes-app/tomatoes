@@ -1,10 +1,16 @@
 <% unless scores.empty? %>
-  <ol start="<%= (25*(params[:page].to_i-1))+1 if params[:page] %>">
-    <% scores.each do |item| %>
+  <ol class="media-list" start="<%= (25*(params[:page].to_i-1))+1 if params[:page] %>">
+    <% scores.each_with_index do |item, index| %>
       <% if item.user %>
-        <li class="block <%= content_for_user(item.user) { 'you' } %>">
-          <%= render partial: 'users/user', locals: { user: item.user } %>
-          <div class="count"><%= pluralize(item.score.to_i, 'tomato') %></div>
+        <li class="media <%= content_for_user(item.user) { 'you' } %>">
+          <p><em><%= ((25 * ((params[:page] || 1).to_i - 1)) + index + 1).ordinalize %></em></p>
+          <div class="profile_image media-left">
+            <%= profile_image(item.user, 36, class: 'media-object') %>
+          </div>
+          <div class="profile_info media-body">
+            <h4 class="media-heading"><%= user_name(item.user) %></h4>
+            <p><%= pluralize(item.score.to_i, 'tomato') %></p>
+          </div>
         </li>
       <% end %>
     <% end %>

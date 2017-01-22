@@ -1,23 +1,20 @@
-<% content_for :head do %>
+<% content_for :scripts do %>
   <%= javascript_tag do %>
-    var BY_DAY_USER_TOMATOES_URL = '<%= by_day_user_tomatoes_url(@user, :format => :json) %>',
-        BY_HOUR_USER_TOMATOES_URL = '<%= by_hour_user_tomatoes_url(@user, :format => :json) %>';
+    var BY_DAY_USER_TOMATOES_URL = '<%= by_day_user_tomatoes_url(@user, format: :json) %>',
+        BY_HOUR_USER_TOMATOES_URL = '<%= by_hour_user_tomatoes_url(@user, format: :json) %>';
   <% end %>
-<% end %>
-
-<% content_for :foot do %>
-  <%= javascript_include_tag "users", "users_charts" %>
+  <%= javascript_include_tag 'users', 'users_charts' %>
 <% end %>
 
 <div id="user">
-  <div class="block">
-    <div class="profile left">
-      <div class="block">
-        <h2><%= user_name(@user) %></h2>
-        <div class="left profile_image size48">
-          <%= profile_image(@user, 48) %>
+  <div class="row">
+    <div class="profile col-md-4">
+      <h2><%= user_name(@user) %></h2>
+      <div class="media">
+        <div class="profile_image media-left">
+          <%= profile_image(@user, 64, class: 'media-object') %>
         </div>
-        <div class="left profile_info">
+        <div class="profile_info media-body">
           Tomatoes: <%= @user.tomatoes.size %></br>
           <% @user.authorizations.each do |authorization| %>
             <%= link_to authorization.url, authorization.url %><br/>
@@ -30,41 +27,53 @@
         </div>
       </div>
     </div>
-    <%= content_for_user(@user) do %>
-      <% ['twitter', 'github'].each do |provider| %>
-        <%= render :partial => 'authorizations/authorization', :locals => {:provider => provider, :user => @user} %>
-      <% end %>
-    <% end %>
   </div>
 
   <%= content_for_user(@user) do %>
-    <p>
-      <b>Time Zone:</b> <%= @user.time_zone %><br/>
-      <b>Currency:</b> <%= @user.currency %>
-    </p>
-    <p>
-      <b>Work hours per day:</b> <%= @user.work_hours_per_day %><br/>
-      <b>Average hourly rate:</b> <%= hourly_rate(@user.average_hourly_rate, @user.currency) %><br/>
-      <b>Effective work time:</b> <%= distance_of_time_in_words(@user.effective_work_time) if @user.effective_work_time %><br/>
-      <b>Estimated revenues:</b> <%= money(@user.estimated_revenues, @user.currency_unit) %>
-    </p>
-    <p>
-      <%= link_to 'Your tomatoes', tomatoes_path %> |
-      <%= link_to 'Your projects', projects_path %> |
-      <%= link_to 'Your tags', tags_path %> |
-      <%= link_to 'Export your tomatoes (csv)', tomatoes_path(format: :csv) %> |
-      <%= link_to 'Edit profile', edit_user_path(@user) %>
-    </p>
+    <div class="row">
+      <% ['twitter', 'github'].each do |provider| %>
+        <div class="col-md-4">
+          <%= render partial: 'authorizations/authorization', locals: { provider: provider, user: @user } %>
+        </div>
+      <% end %>
+    </div>
+
+    <h3>Profile info</h3>
+    <dl class="dl-horizontal">
+      <dt>Time Zone</dt>
+      <dd><%= @user.time_zone || 'n/a' %></dd>
+      <dt>Currency</dt>
+      <dd><%= @user.currency %></dd>
+    </dl>
+
+    <dl class="dl-horizontal">
+      <dt>Work hours per day</dt>
+      <dd><%= @user.work_hours_per_day || 'n/a' %></dd>
+      <dt>Average hourly rate</dt>
+      <dd><%= hourly_rate(@user.average_hourly_rate, @user.currency) %></dd>
+      <dt>Effective work time</dt>
+      <dd><%= distance_of_time_in_words(@user.effective_work_time) if @user.effective_work_time %></dd>
+      <dt>Estimated revenues</dt>
+      <dd><%= money(@user.estimated_revenues, @user.currency_unit) || 'n/a' %></dd>
+    </dl>
+
+    <ul class="nav nav-pills">
+      <li role="presentation"><%= link_to 'Tomatoes', tomatoes_path %></li>
+      <li role="presentation"><%= link_to 'Projects', projects_path %></li>
+      <li role="presentation"><%= link_to 'Tags', tags_path %></li>
+      <li role="presentation"><%= link_to 'Export your tomatoes (csv)', tomatoes_path(format: :csv) %></li>
+      <li role="presentation"><%= link_to 'Edit profile', edit_user_path(@user) %></li>
+    </ul>
   <% end %>
 </div>
 
 <h2>Tomatoes by day</h2>
 <div class="chart" id="tomatoes_by_day">
-  <%= image_tag 'loading.gif', :class => 'loading' %>
+  <%= image_tag 'loading.gif', class: 'loading' %>
 </div>
 <div class="chart overview" id="tomatoes_by_day_overview"></div>
 
 <h2>Tomatoes by hour</h2>
 <div class="chart" id="tomatoes_by_hour">
-  <%= image_tag 'loading.gif', :class => 'loading' %>
+  <%= image_tag 'loading.gif', class: 'loading' %>
 </div>

@@ -1,7 +1,11 @@
 <% content_for :header do %>
-  <div id="header_container" class="auth">
-    <%= render partial: 'shared/header' %>
+  <%= render partial: 'shared/header' %>
+<% end %>
+
+<% content_for :content do %>
+  <div class="container">
+    <%= yield %>
   </div>
 <% end %>
 
-<%= render :template => 'layouts/default' %>
+<%= render template: 'layouts/default' %>

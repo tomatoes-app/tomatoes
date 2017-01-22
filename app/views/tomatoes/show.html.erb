@@ -1,20 +1,13 @@
-<h3>Tomato <%= l(@tomato.created_at, format: :long) %></h3>
+<h1>Tomato <%= l(@tomato.created_at, format: :long) %></h1>
 
-<p>
-  <b>Started at:</b>
-  <%= l(@tomato.created_at - Tomato::DURATION, format: :long) %>
-</p>
-
-<p>
-  <b>Duration:</b>
-  <%= tomato_duration(@tomato) %>
-</p>
-
-<p>
-  <b>Tags:</b>
-  <%= link_tags(@tomato.tags) %>
-</p>
-
+<dl class="dl-horizontal">
+  <dt>Started at</dt>
+  <dd><%= l(@tomato.created_at - Tomato::DURATION, format: :long) %></dd>
+  <dt>Duration</dt>
+  <dd><%= tomato_duration(@tomato) %></dd>
+  <dt>Tags</dt>
+  <dd><%= link_tags(@tomato.tags) %></dd>
+</dl>
 
 <%= link_to 'Edit', edit_tomato_path(@tomato) %> |
 <%= link_to 'Back', tomatoes_path %>

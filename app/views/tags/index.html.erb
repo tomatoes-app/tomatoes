@@ -1,19 +1,19 @@
-<h2>Your tags</h2>
+<h1>Tags</h1>
 
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Tag</th>
-      <th class="number">Tomatoes</th>
-      <th class="time">Time</th>
+      <th>Tomatoes</th>
+      <th>Time</th>
     </tr>
   </thead>
   <tbody>
     <% @tomatoes_by_tag.each do |tag, tomatoes_count| %>
-      <tr class="<%= cycle :even, :odd %>">
+      <tr>
         <td><%= link_to h(tag), tag_path(h(tag)) %></td>
-        <td class="number"><%= tomatoes_count %></td>
-        <td class="time"><%= humanize(tomatoes_count*Tomato::DURATION) %></td>
+        <td><%= tomatoes_count %></td>
+        <td><%= humanize(tomatoes_count*Tomato::DURATION) %></td>
       </tr>
     <% end %>
   </tbody>

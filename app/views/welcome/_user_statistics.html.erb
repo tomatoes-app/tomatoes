@@ -1,3 +1,8 @@
-<% @tomatoes_count.each do |time_period, tomatoes_count| %>
-  <%= render partial: 'shared/counter', locals: {css_class: time_period, value: tomatoes_count, label: counter_label(time_period)} %>
-<% end %>
+<ul class="list-group">
+  <% @tomatoes_count.each do |time_period, tomatoes_count| %>
+    <li class="list-group-item">
+      <span class="badge"><%= tomatoes_count %></span>
+      <%= counter_label(time_period) %>
+    </li>
+  <% end %>
+</ul>

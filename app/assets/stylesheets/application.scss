@@ -1,0 +1,78 @@
+@import "variables-overridden";
+
+@import "bootstrap";
+@import "bootstrap-sprockets";
+@import "bootstrap-social.css";
+@import "bootstrap-social-patch";
+@import "font-awesome.css";
+
+@import "variables-custom";
+@import "sticky-footer";
+
+@import "farbtastic.css";
+
+@import "timer";
+@import "charts";
+@import "welcome";
+
+.logo {
+  font-family: $logo-font-family;
+}
+
+nav {
+  .logo {
+    background: image-url('tomatoes.svg');
+    background-size: 28px 24px;
+    background-repeat: no-repeat;
+    background-position: 12px 12px;
+    padding-left: 42px;
+  }
+}
+
+.footer {
+  font-size: $font-size-small;
+
+  .support-tomatoes {
+    font-weight: bold;
+  }
+
+  .trademarks {
+    font-size: $font-size-smaller;
+  }
+}
+
+header.public {
+  text-align: center;
+
+  h1 {
+    font-size: $public-heading-font-size;
+
+    a {
+      background: image-url('tomatoes.svg');
+      background-size: 150px 130px;
+      background-repeat: no-repeat;
+      background-position-y: 16px;
+      padding-left: 160px;
+      text-decoration: none;
+
+      &:hover {
+        color: $link-color;
+      }
+    }
+  }
+}
+
+@media (max-width: $screen-sm-min) {
+  header.public {
+    h1 a {
+      font-size: $public-heading-font-size / 2;
+      background-size: 75px 65px;
+      background-position-y: 8px;
+      padding-left: 80px;
+    }
+
+    h3 {
+      font-size: ceil($font-size-h3 * 0.7);
+    }
+  }
+}

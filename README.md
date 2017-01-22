@@ -8,7 +8,7 @@ Support the project at [backerpass.com/tomatoes](https://backerpass.com/tomatoes
 
 ## Why?
 
-1. [Pomodoro technique](http://www.pomodorotechnique.com)<sup>®</sup> helps you to get things done.
+1. [Pomodoro Technique](http://www.pomodorotechnique.com)<sup>®</sup> helps you to get things done.
 1. I need it to measure pomodoros in a fast and easy way.
 1. I want to get motivated by challenging my friends.
 

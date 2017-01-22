@@ -1,6 +1,6 @@
 module UsersHelper
-  def profile_image(user, size = 24)
-    image_tag user.image_file, width: size
+  def profile_image(user, size = 24, options = {})
+    image_tag user.image_file, options.merge(width: size)
   end
 
   def user_name(user)

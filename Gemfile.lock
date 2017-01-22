@@ -46,12 +46,19 @@ GEM
       mime-types
       unf
     ast (2.3.0)
+    autoprefixer-rails (6.6.1)
+      execjs
     better_errors (2.1.1)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
       rack (>= 0.9.0)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+    bootstrap-sass (3.3.7)
+      autoprefixer-rails (>= 5.2.1)
+      sass (>= 3.3.4)
+    bootstrap-social-rails (4.12.0)
+      railties (>= 3.1)
     bson (4.1.1)
     buftok (0.2.0)
     builder (3.2.2)
@@ -198,6 +205,8 @@ GEM
     fog-xml (0.1.2)
       fog-core
       nokogiri (~> 1.5, >= 1.5.11)
+    font-awesome-rails (4.7.0.1)
+      railties (>= 3.2, < 5.1)
     formatador (0.2.5)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
@@ -401,10 +410,13 @@ DEPENDENCIES
   asset_sync
   better_errors
   binding_of_caller
+  bootstrap-sass (~> 3.3.6)
+  bootstrap-social-rails
   byebug
   dalli
   exception_notification
   fog (~> 1.20)
+  font-awesome-rails
   high_voltage
   jquery-rails
   kaminari
@@ -424,7 +436,7 @@ DEPENDENCIES
   rails_12factor
   rdiscount
   rubocop (~> 0.43.0)
-  sass-rails
+  sass-rails (>= 3.2)
   sucker_punch (~> 2.0)
   test-unit (~> 3.0)
   therubyracer

@@ -1,9 +1,16 @@
-<% unless @projects.empty? %>
-  <h3><%= link_to "Today's projects", projects_path %></h3>
-  <table>
-    <%= render partial: 'projects/project', collection: @projects %>
-  </table>
-<% else %>
-  <p>You're not working on any project</p>
-  <p>Create a <%= link_to "new project", new_project_path %> to start collecting aggregate statistics</p>
-<% end %>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title"><%= link_to "Today's projects", projects_path %></h3>
+  </div>
+  <% if @projects.empty? %>
+    <div class="panel-body">
+      <p>You're not working on any project</p>
+      <p>Create a <%= link_to "new project", new_project_path %> to start collecting aggregate statistics</p>
+    </div>
+  <% end %>
+  <% unless @projects.empty? %>
+    <table class="table">
+      <%= render partial: 'projects/project', collection: @projects %>
+    </table>
+  <% end %>
+</div>

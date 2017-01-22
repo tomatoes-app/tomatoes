@@ -1,18 +1,16 @@
-<div id="index" class="block">
-  <div class="block">
-    <div class="left">
-      <div id="tomatoes_list">
-        <%= render :partial => 'tomatoes_list', :locals => {:high => nil} %>
-      </div>
-      <div id="projects_list">
-        <%= render :partial => 'projects_list' %>
-      </div>
+<div class="row">
+  <div class="col-md-6">
+    <div id="tomatoes_list">
+      <%= render partial: 'tomatoes_list', locals: {high: nil} %>
     </div>
+    <div id="projects_list">
+      <%= render partial: 'projects_list' %>
+    </div>
+  </div>
 
-    <div class="right">
-      <div id="user_statistics">
-        <%= render :partial => 'user_statistics' %>
-      </div>
+  <div class="col-md-6">
+    <div id="user_statistics">
+      <%= render partial: 'user_statistics' %>
     </div>
   </div>
 </div>

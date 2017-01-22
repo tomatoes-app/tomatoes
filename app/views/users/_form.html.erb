@@ -11,53 +11,55 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %></br>
-    <%= f.text_field :name %>
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: 'form-control', placeholder: 'Francesco Cirillo' %>
   </div>
-  <div class="field">
-    <%= f.label :email %></br>
-    <%= f.text_field :email %>
-    <div class="hint">Your email address.</div>
+  <div class="form-group">
+    <%= f.label :email %>
+    <%= f.text_field :email, class: 'form-control', placeholder: 'fcirillo@tomato.es' %>
   </div>
-  <div class="field">
-    <%= f.label :time_zone %></br>
-    <%= time_zone_select 'user', 'time_zone', nil, :include_blank => true %>
+  <div class="form-group">
+    <%= f.label :time_zone %>
+    <%= time_zone_select 'user', 'time_zone', nil, { include_blank: true }, { class: 'form-control' } %>
   </div>
-  <div class="field">
-    <%= f.label :currency %></br>
-    <%= f.select(:currency, options_for_select(User::CURRENCIES.invert, @user.currency)) %>
+  <div class="form-group">
+    <%= f.label :currency %>
+    <%= f.select :currency, options_for_select(User::CURRENCIES.invert, @user.currency), {}, { class: 'form-control' } %>
   </div>
-  <div class="field">
-    <%= f.label :work_hours_per_day %></br>
-    <%= f.text_field :work_hours_per_day %>
-    <div class="hint">How many hours do you work per day? Example: <em>8</em></div>
+  <div class="form-group">
+    <%= f.label :work_hours_per_day %>
+    <%= f.number_field :work_hours_per_day, class: 'form-control', placeholder: '8' %>
+    <p class="help-block">How many hours do you work per day?</p>
   </div>
-  <div class="field">
-    <%= f.label :average_hourly_rate %></br>
-    <%= f.text_field :average_hourly_rate %>
-    <div class="hint">How much do you charge per hour? Example: <em>35.5</em></div>
+  <div class="form-group">
+    <%= f.label :average_hourly_rate %>
+    <div class="input-group">
+      <div class="input-group-addon"><%= current_user.currency_unit %></div>
+      <%= f.number_field :average_hourly_rate, class: 'form-control', placeholder: '35.5', step: '0.1' %>
+    </div>
+    <p class="help-block">How much do you charge per hour?</p>
   </div>
-  <div class="field">
-    <%= f.label :volume %></br>
-    <%= f.range_field :volume, :min => 0, :max => 3 %>
-    <div class="hint">Default timer volume. <em>0</em> is <em>mute</em>, <em>3</em> is <em>max volume</em>.</div>
+  <div class="form-group">
+    <%= f.label :volume %>
+    <%= f.range_field :volume, min: 0, max: 3 %>
+    <p class="help-block">Default timer volume. <em>0</em> is <em>mute</em>, <em>3</em> is <em>max volume</em>.</p>
   </div>
-  <div class="field">
-    <%= f.check_box :ticking %><%= f.label :ticking %>
-    <div class="hint">Timer ticking effect.</div>
+  <div class="checkbox">
+    <%= f.label :ticking do %>
+      <%= f.check_box :ticking %>
+      Enable timer ticking effect
+    <% end %>
   </div>
 
-  <div class="field block">
-    <div class="left">
-      <%= f.label :color %></br>
-      <%= f.text_field :color %>
-      <div class="hint">An hexadecimal color code. Example: <em>#ccff00</em></div>
+  <div class="form-group row">
+    <div class="col-sm-6">
+      <%= f.label :color %>
+      <%= f.text_field :color, class: 'form-control', placeholder: '#ccff00' %>
+      <p class="help-block">A hexadecimal color code.</p>
     </div>
-    <div id="colorpicker" class="left"></div>
+    <div id="colorpicker" class="col-sm-4"></div>
   </div>
-  
-  <div class="actions">
-    <%= f.submit :class => "button" %>
-  </div>
+
+  <%= f.submit class: 'btn btn-default' %>
 <% end %>

@@ -1,5 +1,5 @@
 class WelcomeController < ApplicationController
-  layout :choose_layout
+  layout 'welcome'
 
   def index
     if current_user
@@ -8,11 +8,5 @@ class WelcomeController < ApplicationController
       @tomatoes_count = current_user.tomatoes_counters
       @projects       = @tomatoes.collect(&:projects).flatten.uniq
     end
-  end
-
-  private
-
-  def choose_layout
-    current_user.present? ? 'application' : 'public'
   end
 end

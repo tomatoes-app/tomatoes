@@ -1,5 +1,5 @@
-<% content_for :head do %>
-  <%= javascript_include_tag "users" %>
+<% content_for :scripts do %>
+  <%= javascript_include_tag 'users' %>
 <% end %>
 
 <h3>Editing profile</h3>
@@ -9,6 +9,10 @@
   <div id="notification_not_supported" style="display: none">Note: notifications are not supported by your browser.</div>
 </div>
 
-<%= render 'form' %>
+<div class="row">
+  <div class="col-md-6 col-sm-10">
+    <%= render 'form' %>
+  </div>
+</div>
 
 <%= link_to 'Back', current_user %>
