@@ -5,10 +5,26 @@ module Api
     setup do
       @user = User.create!(name: 'name', email: 'email@example.com')
       @user.authorizations.create!(provider: 'tomatoes', token: '123')
+
+      @user_without_auths = User.create!(name: 'Nicolae', email: 'nic@example.com')
     end
 
     teardown do
       User.destroy_all
+    end
+
+    test 'GET /show, given a nil token, it should return an error' do
+      get :show
+      assert_response :unauthorized
+      assert_equal 'application/json', @response.content_type
+      assert_equal({ error: 'authentication failed' }.to_json, @response.body)
+    end
+
+    test 'GET /show, given a blank token, it should return an error' do
+      get :show, token: ''
+      assert_response :unauthorized
+      assert_equal 'application/json', @response.content_type
+      assert_equal({ error: 'authentication failed' }.to_json, @response.body)
     end
 
     test 'GET /show, given an invalid token, it should return an error' do
