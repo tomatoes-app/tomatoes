@@ -11,6 +11,5 @@
 //= require time_zone
 //= require bootstrap-sprockets
 //
-//= require_tree ./application
 
 window.Tomatoes = window.Tomatoes || {};
