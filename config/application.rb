@@ -12,7 +12,7 @@ require 'bootstrap-social-rails'
 Bundler.require(*Rails.groups)
 
 module TomatoesApp
-  VERSION = '0.12.1'.freeze
+  VERSION = '0.12.2'.freeze
   REPO = 'https://github.com/potomak/tomatoes'.freeze
 
   class Application < Rails::Application
