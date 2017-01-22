@@ -1,4 +1,8 @@
-<div class="left profile_image">
-  <%= profile_image(user) %>
+<div class="media">
+  <div class="profile_image media-left">
+    <%= profile_image(user, 24, class: 'media-object') %>
+  </div>
+  <div class="profile_info media-body">
+    <%= user_name(user) %>
+  </div>
 </div>
-<%= user_name(user) %>

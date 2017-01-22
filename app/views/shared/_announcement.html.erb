@@ -1,6 +1,6 @@
 <% if ENV['ANNOUNCEMENT'] %>
-  <div id="announcement">
-    <div class="title">Announcement</div>
-    <%= raw(ENV['ANNOUNCEMENT']) %>
+  <div id="announcement" class="well well-sm">
+    <h4>Announcement</h4>
+    <p><%= raw(ENV['ANNOUNCEMENT']) %></p>
   </div>
 <% end %>

@@ -13,12 +13,9 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :tag_list %><br/>
-    <%= f.text_field :tag_list, tabindex: '1' %>
-    <div class="hint">A list of tags. Example: <em>my project, deploy</em></div>
+  <div class="form-group">
+    <%= f.label :tag_list %>
+    <%= f.text_field :tag_list, class: 'form-control', placeholder: 'cook, dessert' %>
   </div>
-  <div class="actions">
-    <%= f.submit class: "button", :'data-disable-with' => "Saving..." %>
-  </div>
+  <%= f.submit class: 'btn btn-default', :'data-disable-with' => 'Saving...' %>
 <% end %>

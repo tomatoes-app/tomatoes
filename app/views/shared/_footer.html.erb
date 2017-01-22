@@ -1,34 +1,42 @@
-<footer>
+<footer class="footer">
   <div class="container">
-    <div class="footer-section">
-      <div>
-        <strong>
+    <div class="row">
+      <div class="col-md-6">
+        <p class="support-tomatoes">
           Support the project at <a href="https://backerpass.com/tomatoes" target="_blank">backerpass.com/tomatoes</a>
-        </strong>
+        </p>
+        <p>
+          <%= render partial: 'leaderboard/links' %><br/>
+          <%= link_to "API Reference", page_path('api_reference') %>,
+          <%= link_to "How to", page_path('how_to') %>,
+          <%= link_to "Statistics", statistics_path %><br/>
+          <%= link_to "Terms of service", page_path('terms') %>,
+          <%= link_to "Privacy policy", page_path('privacy') %>,
+          <%= link_to "Imprint", page_path('imprint') %>
+        </p>
       </div>
-      <div id="add_to_chrome">
-        <%= link_to 'https://chrome.google.com/webstore/detail/jijbhneeenepenoolcdalnekggeialeo' do %>
-          <%= image_tag("chrome-icon.png") %>
-          Add to Chrome
-        <% end %>
-      </div>
-      <div>
-        Follow updates <%= link_to "@tomatoesapp", "http://twitter.com/tomatoesapp" %><br/>
-        <%= link_to "Tomatoes", TomatoesApp::REPO %> - <%= link_to "version #{TomatoesApp::VERSION}", "#{TomatoesApp::REPO}/tree/#{TomatoesApp::VERSION}" %>
-      </div>
-      <div class="trademarks">
-        This application is not affiliated, associated or endorsed by the Pomodoro Technique® or Francesco Cirillo.<br/>
-        The Pomodoro Technique® and Pomodoro™ are registered trademarks by Francesco Cirillo.
+      <div class="col-md-6">
+        <p>
+          Follow updates <%= link_to "@tomatoesapp", "http://twitter.com/tomatoesapp" %><br/>
+          <%= link_to "Tomatoes", TomatoesApp::REPO %> - <%= link_to "version #{TomatoesApp::VERSION}", "#{TomatoesApp::REPO}/tree/#{TomatoesApp::VERSION}" %>
+        </p>
+        <div id="add_to_chrome">
+          <p>
+            <%= link_to 'https://chrome.google.com/webstore/detail/jijbhneeenepenoolcdalnekggeialeo' do %>
+              <i class="fa fa-chrome" aria-hidden="true"></i>
+              Add to Chrome
+            <% end %>
+          </p>
+        </div>
       </div>
     </div>
-    <div class="footer-section">
-      <%= render partial: 'leaderboard/links' %><br/>
-      <%= link_to "API Reference", page_path('api_reference') %>,
-      <%= link_to "How to", page_path('how_to') %>,
-      <%= link_to "Statistics", statistics_path %><br/>
-      <%= link_to "Terms of service", page_path('terms') %>,
-      <%= link_to "Privacy policy", page_path('privacy') %>,
-      <%= link_to "Imprint", page_path('imprint') %>
+    <div class="row">
+      <div class="col-md-12">
+        <p class="trademarks">
+          This application is not affiliated, associated or endorsed by the Pomodoro Technique<sup>®</sup> or Francesco Cirillo.<br/>
+          The Pomodoro Technique<sup>®</sup> and Pomodoro<sup>™</sup> are registered trademarks by Francesco Cirillo.
+        </p>
+      </div>
     </div>
   </div>
 </footer>

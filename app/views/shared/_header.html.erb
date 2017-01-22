@@ -1,23 +1,34 @@
-<header>
+<nav class="navbar navbar-default navbar-static-top">
   <div class="container">
-    <h1 class="header-logo"><%= link_to "Tomatoes", root_path %></h1>
-    <div class="header-user-info">
-      <% if current_user %>
-        <div class="left user">
-          <%= render partial: 'users/user', locals: {user: current_user} %>
-        </div>
-        <div class="left sign_out"><%= link_to "Sign out", signout_path, method: :delete %></div>
-      <% else %>
-        <%= link_to signin_path('github') do %>
-          <%= image_tag("github.png", width: "24") %>
-          Sign in with GitHub
-        <% end %>
-        or
-        <%= link_to signin_path('twitter') do %>
-          <%= image_tag("twitter.png", width: "24") %>
-          Sign in with Twitter
-        <% end %>
-      <% end %>
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <%= link_to 'Tomatoes', root_path, class: 'navbar-brand logo' %>
     </div>
-  <div>
-</header>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <% if current_user %>
+          <li><%= user_name(current_user) %></li>
+          <li><%= link_to 'Sign out', signout_path, method: :delete %></li>
+        <% else %>
+          <li>
+            <%= link_to signin_path('github') do %>
+              <%= image_tag('github.png', width: 24) %>
+              Sign in with GitHub
+            <% end %>
+          </li>
+          <li>
+            <%= link_to signin_path('twitter') do %>
+              <%= image_tag('twitter.png', width: 24) %>
+              Sign in with Twitter
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>

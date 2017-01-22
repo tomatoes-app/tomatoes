@@ -1,63 +1,35 @@
-<h3><%= @project.name %> project</h3>
+<h1><%= @project.name %> project</h1>
 
-<div class="block">
-  <div class="project_statistics left">
-    <p>
-      <b>Tags:</b>
-      <%= link_tags(@project.tags) %>
-    </p>
-
-    <p>
-      <b>Tracked tomatoes:</b>
-      <%= pluralize(@project.tomatoes.count, 'tomato') %>
-    </p>
-  </div>
-
-  <div class="project_statistics right">
-    <% [
-      {value: @project.money_budget ? money(@project.money_budget, @project.user.currency_unit) : 'n/a', label: 'Money budget'},
-      {value: @project.time_budget ? distance_of_time_in_words(@project.time_budget*60*60) : 'n/a', label: 'Time budget'}
-    ].each do |statistic| %>
-      <%= render partial: 'shared/counter', locals: {css_class: statistic[:label].parameterize('_'), value: statistic[:value], label: statistic[:label]} %>
-    <% end %>
-  </div>
-</div>
+<dl class="dl-horizontal">
+  <dt>Tags</dt>
+  <dd><%= link_tags(@project.tags) %></dd>
+  <dt>Tracked tomatoes</dt>
+  <dd><%= pluralize(@project.tomatoes.count, 'tomato') %></dd>
+  <dt>Money budget</dt>
+  <dd><%= @project.money_budget ? money(@project.money_budget, @project.user.currency_unit) : 'n/a' %></dd>
+  <dt>Time budget</dt>
+  <dd><%= @project.time_budget ? distance_of_time_in_words(@project.time_budget*60*60) : 'n/a' %></dd>
+</dl>
 
 <h3>Project statistics</h3>
 
-<div class="block">
-  <div class="project_statistics left">
-    <% [
-      {value: @project.estimated_hourly_rate ? hourly_rate(@project.estimated_hourly_rate, @project.user.currency) : 'n/a', label: 'Estimated hourly rate'},
-      {value: @project.effective_hourly_rate ? hourly_rate(@project.effective_hourly_rate, @project.user.currency) : 'n/a', label: 'Effective hourly rate'}
-    ].each do |statistic| %>
-      <%= render partial: 'shared/counter', locals: {css_class: statistic[:label].parameterize('_'), value: statistic[:value], label: statistic[:label]} %>
-    <% end %>
-    
-    <% if @project.effective_hourly_rate && @project.estimated_hourly_rate %>
-      <%= render partial: 'shared/counter', locals: {css_class: "delta #{@project.hourly_rate_delta < 0 ? 'red' : 'green'}", value: "#{'+' if @project.hourly_rate_delta > 0} #{hourly_rate(@project.hourly_rate_delta, @project.user.currency)}", label: 'Effective/estimated hourly rate'} %>
-    <% else %>
-      <%= render partial: 'shared/counter', locals: {css_class: nil, value: 'n/a', label: 'Effective/estimated hourly rate'} %>
-    <% end %>
-  </div>
-</div>
+<dl class="dl-horizontal">
+  <dt>Estimated hourly rate</dt>
+  <dd><%= @project.estimated_hourly_rate ? hourly_rate(@project.estimated_hourly_rate, @project.user.currency) : 'n/a' %></dd>
+  <dt>Effective hourly rate</dt>
+  <dd><%= @project.effective_hourly_rate ? hourly_rate(@project.effective_hourly_rate, @project.user.currency) : 'n/a' %></dd>
+  <dt>Effective/estimated hourly rate</dt>
+  <dd><%= @project.hourly_rate_delta ? hourly_rate(@project.hourly_rate_delta, @project.user.currency) : 'n/a' %></dd>
+</dl>
 
-<div class="block">
-  <div class="project_statistics left">
-    <% [
-      {value: @project.estimated_work_time ? distance_of_time_in_words(@project.estimated_work_time) : 'n/a', label: 'Estimated work time'},
-      {value: distance_of_time_in_words(@project.effective_work_time), label: 'Effective work time'}
-    ].each do |statistic| %>
-      <%= render partial: 'shared/counter', locals: {css_class: statistic[:label].parameterize('_'), value: statistic[:value], label: statistic[:label]} %>
-    <% end %>
-
-    <% if @project.effective_work_time && @project.estimated_work_time %>
-      <%= render partial: 'shared/counter', locals: {css_class: "delta #{@project.work_time_delta > 0 ? 'red' : 'green'}", value: "#{@project.work_time_delta > 0 ? '+' : '-'} #{distance_of_time_in_words(@project.work_time_delta.abs)}", label: 'Effective/estimated work time'} %>
-    <% else %>
-      <%= render partial: 'shared/counter', locals: {css_class: nil, value: 'n/a', label: 'Effective/estimated work time'} %>
-    <% end %>
-  </div>
-</div>
+<dl class="dl-horizontal">
+  <dt>Estimated work time</dt>
+  <dd><%= @project.estimated_work_time ? distance_of_time_in_words(@project.estimated_work_time) : 'n/a' %></dd>
+  <dt>Effective work time</dt>
+  <dd><%= distance_of_time_in_words(@project.effective_work_time) %></dd>
+  <dt>Effective/estimated work time</dt>
+  <dd><%= @project.work_time_delta > 0 ? '+' : '-' %> <%= distance_of_time_in_words(@project.work_time_delta.abs) %></dd>
+</dl>
 
 <%= link_to 'Edit', edit_project_path(@project) %> |
 <%= link_to 'Back', projects_path %>

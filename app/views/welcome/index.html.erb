@@ -1,7 +1,32 @@
+<% unless current_user %>
+  <div class="container">
+    <div class="intro jumbotron">
+      <p>
+        Tomatoes is Pomodoro Technique<sup>®</sup> driven time tracker.<br/>
+        Track <i>everything</i>, 25 minutes at a time.
+      </p>
+    </div>
+  </div>
+<% end %>
+
 <%= render partial: 'tomatoes_timer' %>
 
-<% unless current_user %>
-  <%= render partial: 'public' %>
-<% else %>
-  <%= render partial: 'dashboard' %>
-<% end %>
+<div class="container">
+  <% if current_user %>
+    <%= render partial: 'dashboard' %>
+  <% else %>
+    <div class="intro">
+      <p>
+        <%= link_to signin_path('github'), class: 'btn btn-lg btn-social btn-github' do %>
+          <span class="fa fa-github"></span> Sign in with GitHub
+        <% end %>
+
+        <%= link_to signin_path('twitter'), class: 'btn btn-lg btn-social btn-twitter' do %>
+          <span class="fa fa-twitter"></span> Sign in with Twitter
+        <% end %>
+      </p>
+
+      <p>Sign in to start tracking your pomodoros.</p>
+    </div>
+  <% end %>
+</div>

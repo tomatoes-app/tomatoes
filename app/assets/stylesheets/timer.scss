@@ -1,0 +1,126 @@
+#start_container {
+  text-align: center;
+  margin: 60px auto;
+}
+
+.fixed_center {
+  width: 480px;
+  position: fixed;
+  top: 120px;
+  right: 0;
+  left: 0;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: $navbar-default-bg;
+  border: 1px solid $navbar-default-border;
+  border-radius: 4px;
+}
+
+#timer {
+	text-align: center;
+}
+
+#timer_counter {
+	font-size: 128px;
+	margin: 20px;
+}
+
+a#start {
+  padding: 18px 28px;
+	font-size: 54px;
+  border-radius: 8px;
+}
+
+a#reset {}
+
+p#reset_hint {
+	font-size: 10px;
+}
+
+#new_tomato_form {
+	text-align: left;
+}
+
+#progress_bar {
+	top: 0;
+	left: 0;
+	width: 0;
+	height: 100%;
+	position: absolute;
+	z-index: 1000;
+}
+
+#request_notification_permission {
+	margin-bottom: 20px;
+}
+
+.volume {
+  float: right;
+}
+
+.volume .up,
+.volume .down {
+	margin-top: 4px;
+}
+
+.volume .down {
+	margin-right: 8px;
+}
+.volume .mute_toggle {
+	margin-right: 4px;
+}
+
+.volume .up,
+.volume .down,
+.volume .mute_toggle {
+  float: left;
+}
+
+#volume_icon {
+	width: 32px;
+	height: 35px;
+	opacity: 0.7;
+	background-image: image-url('speaker_sprite.png');
+}
+
+#ticking_sound_switch_container {
+  text-align: left;
+  float: left;
+}
+
+#volume_icon {
+  &.level_0 {
+    background-position: 0 0;
+  }
+  &.level_1 {
+  	background-position: 0 -35px;
+  }
+  &.level_2 {
+  	background-position: 0 -70px;
+  }
+  &.level_3 {
+  	background-position: 0 -105px;
+  }
+}
+
+#tomato_signin {
+  text-align: center;
+
+  h2 {
+  	margin-top: 0;
+  }
+
+  #cancel {
+  	margin-top: 20px;
+  }
+}
+
+@media (max-width: $screen-sm-min) {
+  .fixed_center {
+    width: 80%;
+  }
+
+  #timer_counter {
+  	font-size: 80px;
+  }
+}

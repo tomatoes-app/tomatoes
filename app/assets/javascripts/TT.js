@@ -17,7 +17,6 @@ var TT = function() {
         timerTickingSoundId: 'tictac',
         timerEndSoundId: 'ringing',
         timerResetSoundId: 'reset',
-        timerContainerId: 'timer_container',
         startButtonId: 'start',
         startHintId: 'start_hint',
         progressBarId: 'progress_bar',
@@ -26,16 +25,16 @@ var TT = function() {
         timerCounterId: 'timer_counter',
         flashId: 'flash'
       };
-  
+
   var init = function(options) {
     $.extend(settings, options);
   }
-  
+
   var mapElements = function() {
     var ids = Array.prototype.shift.call(arguments),
         f = Array.prototype.shift.call(arguments),
         args = arguments;
-        
+
     ids.forEach(function(id) {
       $("#"+id)[f].apply($("#"+id), args);
     });
@@ -48,19 +47,19 @@ var TT = function() {
   var hide = function(ids) {
     mapElements(ids, 'hide');
   }
-  
+
   var disable = function(ids) {
     mapElements(ids, 'prop', 'disable', true);
   }
-  
+
   var enable = function(ids) {
     mapElements(ids, 'prop', 'disable', false);
   }
-  
+
   var blur = function(ids) {
     mapElements(ids, 'css', 'opacity', .3);
   }
-  
+
   var unblur = function(ids) {
     mapElements(ids, 'css', 'opacity', 1);
   }
@@ -82,14 +81,10 @@ var TT = function() {
   var stateStart = function(timer) {
     log("stateStart");
     $(document).trigger('timer_start');
-    
+
     status = 'running';
     $("#" + settings.timerCounterId).html(secondsToString(timer));
     originalTitle = document.title;
-    
-    var timerContainerObj = $("#" + settings.timerContainerId);
-    timerContainerObj.removeClass('round_left');
-    timerContainerObj.addClass('round_right');
 
     disable([settings.startButtonId])
     blur([settings.startButtonId, settings.startHintId])
@@ -104,24 +99,12 @@ var TT = function() {
     var timerString = secondsToString(timer);
     $("#" + settings.timerCounterId).html(timerString);
     document.title = timerString + " - " + originalTitle;
-    
+
     var factor = (duration-timer) / duration;
     log("factor: " + factor);
 
-    var progressBarObj = $("#" + settings.progressBarId),
-        timerContainerObj = $("#" + settings.timerContainerId);
-    
+    var progressBarObj = $("#" + settings.progressBarId);
     progressBarObj.css('width', factor*100 + '%');
-    if(progressBarObj.width() < 400+40) {
-      timerContainerObj.css('left', progressBarObj.width());
-    }
-    else {
-      if(!timerContainerObj.hasClass('round_left')) {
-        timerContainerObj.removeClass('round_right');
-        timerContainerObj.addClass('round_left');
-      }
-      timerContainerObj.css('left', progressBarObj.width() - (400+40+1));
-    }
   }
 
   var stateStop = function(reset) {
@@ -132,15 +115,13 @@ var TT = function() {
     document.title = originalTitle;
     $("#" + settings.flashId).html("");
     $("#" + settings.progressBarId).css('width', 0);
-    $("#" + settings.timerContainerId).css('right', 0);
-    $("#" + settings.timerContainerId).css('left', '');
-    
+
     if(typeof reset == 'undefined') {
       if (!NOTIFIER.notify(tomatoNotificationIcon, "Tomatoes", "Break is over. It's time to work.")) {
         log('Permission denied. Click "Request Permission" to give this domain access to send notifications to your desktop.');
       }
     }
-    
+
     hide([settings.timerId]);
     enable([settings.startButtonId])
     unblur([settings.startButtonId, settings.startHintId])
@@ -151,8 +132,7 @@ var TT = function() {
 
     status = 'saving';
     document.title = originalTitle;
-    $("#" + settings.formId + " input[type=text]").focus();
-    
+
     // notify tomato end
     if (!NOTIFIER.notify(tomatoNotificationIcon, "Tomatoes", "Pomodoro finished!")) {
       log('Permission denied. Click "Request Permission" to give this domain access to send notifications to your desktop.');
@@ -160,6 +140,8 @@ var TT = function() {
 
     hide([settings.timerId]);
     show([settings.formId]);
+
+    $("#" + settings.formId + " input[type=text]").focus();
   }
 
   var stateSignIn = function() {
@@ -167,7 +149,7 @@ var TT = function() {
 
     status = 'signin';
     document.title = originalTitle;
-    
+
     // notify tomato end
     if (!NOTIFIER.notify(tomatoNotificationIcon, "Tomatoes", "Pomodoro finished!")) {
       log('Permission denied. Click "Request Permission" to give this domain access to send notifications to your desktop.');
@@ -190,7 +172,7 @@ var TT = function() {
       timer = Math.round(duration - msPassed/1000);
 
       stateCounting(timer, duration);
-      
+
       if(timer <= 0) {
         callback();
         soundManager.setVolume(settings.timerEndSoundId, volume).play();
@@ -219,7 +201,7 @@ var TT = function() {
       console.log(object);
     }
   }
-  
+
   var getStatus = function() {
     return status;
   }
@@ -231,7 +213,7 @@ var TT = function() {
   var setVolume = function(newVolume) {
     volume = Math.max(Math.min(newVolume, 100), 0);
   }
-  
+
   return {
     start: start,
     reset: reset,

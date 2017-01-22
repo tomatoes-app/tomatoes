@@ -1,0 +1,32 @@
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: $footer-height + $footer-padding-top;
+}
+
+.footer {
+  padding-top: $footer-padding-top;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: $footer-height;
+  background-color: $navbar-default-bg;
+  border-top: 1px solid $navbar-default-border;
+}
+
+@media (max-width: $screen-md-min) {
+  body {
+    /* Margin bottom by footer height */
+    margin-bottom: $footer-md-height + $footer-padding-top;
+  }
+  .footer {
+    height: $footer-md-height;
+  }
+}

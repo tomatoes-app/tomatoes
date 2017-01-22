@@ -33,7 +33,7 @@ class Project
   end
 
   def hourly_rate_delta
-    effective_hourly_rate - estimated_hourly_rate
+    effective_hourly_rate.to_f - estimated_hourly_rate.to_f
   end
 
   def work_time_delta

@@ -6,7 +6,7 @@ gem 'rails', '4.2.7.1'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails'
+  gem 'sass-rails', '>= 3.2'
   gem 'therubyracer'
   gem 'uglifier', '>= 1.0.3'
 
@@ -16,6 +16,9 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem 'bootstrap-sass', '~> 3.3.6'
+gem 'bootstrap-social-rails'
+gem 'font-awesome-rails'
 
 # Mongo
 gem 'mongoid'

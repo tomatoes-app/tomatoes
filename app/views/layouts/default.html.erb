@@ -1,47 +1,56 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>Tomatoes</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta charset="UTF-8">
-  <meta content='Tomatoes is a "pomodoro tracker", a Pomodoro technique® driven time tracker. Track your time using 25 minutes slots called "pomodoros".' name='description' />
-  <link rel="chrome-webstore-item" href="https://chrome.google.com/webstore/detail/jijbhneeenepenoolcdalnekggeialeo">
-  <link href='https://fonts.googleapis.com/css?family=Roboto:400,400i,700|Leckerli+One' rel='stylesheet' type='text/css'>
-  <link id="favicon" rel="icon" type="image/png" href="<%= asset_path 'tomatoes_icon.png' %>">
-  <%= stylesheet_link_tag    "application" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tag %>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Tomatoes</title>
+    <meta content="Tomatoes is Pomodoro Technique® driven time tracker. Track everything 25 minutes at a time." name="description" />
 
-  <%= yield :head %>
+    <link rel="chrome-webstore-item" href="https://chrome.google.com/webstore/detail/jijbhneeenepenoolcdalnekggeialeo">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,700|Leckerli+One" rel="stylesheet" type="text/css">
+    <link id="favicon" rel="icon" type="image/png" href="<%= asset_path 'tomatoes_icon.png' %>">
 
-  <%= render partial: 'shared/ga' %>
-</head>
-<body>
-  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <%= stylesheet_link_tag "application" %>
+    <%= csrf_meta_tag %>
 
-  <%= yield :header %>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
-  <div class="container">
-    <%= render partial: 'shared/announcement' %>
+    <%= yield :header %>
 
-    <div id="flash">
-      <%= render partial: 'shared/flash', locals: {flash: flash} %>
+    <div class="container">
+      <div id="flash">
+        <%= render partial: 'shared/flash', locals: {flash: flash} %>
+      </div>
+
+      <%= render partial: 'shared/announcement' %>
+
+      <% unless current_user %>
+        <%= render partial: 'shared/adv_leaderboard' %>
+      <% end %>
     </div>
 
-    <% unless current_user %>
-      <%= render partial: 'shared/adv_leaderboard' %>
-    <% end %>
+    <%= yield :content %>
 
-    <%= yield %>
+    <div class="container">
+      <% unless current_user %>
+        <%= render partial: 'shared/adv_leaderboard' %>
+      <% end %>
+    </div>
 
-    <% unless current_user %>
-      <%= render partial: 'shared/adv_leaderboard' %>
-    <% end %>
+    <%= render partial: 'shared/footer' %>
 
-  </div>
-
-  <%= render partial: 'shared/footer' %>
-
-  <%= yield :foot %>
-</body>
+    <%= javascript_include_tag 'application' %>
+    <%= render partial: 'shared/ga' %>
+    <%= yield :scripts %>
+  </body>
 </html>

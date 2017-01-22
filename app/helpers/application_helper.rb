@@ -20,4 +20,15 @@ module ApplicationHelper
     number = number_with_precision(number, precision: 2, delimiter: ',')
     "#{number} #{unit}/hour"
   end
+
+  def flash_class(key)
+    case key.to_sym
+    when :notice
+      'alert-success'
+    when :alert
+      'alert-danger'
+    else
+      'alert-info'
+    end
+  end
 end

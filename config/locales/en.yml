@@ -24,4 +24,6 @@ en:
   helpers:
     label:
       tomato:
-        tag_list: "Tag list (comma separated)"
+        tag_list: "Tag list (separated by commas)"
+      user:
+        color: "Progress bar color"

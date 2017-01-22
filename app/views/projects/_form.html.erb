@@ -1,4 +1,4 @@
-<%= form_for(@project) do |f| %>
+<%= form_for(@project, html: { class: 'form-horizontal' }) do |f| %>
   <% if @project.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
@@ -11,26 +11,39 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
+  <div class="form-group">
+    <%= f.label :name, class: 'col-sm-2' %>
+    <div class="col-sm-10">
+      <%= f.text_field :name, class: 'form-control', placeholder: 'Butter cookies' %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :tag_list %><br />
-    <%= f.text_field :tag_list %>
-    <div class="hint">A list of tags. Example: <em>my project, deploy</em></div>
+  <div class="form-group">
+    <%= f.label :tag_list, class: 'col-sm-2' %>
+    <div class="col-sm-10">
+      <%= f.text_field :tag_list, class: 'form-control', placeholder: 'cookie, butter' %>
+      <p class="help-block">A list of project related tags.</p>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :money_budget %><br />
-    <%= f.number_field :money_budget %>
-    <div class="hint">Project money budget in <%= current_user.currency_unit %>. Example: <em>1000</em></div>
+  <div class="form-group">
+    <%= f.label :money_budget, class: 'col-sm-2' %>
+    <div class="col-sm-10">
+      <div class="input-group">
+        <div class="input-group-addon"><%= current_user.currency_unit %></div>
+        <%= f.number_field :money_budget, class: 'form-control', placeholder: '10' %>
+      </div>
+      <p class="help-block">Available budget in <%= current_user.currency_unit %>.</p>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :time_budget %><br />
-    <%= f.number_field :time_budget %>
-    <div class="hint">Project time budget in hours. Example: <em>16</em></div>
+  <div class="form-group">
+    <%= f.label :time_budget, class: 'col-sm-2' %>
+    <div class="col-sm-10">
+      <%= f.number_field :time_budget, class: 'form-control', placeholder: '1' %>
+      <p class="help-block">Estimated time budget in hours.</p>
+    </div>
   </div>
-  <div class="actions">
-    <%= f.submit class: "button" %>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <%= f.submit class: 'btn btn-default' %>
+    </div>
   </div>
 <% end %>
