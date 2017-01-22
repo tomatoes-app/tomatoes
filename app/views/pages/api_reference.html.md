@@ -51,12 +51,10 @@ POST /api/session
 
 Deletes all Tomatoes API active sessions for the current user.
 
-#### Request content
+#### Auth header example
 
-```json
-{
-  "token": "d994a295cf68342b99e3036827d3ef8a"
-}
+```
+Authorization: d994a295cf68342b99e3036827d3ef8a
 ```
 
 #### Response
@@ -72,12 +70,10 @@ Deletes all Tomatoes API active sessions for the current user.
 
 Returns current user's data.
 
-#### Request content
+#### Auth header example
 
-```json
-{
-  "token": "d994a295cf68342b99e3036827d3ef8a"
-}
+```
+Authorization: d994a295cf68342b99e3036827d3ef8a
 ```
 
 #### Response
@@ -123,11 +119,16 @@ Returns current user's data.
 
 Updates current user's attributes.
 
+#### Auth header example
+
+```
+Authorization: d994a295cf68342b99e3036827d3ef8a
+```
+
 #### Request content
 
 ```json
 {
-  "token": "d994a295cf68342b99e3036827d3ef8a",
   "user": {
     "name": "Giovanni",
     "email": "giovanni@tomato.es",
@@ -195,14 +196,16 @@ The list of tomatoes is ordered by descending creation date and it's paginated.
 Each page contains 25 records, by default the first page is retuned, use the
 `page` parameter to get any other page in the range [1, `total_pages`].
 
-#### Request content
+#### Auth header example
 
-```json
-{
-  "token": "d994a295cf68342b99e3036827d3ef8a",
-  "page": 1
-}
 ```
+Authorization: d994a295cf68342b99e3036827d3ef8a
+```
+
+#### Request parameters
+
+* `page` a positive integer value to select a page in the range
+  [1, `total_pages`]
 
 #### Response
 
@@ -239,12 +242,10 @@ Each page contains 25 records, by default the first page is retuned, use the
 
 Returns one of current user's tomatoes.
 
-#### Request content
+#### Auth header example
 
-```json
-{
-  "token": "d994a295cf68342b99e3036827d3ef8a"
-}
+```
+Authorization: d994a295cf68342b99e3036827d3ef8a
 ```
 
 #### Response
@@ -268,11 +269,16 @@ Returns one of current user's tomatoes.
 
 Creates a new tomato.
 
+#### Auth header example
+
+```
+Authorization: d994a295cf68342b99e3036827d3ef8a
+```
+
 #### Request content
 
 ```json
 {
-  "token": "d994a295cf68342b99e3036827d3ef8a",
   "tomato": {
     "tag_list": "one, two"
   }
@@ -308,11 +314,16 @@ Creates a new tomato.
 
 Updates one of current user's tomatoes.
 
+#### Auth header example
+
+```
+Authorization: d994a295cf68342b99e3036827d3ef8a
+```
+
 #### Request content
 
 ```json
 {
-  "token": "d994a295cf68342b99e3036827d3ef8a",
   "tomato": {
     "tag_list": "one, two"
   }
@@ -340,12 +351,10 @@ Updates one of current user's tomatoes.
 
 Deletes one of current user's tomatoes.
 
-#### Request content
+#### Auth header example
 
-```json
-{
-  "token": "d994a295cf68342b99e3036827d3ef8a"
-}
+```
+Authorization: d994a295cf68342b99e3036827d3ef8a
 ```
 
 #### Response
@@ -366,14 +375,16 @@ The list of projects is ordered by descending creation date and it's paginated.
 Each page contains 25 records, by default the first page is retuned, use the
 `page` parameter to get any other page in the range [1, `total_pages`].
 
-#### Request content
+#### Auth header example
 
-```json
-{
-  "token": "d994a295cf68342b99e3036827d3ef8a",
-  "page": 1
-}
 ```
+Authorization: d994a295cf68342b99e3036827d3ef8a
+```
+
+#### Request parameters
+
+* `page` a positive integer value to select a page in the range
+  [1, `total_pages`]
 
 #### Response
 
@@ -407,12 +418,10 @@ Each page contains 25 records, by default the first page is retuned, use the
 
 Returns one of current user's projects.
 
-#### Request content
+#### Auth header example
 
-```json
-{
-  "token": "d994a295cf68342b99e3036827d3ef8a"
-}
+```
+Authorization: d994a295cf68342b99e3036827d3ef8a
 ```
 
 #### Response
@@ -439,11 +448,16 @@ Returns one of current user's projects.
 
 Creates a new project.
 
+#### Auth header example
+
+```
+Authorization: d994a295cf68342b99e3036827d3ef8a
+```
+
 #### Request content
 
 ```json
 {
-  "token": "d994a295cf68342b99e3036827d3ef8a",
   "project": {
     "name": "Web app",
     "tag_list": "ruby, acme",
@@ -485,11 +499,16 @@ Creates a new project.
 
 Updates one of current user's projects.
 
+#### Auth header example
+
+```
+Authorization: d994a295cf68342b99e3036827d3ef8a
+```
+
 #### Request content
 
 ```json
 {
-  "token": "d994a295cf68342b99e3036827d3ef8a",
   "project": {
     "name": "Web app",
     "tag_list": "ruby, acme",
@@ -523,12 +542,10 @@ Updates one of current user's projects.
 
 Deletes one of current user's projects.
 
-#### Request content
+#### Auth header example
 
-```json
-{
-  "token": "d994a295cf68342b99e3036827d3ef8a"
-}
+```
+Authorization: d994a295cf68342b99e3036827d3ef8a
 ```
 
 #### Response

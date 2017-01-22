@@ -5,8 +5,12 @@ module Api
     private
 
     def current_user
-      return unless params[:token]
-      @current_user ||= User.find_by_token(params[:token])
+      return unless auth_token
+      @current_user ||= User.find_by_token(auth_token)
+    end
+
+    def auth_token
+      request.headers['Authorization'] || params[:token]
     end
 
     def authenticate_user!
