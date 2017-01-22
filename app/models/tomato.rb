@@ -27,31 +27,6 @@ class Tomato
       where(created_at: { '$gte': time }).order_by([[:created_at, :desc]])
     end
 
-    def ranking_map
-      %{ function() { emit(this.user_id, 1); } }
-    end
-
-    def ranking_reduce
-      %{ function(key, values) { return Array.sum( values ); } }
-    end
-
-    def time_period_scope(time_period)
-      if :all_time != time_period
-        where(:created_at.gt => Time.current.send(beginning_of(time_period)))
-      else
-        all
-      end
-    end
-
-    def time_period_map_reduce(time_period = 'today')
-      time_period_scope(time_period).map_reduce(ranking_map, ranking_reduce)
-    end
-
-    def ranking_collection(time_period)
-      time_period_map_reduce(time_period)
-        .out(replace: "user_ranking_#{time_period}s")
-    end
-
     def by_day(tomatoes)
       to_lines(tomatoes) do |tomatoes_by_day|
         yield(tomatoes_by_day)
@@ -79,19 +54,6 @@ class Tomato
         tomatoes.each do |tomato|
           csv << [tomato.created_at, tomato.tags.join(', ')]
         end
-      end
-    end
-
-    private
-
-    def beginning_of(time_period)
-      case time_period
-      when :today
-        'beginning_of_day'
-      when :this_week
-        'beginning_of_week'
-      when :this_month
-        'beginning_of_month'
       end
     end
   end

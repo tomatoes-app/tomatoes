@@ -29,7 +29,6 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :rankings, only: :index
   namespace :leaderboard do
     resource :daily, only: :show
     resource :weekly, only: :show
