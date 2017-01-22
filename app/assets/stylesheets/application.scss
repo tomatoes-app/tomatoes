@@ -1,15 +1,18 @@
+/*
+ *= require bootstrap-social
+ *= require farbtastic
+ */
+
+@import "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";
+
 @import "variables-overridden";
 
 @import "bootstrap";
 @import "bootstrap-sprockets";
-@import "bootstrap-social.css";
 @import "bootstrap-social-patch";
-@import "font-awesome.css";
 
 @import "variables-custom";
 @import "sticky-footer";
-
-@import "farbtastic.css";
 
 @import "timer";
 @import "charts";

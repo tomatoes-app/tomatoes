@@ -18,7 +18,6 @@ end
 gem 'jquery-rails'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'bootstrap-social-rails'
-gem 'font-awesome-rails'
 
 # Mongo
 gem 'mongoid'
