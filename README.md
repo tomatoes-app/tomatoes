@@ -88,3 +88,4 @@ Tomatoes is released under the [MIT license](https://raw.github.com/tomatoes-app
 
 [![Build Status](https://travis-ci.org/tomatoes-app/tomatoes.svg?branch=master)](https://travis-ci.org/tomatoes-app/tomatoes)
 [![Code Climate](https://codeclimate.com/github/tomatoes-app/tomatoes/badges/gpa.svg)](https://codeclimate.com/github/tomatoes-app/tomatoes)
+[![Dependency Status](https://gemnasium.com/badges/github.com/tomatoes-app/tomatoes.svg)](https://gemnasium.com/github.com/tomatoes-app/tomatoes)
