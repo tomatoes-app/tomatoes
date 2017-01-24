@@ -23,7 +23,9 @@
     <![endif]-->
   </head>
   <body>
-    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <% unless current_user %>
+      <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <% end %>
 
     <%= yield :header %>
 
@@ -35,7 +37,7 @@
       <%= render partial: 'shared/announcement' %>
 
       <% unless current_user %>
-        <%= render partial: 'shared/adv_leaderboard' %>
+        <%= render partial: 'shared/ad_unit' %>
       <% end %>
     </div>
 
@@ -43,7 +45,7 @@
 
     <div class="container">
       <% unless current_user %>
-        <%= render partial: 'shared/adv_leaderboard' %>
+        <%= render partial: 'shared/ad_unit' %>
       <% end %>
     </div>
 
