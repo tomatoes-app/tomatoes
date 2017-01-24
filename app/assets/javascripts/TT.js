@@ -6,7 +6,6 @@
 //
 //= require soundmanager2-nodebug-jsmin
 //= require notifier
-//= require TT_favicon
 //= require TT_init
 
 var TT = function() {
