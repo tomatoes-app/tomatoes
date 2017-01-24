@@ -1,5 +1,5 @@
 # ![Tomatoes](https://github.com/tomatoes-app/tomatoes/raw/develop/app/assets/images/tomatoes_logo_48.png "Tomatoes") Tomatoes
-[![OpenCollective](https://opencollective.com/tomatoes/backers/badge.svg)](#backers) 
+[![OpenCollective](https://opencollective.com/tomatoes/backers/badge.svg)](#backers)
 [![OpenCollective](https://opencollective.com/tomatoes/sponsors/badge.svg)](#sponsors)
 
 Try it for free at [http://tomato.es](http://tomato.es "Tomatoes").
@@ -84,7 +84,7 @@ Become a sponsor and get your logo on our README on Github with a link to your s
 
 Tomatoes is released under the [MIT license](https://raw.github.com/tomatoes-app/tomatoes/develop/MIT-LICENSE).
 
-## Build Status 
+## Build Status
 
 [![Build Status](https://travis-ci.org/tomatoes-app/tomatoes.svg?branch=master)](https://travis-ci.org/tomatoes-app/tomatoes)
 [![Code Climate](https://codeclimate.com/github/tomatoes-app/tomatoes/badges/gpa.svg)](https://codeclimate.com/github/tomatoes-app/tomatoes)
