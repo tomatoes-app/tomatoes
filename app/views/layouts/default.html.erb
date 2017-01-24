@@ -10,7 +10,14 @@
 
     <link rel="chrome-webstore-item" href="https://chrome.google.com/webstore/detail/jijbhneeenepenoolcdalnekggeialeo">
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,700|Leckerli+One" rel="stylesheet" type="text/css">
-    <link id="favicon" rel="icon" type="image/png" href="<%= asset_path 'tomatoes_icon.png' %>">
+
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="<%= asset_path 'apple-touch-icon-144x144.png' %>" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="<%= asset_path 'apple-touch-icon-152x152.png' %>" />
+    <link rel="icon" type="image/png" href="<%= asset_path 'favicon-32x32.png' %>" sizes="32x32" />
+    <link rel="icon" type="image/png" href="<%= asset_path 'favicon-16x16.png' %>" sizes="16x16" />
+    <meta name="application-name" content="Tomatoes"/>
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="<%= asset_path 'mstile-144x144.png' %>" />
 
     <%= stylesheet_link_tag "application" %>
     <%= csrf_meta_tag %>
