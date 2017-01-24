@@ -23,7 +23,9 @@
     <![endif]-->
   </head>
   <body>
-    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <% unless current_user %>
+      <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <% end %>
 
     <%= yield :header %>
 
