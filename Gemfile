@@ -12,7 +12,7 @@ group :assets do
 
   # Upload assets to AWS S3
   gem 'asset_sync'
-  gem 'fog', '~>1.20', require: 'fog/aws/storage'
+  gem 'fog-aws'
 end
 
 gem 'jquery-rails'
@@ -38,7 +38,7 @@ gem 'memcachier'
 gem 'dalli'
 
 # Pagination
-gem 'kaminari'
+gem 'kaminari', '~> 1.0'
 gem 'kaminari-mongoid'
 
 # Notify exceptions
