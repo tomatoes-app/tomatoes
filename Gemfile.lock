@@ -127,8 +127,9 @@ GEM
       activerecord
       kaminari-core (= 1.0.1)
     kaminari-core (1.0.1)
-    kaminari-mongoid (0.1.2)
-      kaminari
+    kaminari-mongoid (1.0.1)
+      kaminari-core (~> 1.0)
+      mongoid
     libv8 (3.16.14.17)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
@@ -307,7 +308,7 @@ DEPENDENCIES
   high_voltage
   jquery-rails
   kaminari (~> 1.0)
-  kaminari-mongoid
+  kaminari-mongoid (~> 1.0)
   memcachier
   minitest-reporters
   mocha
@@ -334,4 +335,4 @@ RUBY VERSION
    ruby 2.3.1p112
 
 BUNDLED WITH
-   1.13.1
+   1.14.3

@@ -39,7 +39,7 @@ gem 'dalli'
 
 # Pagination
 gem 'kaminari', '~> 1.0'
-gem 'kaminari-mongoid'
+gem 'kaminari-mongoid', '~> 1.0'
 
 # Notify exceptions
 gem 'exception_notification'
