@@ -2,6 +2,10 @@ module Api
   class BaseController < ActionController::Base
     protect_from_forgery with: :null_session
 
+    rescue_from(ActionController::ParameterMissing) do |err|
+      render json: {missing_param: err.param}, status: :bad_request
+    end
+
     private
 
     def current_user

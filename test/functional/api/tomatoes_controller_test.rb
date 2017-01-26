@@ -91,6 +91,20 @@ module Api
       assert_match(/Must not overlap saved tomaotes/, parsed_response['base'].first)
     end
 
+    test 'POST /create, with bad parameters, it should return a bad request error' do
+      @user.tomatoes.create!
+
+      assert_no_difference('@user.tomatoes.size') do
+        # this request should fail because another tomato has been created
+        # less than 25 minutes ago
+        post :create, token: '123', pachino: { tag_list: 'one, two' }
+      end
+      assert_response :bad_request
+      assert_equal 'application/json', @response.content_type
+      parsed_response = JSON.parse(@response.body)
+      assert_match('tomato', parsed_response['missing_param'])
+    end
+
     test 'PATCH /update, given an invalid token, it should return an error' do
       patch :update, token: 'invalid_token', id: @tomato_1.id, tomato: { tag_list: 'three' }
       assert_response :unauthorized
