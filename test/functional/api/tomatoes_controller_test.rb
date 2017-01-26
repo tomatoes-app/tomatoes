@@ -95,8 +95,8 @@ module Api
       @user.tomatoes.create!
 
       assert_no_difference('@user.tomatoes.size') do
-        # this request should fail because another tomato has been created
-        # less than 25 minutes ago
+        # this request should fail because no tomato param
+        # has been given
         post :create, token: '123', pachino: { tag_list: 'one, two' }
       end
       assert_response :bad_request
