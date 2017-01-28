@@ -66,11 +66,11 @@ end
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'rubocop', '~> 0.43.0', require: false
 end
 
 group :development, :test do
   gem 'pry'
   gem 'test-unit', '~> 3.0'
   gem 'byebug'
+  gem 'rubocop', '~> 0.43.0', require: false
 end
