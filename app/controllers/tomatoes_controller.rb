@@ -24,7 +24,7 @@ class TomatoesController < ApplicationController
     respond_with_json do
       Rails.cache.fetch("tomatoes_by_day_user_#{@user.id}", expires_in: 1.hour) do
         Tomato.by_day(@user.tomatoes) do |tomatoes_by_day|
-          tomatoes_by_day ? tomatoes_by_day.size : 0
+          tomatoes_by_day.try(:size).to_i
         end
       end
     end
@@ -35,7 +35,7 @@ class TomatoesController < ApplicationController
     respond_with_json do
       Rails.cache.fetch("tomatoes_by_hour_user_#{@user.id}", expires_in: 1.day) do
         Tomato.by_hour(@user.tomatoes) do |tomatoes_by_hour|
-          tomatoes_by_hour ? tomatoes_by_hour.size : 0
+          tomatoes_by_hour.try(:size).to_i
         end
       end
     end
@@ -125,7 +125,7 @@ class TomatoesController < ApplicationController
   end
 
   def define_break
-    @long_break = true if 0 == @tomatoes.size % 4
+    @long_break = (@tomatoes.size % 4).zero?
   end
 
   def notice_message

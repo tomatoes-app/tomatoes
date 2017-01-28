@@ -126,13 +126,13 @@ class User
 
   def self.by_tomatoes(users)
     to_tomatoes_bars(users) do |users_by_tomatoes|
-      users_by_tomatoes ? users_by_tomatoes.size : 0
+      users_by_tomatoes.try(:size).to_i
     end
   end
 
   def self.by_day(users)
     to_lines(users) do |users_by_day|
-      users_by_day ? users_by_day.size : 0
+      users_by_day.try(:size).to_i
     end
   end
 
@@ -141,7 +141,7 @@ class User
     users_count = 1687
 
     to_lines(users) do |users_by_day|
-      users_count += users_by_day ? users_by_day.size : 0
+      users_count += users_by_day.try(:size).to_i
     end
   end
 

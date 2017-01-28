@@ -40,7 +40,7 @@ class StatisticsController < ApplicationController
     respond_with_json do
       Rails.cache.fetch('tomatoes_by_day', expires_in: 1.day) do
         Tomato.by_day(Tomato.all) do |tomatoes_by_day|
-          tomatoes_count += tomatoes_by_day ? tomatoes_by_day.size : 0
+          tomatoes_count += tomatoes_by_day.try(:size).to_i
         end
       end
     end

@@ -75,3 +75,7 @@ Rails/Validation:
   Exclude:
     - 'app/models/project.rb'
     - 'app/models/user.rb'
+
+Style/SafeNavigation:
+  Exclude:
+    - 'app/models/user.rb'

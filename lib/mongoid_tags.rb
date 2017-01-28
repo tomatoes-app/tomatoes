@@ -39,7 +39,7 @@ module Mongoid
         end
 
         def tag_list
-          tags.join(', ') if tags
+          tags.try(:join, ', ')
         end
       end
 

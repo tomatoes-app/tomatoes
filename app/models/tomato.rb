@@ -66,10 +66,9 @@ class Tomato
 
   def must_not_overlap
     last_tomato = user.tomatoes.after(Time.zone.now - DURATION.seconds).first
-    if last_tomato
-      limit = (DURATION.seconds - (Time.zone.now - last_tomato.created_at)).seconds
-      errors.add(:base, "Must not overlap saved tomaotes, please wait #{humanize(limit)}")
-    end
+    return unless last_tomato
+    limit = (DURATION.seconds - (Time.zone.now - last_tomato.created_at)).seconds
+    errors.add(:base, "Must not overlap saved tomaotes, please wait #{humanize(limit)}")
   end
 
   def increment_score

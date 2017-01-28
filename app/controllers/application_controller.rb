@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
   end
 
   def find_time_zone
-    if current_user && current_user.time_zone && !current_user.time_zone.empty?
+    if current_user.try(:time_zone).present?
       current_user.time_zone
     else
       ActiveSupport::TimeZone[-cookies[:timezone].to_i.minutes]
