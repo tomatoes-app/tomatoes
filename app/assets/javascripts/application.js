@@ -7,7 +7,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.cookie
-//= require jquery.color-2.1.2
 //= require time_zone
 //= require bootstrap-sprockets
 //
