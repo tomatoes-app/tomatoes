@@ -3,6 +3,16 @@
     var BY_DAY_USER_TOMATOES_URL = '<%= by_day_user_tomatoes_url(@user, format: :json) %>',
         BY_HOUR_USER_TOMATOES_URL = '<%= by_hour_user_tomatoes_url(@user, format: :json) %>';
   <% end %>
+
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/flot/0.7/jquery.flot.min.js"
+    integrity="sha256-Jndbja6Oz3w6VfEwbdK4BWVcnjfi9k2k7hmFYJZgt2Q="
+    crossorigin="anonymous"></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/flot/0.7/jquery.flot.selection.min.js"
+    integrity="sha256-8WzAV3WHQIndMnKO9o6xzOkP8AAwLOeEJncVATWnFLg="
+    crossorigin="anonymous"></script>
+
   <%= javascript_include_tag 'users', 'users_charts' %>
 <% end %>
 
