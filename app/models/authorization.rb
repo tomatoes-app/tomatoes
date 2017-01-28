@@ -15,7 +15,8 @@ class Authorization
   def self.omniauth_attributes(auth)
     attributes = {
       provider: auth['provider'],
-      uid: auth['uid'] }
+      uid: auth['uid']
+    }
 
     if auth['credentials']
       attributes[:token] = auth['credentials']['token']

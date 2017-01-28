@@ -5,15 +5,15 @@ module Api
     setup do
       @user = User.create!(name: 'name', email: 'email@example.com')
       @user.authorizations.create!(provider: 'tomatoes', token: '123')
-      @tomato_1 = @user.tomatoes.build
-      @tomato_1.created_at = 2.hour.ago
-      @tomato_1.save!
-      @tomato_2 = @user.tomatoes.build(tag_list: 'one, two')
-      @tomato_2.created_at = 1.hour.ago
-      @tomato_2.save!
+      @tomato1 = @user.tomatoes.build
+      @tomato1.created_at = 2.hours.ago
+      @tomato1.save!
+      @tomato2 = @user.tomatoes.build(tag_list: 'one, two')
+      @tomato2.created_at = 1.hour.ago
+      @tomato2.save!
 
       @other_user = User.create!
-      @tomato_3 = @other_user.tomatoes.create!
+      @tomato3 = @other_user.tomatoes.create!
     end
 
     teardown do
@@ -34,28 +34,28 @@ module Api
       assert_equal 'application/json', @response.content_type
       parsed_response = JSON.parse(@response.body)
       tomatoes_ids = parsed_response['tomatoes'].map { |t| t['id'] }
-      assert_includes tomatoes_ids, @tomato_1.id.to_s
-      assert_includes tomatoes_ids, @tomato_2.id.to_s
-      assert_not_includes tomatoes_ids, @tomato_3.id.to_s
+      assert_includes tomatoes_ids, @tomato1.id.to_s
+      assert_includes tomatoes_ids, @tomato2.id.to_s
+      assert_not_includes tomatoes_ids, @tomato3.id.to_s
     end
 
     test 'GET /show, given an invalid token, it should return an error' do
-      get :show, token: 'invalid_token', id: @tomato_1.id.to_s
+      get :show, token: 'invalid_token', id: @tomato1.id.to_s
       assert_response :unauthorized
       assert_equal 'application/json', @response.content_type
       assert_equal({ error: 'authentication failed' }.to_json, @response.body)
     end
 
     test 'GET /show, it should return current user\'s tomato' do
-      get :show, token: '123', id: @tomato_1.id.to_s
+      get :show, token: '123', id: @tomato1.id.to_s
       assert_response :success
       assert_equal 'application/json', @response.content_type
-      assert_equal Api::Presenter::Tomato.new(@tomato_1).to_json, @response.body
+      assert_equal Api::Presenter::Tomato.new(@tomato1).to_json, @response.body
     end
 
     test 'GET /show, it should not return other users\' tomatoes' do
       assert_raises(Mongoid::Errors::DocumentNotFound) do
-        get :show, token: '123', id: @tomato_3.id.to_s
+        get :show, token: '123', id: @tomato3.id.to_s
       end
     end
 
@@ -106,36 +106,36 @@ module Api
     end
 
     test 'PATCH /update, given an invalid token, it should return an error' do
-      patch :update, token: 'invalid_token', id: @tomato_1.id, tomato: { tag_list: 'three' }
+      patch :update, token: 'invalid_token', id: @tomato1.id, tomato: { tag_list: 'three' }
       assert_response :unauthorized
       assert_equal 'application/json', @response.content_type
       assert_equal({ error: 'authentication failed' }.to_json, @response.body)
     end
 
     test 'PATCH /update, given valid params, it should update the tomato' do
-      patch :update, token: '123', id: @tomato_1.id, tomato: { tag_list: 'three' }
+      patch :update, token: '123', id: @tomato1.id, tomato: { tag_list: 'three' }
       assert_response :success
       assert_equal 'application/json', @response.content_type
-      @tomato_1.reload
-      assert_equal Api::Presenter::Tomato.new(@tomato_1).to_json, @response.body
-      assert_match(/#{api_tomato_path(@tomato_1)}/, @response.headers['Location'])
-      assert_equal %w(three), @tomato_1.tags
+      @tomato1.reload
+      assert_equal Api::Presenter::Tomato.new(@tomato1).to_json, @response.body
+      assert_match(/#{api_tomato_path(@tomato1)}/, @response.headers['Location'])
+      assert_equal %w(three), @tomato1.tags
     end
 
     test 'PATCH /update, given a validation error, it should return an error' do
       @controller.stubs(:current_user).returns(@user)
       tomatoes = []
       @user.stubs(:tomatoes).returns(tomatoes)
-      tomatoes.stubs(:find).returns(@tomato_1)
-      @tomato_1.expects(:update_attributes).returns(false)
+      tomatoes.stubs(:find).returns(@tomato1)
+      @tomato1.expects(:update_attributes).returns(false)
 
-      patch :update, token: '123', id: @tomato_1.id, tomato: { tag_list: 'three' }
+      patch :update, token: '123', id: @tomato1.id, tomato: { tag_list: 'three' }
       assert_response :unprocessable_entity
       assert_equal 'application/json', @response.content_type
     end
 
     test 'DELETE /destroy, given an invalid token, it should return an error' do
-      delete :destroy, token: 'invalid_token', id: @tomato_1.id
+      delete :destroy, token: 'invalid_token', id: @tomato1.id
       assert_response :unauthorized
       assert_equal 'application/json', @response.content_type
       assert_equal({ error: 'authentication failed' }.to_json, @response.body)
@@ -143,7 +143,7 @@ module Api
 
     test 'DELETE /destroy, given valid params, it should destroy the tomato' do
       assert_difference('@user.tomatoes.count', -1) do
-        delete :destroy, token: '123', id: @tomato_1.id
+        delete :destroy, token: '123', id: @tomato1.id
       end
       assert_response :no_content
     end

@@ -9,7 +9,8 @@ module Api
         name: 'Test project',
         money_budget: 123,
         time_budget: 234,
-        tag_list: 'one, two')
+        tag_list: 'one, two'
+      )
 
       @other_user = User.create!
       @other_project = @other_user.projects.create!(name: 'Other project')

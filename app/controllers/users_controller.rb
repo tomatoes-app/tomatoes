@@ -39,6 +39,7 @@ class UsersController < ApplicationController
       :average_hourly_rate,
       :currency,
       :volume,
-      :ticking)
+      :ticking
+    )
   end
 end

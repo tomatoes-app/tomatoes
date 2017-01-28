@@ -8,7 +8,8 @@ module Api
         @project = @user.projects.create!(
           name: 'Test project',
           money_budget: 123,
-          time_budget: 234)
+          time_budget: 234
+        )
       end
 
       teardown do
