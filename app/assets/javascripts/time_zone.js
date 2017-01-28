@@ -5,7 +5,7 @@ Date.prototype.stdTimezoneOffset = function() {
 }
 
 $(document).ready(function() {
-  if(!($.cookie('timezone'))) {
-    $.cookie('timezone', (new Date()).stdTimezoneOffset());
+  if(!(Cookies.get('timezone'))) {
+    Cookies.set('timezone', (new Date()).stdTimezoneOffset());
   }
 });
