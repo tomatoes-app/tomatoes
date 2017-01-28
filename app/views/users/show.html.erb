@@ -16,7 +16,7 @@
         </div>
         <div class="profile_info media-body">
           Tomatoes: <%= @user.tomatoes.size %></br>
-          <% @user.authorizations.each do |authorization| %>
+          <% @user.authorizations.external_providers.each do |authorization| %>
             <%= link_to authorization.url, authorization.url %><br/>
           <% end %>
           <%= content_for_user(@user) do %>

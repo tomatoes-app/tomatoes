@@ -39,6 +39,10 @@ class Authorization
     end
   end
 
+  def self.external_providers
+    return self.where('provider.ne': 'tomatoes')
+  end
+
   def url
     "http://#{provider}.com/#{nickname}"
   end
