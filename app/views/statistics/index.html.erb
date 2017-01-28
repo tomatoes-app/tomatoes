@@ -1,7 +1,7 @@
 <% content_for :scripts do %>
   <%= javascript_tag do %>
     var TOTAL_USERS_BY_DAY_STATISTICS_URL = '<%= total_users_by_day_statistics_url(format: :json) %>',
-        USERS_BY_DAY_STATISTICS_URL = '<%= users_by_day_statistics_url(format: :json) %>'
+        USERS_BY_DAY_STATISTICS_URL = '<%= users_by_day_statistics_url(format: :json) %>',
         USERS_BY_TOMATOES_STATISTICS_URL = '<%= users_by_tomatoes_statistics_url(format: :json) %>',
         TOMATOES_BY_DAY_STATISTICS_URL = '<%= tomatoes_by_day_statistics_url(format: :json) %>';
   <% end %>
