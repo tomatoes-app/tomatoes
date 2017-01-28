@@ -12,6 +12,8 @@ class Authorization
 
   embedded_in :user
 
+  scope :external_providers, -> { where('provider.ne': 'tomatoes') }
+
   def self.omniauth_attributes(auth)
     attributes = {
       provider: auth['provider'],
@@ -37,10 +39,6 @@ class Authorization
     when 'twitter'
       auth['info']['image'] if auth['info']
     end
-  end
-
-  def self.external_providers
-    return self.where('provider.ne': 'tomatoes')
   end
 
   def url
