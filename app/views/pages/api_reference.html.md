@@ -1,5 +1,8 @@
 # API Reference
 
+Did you find errors or missing information? Edit this page at
+[app/views/pages/api_reference.html.md](https://github.com/tomatoes-app/tomatoes/edit/master/app/views/pages/api_reference.html.md)
+
 ---
 
 ## Session
