@@ -31,7 +31,7 @@
 
   <%= content_for_user(@user) do %>
     <div class="row">
-      <% ['twitter', 'github'].each do |provider| %>
+      <% Authorization::EXTERNAL_PROVIDERS.each do |provider| %>
         <div class="col-md-4">
           <%= render partial: 'authorizations/authorization', locals: { provider: provider, user: @user } %>
         </div>

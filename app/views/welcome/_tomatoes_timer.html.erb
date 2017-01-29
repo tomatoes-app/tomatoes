@@ -44,12 +44,12 @@
       <div id="tomato_signin">
         <p>Sign in to start tracking your work.</p>
 
-        <%= link_to signin_path('github'), class: 'btn btn-block btn-social btn-github' do %>
+        <%= link_to signin_path(Authorization::PROVIDER_GITHUB), class: 'btn btn-block btn-social btn-github' do %>
           <span class="fa fa-github"></span>
           Sign in with GitHub
         <% end %>
 
-        <%= link_to signin_path('twitter'), class: 'btn btn-block btn-social btn-twitter' do %>
+        <%= link_to signin_path(Authorization::PROVIDER_TWITTER), class: 'btn btn-block btn-social btn-twitter' do %>
           <span class="fa fa-twitter"></span>
           Sign in with Twitter
         <% end %>

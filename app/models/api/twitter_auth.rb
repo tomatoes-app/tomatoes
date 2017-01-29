@@ -12,7 +12,7 @@ module Api
     end
 
     def find_user
-      User.find_by_auth_provider(provider: 'twitter', uid: twitter_user.id)
+      User.find_by_auth_provider(provider: Authorization::PROVIDER_TWITTER, uid: twitter_user.id)
     end
 
     def create_user!
@@ -41,7 +41,7 @@ module Api
 
     def auth_attributes
       {
-        provider: 'twitter',
+        provider: Authorization::PROVIDER_TWITTER,
         uid: twitter_user.id,
         token: @access_token,
         secret: @secret,

@@ -16,13 +16,13 @@
           <li><%= link_to 'Sign out', signout_path, method: :delete %></li>
         <% else %>
           <li>
-            <%= link_to signin_path('github') do %>
+            <%= link_to signin_path(Authorization::PROVIDER_GITHUB) do %>
               <%= image_tag('github.png', width: 24) %>
               Sign in with GitHub
             <% end %>
           </li>
           <li>
-            <%= link_to signin_path('twitter') do %>
+            <%= link_to signin_path(Authorization::PROVIDER_TWITTER) do %>
               <%= image_tag('twitter.png', width: 24) %>
               Sign in with Twitter
             <% end %>

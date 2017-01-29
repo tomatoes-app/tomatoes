@@ -3,6 +3,12 @@ require 'securerandom'
 class Authorization
   include Mongoid::Document
 
+  PROVIDER_GITHUB = 'github'
+  PROVIDER_TWITTER = 'twitter'
+  PROVIDER_API = 'tomatoes'
+  EXTERNAL_PROVIDERS = [PROVIDER_GITHUB, PROVIDER_TWITTER]
+  INTERNAL_PROVIDERS = [PROVIDER_API]
+
   field :provider, type: String
   field :uid,      type: String
   field :token,    type: String
@@ -12,7 +18,7 @@ class Authorization
 
   embedded_in :user
 
-  scope :external_providers, -> { where('provider.ne': 'tomatoes') }
+  scope :external_providers, -> { nin(provider: INTERNAL_PROVIDERS) }
 
   def self.omniauth_attributes(auth)
     attributes = {
@@ -34,9 +40,9 @@ class Authorization
 
   def self.omniauth_image(auth)
     case auth['provider']
-    when 'github'
+    when PROVIDER_GITHUB
       auth['extra']['raw_info']['avatar_url'] if auth['extra'] && auth['extra']['raw_info']
-    when 'twitter'
+    when PROVIDER_TWITTER
       auth['info']['image'] if auth['info']
     end
   end
