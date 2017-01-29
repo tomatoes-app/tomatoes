@@ -3,7 +3,7 @@ cache: bundler
 bundler_args: --without development
 services: mongodb
 rvm:
-  - 2.3.1
+  - 2.3.3
 script:
   - bundle exec rake test
   - bundle exec rubocop -R
