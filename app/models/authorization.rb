@@ -18,7 +18,7 @@ class Authorization
 
   embedded_in :user
 
-  scope :external_providers, -> { nin(provider: INTERNAL_PROVIDERS) }
+  scope :external_providers, -> { self.in(provider: EXTERNAL_PROVIDERS) }
 
   def self.omniauth_attributes(auth)
     attributes = {
