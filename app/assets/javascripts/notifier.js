@@ -9,20 +9,20 @@ Notifier.prototype.isSupported = function() {
 };
 
 // Request permission for this page to send notifications.
-Notifier.prototype.requestPermission = function(callback) {
-  Notification.requestPermission(function(permission) {
-    callback(permission === "granted");
-  });
+Notifier.prototype.requestPermission = Notification.requestPermission;
+
+Notifier.prototype.isPermissionGranted = function() {
+  return this.getPermission() === "granted";
 };
 
-Notifier.prototype.hasPermission = function() {
-  return Notification.permission === "granted";
+Notifier.prototype.getPermission = function() {
+  return Notification.permission;
 };
 
 // Popup a notification with icon, title, and body. Returns false if
 // permission was not granted.
 Notifier.prototype.notify = function(icon, title, body) {
-  if (this.hasPermission()) {
+  if (this.isPermissionGranted()) {
     console.log(icon, title, body);
 
     var notification = new Notification(body, { icon: icon, title: title });

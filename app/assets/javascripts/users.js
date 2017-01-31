@@ -7,15 +7,25 @@
 //= require notifier
 //= require farbtastic
 
-function permissionCallback(hasPermission) {
-  var permissionLabel = hasPermission ? "Tomatoes is allowed to use desktop notifications" : "Allow desktop notifications";
+function permissionCallback(permission) {
+  $("#request_notification_permission a").html(permissionLabel(permission));
+}
 
-  $("#request_notification_permission a").html(permissionLabel);
+function permissionLabel(permission) {
+  switch (permission) {
+    case 'granted':
+      return 'Tomatoes is allowed to use desktop notifications';
+    case 'denied':
+      return 'Tomatoes is not allowed to use desktop notifications :(</br>If you want to receive notifications remove www.tomato.es from the blacklist.';
+    default:
+      return 'Allow desktop notifications';
+  }
 }
 
 $(document).ready(function() {
   if(NOTIFIER.isSupported()) {
-    permissionCallback(NOTIFIER.hasPermission());
+    // setup request notification permission element
+    permissionCallback(NOTIFIER.getPermission());
 
     $("#request_notification_permission a").click(function(event) {
       NOTIFIER.requestPermission(permissionCallback);
