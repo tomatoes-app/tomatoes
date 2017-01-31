@@ -29,7 +29,7 @@ module Api
       private
 
       def authorizations
-        @user.authorizations.select { |auth| auth.provider != 'tomatoes' }.map do |auth|
+        @user.authorizations.external_providers.map do |auth|
           {
             provider: auth.provider,
             uid: auth.uid,

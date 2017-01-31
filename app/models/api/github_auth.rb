@@ -6,7 +6,7 @@ module Api
     end
 
     def find_user
-      User.find_by_auth_provider(provider: 'github', uid: github_user[:id].to_s)
+      User.find_by_auth_provider(provider: Authorization::PROVIDER_GITHUB, uid: github_user[:id].to_s)
     end
 
     def create_user!
@@ -36,7 +36,7 @@ module Api
 
     def auth_attributes
       {
-        provider: 'github',
+        provider: Authorization::PROVIDER_GITHUB,
         uid: github_user[:id],
         token: @access_token,
         nickname: github_user[:login],

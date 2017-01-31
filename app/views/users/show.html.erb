@@ -26,7 +26,7 @@
         </div>
         <div class="profile_info media-body">
           Tomatoes: <%= @user.tomatoes.size %></br>
-          <% @user.authorizations.each do |authorization| %>
+          <% @user.authorizations.external_providers.each do |authorization| %>
             <%= link_to authorization.url, authorization.url %><br/>
           <% end %>
           <%= content_for_user(@user) do %>
@@ -41,7 +41,7 @@
 
   <%= content_for_user(@user) do %>
     <div class="row">
-      <% ['twitter', 'github'].each do |provider| %>
+      <% Authorization::EXTERNAL_PROVIDERS.each do |provider| %>
         <div class="col-md-4">
           <%= render partial: 'authorizations/authorization', locals: { provider: provider, user: @user } %>
         </div>
