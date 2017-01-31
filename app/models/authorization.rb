@@ -3,11 +3,11 @@ require 'securerandom'
 class Authorization
   include Mongoid::Document
 
-  PROVIDER_GITHUB = 'github'
-  PROVIDER_TWITTER = 'twitter'
-  PROVIDER_API = 'tomatoes'
-  EXTERNAL_PROVIDERS = [PROVIDER_GITHUB, PROVIDER_TWITTER]
-  INTERNAL_PROVIDERS = [PROVIDER_API]
+  PROVIDER_GITHUB = 'github'.freeze
+  PROVIDER_TWITTER = 'twitter'.freeze
+  PROVIDER_API = 'tomatoes'.freeze
+  EXTERNAL_PROVIDERS = [PROVIDER_GITHUB, PROVIDER_TWITTER].freeze
+  INTERNAL_PROVIDERS = [PROVIDER_API].freeze
 
   field :provider, type: String
   field :uid,      type: String
