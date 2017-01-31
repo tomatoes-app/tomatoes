@@ -14,7 +14,7 @@ function permissionCallback(hasPermission) {
 }
 
 $(document).ready(function() {
-  if(NOTIFIER.hasSupport()) {
+  if(NOTIFIER.isSupported()) {
     permissionCallback(NOTIFIER.hasPermission());
 
     $("#request_notification_permission a").click(function(event) {

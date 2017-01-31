@@ -4,7 +4,7 @@
 function Notifier() {}
 
 // Returns "true" if this browser supports notifications.
-Notifier.prototype.hasSupport = function() {
+Notifier.prototype.isSupported = function() {
   return "Notification" in window;
 };
 
