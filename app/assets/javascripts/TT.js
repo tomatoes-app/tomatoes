@@ -6,6 +6,7 @@
 //
 //= require notifier
 //= require TT_init
+//= require TT_reminder
 
 var TT = function() {
   var timerInterval = null,
