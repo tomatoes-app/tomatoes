@@ -6,6 +6,7 @@
 //
 //= require notifier
 //= require TT_init
+//= require TT_reminder
 
 var TT = function() {
   var timerInterval = null,
@@ -115,7 +116,7 @@ var TT = function() {
     $("#" + settings.progressBarId).css('width', 0);
 
     if(typeof reset == 'undefined') {
-      if (!NOTIFIER.notify(tomatoNotificationIcon, "Tomatoes", "Break is over. It's time to work.")) {
+      if (!NOTIFIER.notify(tomatoNotificationIcon, "Tomatoes", "Break is over. It's time to work.", false)) {
         log('Permission denied. Click "Request Permission" to give this domain access to send notifications to your desktop.');
       }
     }
@@ -133,7 +134,7 @@ var TT = function() {
     document.title = originalTitle;
 
     // notify tomato end
-    if (!NOTIFIER.notify(tomatoNotificationIcon, "Tomatoes", "Pomodoro finished!")) {
+    if (!NOTIFIER.notify(tomatoNotificationIcon, "Tomatoes", "Pomodoro finished!", false)) {
       log('Permission denied. Click "Request Permission" to give this domain access to send notifications to your desktop.');
     }
 
@@ -150,7 +151,7 @@ var TT = function() {
     document.title = originalTitle;
 
     // notify tomato end
-    if (!NOTIFIER.notify(tomatoNotificationIcon, "Tomatoes", "Pomodoro finished!")) {
+    if (!NOTIFIER.notify(tomatoNotificationIcon, "Tomatoes", "Pomodoro finished!", false)) {
       log('Permission denied. Click "Request Permission" to give this domain access to send notifications to your desktop.');
     }
 
