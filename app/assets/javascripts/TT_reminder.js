@@ -1,5 +1,5 @@
 var TTReminder = function() {
-  var reminderDelay = 20; // constant delay in seconds
+  var reminderDelay = 60; // constant delay in seconds
   var reminderId;
 
   var delayReminder = function(message) {
