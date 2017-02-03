@@ -21,21 +21,24 @@ Notifier.prototype.getPermission = function() {
 
 // Popup a notification with icon, title, and body. Returns false if
 // permission was not granted.
-Notifier.prototype.notify = function(icon, title, body) {
+Notifier.prototype.notify = function(icon, title, body, requireInteraction) {
   if (this.isPermissionGranted()) {
-    console.log(icon, title, body);
-
-    var notification = new Notification(body, { icon: icon, title: title });
-    console.log(notification);
+    var notification = new Notification(title, {
+      icon: icon,
+      body: body,
+      requireInteraction: requireInteraction
+    });
 
     notification.onclick = function() {
       window.focus();
       notification.close();
     };
 
-    setTimeout(function() {
-      notification.close();
-    }, 10000);
+    if (!requireInteraction) {
+      setTimeout(function() {
+        notification.close();
+      }, 10000);
+    }
 
     return true;
   }
