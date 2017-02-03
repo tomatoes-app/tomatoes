@@ -84,8 +84,10 @@ Become a sponsor and get your logo on our README on Github with a link to your s
 
 Tomatoes is released under the [MIT license](https://raw.github.com/tomatoes-app/tomatoes/develop/MIT-LICENSE).
 
-## Build Status
+## Status
 
 [![Build Status](https://travis-ci.org/tomatoes-app/tomatoes.svg?branch=master)](https://travis-ci.org/tomatoes-app/tomatoes)
 [![Code Climate](https://codeclimate.com/github/tomatoes-app/tomatoes/badges/gpa.svg)](https://codeclimate.com/github/tomatoes-app/tomatoes)
+[![Test
+Coverage](https://codeclimate.com/github/tomatoes-app/tomatoes/badges/coverage.svg)](https://codeclimate.com/github/tomatoes-app/tomatoes/coverage)
 [![Dependency Status](https://gemnasium.com/badges/github.com/tomatoes-app/tomatoes.svg)](https://gemnasium.com/github.com/tomatoes-app/tomatoes)
