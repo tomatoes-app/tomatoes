@@ -97,6 +97,11 @@ $(document).ready(function() {
   });
 
   updateVolumeIcon();
+
+  // ask for desktop notifications permission
+  if(NOTIFIER.isSupported() && !NOTIFIER.isPermissionGranted()) {
+    NOTIFIER.requestPermission();
+  }
 });
 
 $(window).bind('beforeunload', function() {

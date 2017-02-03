@@ -127,6 +127,7 @@ var TT = function() {
 
   var stateNewForm = function() {
     log("stateNewForm");
+    $(document).trigger('new_tomato_form');
 
     status = 'saving';
     document.title = originalTitle;
