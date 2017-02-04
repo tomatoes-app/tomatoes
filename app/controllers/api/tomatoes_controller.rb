@@ -3,16 +3,19 @@ module Api
     before_action :authenticate_user!
     before_action :find_tomato, only: [:show, :update, :destroy]
 
+    # GET /api/tomatoes
     def index
       @tomatoes = current_user.tomatoes.order_by([[:created_at, :desc], [:_id, :desc]]).page params[:page]
 
       render json: Presenter::Tomatoes.new(@tomatoes)
     end
 
+    # GET /api/tomatoes/1
     def show
       render json: Presenter::Tomato.new(@tomato)
     end
 
+    # POST /api/tomatoes
     def create
       @tomato = current_user.tomatoes.build(resource_params)
 
@@ -23,6 +26,7 @@ module Api
       end
     end
 
+    # PUT /api/tomatoes/1
     def update
       if @tomato.update_attributes(resource_params)
         render json: Presenter::Tomato.new(@tomato), location: api_tomato_url(@tomato)
@@ -31,6 +35,7 @@ module Api
       end
     end
 
+    # DELETE /api/tomatoes/1
     def destroy
       @tomato.destroy
 
