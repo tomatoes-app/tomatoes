@@ -62,6 +62,7 @@ group :test do
   gem 'mocha', require: false
   gem 'minitest-reporters'
   gem 'simplecov', require: false
+  gem 'codeclimate-test-reporter', '~> 1.0.0', require: nil
 end
 
 group :development do
