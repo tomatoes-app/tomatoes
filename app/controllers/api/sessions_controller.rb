@@ -2,7 +2,7 @@ module Api
   class SessionsController < BaseController
     before_action :authenticate_user!, only: :destroy
 
-    # POST /session
+    # POST /api/session
     def create
       auth_provider = AuthFactory.build(params)
       user = auth_provider.find_user
@@ -19,7 +19,7 @@ module Api
       unauthorized 'authentication failed'
     end
 
-    # DELETE /session
+    # DELETE /api/session
     def destroy
       @current_user.authorizations.where(provider: 'tomatoes').destroy_all
 

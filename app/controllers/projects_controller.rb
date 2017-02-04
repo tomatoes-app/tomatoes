@@ -3,14 +3,8 @@ class ProjectsController < ApplicationController
   before_action :find_project, only: [:show, :edit, :update, :destroy]
 
   # GET /projects
-  # GET /projects.json
   def index
     @projects = current_user.projects.order_by([[:created_at, :desc]]).page params[:page]
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @projects }
-    end
   end
 
   # GET /projects/1
@@ -27,18 +21,13 @@ class ProjectsController < ApplicationController
   end
 
   # POST /projects
-  # POST /projects.json
   def create
     @project = current_user.projects.build(resource_params)
 
-    respond_to do |format|
-      if @project.save
-        format.html { redirect_to @project, notice: 'Project was successfully created.' }
-        format.json { render json: @project, status: :created, location: @project }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @project.errors, status: :unprocessable_entity }
-      end
+    if @project.save
+      redirect_to @project, notice: 'Project was successfully created.'
+    else
+      render action: 'new'
     end
   end
 

@@ -36,11 +36,7 @@ Rails.application.routes.draw do
     resource :overall, only: :show
   end
 
-  resources :tomatoes do
-    member do
-      post 'track'
-    end
-  end
+  resources :tomatoes
 
   resources :users, only: [:show, :edit, :update, :destroy] do
     resources :tomatoes, only: [] do

@@ -4,18 +4,13 @@ class TomatoesController < ApplicationController
   before_action :find_tomato, only: [:show, :edit, :update, :destroy]
 
   # GET /tomatoes
-  # GET /tomatoes.xml
   # GET /tomatoes.csv
-  # GET /users/1/tomatoes
-  # GET /users/1/tomatoes.xml
-  # GET /users/1/tomatoes.csv
   def index
     @tomatoes = current_user.tomatoes.order_by([[:created_at, :desc]]).page params[:page]
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render xml: @tomatoes }
-      format.csv  { export_csv(current_user.tomatoes.order_by([[:created_at, :desc]])) }
+      format.csv { export_csv(current_user.tomatoes.order_by([[:created_at, :desc]])) }
     end
   end
 
@@ -42,23 +37,12 @@ class TomatoesController < ApplicationController
   end
 
   # GET /tomatoes/1
-  # GET /tomatoes/1.json
   def show
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @tomato }
-    end
   end
 
   # GET /tomatoes/new
-  # GET /tomatoes/new.json
   def new
     @tomato = current_user.tomatoes.build
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @tomato }
-    end
   end
 
   # GET /tomatoes/1/edit
@@ -67,7 +51,6 @@ class TomatoesController < ApplicationController
 
   # POST /tomatoes
   # POST /tomatoes.js
-  # POST /tomatoes.xml
   def create
     @tomato = current_user.tomatoes.build(resource_params)
 
@@ -83,11 +66,9 @@ class TomatoesController < ApplicationController
           flash.now[:notice] = notice_message
         end
         format.html { redirect_to(root_url, notice: 'Tomato created, now it\'s time for a break.') }
-        format.xml  { render xml: @tomato, status: :created, location: @tomato }
       else
         # TODO: error format.js
         format.html { render action: 'new' }
-        format.xml  { render xml: @tomato.errors, status: :unprocessable_entity }
       end
     end
   end
