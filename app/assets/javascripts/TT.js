@@ -19,6 +19,7 @@ var TT = function() {
         startButtonId: 'start',
         startHintId: 'start_hint',
         progressBarId: 'progress_bar',
+        overlayId: 'overlay',
         formId: 'new_tomato_form',
         timerId: 'timer',
         timerCounterId: 'timer_counter',
@@ -88,7 +89,7 @@ var TT = function() {
     disable([settings.startButtonId])
     blur([settings.startButtonId, settings.startHintId])
     hide([settings.formId]);
-    show([settings.timerId]);
+    show([settings.timerId, settings.overlayId]);
   }
 
   var stateCounting = function(timer, duration) {
@@ -102,8 +103,7 @@ var TT = function() {
     var factor = (duration-timer) / duration;
     log("factor: " + factor);
 
-    var progressBarObj = $("#" + settings.progressBarId);
-    progressBarObj.css('width', factor*100 + '%');
+    $("#" + settings.progressBarId).css('width', factor*100 + '%');
   }
 
   var stateStop = function(reset) {
@@ -113,7 +113,7 @@ var TT = function() {
     status = 'idle';
     document.title = originalTitle;
     $("#" + settings.flashId).html("");
-    $("#" + settings.progressBarId).css('width', 0);
+    resetProgressBar();
 
     if(typeof reset == 'undefined') {
       if (!NOTIFIER.notify(tomatoNotificationIcon, "Tomatoes", "Break is over. It's time to work.", false)) {
@@ -214,6 +214,11 @@ var TT = function() {
     volume = Math.max(Math.min(newVolume, 100), 0);
   }
 
+  var resetProgressBar = function() {
+    $("#" + settings.progressBarId).css('width', 0);
+    hide([settings.overlayId]);
+  }
+
   return {
     start: start,
     reset: reset,
@@ -223,6 +228,7 @@ var TT = function() {
     log: log,
     getStatus: getStatus,
     getVolume: getVolume,
-    setVolume: setVolume
+    setVolume: setVolume,
+    resetProgressBar: resetProgressBar
   };
 }();

@@ -22,50 +22,50 @@
   </style>
 <% end %>
 
-<div id="progress_bar">
-  <div id="timer" class="fixed_center" style="display: none">
-    <div class="controls clearfix">
-      <div id="ticking_sound_switch_container">
-        <%= check_box_tag('ticking_sound_switch', '1', current_user ? current_user.ticking : User::DEFAULT_TICKING, id: 'ticking_sound_switch') %>
-        <label for="ticking_sound_switch">Ticking sound</label>
+<div id="overlay" style="display: none"></div>
+<div id="progress_bar"></div>
+<div id="timer" class="fixed_center" style="display: none">
+  <div class="controls clearfix">
+    <div id="ticking_sound_switch_container">
+      <%= check_box_tag('ticking_sound_switch', '1', current_user ? current_user.ticking : User::DEFAULT_TICKING, id: 'ticking_sound_switch') %>
+      <label for="ticking_sound_switch">Ticking sound</label>
+    </div>
+    <div class="volume">
+      <div class="btn btn-default btn-sm down">
+        <i class="fa fa-minus" aria-hidden="true"></i>
       </div>
-      <div class="volume">
-        <div class="btn btn-default btn-sm down">
-          <i class="fa fa-minus" aria-hidden="true"></i>
-        </div>
-        <div id="volume_icon" class="mute_toggle"></div>
-        <div class="btn btn-default btn-sm up">
-          <i class="fa fa-plus" aria-hidden="true"></i>
-        </div>
+      <div id="volume_icon" class="mute_toggle"></div>
+      <div class="btn btn-default btn-sm up">
+        <i class="fa fa-plus" aria-hidden="true"></i>
       </div>
     </div>
-    <div id="timer_counter"></div>
-    <%= link_to 'Reset', '#', id: 'reset', class: 'btn btn-default' %>
-    <p id="reset_hint" class="help-block">or press esc</p>
   </div>
-  <div id="new_tomato_form" class="fixed_center" style="display: none">
-    <% if current_user %>
-      <%= render 'tomatoes/form', remote: true %>
-    <% else %>
-      <div id="tomato_signin">
-        <p>Sign in to start tracking your work.</p>
+  <div id="timer_counter"></div>
+  <%= link_to 'Reset', '#', id: 'reset', class: 'btn btn-default' %>
+  <p id="reset_hint" class="help-block">or press esc</p>
+</div>
+<div id="new_tomato_form" class="fixed_center" style="display: none">
+  <% if current_user %>
+    <%= render 'tomatoes/form', remote: true %>
+  <% else %>
+    <div id="tomato_signin">
+      <p>Sign in to start tracking your work.</p>
 
-        <%= link_to signin_path(Authorization::PROVIDER_GITHUB), class: 'btn btn-block btn-social btn-github' do %>
-          <span class="fa fa-github"></span>
-          Sign in with GitHub
-        <% end %>
+      <%= link_to signin_path(Authorization::PROVIDER_GITHUB), class: 'btn btn-block btn-social btn-github' do %>
+        <span class="fa fa-github"></span>
+        Sign in with GitHub
+      <% end %>
 
-        <%= link_to signin_path(Authorization::PROVIDER_TWITTER), class: 'btn btn-block btn-social btn-twitter' do %>
-          <span class="fa fa-twitter"></span>
-          Sign in with Twitter
-        <% end %>
+      <%= link_to signin_path(Authorization::PROVIDER_TWITTER), class: 'btn btn-block btn-social btn-twitter' do %>
+        <span class="fa fa-twitter"></span>
+        Sign in with Twitter
+      <% end %>
 
-        <div id="cancel">
-          <%= link_to 'Cancel', '#', id: 'reset_signin', class: 'btn btn-default' %>
-        </div>
+      <div id="cancel">
+        <%= link_to 'Cancel', '#', id: 'reset_signin', class: 'btn btn-default' %>
       </div>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
 </div>
 
 <div id="start_container" class="center-block">

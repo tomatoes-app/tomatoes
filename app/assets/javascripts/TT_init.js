@@ -42,7 +42,7 @@ function resetCallback(event) {
 }
 
 function resetSigninCallback(event) {
-  $("#progress_bar").css('width', 0);
+  TT.resetProgressBar();
   $("#new_tomato_form").unbind("keypress");
   TT.start(tomatoBreakDuration, TT.stateStop);
 }
