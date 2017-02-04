@@ -1,15 +1,15 @@
 .chart {
-	width: $container-desktop;
-	height: $container-desktop / 2;
-	margin-bottom: $grid-gutter-width / 2;
+  width: $container-desktop;
+  height: $container-desktop / 2;
+  margin-bottom: $grid-gutter-width / 2;
 }
 
 .chart.overview {
-	width: $container-desktop;
-	height: $container-desktop / 12;
-	margin-bottom: $grid-gutter-width;
+  width: $container-desktop;
+  height: $container-desktop / 12;
+  margin-bottom: $grid-gutter-width;
 }
 
 #tomatoes_by_hour.chart {
-	margin-bottom: $grid-gutter-width;
+  margin-bottom: $grid-gutter-width;
 }

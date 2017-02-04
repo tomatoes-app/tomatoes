@@ -18,52 +18,52 @@
 
 #timer {
   z-index: 1000;
-	text-align: center;
+  text-align: center;
 }
 
 #timer_counter {
-	font-size: 128px;
-	margin: 20px;
+  font-size: 128px;
+  margin: 20px;
 }
 
 a#start {
   padding: 18px 28px;
-	font-size: 54px;
+  font-size: 54px;
   border-radius: 8px;
 }
 
 a#reset {}
 
 p#reset_hint {
-	font-size: 10px;
+  font-size: 10px;
 }
 
 #new_tomato_form {
   z-index: 1000;
-	text-align: left;
+  text-align: left;
 }
 
 #overlay {
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	position: absolute;
-	z-index: 1000;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 1000;
   background-color: rgba(255, 255, 255, 0.6);
 }
 
 #progress_bar {
-	top: 0;
-	left: 0;
-	width: 0;
-	height: 100%;
-	position: absolute;
-	z-index: 1000;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  position: absolute;
+  z-index: 1000;
 }
 
 #request_notification_permission {
-	margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .volume {
@@ -72,14 +72,14 @@ p#reset_hint {
 
 .volume .up,
 .volume .down {
-	margin-top: 4px;
+  margin-top: 4px;
 }
 
 .volume .down {
-	margin-right: 8px;
+  margin-right: 8px;
 }
 .volume .mute_toggle {
-	margin-right: 4px;
+  margin-right: 4px;
 }
 
 .volume .up,
@@ -89,10 +89,10 @@ p#reset_hint {
 }
 
 #volume_icon {
-	width: 32px;
-	height: 35px;
-	opacity: 0.7;
-	background-image: image-url('speaker_sprite.png');
+  width: 32px;
+  height: 35px;
+  opacity: 0.7;
+  background-image: image-url('speaker_sprite.png');
 }
 
 #ticking_sound_switch_container {
@@ -105,13 +105,13 @@ p#reset_hint {
     background-position: 0 0;
   }
   &.level_1 {
-  	background-position: 0 -35px;
+    background-position: 0 -35px;
   }
   &.level_2 {
-  	background-position: 0 -70px;
+    background-position: 0 -70px;
   }
   &.level_3 {
-  	background-position: 0 -105px;
+    background-position: 0 -105px;
   }
 }
 
@@ -119,11 +119,11 @@ p#reset_hint {
   text-align: center;
 
   h2 {
-  	margin-top: 0;
+    margin-top: 0;
   }
 
   #cancel {
-  	margin-top: 20px;
+    margin-top: 20px;
   }
 }
 
@@ -133,6 +133,6 @@ p#reset_hint {
   }
 
   #timer_counter {
-  	font-size: 80px;
+    font-size: 80px;
   }
 }
