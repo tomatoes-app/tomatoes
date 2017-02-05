@@ -1,5 +1,5 @@
+TT.resetProgressBar();
 $("#flash").html("<%= escape_javascript(render(partial: 'shared/flash', locals: {flash: flash})) %>");
-$("#progress_bar").css('width', 0);
 $("#tomatoes_list").html("<%= escape_javascript(render(partial: 'welcome/tomatoes_list', locals: {high: @highlight})) %>");
 $("#projects_list").html("<%= escape_javascript(render(partial: 'welcome/projects_list')) %>");
 $("#user_statistics").html("<%= escape_javascript(render(partial: 'welcome/user_statistics')) %>");
