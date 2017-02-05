@@ -4,7 +4,14 @@ module Api
     before_action :find_tomato, only: [:show, :update, :destroy]
 
     def index
-      @tomatoes = current_user.tomatoes.order_by([[:created_at, :desc], [:_id, :desc]]).page params[:page]
+      @tomatoes = current_user.tomatoes
+      if from = Time.zone.parse(params[:from].to_s)
+        @tomatoes = @tomatoes.after(from)
+      end
+      if to = Time.zone.parse(params[:to].to_s)
+        @tomatoes = @tomatoes.before(to)
+      end
+      @tomatoes = @tomatoes.order_by([[:created_at, :desc], [:_id, :desc]]).page params[:page]
 
       render json: Presenter::Tomatoes.new(@tomatoes)
     end

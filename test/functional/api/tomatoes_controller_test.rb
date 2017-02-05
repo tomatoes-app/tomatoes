@@ -6,14 +6,17 @@ module Api
       @user = User.create!(name: 'name', email: 'email@example.com')
       @user.authorizations.create!(provider: 'tomatoes', token: '123')
       @tomato1 = @user.tomatoes.build
-      @tomato1.created_at = 2.hours.ago
+      @tomato1.created_at = 3.hours.ago
       @tomato1.save!
       @tomato2 = @user.tomatoes.build(tag_list: 'one, two')
-      @tomato2.created_at = 1.hour.ago
+      @tomato2.created_at = 2.hour.ago
       @tomato2.save!
+      @tomato3 = @user.tomatoes.build(tag_list: 'three, four')
+      @tomato3.created_at = 1.hour.ago
+      @tomato3.save!
 
       @other_user = User.create!
-      @tomato3 = @other_user.tomatoes.create!
+      @other_tomato = @other_user.tomatoes.create!
     end
 
     teardown do
@@ -36,7 +39,40 @@ module Api
       tomatoes_ids = parsed_response['tomatoes'].map { |t| t['id'] }
       assert_includes tomatoes_ids, @tomato1.id.to_s
       assert_includes tomatoes_ids, @tomato2.id.to_s
-      assert_not_includes tomatoes_ids, @tomato3.id.to_s
+      assert_includes tomatoes_ids, @tomato3.id.to_s
+      assert_not_includes tomatoes_ids, @other_tomato.id.to_s
+    end
+
+    test 'GET /index, it should return current user\'s list of tomatoes filtered by date (from)' do
+      get :index, token: '123', from: 150.minutes.ago.iso8601
+      assert_response :success
+      assert_equal 'application/json', @response.content_type
+      parsed_response = JSON.parse(@response.body)
+      tomatoes_ids = parsed_response['tomatoes'].map { |t| t['id'] }
+      assert_equal tomatoes_ids.size, 2
+      assert_includes tomatoes_ids, @tomato2.id.to_s
+      assert_includes tomatoes_ids, @tomato3.id.to_s
+    end
+
+    test 'GET /index, it should return current user\'s list of tomatoes filtered by date (from, to)' do
+      get :index, token: '123', from: 150.minutes.ago.iso8601, to: 90.minutes.ago.iso8601
+      assert_response :success
+      assert_equal 'application/json', @response.content_type
+      parsed_response = JSON.parse(@response.body)
+      tomatoes_ids = parsed_response['tomatoes'].map { |t| t['id'] }
+      assert_equal tomatoes_ids.size, 1
+      assert_includes tomatoes_ids, @tomato2.id.to_s
+    end
+
+    test 'GET /index, it should return current user\'s list of tomatoes filtered by date (to)' do
+      get :index, token: '123', to: 90.minutes.ago.iso8601
+      assert_response :success
+      assert_equal 'application/json', @response.content_type
+      parsed_response = JSON.parse(@response.body)
+      tomatoes_ids = parsed_response['tomatoes'].map { |t| t['id'] }
+      assert_equal tomatoes_ids.size, 2
+      assert_includes tomatoes_ids, @tomato1.id.to_s
+      assert_includes tomatoes_ids, @tomato2.id.to_s
     end
 
     test 'GET /show, given an invalid token, it should return an error' do
@@ -55,7 +91,7 @@ module Api
 
     test 'GET /show, it should not return other users\' tomatoes' do
       assert_raises(Mongoid::Errors::DocumentNotFound) do
-        get :show, token: '123', id: @tomato3.id.to_s
+        get :show, token: '123', id: @other_tomato.id.to_s
       end
     end
 

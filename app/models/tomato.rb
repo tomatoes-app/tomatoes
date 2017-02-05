@@ -22,6 +22,8 @@ class Tomato
   include ActionView::Helpers::TextHelper
   include ApplicationHelper
 
+  scope :before, -> (time) { where(:created_at.lt => time) }
+
   class << self
     def after(time)
       where(created_at: { '$gte': time }).order_by([[:created_at, :desc]])
