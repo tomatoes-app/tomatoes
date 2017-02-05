@@ -5,7 +5,10 @@ module Api
 
     # GET /api/tomatoes
     def index
-      @tomatoes = current_user.tomatoes.order_by([[:created_at, :desc], [:_id, :desc]]).page params[:page]
+      @tomatoes = current_user.tomatoes
+      @tomatoes = @tomatoes.after(from) if from
+      @tomatoes = @tomatoes.before(to) if to
+      @tomatoes = @tomatoes.order_by([[:created_at, :desc], [:_id, :desc]]).page params[:page]
 
       render json: Presenter::Tomatoes.new(@tomatoes)
     end
@@ -43,6 +46,14 @@ module Api
     end
 
     private
+
+    def from
+      @from ||= Time.zone.parse(params[:from].to_s)
+    end
+
+    def to
+      @to ||= Time.zone.parse(params[:to].to_s)
+    end
 
     def find_tomato
       @tomato = current_user.tomatoes.find(params[:id])

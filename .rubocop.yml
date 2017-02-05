@@ -23,7 +23,7 @@ Lint/UnderscorePrefixedVariableName:
 
 # Offense count: 6
 Metrics/AbcSize:
-  Max: 33
+  Max: 33.56
 
 # Offense count: 1
 # Configuration parameters: CountComments.

@@ -22,11 +22,10 @@ class Tomato
   include ActionView::Helpers::TextHelper
   include ApplicationHelper
 
-  class << self
-    def after(time)
-      where(created_at: { '$gte': time }).order_by([[:created_at, :desc]])
-    end
+  scope :before, -> (time) { where(:created_at.lt => time) }
+  scope :after, -> (time) { where(:created_at.gte => time) }
 
+  class << self
     def by_day(tomatoes)
       to_lines(tomatoes) do |tomatoes_by_day|
         yield(tomatoes_by_day)
@@ -65,7 +64,7 @@ class Tomato
   private
 
   def must_not_overlap
-    last_tomato = user.tomatoes.after(Time.zone.now - DURATION.seconds).first
+    last_tomato = user.tomatoes.after(Time.zone.now - DURATION.seconds).order_by([[:created_at, :desc]]).first
     return unless last_tomato
     limit = (DURATION.seconds - (Time.zone.now - last_tomato.created_at)).seconds
     errors.add(:base, "Must not overlap saved tomaotes, please wait #{humanize(limit)}")

@@ -58,7 +58,7 @@ class TomatoesController < ApplicationController
       if @tomato.save
         format.js do
           @highlight      = @tomato
-          @tomatoes       = current_user.tomatoes.after(Time.zone.now.beginning_of_day)
+          @tomatoes       = current_user.tomatoes.after(Time.zone.now.beginning_of_day).order_by([[:created_at, :desc]])
           @tomatoes_count = current_user.tomatoes_counters
           @projects       = @tomatoes.collect(&:projects).flatten.uniq
 
