@@ -209,6 +209,10 @@ Authorization: d994a295cf68342b99e3036827d3ef8a
 
 * `page` a positive integer value to select a page in the range
   [1, `total_pages`]
+* `from` a ISO 8601 date time, selects tomatoes where `created_at` is greater
+  than or equals to the parameter value
+* `to` a ISO 8601 date time, selects tomatoes where `created_at` is less than
+  the parameter value
 
 #### Response
 
