@@ -1,4 +1,4 @@
-# ![Tomatoes](https://github.com/tomatoes-app/tomatoes/raw/develop/app/assets/images/tomatoes_logo_48.png "Tomatoes") Tomatoes
+# ![Tomatoes](https://github.com/tomatoes-app/tomatoes/raw/master/app/assets/images/tomatoes_logo_48.png "Tomatoes") Tomatoes
 [![OpenCollective](https://opencollective.com/tomatoes/backers/badge.svg)](#backers)
 [![OpenCollective](https://opencollective.com/tomatoes/sponsors/badge.svg)](#sponsors)
 
