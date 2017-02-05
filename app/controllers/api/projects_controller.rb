@@ -5,7 +5,9 @@ module Api
 
     # GET /api/projects
     def index
-      @projects = current_user.projects.order_by([[:created_at, :desc], [:_id, :desc]]).page params[:page]
+      @projects = current_user.projects
+      @projects = @projects.tagged_with(params[:tag_list].split(',').map(&:strip)) if params[:tag_list]
+      @projects = @projects.order_by([[:created_at, :desc], [:_id, :desc]]).page params[:page]
 
       render json: Presenter::Projects.new(@projects)
     end
