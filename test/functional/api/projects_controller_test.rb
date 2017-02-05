@@ -11,6 +11,12 @@ module Api
         time_budget: 234,
         tag_list: 'one, two'
       )
+      @second_project = @user.projects.create!(
+        name: 'Second project',
+        money_budget: 234,
+        time_budget: 345,
+        tag_list: 'three, four'
+      )
 
       @other_user = User.create!
       @other_project = @other_user.projects.create!(name: 'Other project')
@@ -36,6 +42,16 @@ module Api
       projects_ids = parsed_response['projects'].map { |t| t['id'] }
       assert_includes projects_ids, @project.id.to_s
       assert_not_includes projects_ids, @other_project.id.to_s
+    end
+
+    test 'GET /index, it should return current user\'s list of projects filtered by tags' do
+      get :index, token: '123', tag_list: 'zero, three'
+      assert_response :success
+      assert_equal 'application/json', @response.content_type
+      parsed_response = JSON.parse(@response.body)
+      projects_ids = parsed_response['projects'].map { |t| t['id'] }
+      assert_equal projects_ids.size, 1
+      assert_includes projects_ids, @second_project.id.to_s
     end
 
     test 'GET /show, given an invalid token, it should return an error' do
