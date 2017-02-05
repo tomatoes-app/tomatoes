@@ -9,7 +9,7 @@ module Api
       @tomato1.created_at = 3.hours.ago
       @tomato1.save!
       @tomato2 = @user.tomatoes.build(tag_list: 'one, two')
-      @tomato2.created_at = 2.hour.ago
+      @tomato2.created_at = 2.hours.ago
       @tomato2.save!
       @tomato3 = @user.tomatoes.build(tag_list: 'three, four')
       @tomato3.created_at = 1.hour.ago
