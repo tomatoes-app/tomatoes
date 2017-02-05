@@ -16,7 +16,7 @@ class WelcomeController < ApplicationController
   end
 
   def daily_tomatoes
-    @tomatoes ||= current_user.tomatoes.after(Time.zone.now.beginning_of_day)
+    @tomatoes ||= current_user.tomatoes.after(Time.zone.now.beginning_of_day).order_by([[:created_at, :desc]])
   end
 
   def tomatoes_counters
