@@ -388,6 +388,7 @@ Authorization: d994a295cf68342b99e3036827d3ef8a
 
 * `page` a positive integer value to select a page in the range
   [1, `total_pages`]
+* `tag_list` a list of tags separated by commas
 
 #### Response
 
