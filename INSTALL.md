@@ -3,7 +3,7 @@
 ## Clone it!
 Of course, you will need a local copy of this repo. Just clone it:
 ```sh
-git clone https://github.com/tomatoes-app/tomatoes
+git clone git@github.com:tomatoes-app/tomatoes.git
 ```
 and cd to the repository:
 ```sh
