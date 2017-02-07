@@ -32,21 +32,21 @@ class SessionsControllerTest < ActionController::TestCase
 
   test 'should get destroy' do
     get :destroy
-    assert_equal nil, session[:user_id]
+    assert_nil session[:user_id]
     assert_redirected_to root_url
     assert_equal 'Signed out!', flash[:notice]
   end
 
   test 'should get failure' do
     get :failure, message: 'failure message'
-    assert_equal nil, session[:user_id]
+    assert_nil session[:user_id]
     assert_redirected_to root_url
     assert_equal "Authentication error: #{'failure message'.humanize}", flash[:alert]
   end
 
   test 'should handle failure when no message passed' do
     get :failure
-    assert_equal nil, session[:user_id]
+    assert_nil session[:user_id]
     assert_redirected_to root_url
     assert_equal 'Authentication error: Unknown', flash[:alert]
   end

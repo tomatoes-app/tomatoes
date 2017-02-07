@@ -13,7 +13,7 @@ class IncrementScoreTest < ActiveSupport::TestCase
   end
 
   test 'creates a new daily score' do
-    assert_equal @user.daily_score, nil
+    assert_nil @user.daily_score
     @inc_operation.process
     @user.reload
     assert_equal @user.daily_score, DailyScore.last

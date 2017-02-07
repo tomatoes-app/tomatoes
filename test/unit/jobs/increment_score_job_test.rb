@@ -12,7 +12,7 @@ class IncrementScoreJobTest < ActiveSupport::TestCase
   end
 
   test 'creates a new daily score' do
-    assert_equal @user.daily_score, nil
+    assert_nil @user.daily_score
     IncrementScoreJob.new.perform(@user._id)
     @user.reload
     assert_equal @user.daily_score, DailyScore.last
