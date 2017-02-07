@@ -12,7 +12,7 @@ cd tomatoes
 All instructions imply that you're in the repository, now.
 ### Required dependencies
 
-Required dependencies trough Packet-Managers/Manual installation:
+Required dependencies trough Packet-Managers and/or manual installation:
 * Ruby == 2.3.3
 * Ruby-Gems
 * MongoDB (More installation instructions at: https://docs.mongodb.com/manual/administration/install-on-linux/ for your desired distribution)
