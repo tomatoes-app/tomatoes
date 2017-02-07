@@ -35,7 +35,7 @@ And then install RVM:
 \curl -sSL https://get.rvm.io | bash -s stable
 ```
 
-Again: This is the *easiest* way. The [https://rvm.io/rvm/security](*secure*) way is the recommendet one on all production machines! 
+Again: This is the *easiest* way. The [*secure*](https://rvm.io/rvm/security) way is the recommendet one on all production machines! 
 
 #### Use RVM to download and install a ruby release to your local home-user directory(~)
 
