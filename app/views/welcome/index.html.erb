@@ -2,8 +2,8 @@
   <div class="container">
     <div class="intro jumbotron">
       <p>
-        Tomatoes is Pomodoro Technique<sup>®</sup> driven time tracker.<br/>
-        Track <i>everything</i>, 25 minutes at a time.
+        <%= t('welcome.title_html') %><br/>
+        <%= t('welcome.sub_title_html') %>
       </p>
     </div>
   </div>
@@ -18,15 +18,15 @@
     <div class="intro">
       <p>
         <%= link_to signin_path(Authorization::PROVIDER_GITHUB), class: 'btn btn-lg btn-social btn-github' do %>
-          <span class="fa fa-github"></span> Sign in with GitHub
+          <span class="fa fa-github"></span> <%= t('signin_with.github') %>
         <% end %>
 
         <%= link_to signin_path(Authorization::PROVIDER_TWITTER), class: 'btn btn-lg btn-social btn-twitter' do %>
-          <span class="fa fa-twitter"></span> Sign in with Twitter
+          <span class="fa fa-twitter"></span> <%= t('signin_with.twitter') %>
         <% end %>
       </p>
 
-      <p>Sign in to start tracking your pomodoros.</p>
+      <p><%= t('timer.signin_to_start_tracking') %></p>
     </div>
   <% end %>
 </div>

@@ -1,6 +1,6 @@
-<h1>Editing project</h1>
+<h1><%= t('project.edit') %></h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @project %> |
-<%= link_to 'Back', projects_path %>
+<%= link_to t('show'), @project %> |
+<%= link_to t('back'), projects_path %>

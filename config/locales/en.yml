@@ -1,29 +1,71 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  show: Show
+  edit: Edit
+  destroy: Destroy
+  back: Back
+  are_you_sure: Are you sure?
   helpers:
     label:
       tomato:
-        tag_list: "Tag list (separated by commas)"
+        tag_list: Tag list (separated by commas)
+      project:
+        name: Name
+        tag_list: Tag list (separated by commas)
+        money_budget: Money budget
+        time_budget: Time budget
       user:
-        color: "Progress bar color"
+        color: Progress bar color
+    submit:
+      create: Create %{model}
+      update: Update %{model}
+  welcome:
+    title_html: Tomatoes is Pomodoro Technique<sup>®</sup> driven time tracker.
+    sub_title_html: Track <i>everything</i>, 25 minutes at a time.
+    no_tomatoes_yet_html: You didn't track anything yet.</br>Click on the "Start" button to start your first pomodoro.
+    no_projects_yet_html: You didn't work on any project yet.</br>Create a %{new_project_link} to start collecting aggregate statistics.
+    counters:
+      day: Today
+      week: This week
+      month: This month
+  timer:
+    ticking_sound: Ticking sound
+    start: Start
+    cancel: Cancel
+    reset: Reset
+    or_press_space: or press space bar
+    or_press_esc: or press esc
+    signin_to_start_tracking: Sign in to start tracking your work.
+    script:
+      break_is_over: Break is over. It's time to work.
+      pomodoro_finished: Pomodoro finished!
+      sure: Sure?
+      forget_to_start_new_tomato: Did you forget to start your next tomato?
+      forget_to_save_tomato: Did you forget to save your current tomato?
+  signin_with:
+    github: Sign in with GitHub
+    twitter: Sign in with Twitter
+  mongoid:
+    models:
+      project:
+        one: Project
+        other: Projects
+      tomato:
+        one: Tomato
+        other: Tomatoes
+    attributes:
+      project:
+        name: Name
+        tags: Tags
+        money_budget: Money budget
+        time_budget: Time budget
+      tomato:
+        started_at: Started at
+        tags: Tags
+  project:
+    new: New project
+    edit: Edit project
+  tomato:
+    new: New tomato
+    edit: Edit tomato
+  user:
+    edit: Edit profile

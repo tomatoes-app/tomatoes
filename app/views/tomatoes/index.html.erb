@@ -1,10 +1,10 @@
-<h1>Tomatoes</h1>
+<h1><%= Tomato.model_name.human(count: 0) %></h1>
 
 <table class="table table-striped">
   <thead>
     <tr>
-      <th>Started at</th>
-      <th>Tags</th>
+      <th><%= t('mongoid.attributes.tomato.started_at') %></th>
+      <th><%= t('mongoid.attributes.tomato.tags') %></th>
       <th></th>
       <th></th>
       <th></th>
@@ -16,9 +16,9 @@
     <tr>
       <td><%= link_to l(tomato.created_at - Tomato::DURATION, format: :long), tomato %></td>
       <td><%= link_tags(tomato.tags) %></td>
-      <td><%= link_to 'Show', tomato %></td>
-      <td><%= link_to 'Edit', edit_tomato_path(tomato) %></td>
-      <td><%= link_to 'Destroy', tomato, data: { confirm: 'Are you sure?' }, method: :delete %></td>
+      <td><%= link_to t('show'), tomato %></td>
+      <td><%= link_to t('edit'), edit_tomato_path(tomato) %></td>
+      <td><%= link_to t('destroy'), tomato, method: :delete, data: { confirm: t('are_you_sure') } %></td>
     </tr>
   <% end %>
   </tbody>
@@ -27,5 +27,5 @@
 <%= paginate @tomatoes %>
 
 <p>
-  <%= link_to 'New Tomato', new_tomato_path, class: 'btn btn-default' %>
+  <%= link_to t('tomato.new'), new_tomato_path, class: 'btn btn-default' %>
 </p>
