@@ -25,7 +25,7 @@
           <%= profile_image(@user, 64, class: 'media-object') %>
         </div>
         <div class="profile_info media-body">
-          Tomatoes: <%= @user.tomatoes.size %></br>
+          Tomatoes: <%= @user.tomatoes.size %><br/>
           <% @user.authorizations.external_providers.each do |authorization| %>
             <%= link_to authorization.url, authorization.url %><br/>
           <% end %>
