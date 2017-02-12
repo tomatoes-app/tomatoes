@@ -1,9 +1,19 @@
 en:
+  title: Tomatoes
+  description: >
+    Pomodoro™ time tracker. Stay focused, be productive, track everything.
+  footer:
+    disclaimer_html: >
+      This application is not affiliated, associated or endorsed by the Pomodoro
+      Technique<sup>®</sup> or Francesco Cirillo.<br/>The Pomodoro
+      Technique<sup>®</sup> and Pomodoro<sup>™</sup> are registered trademarks
+      by Francesco Cirillo.
   show: Show
   edit: Edit
   destroy: Destroy
   back: Back
   are_you_sure: Are you sure?
+  sign_out: Sign out
   helpers:
     label:
       tomato:
@@ -19,10 +29,16 @@ en:
       create: Create %{model}
       update: Update %{model}
   welcome:
-    title_html: Tomatoes is Pomodoro Technique<sup>®</sup> driven time tracker.
-    sub_title_html: Track <i>everything</i>, 25 minutes at a time.
-    no_tomatoes_yet_html: You didn't track anything yet.</br>Click on the "Start" button to start your first pomodoro.
-    no_projects_yet_html: You didn't work on any project yet.</br>Create a %{new_project_link} to start collecting aggregate statistics.
+    title_html: >
+      Tomatoes is a Pomodoro Technique<sup>®</sup> driven time tracker.
+    sub_title_html: >
+      Stay <i>focused</i>, be <i>productive</i>, track <i>everything</i>.
+    no_tomatoes_yet_html: >
+      You didn't track anything yet.<br/>Click on the "Start" button to start
+      your first pomodoro.
+    no_projects_yet_html: >
+      You didn't work on any project yet.<br/>Create a %{new_project_link} to
+      start collecting aggregate statistics.
     counters:
       day: Today
       week: This week

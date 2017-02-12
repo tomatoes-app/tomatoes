@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<%= I18n.locale %>">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Tomatoes</title>
-    <meta content="Tomatoes is Pomodoro Technique® driven time tracker. Track everything 25 minutes at a time." name="description" />
+    <title><%= t('title') %></title>
+    <meta content="<%= t('description') %>" name="description" />
 
     <link rel="chrome-webstore-item" href="https://chrome.google.com/webstore/detail/jijbhneeenepenoolcdalnekggeialeo">
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,700|Leckerli+One" rel="stylesheet" type="text/css">
