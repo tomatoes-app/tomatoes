@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
 
   before_action :set_time_zone
+  before_action :set_locale
 
   protected
 
@@ -25,6 +26,10 @@ class ApplicationController < ActionController::Base
     else
       ActiveSupport::TimeZone[-cookies[:timezone].to_i.minutes]
     end
+  end
+
+  def set_locale
+    I18n.locale = http_accept_language.compatible_language_from(I18n.available_locales)
   end
 
   def current_user
