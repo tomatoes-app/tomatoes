@@ -10,3 +10,6 @@ before_install:
 script:
   - bundle exec rake test
   - bundle exec rubocop -R
+addons:
+    code_climate:
+        repo_token: YOUR_CODECLIMATE_APP_TOKEN
