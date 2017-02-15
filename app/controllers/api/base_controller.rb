@@ -2,6 +2,8 @@ module Api
   class BaseController < ActionController::Base
     protect_from_forgery with: :null_session
 
+    before_action :set_time_zone
+
     rescue_from(ActionController::ParameterMissing) do |err|
       render json: { missing_param: err.param }, status: :bad_request
     end
@@ -27,6 +29,17 @@ module Api
 
     def bad_request(reason)
       render status: :bad_request, json: { error: reason }
+    end
+
+    def set_time_zone
+      Time.zone = find_time_zone
+    end
+
+    def find_time_zone
+      request.headers['Time-Zone'] ||
+        params[:time_zone] ||
+        current_user.try(:time_zone) ||
+        Rails.configuration.time_zone
     end
   end
 end

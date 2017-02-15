@@ -49,6 +49,51 @@ module Api
       assert_equal Api::Presenter::User.new(@user).to_json, @response.body
     end
 
+    test 'GET /show, '\
+        'user time zone is set to America/New_York, '\
+        'it returns the correct number of tomatoes' do
+      setup_tz_test
+
+      travel_to night_in(new_york_tz) do
+        get :show, token: '123'
+        assert_response :success
+        assert_equal 'application/json', @response.content_type
+        response_content = JSON.parse(@response.body)
+        assert_equal 2, response_content['tomatoes_counters']['day']
+      end
+    end
+
+    test 'GET /show, '\
+        'user time zone is set to America/New_York, '\
+        'request param overrides user time zone, '\
+        'it returns the correct number of tomatoes' do
+      setup_tz_test
+
+      travel_to night_in(new_york_tz) do
+        get :show, token: '123', time_zone: rome_tz.name
+        assert_response :success
+        assert_equal 'application/json', @response.content_type
+        response_content = JSON.parse(@response.body)
+        assert_equal 1, response_content['tomatoes_counters']['day']
+      end
+    end
+
+    test 'GET /show, '\
+        'user time zone is set to America/New_York, '\
+        'request header overrides param and user time zone, '\
+        'it returns the correct number of tomatoes' do
+      setup_tz_test
+
+      travel_to night_in(new_york_tz) do
+        @request.headers['Time-Zone'] = rome_tz.name
+        get :show, token: '123', time_zone: new_york_tz.name
+        assert_response :success
+        assert_equal 'application/json', @response.content_type
+        response_content = JSON.parse(@response.body)
+        assert_equal 1, response_content['tomatoes_counters']['day']
+      end
+    end
+
     test 'PATCH /update, given an invalid token, it should return an error' do
       patch :update, token: 'invalid_token', user: { name: 'Foo' }
       assert_response :unauthorized
@@ -73,6 +118,36 @@ module Api
       patch :update, token: '123', user: { name: 'Foo' }
       assert_response :unprocessable_entity
       assert_equal 'application/json', @response.content_type
+    end
+
+    private
+
+    def new_york_tz
+      ActiveSupport::TimeZone['America/New_York']
+    end
+
+    def rome_tz
+      ActiveSupport::TimeZone['Europe/Rome']
+    end
+
+    def morning_in(tz)
+      tz.now.change(hour: 10)
+    end
+
+    def night_in(tz)
+      tz.now.change(hour: 22)
+    end
+
+    def setup_tz_test
+      @user.update_attribute(:time_zone, new_york_tz.name)
+
+      travel_to morning_in(new_york_tz) do
+        @user.tomatoes.create!
+      end
+
+      travel_to night_in(new_york_tz) do
+        @user.tomatoes.create!
+      end
     end
   end
 end
