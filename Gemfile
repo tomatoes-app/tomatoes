@@ -62,6 +62,7 @@ group :test do
   gem 'mocha', require: false
   gem 'minitest-reporters'
   gem 'simplecov', require: false
+  gem 'coveralls', require: false
 end
 
 group :development do
