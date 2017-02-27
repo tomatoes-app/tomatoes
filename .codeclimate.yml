@@ -1,16 +1,18 @@
-
+---
 engines:
- rubocop:
-   enabled: true
- eslint:
-   enabled: true
- csslint:
-   enabled: true
-   
+  bundler-audit:
+    enabled: true
+  duplication:
+    enabled: true
+    config:
+      languages:
+      - ruby
+  rubocop:
+    enabled: true
+  eslint:
+    enabled: true
 ratings:
- paths:
- - "**.rb"
- - "**.js"
- - "**.css"
- 
-exclude_paths:
+  paths:
+  - "**.rb"
+  - "**.js"
+exclude_paths: 
