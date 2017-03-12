@@ -68,14 +68,6 @@ Rails/TimeZone:
     - 'app/controllers/tomatoes_controller.rb'
     - 'lib/chartable.rb'
 
-# Offense count: 8
-# Configuration parameters: Include.
-# Include: app/models/**/*.rb
-Rails/Validation:
-  Exclude:
-    - 'app/models/project.rb'
-    - 'app/models/user.rb'
-
 # Offense count: 3
 # Configuration parameters: CountComments, ExcludedMethods.
 Metrics/BlockLength:

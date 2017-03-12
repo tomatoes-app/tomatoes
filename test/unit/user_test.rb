@@ -28,6 +28,82 @@ class UserTest < ActiveSupport::TestCase
     User.destroy_all
   end
 
+  test 'is valid' do
+    user = User.new
+
+    assert user.valid?
+  end
+
+  test 'volume, if set, must be a number' do
+    user = User.new(volume: 'test')
+
+    assert_not user.valid?
+    assert_includes user.errors.messages[:volume], 'is not a number'
+  end
+
+  test 'volume, if set, must be a number greater than or equal to zero' do
+    user = User.new(volume: -1)
+
+    assert_not user.valid?
+    assert_includes user.errors.messages[:volume], 'must be greater than or equal to 0'
+  end
+
+  test 'volume, if set, must be a number less than 4' do
+    user = User.new(volume: 4)
+
+    assert_not user.valid?
+    assert_includes user.errors.messages[:volume], 'must be less than 4'
+  end
+
+  test 'color, if set, must have a hexadecimal color format' do
+    user = User.new(color: 'test')
+
+    assert_not user.valid?
+    assert_includes user.errors.messages[:color], 'is invalid'
+
+    user.color = '#AFfa09'
+    assert user.valid?
+  end
+
+  test 'work_hours_per_day, if set, must be a number' do
+    user = User.new(work_hours_per_day: 'test')
+
+    assert_not user.valid?
+    assert_includes user.errors.messages[:work_hours_per_day], 'is not a number'
+  end
+
+  test 'work_hours_per_day, if set, must be a number greater than zero' do
+    user = User.new(work_hours_per_day: 0)
+
+    assert_not user.valid?
+    assert_includes user.errors.messages[:work_hours_per_day], 'must be greater than 0'
+  end
+
+  test 'average_hourly_rate, if set, must be a number' do
+    user = User.new(average_hourly_rate: 'test')
+
+    assert_not user.valid?
+    assert_includes user.errors.messages[:average_hourly_rate], 'is not a number'
+  end
+
+  test 'average_hourly_rate, if set, must be a number greater than zero' do
+    user = User.new(average_hourly_rate: 0)
+
+    assert_not user.valid?
+    assert_includes user.errors.messages[:average_hourly_rate], 'must be greater than 0'
+  end
+
+  test 'currency must be one of the supported currencies' do
+    user = User.new(currency: 'bitcoin')
+
+    assert_not user.valid?
+    assert_includes user.errors.messages[:currency], 'is not included in the list'
+
+    # Choose "randomly" a supported currency value
+    user.currency = User::CURRENCIES.keys.sample
+    assert user.valid?
+  end
+
   test 'self.find_by_token' do
     user = User.create!
     user.authorizations.create!(token: '123')

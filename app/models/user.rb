@@ -38,12 +38,12 @@ class User
   field :average_hourly_rate, type: Float
   field :currency,            type: String
 
-  validates_format_of :color, with: /\A#[A-Fa-f0-9]{6}\Z/, allow_blank: true
-  validates_numericality_of :volume, greater_than_or_equal_to: 0, less_than: 4, allow_blank: true
+  validates :color, format: { with: /\A#[A-Fa-f0-9]{6}\Z/, allow_blank: true }
+  validates :volume, numericality: { greater_than_or_equal_to: 0, less_than: 4, allow_blank: true }
 
-  validates_inclusion_of :currency, in: CURRENCIES.keys
-  validates_numericality_of :work_hours_per_day, greater_than: 0, allow_blank: true
-  validates_numericality_of :average_hourly_rate, greater_than: 0, allow_blank: true
+  validates :currency, inclusion: { in: CURRENCIES.keys }
+  validates :work_hours_per_day, numericality: { greater_than: 0, allow_blank: true }
+  validates :average_hourly_rate, numericality: { greater_than: 0, allow_blank: true }
 
   embeds_many :authorizations
   has_many :tomatoes
