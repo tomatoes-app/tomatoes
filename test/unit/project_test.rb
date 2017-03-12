@@ -22,7 +22,7 @@ class ProjectTest < ActiveSupport::TestCase
   end
 
   test 'money_budget, if set, must be a number greater than zero' do
-    project = Project.new(money_budget: -1)
+    project = Project.new(money_budget: 0)
 
     assert_not project.valid?
     assert_includes project.errors.messages[:money_budget], 'must be greater than 0'
@@ -36,7 +36,7 @@ class ProjectTest < ActiveSupport::TestCase
   end
 
   test 'time_budget, if set, must be a number greater than zero' do
-    project = Project.new(time_budget: -1)
+    project = Project.new(time_budget: 0)
 
     assert_not project.valid?
     assert_includes project.errors.messages[:time_budget], 'must be greater than 0'
