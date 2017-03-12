@@ -25,7 +25,7 @@ class ProjectsController < ApplicationController
     @project = current_user.projects.build(resource_params)
 
     if @project.save
-      redirect_to @project, notice: 'Project was successfully created.'
+      redirect_to @project, notice: I18n.t('project.created')
     else
       render action: 'new'
     end
@@ -34,7 +34,7 @@ class ProjectsController < ApplicationController
   # PUT /projects/1
   def update
     if @project.update_attributes(resource_params)
-      redirect_to @project, notice: 'Project was successfully updated'
+      redirect_to @project, notice: I18n.t('project.updated')
     else
       render action: 'edit'
     end

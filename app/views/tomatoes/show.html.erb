@@ -1,13 +1,13 @@
-<h1>Tomato <%= l(@tomato.created_at, format: :long) %></h1>
+<h1><%= @tomato.model_name.human %> <%= l(@tomato.created_at, format: :long) %></h1>
 
 <dl class="dl-horizontal">
-  <dt>Started at</dt>
+  <dt><%= t('mongoid.attributes.tomato.started_at') %></dt>
   <dd><%= l(@tomato.created_at - Tomato::DURATION, format: :long) %></dd>
-  <dt>Duration</dt>
+  <dt><%= t('tomato.duration') %></dt>
   <dd><%= tomato_duration(@tomato) %></dd>
-  <dt>Tags</dt>
+  <dt><%= t('mongoid.attributes.tomato.tags') %></dt>
   <dd><%= link_tags(@tomato.tags) %></dd>
 </dl>
 
-<%= link_to 'Edit', edit_tomato_path(@tomato) %> |
-<%= link_to 'Back', tomatoes_path %>
+<%= link_to t('edit'), edit_tomato_path(@tomato) %> |
+<%= link_to t('back'), tomatoes_path %>

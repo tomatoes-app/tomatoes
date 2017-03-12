@@ -1,13 +1,13 @@
-<h1><%= @project.name %> project</h1>
+<h1><%= @project.name %> <%= @project.model_name.human.downcase %></h1>
 
 <dl class="dl-horizontal">
-  <dt>Tags</dt>
+  <dt><%= t('mongoid.attributes.project.tags') %></dt>
   <dd><%= link_tags(@project.tags) %></dd>
-  <dt>Tracked tomatoes</dt>
-  <dd><%= pluralize(@project.tomatoes.count, 'tomato') %></dd>
-  <dt>Money budget</dt>
+  <dt><%= t('project.tracked_tomatoes') %></dt>
+  <dd><%= @project.tomatoes.size %> <%= Tomato.model_name.human(count: @project.tomatoes.size).downcase %></dd>
+  <dt><%= t('mongoid.attributes.project.money_budget') %></dt>
   <dd><%= @project.money_budget ? money(@project.money_budget, @project.user.currency_unit) : 'n/a' %></dd>
-  <dt>Time budget</dt>
+  <dt><%= t('mongoid.attributes.project.time_budget') %></dt>
   <dd><%= @project.time_budget ? distance_of_time_in_words(@project.time_budget*60*60) : 'n/a' %></dd>
 </dl>
 
@@ -31,5 +31,5 @@
   <dd><%= @project.work_time_delta > 0 ? '+' : '-' %> <%= distance_of_time_in_words(@project.work_time_delta.abs) %></dd>
 </dl>
 
-<%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to 'Back', projects_path %>
+<%= link_to t('edit'), edit_project_path(@project) %> |
+<%= link_to t('back'), projects_path %>

@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<%= I18n.locale %>">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Tomatoes</title>
-    <meta content="Tomatoes is Pomodoro Technique® driven time tracker. Track everything 25 minutes at a time." name="description" />
+    <title><%= page_title %></title>
+    <meta content="<%= page_description %>" name="description" />
 
     <link rel="chrome-webstore-item" href="https://chrome.google.com/webstore/detail/jijbhneeenepenoolcdalnekggeialeo">
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,700|Leckerli+One" rel="stylesheet" type="text/css">
@@ -15,7 +15,7 @@
     <link rel="apple-touch-icon-precomposed" sizes="152x152" href="<%= asset_path 'apple-touch-icon-152x152.png' %>" />
     <link rel="icon" type="image/png" href="<%= asset_path 'favicon-32x32.png' %>" sizes="32x32" />
     <link rel="icon" type="image/png" href="<%= asset_path 'favicon-16x16.png' %>" sizes="16x16" />
-    <meta name="application-name" content="Tomatoes"/>
+    <meta name="application-name" content="<%= t('app_name') %>"/>
     <meta name="msapplication-TileColor" content="#FFFFFF" />
     <meta name="msapplication-TileImage" content="<%= asset_path 'mstile-144x144.png' %>" />
 

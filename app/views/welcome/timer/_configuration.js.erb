@@ -1,0 +1,6 @@
+var tomatoDuration = <%= Tomato::DURATION / 60.0 %>;
+var tomatoBreakDuration = <%= Tomato::BREAK_DURATION / 60.0 %>;
+var tomatoNotificationIcon = '<%= asset_path('notification_icon.png') %>';
+var volume = <%= (current_user ? current_user.volume : User::DEFAULT_VOLUME) * 25 %>;
+var currentUser = <%= current_user.present? %>;
+var DEBUG = <%= Rails.env.development? %>;

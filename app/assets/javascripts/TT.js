@@ -116,7 +116,7 @@ var TT = function() {
     resetProgressBar();
 
     if(typeof reset == 'undefined') {
-      if (!NOTIFIER.notify(tomatoNotificationIcon, "Tomatoes", "Break is over. It's time to work.", false)) {
+      if (!NOTIFIER.notify(tomatoNotificationIcon, "Tomatoes", TTTranslations.break_is_over, false)) {
         log('Permission denied. Click "Request Permission" to give this domain access to send notifications to your desktop.');
       }
     }
@@ -134,7 +134,7 @@ var TT = function() {
     document.title = originalTitle;
 
     // notify tomato end
-    if (!NOTIFIER.notify(tomatoNotificationIcon, "Tomatoes", "Pomodoro finished!", false)) {
+    if (!NOTIFIER.notify(tomatoNotificationIcon, "Tomatoes", TTTranslations.pomodoro_finished, false)) {
       log('Permission denied. Click "Request Permission" to give this domain access to send notifications to your desktop.');
     }
 
@@ -151,7 +151,7 @@ var TT = function() {
     document.title = originalTitle;
 
     // notify tomato end
-    if (!NOTIFIER.notify(tomatoNotificationIcon, "Tomatoes", "Pomodoro finished!", false)) {
+    if (!NOTIFIER.notify(tomatoNotificationIcon, "Tomatoes", TTTranslations.pomodoro_finished, false)) {
       log('Permission denied. Click "Request Permission" to give this domain access to send notifications to your desktop.');
     }
 
@@ -189,7 +189,7 @@ var TT = function() {
   var reset = function() {
     log("reset tomato");
 
-    if(confirm("Sure?")) {
+    if(confirm(TTTranslations.sure)) {
       clearInterval(timerInterval);
       stateStop(true);
       soundManager.setVolume(settings.timerResetSoundId, volume).play();

@@ -7,24 +7,24 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <%= link_to 'Tomatoes', root_path, class: 'navbar-brand logo' %>
+      <%= link_to t('app_name'), root_path, class: 'navbar-brand logo' %>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
         <% if current_user %>
           <li><%= user_name(current_user) %></li>
-          <li><%= link_to 'Sign out', signout_path, method: :delete %></li>
+          <li><%= link_to t('sign_out'), signout_path, method: :delete %></li>
         <% else %>
           <li>
             <%= link_to signin_path(Authorization::PROVIDER_GITHUB) do %>
               <%= image_tag('github.png', width: 24) %>
-              Sign in with GitHub
+              <%= t('signin_with.github') %>
             <% end %>
           </li>
           <li>
             <%= link_to signin_path(Authorization::PROVIDER_TWITTER) do %>
               <%= image_tag('twitter.png', width: 24) %>
-              Sign in with Twitter
+              <%= t('signin_with.twitter') %>
             <% end %>
           </li>
         <% end %>

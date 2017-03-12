@@ -23,9 +23,9 @@ var TTReminder = function() {
 $(document).ready(function() {
   $(document).on('timer_start', TTReminder.cancelReminder);
   $(document).on('timer_stop', function() {
-    TTReminder.delayReminder('Did you forget to start your next tomato?');
+    TTReminder.delayReminder(TTTranslations.forget_to_start_new_tomato);
   });
   $(document).on('new_tomato_form', function() {
-    TTReminder.delayReminder('Did you forget to save your current tomato?');
+    TTReminder.delayReminder(TTTranslations.forget_to_save_tomato);
   });
 });

@@ -113,6 +113,7 @@ GEM
     http-cookie (1.0.3)
       domain_name (~> 0.5)
     http-form_data (1.0.1)
+    http_accept_language (2.1.0)
     http_parser.rb (0.6.0)
     i18n (0.7.0)
     ipaddress (0.8.3)
@@ -327,6 +328,7 @@ DEPENDENCIES
   exception_notification
   fog-aws
   high_voltage
+  http_accept_language
   jquery-rails
   kaminari (~> 1.0)
   kaminari-mongoid (~> 1.0)

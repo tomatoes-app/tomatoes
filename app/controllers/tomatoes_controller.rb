@@ -65,7 +65,7 @@ class TomatoesController < ApplicationController
           define_break
           flash.now[:notice] = notice_message
         end
-        format.html { redirect_to(root_url, notice: 'Tomato created, now it\'s time for a break.') }
+        format.html { redirect_to(root_url, notice: I18n.t('tomato.created')) }
       else
         # TODO: error format.js
         format.html { render action: 'new' }
@@ -76,7 +76,7 @@ class TomatoesController < ApplicationController
   # PUT /tomatoes/1
   def update
     if @tomato.update_attributes(resource_params)
-      redirect_to @tomato, notice: 'Tomato was successfully updated'
+      redirect_to @tomato, notice: I18n.t('tomato.updated')
     else
       render action: 'edit'
     end
@@ -111,9 +111,9 @@ class TomatoesController < ApplicationController
 
   def notice_message
     if @long_break
-      "You just finished your #{ActiveSupport::Inflector.ordinalize(@tomatoes.size)} pomodoro, you deserve a long break!"
+      I18n.t('tomato.long_break', ordinal_count: ActiveSupport::Inflector.ordinalize(@tomatoes.size))
     else
-      'Pomodoro finished, tomato created, it\'s time for a break.'
+      I18n.t('tomato.short_break')
     end
   end
 

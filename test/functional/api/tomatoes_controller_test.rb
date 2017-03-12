@@ -124,7 +124,7 @@ module Api
       assert_response :unprocessable_entity
       assert_equal 'application/json', @response.content_type
       parsed_response = JSON.parse(@response.body)
-      assert_match(/Must not overlap saved tomaotes/, parsed_response['base'].first)
+      assert_match(/Must not overlap saved tomatoes/, parsed_response['base'].first)
     end
 
     test 'POST /create, with bad parameters, it should return a bad request error' do

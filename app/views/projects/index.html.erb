@@ -1,13 +1,13 @@
-<h1>Projects</h1>
+<h1><%= Project.model_name.human(count: 0) %></h1>
 
 <% if @projects.present? %>
   <table class="table table-striped">
     <thead>
       <tr>
-        <th>Name</th>
-        <th>Tags</th>
-        <th>Money budget</th>
-        <th>Time budget</th>
+        <th><%= t('mongoid.attributes.project.name') %></th>
+        <th><%= t('mongoid.attributes.project.tags') %></th>
+        <th><%= t('mongoid.attributes.project.money_budget') %></th>
+        <th><%= t('mongoid.attributes.project.time_budget') %></th>
         <th></th>
         <th></th>
         <th></th>
@@ -21,9 +21,9 @@
         <td><%= link_tags(project.tags) %></td>
         <td><%= money(project.money_budget, project.user.currency_unit) %></td>
         <td><%= distance_of_time_in_words(project.time_budget*60*60) if project.time_budget %></td>
-        <td><%= link_to 'Show', project %></td>
-        <td><%= link_to 'Edit', edit_project_path(project) %></td>
-        <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to t('show'), project %></td>
+        <td><%= link_to t('edit'), edit_project_path(project) %></td>
+        <td><%= link_to t('destroy'), project, method: :delete, data: { confirm: t('are_you_sure') } %></td>
       </tr>
     <% end %>
     </tbody>
@@ -31,9 +31,9 @@
 
   <%= paginate @projects %>
 <% else %>
-  <p>You don't have any project yet.</p>
+  <p><%= t('project.empty') %></p>
 <% end %>
 
 <p>
-  <%= link_to 'New Project', new_project_path, class: 'btn btn-default' %>
+  <%= link_to t('project.new'), new_project_path, class: 'btn btn-default' %>
 </p>

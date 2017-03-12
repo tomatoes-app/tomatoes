@@ -21,7 +21,7 @@
     <%= f.label :tag_list, class: 'col-sm-2' %>
     <div class="col-sm-10">
       <%= f.text_field :tag_list, class: 'form-control', placeholder: 'cookie, butter' %>
-      <p class="help-block">A list of project related tags.</p>
+      <p class="help-block"><%= t('helpers.help.project.tag_list') %></p>
     </div>
   </div>
   <div class="form-group">
@@ -31,14 +31,14 @@
         <div class="input-group-addon"><%= current_user.currency_unit %></div>
         <%= f.number_field :money_budget, class: 'form-control', placeholder: '10' %>
       </div>
-      <p class="help-block">Available budget in <%= current_user.currency_unit %>.</p>
+      <p class="help-block"><%= t('helpers.help.project.money_budget', currency_unit: current_user.currency_unit) %></p>
     </div>
   </div>
   <div class="form-group">
     <%= f.label :time_budget, class: 'col-sm-2' %>
     <div class="col-sm-10">
       <%= f.number_field :time_budget, class: 'form-control', placeholder: '1' %>
-      <p class="help-block">Estimated time budget in hours.</p>
+      <p class="help-block"><%= t('helpers.help.project.time_budget') %></p>
     </div>
   </div>
   <div class="form-group">

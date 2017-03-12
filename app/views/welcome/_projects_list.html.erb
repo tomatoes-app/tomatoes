@@ -4,8 +4,7 @@
   </div>
   <% if @projects.empty? %>
     <div class="panel-body">
-      <p>You're not working on any project</p>
-      <p>Create a <%= link_to "new project", new_project_path %> to start collecting aggregate statistics</p>
+      <p><%= t('welcome.no_projects_yet_html', new_project_link: link_to(t('project.new').downcase, new_project_path) ) %></p>
     </div>
   <% end %>
   <% unless @projects.empty? %>

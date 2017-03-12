@@ -4,8 +4,7 @@
   </div>
   <% if @tomatoes.empty? %>
     <div class="panel-body">
-      <p>No tomatoes here</p>
-      <p>Click the Start button when you're ready to start your first tomato</p>
+      <p><%= t('welcome.no_tomatoes_yet_html') %></p>
     </div>
   <% end %>
   <% unless @tomatoes.empty? %>

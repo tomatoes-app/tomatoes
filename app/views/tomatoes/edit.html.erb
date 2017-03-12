@@ -1,6 +1,6 @@
-<h1>Editing tomato</h1>
+<h1><%= t('tomato.edit') %></h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @tomato %> |
-<%= link_to 'Back', tomatoes_path %>
+<%= link_to t('show'), @tomato %> |
+<%= link_to t('back'), tomatoes_path %>

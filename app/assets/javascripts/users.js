@@ -16,7 +16,7 @@ function permissionLabel(permission) {
     case 'granted':
       return 'Tomatoes is allowed to use desktop notifications';
     case 'denied':
-      return 'Tomatoes is not allowed to use desktop notifications :(</br>If you want to receive notifications remove www.tomato.es from the blacklist.';
+      return 'Tomatoes is not allowed to use desktop notifications :(<br/>If you want to receive notifications remove www.tomato.es from the blacklist.';
     default:
       return 'Allow desktop notifications';
   }

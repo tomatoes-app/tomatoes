@@ -1,9 +1,16 @@
 module ApplicationHelper
   def humanize(secs)
-    [[60, 'second'], [60, 'minute'], [24, 'hour'], [365, 'day'], [1000, 'year']].map do |count, name|
-      if secs.positive?
-        secs, n = secs.divmod(count)
-        pluralize(n.to_i, name) if n.to_i.positive?
+    [
+      [60, :second],
+      [60, :minute],
+      [24, :hour],
+      [365, :day],
+      [1000, :year]
+    ].map do |divider, name|
+      next unless secs.positive?
+      secs, n = secs.divmod(divider)
+      if n.to_i.positive?
+        I18n.t("helpers.precise_distance_of_time_in_words.#{name}", count: n.to_i)
       end
     end.compact.reverse.join(', ')
   end

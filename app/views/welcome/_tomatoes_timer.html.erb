@@ -1,17 +1,13 @@
 <% content_for :scripts do %>
-  <%= javascript_tag do %>
-    var tomatoDuration = <%= Tomato::DURATION / 60.0 %>;
-    var tomatoBreakDuration = <%= Tomato::BREAK_DURATION / 60.0 %>;
-    var tomatoNotificationIcon = '<%= asset_path('notification_icon.png') %>';
-    var volume = <%= (current_user ? current_user.volume : User::DEFAULT_VOLUME) * 25 %>;
-    var currentUser = <%= current_user.present? %>;
-    var DEBUG = <%= Rails.env.development? %>;
-  <% end %>
-
   <script
     src="https://cdnjs.cloudflare.com/ajax/libs/soundmanager2/2.97a.20150601/script/soundmanager2-nodebug-jsmin.js"
     integrity="sha256-5KBL+8gS3BkWOs22YOrezN3Djl4pwodgZaPQY9hgu4Y="
     crossorigin="anonymous"></script>
+
+  <%= javascript_tag do %>
+    <%= render partial: 'welcome/timer/configuration.js' %>
+    <%= render partial: 'welcome/timer/translations.js' %>
+  <% end %>
 
   <%= javascript_include_tag 'TT' %>
 
@@ -28,7 +24,7 @@
   <div class="controls clearfix">
     <div id="ticking_sound_switch_container">
       <%= check_box_tag('ticking_sound_switch', '1', current_user ? current_user.ticking : User::DEFAULT_TICKING, id: 'ticking_sound_switch') %>
-      <label for="ticking_sound_switch">Ticking sound</label>
+      <label for="ticking_sound_switch"><%= t('timer.ticking_sound') %></label>
     </div>
     <div class="volume">
       <div class="btn btn-default btn-sm down">
@@ -41,34 +37,32 @@
     </div>
   </div>
   <div id="timer_counter"></div>
-  <%= link_to 'Reset', '#', id: 'reset', class: 'btn btn-default' %>
-  <p id="reset_hint" class="help-block">or press esc</p>
+  <%= link_to t('timer.reset'), '#', id: 'reset', class: 'btn btn-default' %>
+  <p id="reset_hint" class="help-block"><%= t('timer.or_press_esc') %></p>
 </div>
 <div id="new_tomato_form" class="fixed_center" style="display: none">
   <% if current_user %>
     <%= render 'tomatoes/form', remote: true %>
   <% else %>
     <div id="tomato_signin">
-      <p>Sign in to start tracking your work.</p>
+      <p><%= t('timer.signin_to_start_tracking') %></p>
 
       <%= link_to signin_path(Authorization::PROVIDER_GITHUB), class: 'btn btn-block btn-social btn-github' do %>
-        <span class="fa fa-github"></span>
-        Sign in with GitHub
+        <span class="fa fa-github"></span> <%= t('signin_with.github') %>
       <% end %>
 
       <%= link_to signin_path(Authorization::PROVIDER_TWITTER), class: 'btn btn-block btn-social btn-twitter' do %>
-        <span class="fa fa-twitter"></span>
-        Sign in with Twitter
+        <span class="fa fa-twitter"></span> <%= t('signin_with.twitter') %>
       <% end %>
 
       <div id="cancel">
-        <%= link_to 'Cancel', '#', id: 'reset_signin', class: 'btn btn-default' %>
+        <%= link_to t('timer.cancel'), '#', id: 'reset_signin', class: 'btn btn-default' %>
       </div>
     </div>
   <% end %>
 </div>
 
 <div id="start_container" class="center-block">
-  <%= link_to 'Start', '#', id: 'start', class: 'btn btn-default btn-lg' %>
-  <p id="start_hint" class="help-block">or press space bar</p>
+  <%= link_to t('timer.start'), '#', id: 'start', class: 'btn btn-default btn-lg' %>
+  <p id="start_hint" class="help-block"><%= t('timer.or_press_space') %></p>
 </div>

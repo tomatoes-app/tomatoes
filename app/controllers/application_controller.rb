@@ -2,8 +2,11 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   helper_method :current_user
+  helper_method :page_title
+  helper_method :page_description
 
   before_action :set_time_zone
+  before_action :set_locale
 
   protected
 
@@ -27,6 +30,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def set_locale
+    I18n.locale = http_accept_language.compatible_language_from(I18n.available_locales)
+  end
+
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   rescue Mongoid::Errors::DocumentNotFound
@@ -44,5 +51,13 @@ class ApplicationController < ActionController::Base
 
   def authenticate_user!
     redirect_to root_url, alert: 'You need to sign in' unless current_user
+  end
+
+  def page_title
+    @page_title ||= I18n.t('app_name')
+  end
+
+  def page_description
+    @page_description ||= I18n.t('default_description')
   end
 end

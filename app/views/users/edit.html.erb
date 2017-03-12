@@ -2,7 +2,7 @@
   <%= javascript_include_tag 'users' %>
 <% end %>
 
-<h3>Editing profile</h3>
+<h3><%= t('user.edit') %></h3>
 
 <div class="row">
   <div class="col-md-6 col-sm-10">
@@ -10,4 +10,4 @@
   </div>
 </div>
 
-<%= link_to 'Back', current_user %>
+<%= link_to t('back'), current_user %>
