@@ -7,7 +7,7 @@ module Api
       when Authorization::PROVIDER_TWITTER
         TwitterAuth.new(params[:access_token], params[:secret])
       else
-        raise Error::ProviderNotSupported.new("Provider '#{params[:provider]}' not supported")
+        raise Error::ProviderNotSupported, "Provider '#{params[:provider]}' not supported"
       end
     end
   end

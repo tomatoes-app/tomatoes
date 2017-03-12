@@ -23,7 +23,7 @@ module Api
     rescue Octokit::Unauthorized => err
       error_message = "Cannot log user in using GitHub: #{err}"
       Rails.logger.error(error_message)
-      raise Error::Unauthorized.new(error_message)
+      raise Error::Unauthorized, error_message
     end
 
     def user_attributes
