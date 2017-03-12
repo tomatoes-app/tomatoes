@@ -6,8 +6,7 @@ class WelcomeController < ApplicationController
   before_action :tomatoes_counters, if: :current_user
   before_action :daily_projects, if: :current_user
 
-  def index
-  end
+  def index; end
 
   private
 

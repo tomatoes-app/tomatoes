@@ -79,3 +79,51 @@ Rails/Validation:
 Style/SafeNavigation:
   Exclude:
     - 'app/models/user.rb'
+
+# Offense count: 3
+# Configuration parameters: CountComments, ExcludedMethods.
+Metrics/BlockLength:
+  Max: 46
+
+# Offense count: 7
+# Cop supports --auto-correct.
+# Configuration parameters: Whitelist.
+# Whitelist: find_by_sql
+Rails/DynamicFindBy:
+  Exclude:
+    - 'app/controllers/api/base_controller.rb'
+    - 'app/controllers/sessions_controller.rb'
+    - 'app/models/api/github_auth.rb'
+    - 'app/models/api/twitter_auth.rb'
+    - 'app/models/user.rb'
+    - 'test/unit/user_test.rb'
+
+# Offense count: 6
+Rails/FilePath:
+  Exclude:
+    - 'config/initializers/omniauth.rb'
+    - 'test/test_helper.rb'
+
+# Offense count: 73
+# Cop supports --auto-correct.
+# Configuration parameters: Include.
+# Include: spec/**/*, test/**/*
+Rails/HttpPositionalArguments:
+  Exclude:
+    - 'test/functional/api/projects_controller_test.rb'
+    - 'test/functional/api/sessions_controller_test.rb'
+    - 'test/functional/api/tomatoes_controller_test.rb'
+    - 'test/functional/api/users_controller_test.rb'
+    - 'test/functional/pages_controller_test.rb'
+    - 'test/functional/projects_controller_test.rb'
+    - 'test/functional/sessions_controller_test.rb'
+    - 'test/functional/tags_controller_test.rb'
+    - 'test/functional/tomatoes_controller_test.rb'
+    - 'test/functional/users_controller_test.rb'
+
+# Offense count: 1
+# Configuration parameters: Blacklist.
+# Blacklist: decrement!, decrement_counter, increment!, increment_counter, toggle!, touch, update_all, update_attribute, update_column, update_columns, update_counters
+Rails/SkipsModelValidations:
+  Exclude:
+    - 'test/functional/api/users_controller_test.rb'

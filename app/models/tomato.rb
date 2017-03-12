@@ -22,8 +22,8 @@ class Tomato
   include ActionView::Helpers::TextHelper
   include ApplicationHelper
 
-  scope :before, -> (time) { where(:created_at.lt => time) }
-  scope :after, -> (time) { where(:created_at.gte => time) }
+  scope :before, ->(time) { where(:created_at.lt => time) }
+  scope :after, ->(time) { where(:created_at.gte => time) }
 
   class << self
     def by_day(tomatoes)

@@ -37,8 +37,7 @@ class TomatoesController < ApplicationController
   end
 
   # GET /tomatoes/1
-  def show
-  end
+  def show; end
 
   # GET /tomatoes/new
   def new
@@ -46,8 +45,7 @@ class TomatoesController < ApplicationController
   end
 
   # GET /tomatoes/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /tomatoes
   # POST /tomatoes.js

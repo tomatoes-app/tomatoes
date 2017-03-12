@@ -103,9 +103,11 @@ class User
   def self.omniauth_attributes(auth)
     attributes = {}
 
-    attributes.merge!(name:  auth['info']['name'],
-                      email: auth['info']['email'],
-                      image: auth['info']['image']) if auth['info']
+    if auth['info']
+      attributes.merge!(name:  auth['info']['name'],
+                        email: auth['info']['email'],
+                        image: auth['info']['image'])
+    end
 
     attributes
   end
