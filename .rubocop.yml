@@ -102,6 +102,7 @@ Rails/DynamicFindBy:
 # Cop supports --auto-correct.
 # Configuration parameters: Include.
 # Include: spec/**/*, test/**/*
+# See also https://github.com/bbatsov/rubocop/pull/4107
 Rails/HttpPositionalArguments:
   Exclude:
     - 'test/functional/api/projects_controller_test.rb'
