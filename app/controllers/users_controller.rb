@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  include UsersParams
+
   before_action :authenticate_user!, except: :show
   before_action :same_user!, except: :show
 
@@ -23,22 +25,5 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     redirect_to root_url
-  end
-
-  private
-
-  def resource_params
-    params.require(:user).permit(
-      :name,
-      :email,
-      :image,
-      :time_zone,
-      :color,
-      :work_hours_per_day,
-      :average_hourly_rate,
-      :currency,
-      :volume,
-      :ticking
-    )
   end
 end

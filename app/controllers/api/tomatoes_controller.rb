@@ -1,5 +1,7 @@
 module Api
   class TomatoesController < BaseController
+    include TomatoesParams
+
     before_action :authenticate_user!
     before_action :find_tomato, only: [:show, :update, :destroy]
 
@@ -57,10 +59,6 @@ module Api
 
     def find_tomato
       @tomato = current_user.tomatoes.find(params[:id])
-    end
-
-    def resource_params
-      params.require(:tomato).try(:permit, :tag_list)
     end
   end
 end

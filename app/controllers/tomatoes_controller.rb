@@ -1,4 +1,6 @@
 class TomatoesController < ApplicationController
+  include TomatoesParams
+
   before_action :authenticate_user!, except: [:by_day, :by_hour]
   before_action :find_user, only: [:by_day, :by_hour]
   before_action :find_tomato, only: [:show, :edit, :update, :destroy]
@@ -113,9 +115,5 @@ class TomatoesController < ApplicationController
     else
       I18n.t('tomato.short_break')
     end
-  end
-
-  def resource_params
-    params.require(:tomato).permit(:tag_list)
   end
 end
