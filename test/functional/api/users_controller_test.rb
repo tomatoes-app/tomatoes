@@ -139,7 +139,7 @@ module Api
     end
 
     def setup_tz_test
-      @user.update_attribute(:time_zone, new_york_tz.name)
+      @user.update_attributes(time_zone: new_york_tz.name)
 
       travel_to morning_in(new_york_tz) do
         @user.tomatoes.create!
