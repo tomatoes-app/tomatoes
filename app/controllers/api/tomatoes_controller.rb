@@ -60,7 +60,7 @@ module Api
     end
 
     def resource_params
-      params.require(:tomato).permit(:tag_list)
+      params.require(:tomato).try(:permit, :tag_list)
     end
   end
 end
