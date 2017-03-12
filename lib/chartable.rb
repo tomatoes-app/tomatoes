@@ -12,7 +12,7 @@ module Chartable
       days = collection_by_day.keys
 
       Range.new(days.last.to_i, days.first.to_i).step(ONE_DAY).map do |day|
-        day = Time.at(day)
+        day = Time.zone.at(day)
         [day.to_i * 1000, yield(collection_by_day[day])]
       end
     end

@@ -90,7 +90,7 @@ class TomatoesController < ApplicationController
   protected
 
   def export_csv(tomatoes)
-    filename = "my tomatoes #{I18n.l(Time.now)}.csv"
+    filename = "my tomatoes #{I18n.l(Time.zone.now)}.csv"
     content = Tomato.to_csv(tomatoes)
     send_data content, filename: filename
   end

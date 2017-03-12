@@ -60,15 +60,6 @@ Rails/FindBy:
     - 'app/models/user.rb'
 
 # Offense count: 3
-# Configuration parameters: EnforcedStyle, SupportedStyles.
-# SupportedStyles: strict, flexible
-Rails/TimeZone:
-  Exclude:
-    - 'app/controllers/statistics_controller.rb'
-    - 'app/controllers/tomatoes_controller.rb'
-    - 'lib/chartable.rb'
-
-# Offense count: 3
 # Configuration parameters: CountComments, ExcludedMethods.
 Metrics/BlockLength:
   Max: 46
