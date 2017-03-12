@@ -12,9 +12,9 @@ class Project
 
   belongs_to :user
 
-  validates_presence_of :name
-  validates_numericality_of :money_budget, greater_than: 0, allow_blank: true
-  validates_numericality_of :time_budget, greater_than: 0, allow_blank: true
+  validates :name, presence: true
+  validates :money_budget, numericality: { greater_than: 0, allow_blank: true }
+  validates :time_budget, numericality: { greater_than: 0, allow_blank: true }
 
   def estimated_work_time
     (time_budget.to_i * 60 * 60 * Workable::WORK_TIME_FACTOR if time_budget).to_i

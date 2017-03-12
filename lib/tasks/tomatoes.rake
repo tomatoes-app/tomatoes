@@ -52,7 +52,10 @@ namespace :tomatoes do
     puts 'Pushed to heroku/master'
   end
 
-  desc "Deploy to Heroku.\nUse this task to tag a new version of the app and to deploy it.\nExample 1: 'rake tomatoes:deploy'\nExample 2: 'rake tomatoes:deploy VERSION=0.6'"
+  desc "Deploy to Heroku.\n" \
+    "Use this task to tag a new version of the app and to deploy it.\n" \
+    "Example 1: 'rake tomatoes:deploy'\n" \
+    "Example 2: 'rake tomatoes:deploy VERSION=0.6'"
   task deploy: [:test, :new_release, :push] do
     puts "Deployment of version #{version} finished"
   end
@@ -62,7 +65,11 @@ namespace :tomatoes do
     task :dump do
       mongodb_url = `heroku config | grep MONGO | awk '{print $2;}'`
       mongodb_url = URI.parse(mongodb_url)
-      system "mongodump -h #{mongodb_url.host}:#{mongodb_url.port} -d #{mongodb_url.path.tr('/', '')} -u #{mongodb_url.user} -p #{mongodb_url.password} -o db/backups/"
+      system "mongodump -h #{mongodb_url.host}:#{mongodb_url.port} " \
+        "-d #{mongodb_url.path.tr('/', '')} " \
+        "-u #{mongodb_url.user} " \
+        "-p #{mongodb_url.password} " \
+        '-o db/backups/'
       system "mongorestore -h localhost --drop -d tomatoes_app_development db/backups/#{mongodb_url.path.tr('/', '')}/"
     end
   end

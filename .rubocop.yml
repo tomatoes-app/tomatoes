@@ -23,7 +23,7 @@ Lint/UnderscorePrefixedVariableName:
 
 # Offense count: 6
 Metrics/AbcSize:
-  Max: 33.56
+  Max: 29.63
 
 # Offense count: 1
 # Configuration parameters: CountComments.
@@ -34,7 +34,7 @@ Metrics/ClassLength:
 # Configuration parameters: AllowHeredoc, AllowURI, URISchemes.
 # URISchemes: http, https
 Metrics/LineLength:
-  Max: 173
+  Max: 124
 
 # Offense count: 2
 # Configuration parameters: CountComments.
@@ -46,12 +46,6 @@ Style/Documentation:
   Enabled: false
 
 # Offense count: 1
-# Configuration parameters: SupportedStyles.
-# SupportedStyles: compact, exploded
-Style/RaiseArgs:
-  EnforcedStyle: compact
-
-# Offense count: 1
 # Cop supports --auto-correct.
 # Configuration parameters: Include.
 # Include: app/models/**/*.rb
@@ -60,22 +54,37 @@ Rails/FindBy:
     - 'app/models/user.rb'
 
 # Offense count: 3
-# Configuration parameters: EnforcedStyle, SupportedStyles.
-# SupportedStyles: strict, flexible
-Rails/TimeZone:
-  Exclude:
-    - 'app/controllers/statistics_controller.rb'
-    - 'app/controllers/tomatoes_controller.rb'
-    - 'lib/chartable.rb'
+# Configuration parameters: CountComments, ExcludedMethods.
+Metrics/BlockLength:
+  Max: 53
 
-# Offense count: 8
+# Offense count: 7
+# Cop supports --auto-correct.
+# Configuration parameters: Whitelist.
+# Whitelist: find_by_sql
+Rails/DynamicFindBy:
+  Exclude:
+    - 'app/controllers/api/base_controller.rb'
+    - 'app/controllers/sessions_controller.rb'
+    - 'app/models/api/github_auth.rb'
+    - 'app/models/api/twitter_auth.rb'
+    - 'app/models/user.rb'
+    - 'test/unit/user_test.rb'
+
+# Offense count: 73
+# Cop supports --auto-correct.
 # Configuration parameters: Include.
-# Include: app/models/**/*.rb
-Rails/Validation:
+# Include: spec/**/*, test/**/*
+# See also https://github.com/bbatsov/rubocop/pull/4107
+Rails/HttpPositionalArguments:
   Exclude:
-    - 'app/models/project.rb'
-    - 'app/models/user.rb'
-
-Style/SafeNavigation:
-  Exclude:
-    - 'app/models/user.rb'
+    - 'test/functional/api/projects_controller_test.rb'
+    - 'test/functional/api/sessions_controller_test.rb'
+    - 'test/functional/api/tomatoes_controller_test.rb'
+    - 'test/functional/api/users_controller_test.rb'
+    - 'test/functional/pages_controller_test.rb'
+    - 'test/functional/projects_controller_test.rb'
+    - 'test/functional/sessions_controller_test.rb'
+    - 'test/functional/tags_controller_test.rb'
+    - 'test/functional/tomatoes_controller_test.rb'
+    - 'test/functional/users_controller_test.rb'

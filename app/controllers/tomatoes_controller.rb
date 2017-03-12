@@ -37,8 +37,7 @@ class TomatoesController < ApplicationController
   end
 
   # GET /tomatoes/1
-  def show
-  end
+  def show; end
 
   # GET /tomatoes/new
   def new
@@ -46,8 +45,7 @@ class TomatoesController < ApplicationController
   end
 
   # GET /tomatoes/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /tomatoes
   # POST /tomatoes.js
@@ -92,7 +90,7 @@ class TomatoesController < ApplicationController
   protected
 
   def export_csv(tomatoes)
-    filename = "my tomatoes #{I18n.l(Time.now)}.csv"
+    filename = "my tomatoes #{I18n.l(Time.zone.now)}.csv"
     content = Tomato.to_csv(tomatoes)
     send_data content, filename: filename
   end

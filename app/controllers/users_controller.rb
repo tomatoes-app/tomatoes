@@ -3,8 +3,7 @@ class UsersController < ApplicationController
   before_action :same_user!, except: :show
 
   # GET /users/1/edit
-  def edit
-  end
+  def edit; end
 
   # PUT /users/1
   def update
