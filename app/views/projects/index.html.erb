@@ -31,7 +31,7 @@
 
   <%= paginate @projects %>
 <% else %>
-  <p>You don't have any project yet.</p>
+  <p><%= t('project.empty') %></p>
 <% end %>
 
 <p>

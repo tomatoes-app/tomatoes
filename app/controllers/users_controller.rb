@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   # PUT /users/1
   def update
     if @user.update_attributes(resource_params)
-      redirect_to @user, notice: 'User was successfully updated'
+      redirect_to @user, notice: I18n.t('user.updated')
     else
       render action: 'edit'
     end

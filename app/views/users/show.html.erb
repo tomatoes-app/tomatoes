@@ -25,7 +25,7 @@
           <%= profile_image(@user, 64, class: 'media-object') %>
         </div>
         <div class="profile_info media-body">
-          Tomatoes: <%= @user.tomatoes.size %><br/>
+          <%= @user.tomatoes.size %> <%= Tomato.model_name.human(count: @user.tomatoes.size).downcase %><br/>
           <% @user.authorizations.external_providers.each do |authorization| %>
             <%= link_to authorization.url, authorization.url %><br/>
           <% end %>
@@ -45,16 +45,14 @@
 
     <div class="row" id="request_notification_permission">
       <div class="col-md-6">
-        <h3>Desktop notifications</h3>
-        <p>
-          Desktop notifications allow Tomatoes to notify you when your current
-          pomodoro timer has ended. You can use them as a visual notification in case
-          you miss the ringing sound.
-        </p>
+        <h3><%= t('user.desktop_notifications') %></h3>
+        <p><%= t('user.desktop_notifications_description') %></p>
         <p>
           <strong>
             <%= link_to "", "#" %>
-            <span id="notification_not_supported" style="display: none">Note: notifications are not supported by your browser.</span>
+            <span id="notification_not_supported" style="display: none">
+              <%= t('user.notification_not_supported') %>
+            </span>
           </strong>
         </p>
       </div>

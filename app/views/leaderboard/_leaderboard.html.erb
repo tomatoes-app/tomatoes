@@ -9,7 +9,7 @@
           </div>
           <div class="profile_info media-body">
             <h4 class="media-heading"><%= user_name(item.user) %></h4>
-            <p><%= pluralize(item.score.to_i, 'tomato') %></p>
+            <p><%= item.score.to_i %> <%= Tomato.model_name.human(count: item.score.to_i).downcase %></p>
           </div>
         </li>
       <% end %>
@@ -18,5 +18,5 @@
 
   <%= paginate scores %>
 <% else %>
-  <p>No scores in this leaderboard</p>
+  <p><%= t('empty_leaderboard') %></p>
 <% end %>
