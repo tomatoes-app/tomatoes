@@ -34,7 +34,7 @@ Metrics/ClassLength:
 # Configuration parameters: AllowHeredoc, AllowURI, URISchemes.
 # URISchemes: http, https
 Metrics/LineLength:
-  Max: 173
+  Max: 124
 
 # Offense count: 2
 # Configuration parameters: CountComments.
@@ -56,7 +56,7 @@ Rails/FindBy:
 # Offense count: 3
 # Configuration parameters: CountComments, ExcludedMethods.
 Metrics/BlockLength:
-  Max: 46
+  Max: 53
 
 # Offense count: 7
 # Cop supports --auto-correct.
