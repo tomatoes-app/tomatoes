@@ -76,10 +76,6 @@ Rails/Validation:
     - 'app/models/project.rb'
     - 'app/models/user.rb'
 
-Style/SafeNavigation:
-  Exclude:
-    - 'app/models/user.rb'
-
 # Offense count: 3
 # Configuration parameters: CountComments, ExcludedMethods.
 Metrics/BlockLength:
