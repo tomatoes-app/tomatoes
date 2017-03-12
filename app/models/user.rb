@@ -176,6 +176,10 @@ class User
     image_value && !image_value.empty? ? image_value : User::DEFAULT_IMAGE_FILE
   end
 
+  def time_zone
+    self[:time_zone] if self[:time_zone].present?
+  end
+
   def currency_unit
     User::CURRENCIES[currency]
   end

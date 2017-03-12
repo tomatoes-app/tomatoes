@@ -38,4 +38,12 @@ class UsersControllerTest < ActionController::TestCase
 
     assert_redirected_to root_path
   end
+
+  test 'GET /show, '\
+      'user time zone is invalid, '\
+      'it uses the default time zone' do
+    @user.update_attributes(time_zone: 'invalid')
+    get :show, id: @user.to_param
+    assert_response :success
+  end
 end

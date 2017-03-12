@@ -20,14 +20,14 @@ class ApplicationController < ActionController::Base
 
   def set_time_zone
     Time.zone = find_time_zone
+  rescue ArgumentError => e
+    logger.error "Argument error: #{e}"
+    Time.zone = Rails.configuration.time_zone
   end
 
   def find_time_zone
-    if current_user.try(:time_zone).present?
-      current_user.time_zone
-    else
+    current_user.try(:time_zone) ||
       ActiveSupport::TimeZone[-cookies[:timezone].to_i.minutes]
-    end
   end
 
   def set_locale

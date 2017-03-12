@@ -33,13 +33,15 @@ module Api
 
     def set_time_zone
       Time.zone = find_time_zone
+    rescue ArgumentError => e
+      logger.error "Argument error: #{e}"
+      Time.zone = Rails.configuration.time_zone
     end
 
     def find_time_zone
       request.headers['Time-Zone'] ||
         params[:time_zone] ||
-        current_user.try(:time_zone) ||
-        Rails.configuration.time_zone
+        current_user.try(:time_zone)
     end
   end
 end
