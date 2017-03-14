@@ -31,10 +31,8 @@ class TomatoesControllerTest < ActionController::TestCase
   end
 
   test 'should create tomato' do
-    @tomato = @user.tomatoes.build(tag_list: 'one, two')
-
     assert_difference('Tomato.count') do
-      post :create, tomato: @tomato.attributes
+      post :create, tomato: { tag_list: '' }
     end
 
     assert_redirected_to root_path
@@ -51,7 +49,7 @@ class TomatoesControllerTest < ActionController::TestCase
   end
 
   test 'should update tomato' do
-    put :update, id: @tomato.to_param, tomato: @tomato.attributes
+    put :update, id: @tomato.to_param, tomato: { tag_list: '' }
     assert_redirected_to tomato_path(assigns(:tomato))
   end
 

@@ -1,4 +1,6 @@
 class ProjectsController < ApplicationController
+  include ProjectsParams
+
   before_action :authenticate_user!
   before_action :find_project, only: [:show, :edit, :update, :destroy]
 
@@ -49,9 +51,5 @@ class ProjectsController < ApplicationController
 
   def find_project
     @project = current_user.projects.find(params[:id])
-  end
-
-  def resource_params
-    params.require(:project).permit(:name, :tag_list, :money_budget, :time_budget)
   end
 end
