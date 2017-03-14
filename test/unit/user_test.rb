@@ -185,4 +185,12 @@ class UserTest < ActiveSupport::TestCase
 
     assert_equal User::DEFAULT_IMAGE_FILE, user.image_file
   end
+
+  test 'time_zone should return time_zone only if not blank' do
+    user = User.new(time_zone: '')
+    assert_nil user.time_zone
+
+    user.time_zone = 'timezone'
+    assert user.time_zone, 'timezone'
+  end
 end

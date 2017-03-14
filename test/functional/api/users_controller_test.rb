@@ -94,6 +94,14 @@ module Api
       end
     end
 
+    test 'GET /show, '\
+        'user time zone is invalid, '\
+        'it uses the default time zone' do
+      @user.update_attributes(time_zone: 'invalid')
+      get :show, token: '123'
+      assert_response :success
+    end
+
     test 'PATCH /update, given an invalid token, it should return an error' do
       patch :update, token: 'invalid_token', user: { name: 'Foo' }
       assert_response :unauthorized
