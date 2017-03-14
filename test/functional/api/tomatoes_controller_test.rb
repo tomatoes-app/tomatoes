@@ -141,10 +141,13 @@ module Api
       assert_match('tomato', parsed_response['missing_param'])
     end
 
-    test 'POST /create, with the wrong root param type, it should not return any error' do
+    test 'POST /create, with the wrong root param type, it should return a bad request error' do
       # this request should fail because tomato is not a hash parameter
       post :create, token: '123', tomato: 'tag_list'
-      assert_response :success
+      assert_response :bad_request
+      assert_equal 'application/json', @response.content_type
+      parsed_response = JSON.parse(@response.body)
+      assert_match('tomato', parsed_response['missing_param'])
     end
 
     test 'PATCH /update, given an invalid token, it should return an error' do

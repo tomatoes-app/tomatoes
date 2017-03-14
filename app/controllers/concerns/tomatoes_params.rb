@@ -1,5 +1,5 @@
 module TomatoesParams
   def resource_params
-    params.require(:tomato).try(:permit, :tag_list)
+    params.permit(tomato: [:tag_list]).require(:tomato)
   end
 end
