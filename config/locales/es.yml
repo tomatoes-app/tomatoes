@@ -1,0 +1,176 @@
+en:
+  app_name: Tomatoes
+  default_description: >
+    Temporizador Pomodoro™. Mantente enfocado, sé productivo, registra todas tus
+    actividades.
+  description_html: >
+    Temporizador Pomodoro<sup>™</sup>. Mantente enfocado, sé productivo, 
+    registra todas tus actividades.
+  footer:
+    support_the_project_html: >
+      Apoya el proyecto en 
+      <a href="https://backerpass.com/tomatoes">backerpass.com/tomatoes</a>
+    follow_updates_html: >
+      Síguenos en <a href="https://twitter.com/tomatoesapp">@tomatoesapp</a>
+    add_to_chrome: Agregar a Chrome
+    disclaimer_html: >
+      Esta aplicación no está afiliada, asociada, o respaldada por la Pomodoro
+      Technique<sup>®</sup> o por Francesco Cirillo.<br/>la Pomodoro
+      Technique<sup>®</sup> y Pomodoro<sup>™</sup> son marcas registradas por 
+      Francesco Cirillo.
+  show: Mostrar
+  edit: Editar
+  destroy: Eliminar
+  back: Regresar
+  are_you_sure: Estás seguro?
+  sign_out: Cerrar sesión
+  saving: Guardando...
+  announcement: Anuncio
+  helpers:
+    label:
+      tomato:
+        tag_list: Listado de etiquetas (separadas por comas)
+      project:
+        name: Nombre
+        tag_list: Listado de etiquetas (separadas por comas)
+        money_budget: Presupuesto de dinero
+        time_budget: Presupuesto de tiempo
+      user:
+        color: Color de la barra de progreso
+        ticking: Habilitar el efecto de tictac del temporizador
+    help:
+      project:
+        tag_list: Listado de etiquetas relacionadas con el proyecto.
+        money_budget: Presupuesto disponible en %{currency_unit}.
+        time_budget: Presupuesto estimado en horas.
+      user:
+        work_hours_per_day: ¿Cuántas horas trabajas por día?
+        average_hourly_rate: ¿Cual es tu tarifa horaria?
+        volume_html: >
+          Volumen predeterminado del temporizador. <em>0</em> es <em>silencioso
+          </em>, <em>3</em> es <em>volumen máximo</em>.
+        color: Código hexadecimal del color.
+    submit:
+      create: Crear %{model}
+      update: Actualizar %{model}
+    precise_distance_of_time_in_words:
+      second:
+        one: 1 segundo
+        other: "%{count} segundos"
+      minute:
+        one: 1 minuto
+        other: "%{count} minutos"
+      hour:
+        one: 1 hora
+        other: "%{count} horas"
+      day:
+        one: 1 día
+        other: "%{count} días"
+      year:
+        one: 1 año
+        other: "%{count} años"
+  welcome:
+    title_html: >
+      Tomatoes es un temporizador basado en la Pomodoro Technique<sup>®</sup>.
+    sub_title_html: >
+      Mantente <i>enfocado</i>, sé <i>productivo</i>, registra <i>todas</i> tus
+      actividades.
+    no_tomatoes_yet_html: >
+      Aún no has iniciado el temporizador.<br/>Haz clic en el botón "Iniciar" 
+      para iniciar tu primer pomodoro.
+    no_projects_yet_html: >
+      Aún no estás trabajando en ningún proyecto.<br/>crea un 
+      %{new_project_link} para empezar a recopilar estadísticas acumuladas.
+    counters:
+      day: Hoy
+      week: Esta semana
+      month: Este mes
+  timer:
+    ticking_sound: Sonido tic tac
+    start: Iniciar
+    cancel: Cancelar
+    reset: Reiniciar
+    or_press_space: o presiona la barra espaciadora
+    or_press_esc: o presiona la tecla Esc
+    signin_to_start_tracking: Inicia sesión para iniciar el seguimiento de tu 
+    trabajo.
+    script:
+      break_is_over: La pausa ha terminado. Es hora de volver al trabajo.
+      pomodoro_finished: Pomodoro terminado!
+      sure: Seguro?
+      forget_to_start_new_tomato: Has olvidado iniciar tu próximo tomate?
+      forget_to_save_tomato: Tu tomate ha terminado, no olvides guardarlo
+  auth_providers:
+    github: GitHub
+    twitter: Twitter
+  signin_with:
+    github: Iniciar sesión con GitHub
+    twitter: Iniciar sesión con Twitter
+  reconnect_with:
+    github: Reconectar con GitHub
+    twitter: Reconectar con Twitter
+  connect_with:
+    github: Conectar with GitHub
+    twitter: Conectar with Twitter
+  daily_leaderboard: Tabla de posiciones diaria
+  weekly_leaderboard: Tabla de posiciones semanal
+  monthly_leaderboard: Tabla de posiciones mensual
+  overall_leaderboard: Tabla de posiciones general
+  empty_leaderboard: No existen registros en esta tabla de posiciones
+  leaderboards: Tablas de posiciones
+  daily: Diaria
+  weekly: Semanal
+  monthly: Mensual
+  overall: General
+  mongoid:
+    models:
+      project:
+        one: Proyecto
+        other: Proyectos
+      tomato:
+        one: Tomate
+        other: Tomates
+    attributes:
+      project:
+        name: Nombre
+        tags: Etiquetas
+        money_budget: Presupuesto de dinero
+        time_budget: Presupuesto de tiempo
+      tomato:
+        started_at: Iniciado
+        tags: Etiquetas
+  project:
+    new: Nuevo proyecto
+    edit: Editar proyecto
+    empty: Aún no tienes ningún proyecto.
+    tracked_tomatoes: Tomates registrados
+    created: El proyecto ha sido creado correctamente.
+    updated: El proyecto ha sido actualizado correctamente.
+  tomato:
+    new: Nuevo tomate
+    edit: Editar tomate
+    duration: Duración
+    created: Tomate creado, ahora es tiempo de una pausa.
+    short_break: Pomodoro terminado, tomate creado, es tiempo de una pausa.
+    long_break: >
+      Acabas de terminar tu %{ordinal_count} pomodoro, te mereces una pausa 
+      larga!
+    updated: El tomate ha sido actualizado correctamente.
+  user:
+    edit: Editar perfil
+    updated: El usuario ha sido actualizado correctamente.
+    desktop_notifications: Notificaciones de escritorio
+    desktop_notifications_description: >
+      Las notificaciones de escritorio te avisan cuando el temporizador ha 
+      terminado. Las puedes usar como notificación visual en caso de que no 
+      escuches el sonido del timbre.
+    notification_not_supported: >
+      Nota: Las notificaciones de escritorio no son soportadas por tu navegador.
+  session:
+    created: Cerrar sesión.
+    deleted: Sesión terminada.
+    unexpected_error: Error inesperado
+    failure: Error de autenticación. %{error_message}.
+  errors:
+    messages:
+      must_not_overlap: No puedes sobreponer los tomates, por favor espera %{limit}
