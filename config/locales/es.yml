@@ -4,11 +4,11 @@ es:
     Temporizador Pomodoro™. Mantente enfocado, sé productivo, registra todas tus
     actividades.
   description_html: >
-    Temporizador Pomodoro<sup>™</sup>. Mantente enfocado, sé productivo, 
+    Temporizador Pomodoro<sup>™</sup>. Mantente enfocado, sé productivo,
     registra todas tus actividades.
   footer:
     support_the_project_html: >
-      Apoya el proyecto en 
+      Apoya el proyecto en
       <a href="https://backerpass.com/tomatoes">backerpass.com/tomatoes</a>
     follow_updates_html: >
       Síguenos en <a href="https://twitter.com/tomatoesapp">@tomatoesapp</a>
@@ -16,7 +16,7 @@ es:
     disclaimer_html: >
       Esta aplicación no está afiliada, asociada, o respaldada por la Pomodoro
       Technique<sup>®</sup> o por Francesco Cirillo.<br/>la Pomodoro
-      Technique<sup>®</sup> y Pomodoro<sup>™</sup> son marcas registradas por 
+      Technique<sup>®</sup> y Pomodoro<sup>™</sup> son marcas registradas por
       Francesco Cirillo.
   show: Mostrar
   edit: Editar
@@ -76,10 +76,10 @@ es:
       Mantente <i>enfocado</i>, sé <i>productivo</i>, registra <i>todas</i> tus
       actividades.
     no_tomatoes_yet_html: >
-      Aún no has iniciado el temporizador.<br/>Haz clic en el botón "Iniciar" 
+      Aún no has iniciado el temporizador.<br/>Haz clic en el botón "Iniciar"
       para iniciar tu primer pomodoro.
     no_projects_yet_html: >
-      Aún no estás trabajando en ningún proyecto.<br/>crea un 
+      Aún no estás trabajando en ningún proyecto.<br/>crea un
       %{new_project_link} para empezar a recopilar estadísticas acumuladas.
     counters:
       day: Hoy
@@ -153,7 +153,7 @@ es:
     created: Tomate creado, ahora es tiempo de una pausa.
     short_break: Pomodoro terminado, tomate creado, es tiempo de una pausa.
     long_break: >
-      Acabas de terminar tu %{ordinal_count} pomodoro, te mereces una pausa 
+      Acabas de terminar tu %{ordinal_count} pomodoro, te mereces una pausa
       larga!
     updated: El tomate ha sido actualizado correctamente.
   user:
@@ -161,8 +161,8 @@ es:
     updated: El usuario ha sido actualizado correctamente.
     desktop_notifications: Notificaciones de escritorio
     desktop_notifications_description: >
-      Las notificaciones de escritorio te avisan cuando el temporizador ha 
-      terminado. Las puedes usar como notificación visual en caso de que no 
+      Las notificaciones de escritorio te avisan cuando el temporizador ha
+      terminado. Las puedes usar como notificación visual en caso de que no
       escuches el sonido del timbre.
     notification_not_supported: >
       Nota: Las notificaciones de escritorio no son soportadas por tu navegador.
