@@ -92,8 +92,8 @@ en:
     reset: Reiniciar
     or_press_space: o presiona la barra espaciadora
     or_press_esc: o presiona la tecla Esc
-    signin_to_start_tracking: Inicia sesión para iniciar el seguimiento de tu 
-    trabajo.
+    signin_to_start_tracking: >
+      Inicia sesión para iniciar el seguimiento de tu trabajo.
     script:
       break_is_over: La pausa ha terminado. Es hora de volver al trabajo.
       pomodoro_finished: Pomodoro terminado!
@@ -173,4 +173,5 @@ en:
     failure: Error de autenticación. %{error_message}.
   errors:
     messages:
-      must_not_overlap: No puedes sobreponer los tomates, por favor espera %{limit}
+      must_not_overlap: >
+        No puedes sobreponer los tomates, por favor espera %{limit}
