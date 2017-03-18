@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  include HttpAcceptLanguage::AutoLocale
+
   protect_from_forgery with: :exception
 
   helper_method :current_user
@@ -28,10 +30,6 @@ class ApplicationController < ActionController::Base
   def find_time_zone
     current_user.try(:time_zone) ||
       ActiveSupport::TimeZone[-cookies[:timezone].to_i.minutes]
-  end
-
-  def set_locale
-    I18n.locale = http_accept_language.compatible_language_from(I18n.available_locales)
   end
 
   def current_user
