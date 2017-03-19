@@ -8,9 +8,9 @@ class IncrementScore
   end
 
   def process
-    upsert_score(DailyScore, now_in_user_zone.end_of_day)
-    upsert_score(WeeklyScore, now_in_user_zone.end_of_week)
-    upsert_score(MonthlyScore, now_in_user_zone.end_of_month)
+    upsert_score(DailyScore, user_time_zone.now.end_of_day)
+    upsert_score(WeeklyScore, user_time_zone.now.end_of_week)
+    upsert_score(MonthlyScore, user_time_zone.now.end_of_month)
     upsert_score(OverallScore)
   end
 
@@ -35,8 +35,7 @@ class IncrementScore
     @user ||= User.find(user_id)
   end
 
-  def now_in_user_zone
-    zone = ActiveSupport::TimeZone[user.time_zone.to_s] || Time.zone
-    zone.now
+  def user_time_zone
+    ActiveSupport::TimeZone[user.time_zone.to_s] || Time.zone
   end
 end
