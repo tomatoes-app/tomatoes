@@ -171,7 +171,7 @@ GEM
     multi_xml (0.6.0)
     multipart-post (2.0.0)
     naught (1.1.0)
-    newrelic_rpm (3.18.1.330)
+    newrelic_rpm (4.0.0.332)
     nokogiri (1.7.0.1)
       mini_portile2 (~> 2.1.0)
     oauth (0.5.1)
@@ -208,7 +208,7 @@ GEM
       method_source (~> 0.8.1)
       slop (~> 3.4)
     public_suffix (2.0.5)
-    puma (3.8.1)
+    puma (3.8.2)
     rack (1.6.5)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -301,7 +301,7 @@ GEM
       simple_oauth (~> 0.3.1)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
-    uglifier (3.1.7)
+    uglifier (3.1.9)
       execjs (>= 0.3.0, < 3)
     unf (0.1.4)
       unf_ext
@@ -354,4 +354,4 @@ RUBY VERSION
    ruby 2.3.3p222
 
 BUNDLED WITH
-   1.14.3
+   1.14.6
