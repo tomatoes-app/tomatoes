@@ -1,7 +1,9 @@
 module Score
   extend ActiveSupport::Concern
+
   included do
     belongs_to :user, foreign_key: :uid
+
     field :s, as: :score, type: Integer
     field :cat, as: :created_at, type: DateTime
     field :uat, as: :updated_at, type: DateTime
