@@ -31,4 +31,49 @@ class IncrementScoreTest < ActiveSupport::TestCase
     assert_equal @user.daily_score, score
     assert_equal DailyScore.count, 1
   end
+
+  test 'sets daily score expiration date '\
+      'to the end of the current day in America/New_York '\
+      'for a user in America/New_York' do
+    @user.update_attributes(time_zone: new_york_tz.name)
+    @inc_operation.process
+    @user.reload
+    assert @user.daily_score.present?
+    assert_equal(
+      @user.daily_score.expires_at.change(usec: 0),
+      new_york_tz.now.end_of_day.in_time_zone('UTC').change(usec: 0)
+    )
+  end
+
+  test 'sets weekly score expiration date '\
+      'to the end of the current week in America/New_York '\
+      'for a user in America/New_York' do
+    @user.update_attributes(time_zone: new_york_tz.name)
+    @inc_operation.process
+    @user.reload
+    assert @user.weekly_score.present?
+    assert_equal(
+      @user.weekly_score.expires_at.change(usec: 0),
+      new_york_tz.now.end_of_week.in_time_zone('UTC').change(usec: 0)
+    )
+  end
+
+  test 'sets monthly score expiration date '\
+      'to the end of the current month in America/New_York '\
+      'for a user in America/New_York' do
+    @user.update_attributes(time_zone: new_york_tz.name)
+    @inc_operation.process
+    @user.reload
+    assert @user.monthly_score.present?
+    assert_equal(
+      @user.monthly_score.expires_at.change(usec: 0),
+      new_york_tz.now.end_of_month.in_time_zone('UTC').change(usec: 0)
+    )
+  end
+
+  private
+
+  def new_york_tz
+    ActiveSupport::TimeZone['America/New_York']
+  end
 end
