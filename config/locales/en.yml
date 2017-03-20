@@ -11,6 +11,8 @@ en:
       <a href="https://backerpass.com/tomatoes">backerpass.com/tomatoes</a>
     follow_updates_html: >
       Follow updates <a href="https://twitter.com/tomatoesapp">@tomatoesapp</a>
+    join_chat_html: >
+      Join <a href="https://webchat.freenode.net/?channels=#tomatoes">#tomatoes at freenode.net</a>
     add_to_chrome: Add to Chrome
     disclaimer_html: >
       This application is not affiliated, associated or endorsed by the Pomodoro
