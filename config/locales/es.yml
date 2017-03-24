@@ -24,7 +24,7 @@ es:
   edit: Editar
   destroy: Eliminar
   back: Regresar
-  are_you_sure: Estás seguro?
+  are_you_sure: ¿Estás seguro?
   sign_out: Cerrar sesión
   saving: Guardando...
   announcement: Anuncio
@@ -99,8 +99,8 @@ es:
     script:
       break_is_over: La pausa ha terminado. Es hora de volver al trabajo.
       pomodoro_finished: Pomodoro terminado!
-      sure: Seguro?
-      forget_to_start_new_tomato: Has olvidado iniciar tu próximo tomate?
+      sure: ¿Seguro?
+      forget_to_start_new_tomato: ¿Has olvidado iniciar tu próximo tomate?
       forget_to_save_tomato: Tu tomate ha terminado, no olvides guardarlo
   auth_providers:
     github: GitHub
@@ -169,7 +169,7 @@ es:
     notification_not_supported: >
       Nota: Las notificaciones de escritorio no son soportadas por tu navegador.
   session:
-    created: Cerrar sesión.
+    created: Conectado.
     deleted: Sesión terminada.
     unexpected_error: Error inesperado
     failure: Error de autenticación. %{error_message}.
