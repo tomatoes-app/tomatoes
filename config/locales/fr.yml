@@ -1,0 +1,175 @@
+fr:
+  app_name: Tomatoes
+  default_description: >
+    Minuteur Pomodoro™. Reste concentré, sois productif, suis tout.
+  description_html: >
+    Minuteur Pomodoro<sup>™</sup> Reste concentré, sois productif, suis tout.
+  footer:
+    support_the_project_html: >
+      Soutenir le projet à
+      <a href="https://backerpass.com/tomatoes">backerpass.com/tomatoes</a>
+    follow_updates_html: >
+      Suivre les mises à jour <a href="https://twitter.com/tomatoesapp">@tomatoesapp</a>
+    join_chat_html: >
+      Joindre <a href="https://webchat.freenode.net/?channels=#tomatoes">#tomatoes à freenode.net</a>
+    add_to_chrome: Ajouter à Chrome
+    disclaimer_html: >
+      Cette application n'est pas affiliée, associée ou endossée par la Pomodoro
+      Technique<sup>®</sup> ou par Francesco Cirillo.<br/>la Pomodoro
+      Technique<sup>®</sup> et Pomodoro<sup>™</sup> sont des marques déposées
+      par Francesco Cirillo.
+  show: Montrer
+  edit: Editer
+  destroy: Eliminer
+  back: Retour
+  are_you_sure: Es-tu sûr?
+  sign_out: Déconnexion
+  saving: Sauvegarde en cours ...
+  announcement: Annonce
+  helpers:
+    label:
+      tomato:
+        tag_list: Liste d'étiquettes (séparées par des virgules)
+      project:
+        name: Nom
+        tag_list: Liste d'étiquettes (séparées par des virgules)
+        money_budget: Budget d'argent
+        time_budget: Budget de temps
+      user:
+        color: Couleur de la barre de progression
+        ticking: Activer l'effet de tic-tac
+    help:
+      project:
+        tag_list: Une liste d'étiquettes liées au projet.
+        money_budget: Budget disponible en %{currency_unit}.
+        time_budget: Budget de temps estimé en heures.
+      user:
+        work_hours_per_day: Combien d'heures travailles-tu par jour?
+        average_hourly_rate: Combien factures-tu de l'heure?
+        volume_html: >
+          Volume par défaut de l'alarme. <em>0</em> équivaut à <em>muet</em>,
+          <em>3</em> c'est le
+          <em>volume maximum</em>.
+        color: Code hexadécimal pour la couleur.
+    submit:
+      create: Créer %{model}
+      update: Mettre à jour %{model}
+    precise_distance_of_time_in_words:
+      second:
+        one: 1 seconde
+        other: "%{count} secondes"
+      minute:
+        one: 1 minute
+        other: "%{count} minutes"
+      hour:
+        one: 1 heure
+        other: "%{count} heures"
+      day:
+        one: 1 jour
+        other: "%{count} jours"
+      year:
+        one: 1 an
+        other: "%{count} ans"
+  welcome:
+    title_html: >
+      Tomatoes est un minuteur basé sur la technique Pomodoro <sup>®</sup>.
+    sub_title_html: >
+      Reste <i>concentré</i>, sois <i>productif</i>, suis <i>tout</i>.
+    no_tomatoes_yet_html: >
+      Tu n'as pas encore demarré le minuteur.<br/>Clique sur le bouton
+      "Démarrer" pour démarrer ta première tomate.
+    no_projects_yet_html: >
+      Tu ne travailles pas encore sur un projet.<br/>Créer un %{new_project_link}
+      pour commencer la collecte de statistiques accumulées.
+    counters:
+      day: Aujourd'hui
+      week: Cette semaine
+      month: Ce mois-ci
+  timer:
+    ticking_sound: Son tic-tac
+    start: Démarrer
+    cancel: Annuler
+    reset: Réinitialiser
+    or_press_space: ou appuie sur la barre d'espace
+    or_press_esc: ou appuie sur la touche Esc
+    signin_to_start_tracking: Connecte-toi pour démarrer le suivi de ton travail.
+    script:
+      break_is_over: La pause est terminée. Il est temps de travailler.
+      pomodoro_finished: Pomodoro fini!
+      sure: Es-tu sûr?
+      forget_to_start_new_tomato: N'oublie pas de demarrer ta prochaine tomate!
+      forget_to_save_tomato: N'oublie pas d'enregistrer ta tomate!
+  auth_providers:
+    github: GitHub
+    twitter: Twitter
+  signin_with:
+    github: Se connecter avec GitHub
+    twitter: Se connecter avec Twitter
+  reconnect_with:
+    github: Reconnecter avec GitHub
+    twitter: Reconnecter avec Twitter
+  connect_with:
+    github: Connexion avec GitHub
+    twitter: Connexion avec Twitter
+  daily_leaderboard: Classement d'aujourd'hui
+  weekly_leaderboard: Classement de cette semaine
+  monthly_leaderboard: Classement de ce mois-ci
+  overall_leaderboard: Classement général
+  empty_leaderboard: Il n'y a pas de données dans ce classement
+  leaderboards: Classements
+  daily: Aujourd'hui
+  weekly: Cette semaine
+  monthly: Ce mois-ci
+  overall: Général
+  mongoid:
+    models:
+      project:
+        one: Projet
+        other: Projets
+      tomato:
+        one: Tomate
+        other: Tomates
+    attributes:
+      project:
+        name: Nom
+        tags: Étiquette
+        money_budget: Budget d'argent
+        time_budget: Budget de temps
+      tomato:
+        started_at: Commencé le
+        tags: Étiquettes
+  project:
+    new: Nouveau projet
+    edit: Modifier le projet
+    empty: Tu n'as pas encore de projet.
+    tracked_tomatoes: Tomates enregistrées
+    created: Le projet a été créé avec succès.
+    updated: Le projet a été mis à jour avec succès.
+  tomato:
+    new: Nouvelle tomate
+    edit: Modifier la tomate
+    duration: Durée
+    created: Tomate créée, maintenant il est temps de faire une pause.
+    short_break: Pomodoro terminé, tomate créée, il est temps de faire une pause.
+    long_break: >
+      Tu viens de terminer ton %{ordinal_count}e pomodoro, tu mérites une longue
+      pause!
+    updated: La tomate a été mise à jour avec succès.
+  user:
+    edit: Editer le profil
+    updated: L'utilisateur a été mis à jour avec succès.
+    desktop_notifications: Notifications de bureau
+    desktop_notifications_description: >
+      Les notifications de bureau permettent à Tomatoes de t'avertir de la fin
+      de ton minuteur pomodoro. tu peux les utiliser comme une notification
+      visuelle au cas où tu n'aurais pas entendu le son de la sonnerie.
+    notification_not_supported: >
+      Remarque: les notifications ne sont pas compatibles avec ton navigateur.
+  session:
+    created: Connecté.
+    deleted: Déconnecté.
+    unexpected_error: Erreur inattendue
+    failure: Erreur d'authentification. %{error_message}.
+  errors:
+    messages:
+      must_not_overlap: Cette tomate ne doit pas chevaucher les tomates déjà enregistrées, s'il te plaît attends %{limit}
