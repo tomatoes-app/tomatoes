@@ -1,0 +1,175 @@
+en:
+  app_name: Tomatoes
+  default_description: >
+    Pomodoro™ time tracker. Stay focused, be productive, track everything.
+  description_html: >
+    Pomodoro<sup>™</sup> time tracker. Stay focused, be productive, track
+    everything.
+  footer:
+    support_the_project_html: >
+      Support the project at
+      <a href="https://backerpass.com/tomatoes">backerpass.com/tomatoes</a>
+    follow_updates_html: >
+      Follow updates <a href="https://twitter.com/tomatoesapp">@tomatoesapp</a>
+    join_chat_html: >
+      Join <a href="https://webchat.freenode.net/?channels=#tomatoes">#tomatoes at freenode.net</a>
+    add_to_chrome: Add to Chrome
+    disclaimer_html: >
+      This application is not affiliated, associated or endorsed by the Pomodoro
+      Technique<sup>®</sup> or Francesco Cirillo.<br/>The Pomodoro
+      Technique<sup>®</sup> and Pomodoro<sup>™</sup> are registered trademarks
+      by Francesco Cirillo.
+  show: Show
+  edit: Edit
+  destroy: Destroy
+  back: Back
+  are_you_sure: Are you sure?
+  sign_out: Sign out
+  saving: Saving...
+  announcement: Announcement
+  helpers:
+    label:
+      tomato:
+        tag_list: Tag list (separated by commas)
+      project:
+        name: Name
+        tag_list: Tag list (separated by commas)
+        money_budget: Money budget
+        time_budget: Time budget
+      user:
+        color: Progress bar color
+        ticking: Enable timer ticking effect
+    help:
+      project:
+        tag_list: A list of project related tags.
+        money_budget: Available budget in %{currency_unit}.
+        time_budget: Estimated time budget in hours.
+      user:
+        work_hours_per_day: How many hours do you work per day?
+        average_hourly_rate: How much do you charge per hour?
+        volume_html: >
+          Default timer volume. <em>0</em> is <em>mute</em>, <em>3</em> is
+          <em>max volume</em>.
+        color: A hexadecimal color code.
+    submit:
+      create: Create %{model}
+      update: Update %{model}
+    precise_distance_of_time_in_words:
+      second:
+        one: 1 second
+        other: "%{count} seconds"
+      minute:
+        one: 1 minute
+        other: "%{count} minutes"
+      hour:
+        one: 1 hour
+        other: "%{count} hours"
+      day:
+        one: 1 day
+        other: "%{count} days"
+      year:
+        one: 1 year
+        other: "%{count} years"
+  welcome:
+    title_html: >
+      Tomatoes is a Pomodoro Technique<sup>®</sup> driven time tracker.
+    sub_title_html: >
+      Stay <i>focused</i>, be <i>productive</i>, track <i>everything</i>.
+    no_tomatoes_yet_html: >
+      You didn't track anything yet.<br/>Click on the "Start" button to start
+      your first pomodoro.
+    no_projects_yet_html: >
+      You didn't work on any project yet.<br/>Create a %{new_project_link} to
+      start collecting aggregate statistics.
+    counters:
+      day: Today
+      week: This week
+      month: This month
+  timer:
+    ticking_sound: Ticking sound
+    start: Start
+    cancel: Cancel
+    reset: Reset
+    or_press_space: or press space bar
+    or_press_esc: or press esc
+    signin_to_start_tracking: Sign in to start tracking your work.
+    script:
+      break_is_over: Break is over. It's time to work.
+      pomodoro_finished: Pomodoro finished!
+      sure: Sure?
+      forget_to_start_new_tomato: Did you forget to start your next tomato?
+      forget_to_save_tomato: Did you forget to save your current tomato?
+  auth_providers:
+    github: GitHub
+    twitter: Twitter
+  signin_with:
+    github: Sign in with GitHub
+    twitter: Sign in with Twitter
+  reconnect_with:
+    github: Reconnect with GitHub
+    twitter: Reconnect with Twitter
+  connect_with:
+    github: Connect with GitHub
+    twitter: Connect with Twitter
+  daily_leaderboard: Daily leaderboard
+  weekly_leaderboard: Weekly leaderboard
+  monthly_leaderboard: Monthly leaderboard
+  overall_leaderboard: Overall leaderboard
+  empty_leaderboard: No scores in this leaderboard
+  leaderboards: Leaderboards
+  daily: Daily
+  weekly: Weekly
+  monthly: Monthly
+  overall: Overall
+  mongoid:
+    models:
+      project:
+        one: Project
+        other: Projects
+      tomato:
+        one: Tomato
+        other: Tomatoes
+    attributes:
+      project:
+        name: Name
+        tags: Tags
+        money_budget: Money budget
+        time_budget: Time budget
+      tomato:
+        started_at: Started at
+        tags: Tags
+  project:
+    new: New project
+    edit: Edit project
+    empty: You don't have any project yet.
+    tracked_tomatoes: Tracked tomatoes
+    created: Project was successfully created.
+    updated: Project was successfully updated.
+  tomato:
+    new: New tomato
+    edit: Edit tomato
+    duration: Duration
+    created: Tomato created, now it's time for a break.
+    short_break: Pomodoro finished, tomato created, it's time for a break.
+    long_break: >
+      You just finished your %{ordinal_count} pomodoro, you deserve a long
+      break!
+    updated: Tomato was successfully updated.
+  user:
+    edit: Edit profile
+    updated: User was successfully updated.
+    desktop_notifications: Desktop notifications
+    desktop_notifications_description: >
+      Desktop notifications allow Tomatoes to notify you when your current
+      pomodoro timer has ended. You can use them as a visual notification in
+      case you miss the ringing sound.
+    notification_not_supported: >
+      Note: notifications are not supported by your browser.
+  session:
+    created: Signed in.
+    deleted: Signed out.
+    unexpected_error: Unexpected error
+    failure: Authentication error. %{error_message}.
+  errors:
+    messages:
+      must_not_overlap: Must not overlap saved tomatoes, please wait %{limit}
