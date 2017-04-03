@@ -1,44 +1,43 @@
-en:
+pt-BR:
   app_name: Tomatoes
   default_description: >
-    Pomodoro™ time tracker. Stay focused, be productive, track everything.
+    Pomodoro™ time tracker. Fique focado, seja produtivo, marque tudo.
   description_html: >
-    Pomodoro<sup>™</sup> time tracker. Stay focused, be productive, track
-    everything.
+    Pomodoro<sup>™</sup> time tracker. Fique focado, seja produtivo, marque tudo.
   footer:
     support_the_project_html: >
-      Support the project at
+      Ajude-nos em
       <a href="https://backerpass.com/tomatoes">backerpass.com/tomatoes</a>
     follow_updates_html: >
-      Follow updates <a href="https://twitter.com/tomatoesapp">@tomatoesapp</a>
+      Fique atualizado <a href="https://twitter.com/tomatoesapp">@tomatoesapp</a>
     join_chat_html: >
-      Join <a href="https://webchat.freenode.net/?channels=#tomatoes">#tomatoes at freenode.net</a>
+      Participe do nosso chat <a href="https://webchat.freenode.net/?channels=#tomatoes">#tomatoes em freenode.net</a>
     add_to_chrome: Add to Chrome
     disclaimer_html: >
-      This application is not affiliated, associated or endorsed by the Pomodoro
-      Technique<sup>®</sup> or Francesco Cirillo.<br/>The Pomodoro
-      Technique<sup>®</sup> and Pomodoro<sup>™</sup> are registered trademarks
-      by Francesco Cirillo.
-  show: Show
-  edit: Edit
-  destroy: Destroy
-  back: Back
-  are_you_sure: Are you sure?
-  sign_out: Sign out
-  saving: Saving...
-  announcement: Announcement
+      Essa aplicação não é afiliada, associada ou financiada por Pomodoro
+      Technique<sup>®</sup> ou Francesco Cirillo.<br/>Pomodoro
+      Technique<sup>®</sup> e Pomodoro<sup>™</sup> são marcas registradas
+      por Francesco Cirillo.
+  show: Exibir
+  edit: Editar
+  destroy: Destruir
+  back: Voltar
+  are_you_sure: Tem certeza?
+  sign_out: Sair
+  saving: Salvando...
+  announcement: Aviso
   helpers:
     label:
       tomato:
-        tag_list: Tag list (separated by commas)
+        tag_list: Lista de tags (separadas por vírgula)
       project:
-        name: Name
-        tag_list: Tag list (separated by commas)
-        money_budget: Money budget
-        time_budget: Time budget
+        name: Nome
+        tag_list: Lista de tags (separadas por vírgula)
+        money_budget: Valor do orçamento
+        time_budget: Tempo do orçamento
       user:
-        color: Progress bar color
-        ticking: Enable timer ticking effect
+        color: Cor da barra de progresso
+        ticking: Habilitar som de tic-tac
     help:
       project:
         tag_list: A list of project related tags.
