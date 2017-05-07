@@ -85,6 +85,8 @@ en:
       day: Today
       week: This week
       month: This month
+    today_s_tomatoes: Today's tomatoes
+    today_s_projects: Today's projects
   timer:
     ticking_sound: Ticking sound
     start: Start

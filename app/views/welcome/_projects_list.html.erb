@@ -1,6 +1,6 @@
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h3 class="panel-title"><%= link_to "Today's projects", projects_path %></h3>
+    <h3 class="panel-title"><%= link_to t('welcome.today_s_projects'), projects_path %></h3>
   </div>
   <% if @projects.empty? %>
     <div class="panel-body">

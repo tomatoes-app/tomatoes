@@ -87,6 +87,8 @@ es:
       day: Hoy
       week: Esta semana
       month: Este mes
+    today_s_tomatoes: Tomates de Hoy
+    today_s_projects: Proyectos de Hoy
   timer:
     ticking_sound: Sonido tic tac
     start: Iniciar
