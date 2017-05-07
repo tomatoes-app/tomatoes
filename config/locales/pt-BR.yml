@@ -1,0 +1,172 @@
+pt-BR:
+  app_name: Tomatoes
+  default_description: >
+    Pomodoro™ time tracker. Fique focado, seja produtivo, marque tudo.
+  description_html: >
+    Pomodoro<sup>™</sup> time tracker. Fique focado, seja produtivo, marque tudo.
+  footer:
+    support_the_project_html: >
+      Ajude-nos em
+      <a href="https://backerpass.com/tomatoes">backerpass.com/tomatoes</a>
+    follow_updates_html: >
+      Fique atualizado <a href="https://twitter.com/tomatoesapp">@tomatoesapp</a>
+    join_chat_html: >
+      Participe do nosso chat <a href="https://webchat.freenode.net/?channels=#tomatoes">#tomatoes em freenode.net</a>
+    add_to_chrome: Add to Chrome
+    disclaimer_html: >
+      Essa aplicação não é afiliada, associada ou financiada por Pomodoro
+      Technique<sup>®</sup> ou Francesco Cirillo.<br/>Pomodoro
+      Technique<sup>®</sup> e Pomodoro<sup>™</sup> são marcas registradas
+      por Francesco Cirillo.
+  show: Exibir
+  edit: Editar
+  destroy: Destruir
+  back: Voltar
+  are_you_sure: Tem certeza?
+  sign_out: Sair
+  saving: Salvando...
+  announcement: Aviso
+  helpers:
+    label:
+      tomato:
+        tag_list: Lista de tags (separadas por vírgula)
+      project:
+        name: Nome
+        tag_list: Lista de tags (separadas por vírgula)
+        money_budget: Valor do orçamento
+        time_budget: Tempo do orçamento
+      user:
+        color: Cor da barra de progresso
+        ticking: Habilitar som de tic-tac
+    help:
+      project:
+        tag_list: Uma lista de tags relacionadas a projetos.
+        money_budget: Orçamento disponível em %{currency_unit}.
+        time_budget: Orçamento de tempo estimado em horas.
+      user:
+        work_hours_per_day: Quantas horas você trabalha por dia?
+        average_hourly_rate: Quanto você cobra por hora?
+        volume_html: >
+          Volume padrão do temporizador. <em>0</em> significa <em>mudo</em>, <em>3</em> significa
+          <em>volume máximo</em>.
+        color: Um código de cor hexadecimal.
+    submit:
+      create: Criar %{model}
+      update: Atualizar %{model}
+    precise_distance_of_time_in_words:
+      second:
+        one: 1 segundo
+        other: "%{count} segunods"
+      minute:
+        one: 1 minuto
+        other: "%{count} minutos"
+      hour:
+        one: 1 hora
+        other: "%{count} horas"
+      day:
+        one: 1 dia
+        other: "%{count} dias"
+      year:
+        one: 1 ano
+        other: "%{count} anos"
+  welcome:
+    title_html: >
+      <i>Tomatoes</i> é um marcador de tempo com suporte ao <i>Pomodoro Technique</i><sup>®</sup>.
+    sub_title_html: >
+      Mantenha-se <i>focado</i>, seja <i>produtivo</i>, registre <i>tudo</i>.
+    no_tomatoes_yet_html: >
+      Você ainda não registrou nada.<br/>Clique em "Começar" para iniciar o seu primeiro pomodoro.
+    no_projects_yet_html: >
+      Você ainda não trabalhou em nenhum projeto.<br/>Crie um %{new_project_link} para começar a 
+      coletar estatísticas agregadas.
+    counters:
+      day: Hoje
+      week: Esta semana
+      month: Este mês
+  timer:
+    ticking_sound: Som de tic-tac
+    start: Começar
+    cancel: Cancelar
+    reset: Resetar
+    or_press_space: ou pressione barra de espaço
+    or_press_esc: ou pressione <kbd>esc</kbd>
+    signin_to_start_tracking: Logue-se para começar a marcar o seu tempo.
+    script:
+      break_is_over: Fim do intervalo. Hora de trabalhar.
+      pomodoro_finished: Pomodoro terminado!
+      sure: Certeza?
+      forget_to_start_new_tomato: Esqueceu-se de iniciar o seu próximo tomate?
+      forget_to_save_tomato: Esqueceu-se de salvar o seu tomate atual?
+  auth_providers:
+    github: GitHub
+    twitter: Twitter
+  signin_with:
+    github: Identificar-se com GitHub
+    twitter: Identificar-se com Twitter
+  reconnect_with:
+    github: Reconectar-se com GitHub
+    twitter: Reconectar-se com Twitter
+  connect_with:
+    github: Conectar-se com GitHub
+    twitter: Conectar-se com Twitter
+  daily_leaderboard: Placar diário
+  weekly_leaderboard: Placar semanal
+  monthly_leaderboard: Placar mensal
+  overall_leaderboard: Placar de todo o tempo
+  empty_leaderboard: Placar vazio
+  leaderboards: Classificações
+  daily: Diário
+  weekly: Semanal
+  monthly: Mensal
+  overall: Geral
+  mongoid:
+    models:
+      project:
+        one: Projeto
+        other: Projetos
+      tomato:
+        one: Tomate
+        other: Tomates
+    attributes:
+      project:
+        name: Nome
+        tags: Tags
+        money_budget: Orçamento financeiro
+        time_budget: Orçamento de tempo
+      tomato:
+        started_at: Começar em
+        tags: Tags
+  project:
+    new: Novo projeto
+    edit: Editar projeto
+    empty: Você não possui projetos ainda.
+    tracked_tomatoes: Tomates registrados
+    created: Projeto criado com sucesso.
+    updated: Projeto atualizado com sucesso.
+  tomato:
+    new: Novo tomate
+    edit: Editar tomate
+    duration: Duração
+    created: Tomate criado, agora é hora para a sua pausa.
+    short_break: Pomodoro terminado, tomate criado, é hora de uma pausa.
+    long_break: >
+      Você concluíu o seu %{ordinal_count} pomodoro, você merece uma pausa maior!
+    updated: Tomate atualizado com sucesso.
+  user:
+    edit: Editar perfil
+    updated: Usuário atualizado.
+    desktop_notifications: Notificações Desktop
+    desktop_notifications_description: >
+      Notificações Desktop permitem a Tomatoes notificá-lo quando o seu
+      tempo se esgotar. Você pode usá-los como notificações visuais em caso
+      de você não perceber o aviso sonoro.
+    notification_not_supported: >
+      Note: O seu navegador não suporta notificações.
+  session:
+    created: Logado.
+    deleted: Sessão encerrada.
+    unexpected_error: Erro inesperado.
+    failure: Falha de autenticação. %{error_message}.
+  errors:
+    messages:
+      must_not_overlap: Não deve-se sobreescrever tomates, por favor aguarde %{limit}
