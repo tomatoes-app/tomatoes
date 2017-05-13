@@ -29,6 +29,7 @@ soundManager.setup({
 
 function startCallback(event) {
   if('idle' == TT.getStatus()) {
+    tomatoDuration = parseInt(document.getElementById("duration_time_input").value)/60;
     TT.start(tomatoDuration, currentUser ? TT.stateNewForm : TT.stateSignIn);
     event.preventDefault();
   }
