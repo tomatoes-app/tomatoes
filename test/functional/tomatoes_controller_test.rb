@@ -9,7 +9,7 @@ class TomatoesControllerTest < ActionController::TestCase
       name: 'name',
       email: 'email@example.com'
     )
-    @tomato = @user.tomatoes.create(tag_list: 'one, two', created_at: Time.zone.now - 1.day)
+    @tomato = @user.tomatoes.create(tag_list: 'one, two', created_at: Time.zone.now - 1.day, duration: 25)
 
     @controller.stubs(:current_user).returns(@user)
   end
