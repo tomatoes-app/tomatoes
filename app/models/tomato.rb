@@ -11,7 +11,7 @@ class Tomato
 
   index(created_at: 1)
 
-  field :duration, type: String
+  field :duration, type: Integer
 
   validate :must_not_overlap, on: :create
 
