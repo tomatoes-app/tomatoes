@@ -21,7 +21,7 @@ class Tomato
   DURATION       = Rails.env.development? ? 25 : 25 * 60 # pomodoro default duration in seconds
   DURATION_MIN   = 25 # pomodoro default duration in minutes
   DURATION_MAX   = 60 # pomodoro default duration in minutes
-  BREAK_DURATION = Rails.env.development? ? 5  : 5 * 60  # pomodoro default break duration in seconds
+  BREAK_DURATION = Rails.env.development? ? 5 : 5 * 60 # pomodoro default break duration in seconds
 
   include ActionView::Helpers::TextHelper
   include ApplicationHelper
