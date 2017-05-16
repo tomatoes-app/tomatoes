@@ -5,3 +5,14 @@
 tr.highlight {
   background-color: $state-success-bg;
 }
+.choose_duration {
+  width: 25rem;
+  margin: 0 auto;
+}
+.choose_duration__input {
+  height: 7rem;
+}
+.choose_duration__output {
+  display: inline-block;
+}
+
