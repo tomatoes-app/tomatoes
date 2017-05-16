@@ -71,12 +71,12 @@
            id="duration_time_input"
            class="form-control choose_duration__input"
            type="range"
-           min="5"
-           max="60"
-           value="5"
+           min="<%= Tomato::DURATION_MIN %>"
+           max="<%= Tomato::DURATION_MAX %>"
+           value="<%= Tomato::DURATION_MIN %>"
            oninput="duration_time_output.value = duration_time_input.value">
     <output class="choose_duration__output" name="duration_time_output" id="duration_time_output">
-      5
+      <%= Tomato::DURATION_MIN %>
     </output>
     <span><%= t('minutes') %></span>
   </div>
