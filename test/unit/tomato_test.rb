@@ -10,13 +10,13 @@ class TomatoTest < ActiveSupport::TestCase
 
   test 'must_not_overlap B' do
     user = User.create!
-    user.tomatoes.create!(created_at: Time.zone.now - Tomato::DURATION.seconds + 5.seconds)
+    user.tomatoes.create!(created_at: Time.zone.now - Tomato::DURATION_MIN.minutes + 5.seconds)
     assert !user.tomatoes.build.valid?
   end
 
   test 'must_not_overlap C' do
     user = User.create!
-    user.tomatoes.create!(created_at: Time.zone.now - Tomato::DURATION.seconds - 1.second)
+    user.tomatoes.create!(created_at: Time.zone.now - Tomato::DURATION_MIN.minutes - 1.second)
 
     assert user.tomatoes.build.valid?
   end
