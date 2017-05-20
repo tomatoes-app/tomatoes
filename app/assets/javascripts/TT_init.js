@@ -31,7 +31,6 @@ function startCallback(event) {
   if('idle' == TT.getStatus()) {
     chosenDuration = document.getElementById("duration_time_input").value;
     tomatoDuration = parseInt(chosenDuration);
-    if(DEBUG) tomatoDuration /= 60;
     TT.start(tomatoDuration, currentUser ? TT.stateNewForm : TT.stateSignIn);
     event.preventDefault();
   }
