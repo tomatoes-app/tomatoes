@@ -52,6 +52,8 @@ Rails.application.routes.draw do
   delete '/signout' => 'sessions#destroy', as: :signout
   get '/auth/failure' => 'sessions#failure'
 
+  get '/colors' => 'welcome#colors'
+
   # You can have the root of your site routed with "root"
   root to: 'welcome#index'
 

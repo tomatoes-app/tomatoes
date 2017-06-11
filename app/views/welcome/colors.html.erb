@@ -7,4 +7,16 @@
       </svg>
     </div>
   <% end %>
+
+  <div style="overflow: hidden; clear: both"></div>
+
+  <% @fluo_colors.each do |colors| %>
+    <%= render partial: 'welcome/colors/tomatoes_fluo', locals: colors %>
+  <% end %>
+
+  <div style="overflow: hidden; clear: both"></div>
+
+  <% @tshirt_colors.each do |colors| %>
+    <%= render partial: 'welcome/colors/tomatoes_one_color', locals: colors %>
+  <% end %>
 </div>
