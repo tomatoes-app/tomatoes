@@ -169,16 +169,15 @@ var TT = function() {
     stateStart(timer);
 
     (function tick() {
-      var currentStatus = getStatus();
-      if('pause_on' == currentStatus) {
+      if('pause_on' == getStatus()) {
         pausedDate = new Date();
         status = 'paused';
       }
-      else if('pause_off' == currentStatus) {
+      else if('pause_off' == getStatus()) {
         startDate = new Date() - (pausedDate - startDate) + 1000;
         status = 'running';
       }
-      if('running' == currentStatus) { 
+      if('running' == getStatus()) { 
         var msPassed = new Date() - startDate;
         timer = Math.round(duration - msPassed/1000);
 
@@ -190,7 +189,7 @@ var TT = function() {
       }
       else {
         timerInterval = setTimeout(tick, 1000);
-        if($('#ticking_sound_switch').is(':checked') && 'running' == currentStatus) {
+        if($('#ticking_sound_switch').is(':checked') && 'running' == getStatus()) {
           soundManager.setVolume(settings.timerTickingSoundId, volume).play();
         }
       }
