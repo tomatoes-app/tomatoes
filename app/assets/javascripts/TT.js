@@ -207,7 +207,7 @@ var TT = function() {
     }
   }
 
-  var pause = function() {
+  var togglePause = function() {
     log("pause tomato");
     status = status == 'paused' ? 'pause_off' : 'pause_on';
   }
@@ -238,7 +238,7 @@ var TT = function() {
   return {
     start: start,
     reset: reset,
-    pause: pause,
+    togglePause: togglePause,
     stateNewForm: stateNewForm,
     stateSignIn: stateSignIn,
     stateStop: stateStop,

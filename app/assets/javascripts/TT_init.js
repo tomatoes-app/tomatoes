@@ -41,9 +41,9 @@ function resetCallback(event) {
   }
 }
 
-function pauseCallback(event) {
+function togglePauseCallback(event) {
   if('running' == TT.getStatus() || 'paused' == TT.getStatus()) {
-    TT.pause();
+    TT.togglePause();
     event.preventDefault();
   }
 }
@@ -84,7 +84,7 @@ $(document).ready(function() {
     // ESC key
     event.which == 27 && resetCallback(event);
     // PAUSE key
-    (event.which == 80 || event.which == 19) && pauseCallback(event);
+    (event.which == 80 || event.which == 19) && togglePauseCallback(event);
   });
 
   if((typeof window.chrome == 'undefined') || (window.chrome && window.chrome.app && window.chrome.app.isInstalled)) {
