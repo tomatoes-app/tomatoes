@@ -84,7 +84,7 @@ $(document).ready(function() {
     // ESC key
     event.which == 27 && resetCallback(event);
     // PAUSE key
-    event.which == 19 && pauseCallback(event);
+    (event.which == 80 || event.which == 19) && pauseCallback(event);
   });
 
   if((typeof window.chrome == 'undefined') || (window.chrome && window.chrome.app && window.chrome.app.isInstalled)) {
