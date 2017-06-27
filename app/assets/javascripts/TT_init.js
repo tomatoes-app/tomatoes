@@ -41,6 +41,12 @@ function resetCallback(event) {
   }
 }
 
+function togglePauseCallback(event) {
+  if('running' == TT.getStatus() || 'paused' == TT.getStatus()) {
+    TT.togglePause();
+    event.preventDefault();
+  }
+}
 function resetSigninCallback(event) {
   TT.resetProgressBar();
   $("#new_tomato_form").unbind("keypress");
@@ -77,6 +83,8 @@ $(document).ready(function() {
     event.which == 32 && startCallback(event);
     // ESC key
     event.which == 27 && resetCallback(event);
+    // PAUSE key
+    (event.which == 80 || event.which == 19) && togglePauseCallback(event);
   });
 
   if((typeof window.chrome == 'undefined') || (window.chrome && window.chrome.app && window.chrome.app.isInstalled)) {

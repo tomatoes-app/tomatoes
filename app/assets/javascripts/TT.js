@@ -125,7 +125,7 @@ var TT = function() {
     enable([settings.startButtonId])
     unblur([settings.startButtonId, settings.startHintId])
   }
-
+  
   var stateNewForm = function() {
     log("stateNewForm");
     $(document).trigger('new_tomato_form');
@@ -164,22 +164,32 @@ var TT = function() {
 
     var duration = Math.round(mins*60);
     var startDate = new Date();
+    var pausedDate = new Date();
     var timer = duration;
     stateStart(timer);
 
     (function tick() {
-      var msPassed = new Date() - startDate;
-      timer = Math.round(duration - msPassed/1000);
+      if('pause_on' == getStatus()) {
+        pausedDate = new Date();
+        status = 'paused';
+      }
+      else if('pause_off' == getStatus()) {
+        startDate = new Date() - (pausedDate - startDate) + 1000;
+        status = 'running';
+      }
+      if('running' == getStatus()) { 
+        var msPassed = new Date() - startDate;
+        timer = Math.round(duration - msPassed/1000);
 
-      stateCounting(timer, duration);
-
+        stateCounting(timer, duration);
+      }
       if(timer <= 0) {
         callback();
         soundManager.setVolume(settings.timerEndSoundId, volume).play();
       }
       else {
         timerInterval = setTimeout(tick, 1000);
-        if($('#ticking_sound_switch').is(':checked')) {
+        if($('#ticking_sound_switch').is(':checked') && 'running' == getStatus()) {
           soundManager.setVolume(settings.timerTickingSoundId, volume).play();
         }
       }
@@ -196,6 +206,11 @@ var TT = function() {
     }
   }
 
+  var togglePause = function() {
+    log("pause tomato");
+    status = status == 'paused' ? 'pause_off' : 'pause_on';
+  }
+  
   var log = function(object) {
     if(DEBUG) {
       console.log(object);
@@ -218,10 +233,11 @@ var TT = function() {
     $("#" + settings.progressBarId).css('width', 0);
     hide([settings.overlayId]);
   }
-
+  
   return {
     start: start,
     reset: reset,
+    togglePause: togglePause,
     stateNewForm: stateNewForm,
     stateSignIn: stateSignIn,
     stateStop: stateStop,
