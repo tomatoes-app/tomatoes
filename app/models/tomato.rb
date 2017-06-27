@@ -17,7 +17,11 @@ class Tomato
   after_destroy :decrement_score
 
   DURATION       = Rails.env.development? ? 25 : 25 * 60 # pomodoro default duration in seconds
-  BREAK_DURATION = Rails.env.development? ? 5  : 5 * 60  # pomodoro default break duration in seconds
+  DURATION_MIN   = 25 # pomodoro default duration in minutes
+  DURATION_MAX   = 60 # pomodoro default duration in minutes
+  BREAK_DURATION = Rails.env.development? ? 5 : 5 * 60 # pomodoro default break duration in seconds
+
+  field :duration, type: Integer, default: DURATION_MIN
 
   include ActionView::Helpers::TextHelper
   include ApplicationHelper
@@ -64,9 +68,9 @@ class Tomato
   private
 
   def must_not_overlap
-    last_tomato = user.tomatoes.after(Time.zone.now - DURATION.seconds).order_by([[:created_at, :desc]]).first
+    last_tomato = user.tomatoes.after(Time.zone.now - duration.minutes).order_by([[:created_at, :desc]]).first
     return unless last_tomato
-    limit = (DURATION.seconds - (Time.zone.now - last_tomato.created_at)).seconds
+    limit = (duration.minutes - (Time.zone.now - last_tomato.created_at)).seconds
     errors.add(:base, I18n.t('errors.messages.must_not_overlap', limit: humanize(limit)))
   end
 

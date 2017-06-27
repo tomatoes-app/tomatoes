@@ -12,7 +12,7 @@ module LeaderboardControllerTest
         name: 'name',
         email: 'email@example.com'
       )
-      @tomato = @user.tomatoes.create!(tag_list: 'one, two')
+      @tomato = @user.tomatoes.create!(tag_list: 'one, two', duration: 25)
     end
 
     test 'should get show' do

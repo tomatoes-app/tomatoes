@@ -142,6 +142,7 @@ var TT = function() {
     show([settings.formId]);
 
     $("#" + settings.formId + " input[type=text]").focus();
+    $("#tomato_duration").val(tomatoDuration);
   }
 
   var stateSignIn = function() {

@@ -65,4 +65,19 @@
 <div id="start_container" class="center-block">
   <%= link_to t('timer.start'), '#', id: 'start', class: 'btn btn-default btn-lg' %>
   <p id="start_hint" class="help-block"><%= t('timer.or_press_space') %></p>
+  <div class="form-group choose_duration">
+    <label for="duration_time_input"><%= t('tomato.duration') %></label>
+    <input name="duration_time"
+           id="duration_time_input"
+           class="form-control choose_duration__input"
+           type="range"
+           min="<%= Tomato::DURATION_MIN %>"
+           max="<%= Tomato::DURATION_MAX %>"
+           value="<%= Tomato::DURATION_MIN %>"
+           oninput="duration_time_output.value = duration_time_input.value">
+    <output class="choose_duration__output" name="duration_time_output" id="duration_time_output">
+      <%= Tomato::DURATION_MIN %>
+    </output>
+    <span><%= t('minutes') %></span>
+  </div>
 </div>
