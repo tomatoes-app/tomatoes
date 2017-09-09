@@ -1,17 +1,7 @@
 <% remote = false if local_assigns[:remote].nil? %>
 
 <%= form_for(@tomato, remote: remote) do |f| %>
-  <% if @tomato.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@tomato.errors.count, "error") %> prohibited this tomato from being saved:</h2>
-
-      <ul>
-      <% @tomato.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= render 'shared/form_errors', model: @tomato %>
 
   <div class="form-group">
     <%= f.label :tag_list %>
