@@ -1,11 +1,8 @@
 <% remote = false if local_assigns[:remote].nil? %>
 
-<%= form_for(@tomato, remote: remote) do |f| %>
+<%= bootstrap_form_for(@tomato, remote: remote) do |f| %>
   <%= render 'shared/form_errors', model: @tomato %>
 
-  <div class="form-group">
-    <%= f.label :tag_list %>
-    <%= f.text_field :tag_list, class: 'form-control input-lg', placeholder: 'cook, dessert' %>
-  </div>
-  <%= f.submit class: 'btn btn-default', :'data-disable-with' => t('saving') %>
+  <%= f.text_field :tag_list, class: 'form-control input-lg', placeholder: 'cook, dessert' %>
+  <%= f.submit :'data-disable-with' => t('saving') %>
 <% end %>

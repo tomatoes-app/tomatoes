@@ -1,55 +1,21 @@
-<%= form_for(@user) do |f| %>
+<%= bootstrap_form_for(@user) do |f| %>
   <%= render 'shared/form_errors', model: @user %>
 
-  <div class="form-group">
-    <%= f.label :name %>
-    <%= f.text_field :name, class: 'form-control', placeholder: 'Francesco Cirillo' %>
-  </div>
-  <div class="form-group">
-    <%= f.label :email %>
-    <%= f.text_field :email, class: 'form-control', placeholder: 'fcirillo@tomato.es' %>
-  </div>
+  <%= f.text_field :name, placeholder: 'Francesco Cirillo' %>
+  <%= f.text_field :email, placeholder: 'fcirillo@tomato.es' %>
   <div class="form-group">
     <%= f.label :time_zone %>
     <%= time_zone_select 'user', 'time_zone', nil, { include_blank: true }, { class: 'form-control' } %>
   </div>
-  <div class="form-group">
-    <%= f.label :currency %>
-    <%= f.select :currency, options_for_select(User::CURRENCIES.invert, @user.currency), {}, { class: 'form-control' } %>
-  </div>
-  <div class="form-group">
-    <%= f.label :work_hours_per_day %>
-    <%= f.number_field :work_hours_per_day, class: 'form-control', placeholder: '8' %>
-    <p class="help-block"><%= t('helpers.help.user.work_hours_per_day') %></p>
-  </div>
-  <div class="form-group">
-    <%= f.label :average_hourly_rate %>
-    <div class="input-group">
-      <div class="input-group-addon"><%= current_user.currency_unit %></div>
-      <%= f.number_field :average_hourly_rate, class: 'form-control', placeholder: '35.5', step: '0.1' %>
-    </div>
-    <p class="help-block"><%= t('helpers.help.user.average_hourly_rate') %></p>
-  </div>
-  <div class="form-group">
-    <%= f.label :volume %>
-    <%= f.range_field :volume, min: 0, max: 3 %>
-    <p class="help-block"><%= t('helpers.help.user.volume_html') %></p>
-  </div>
-  <div class="checkbox">
-    <%= f.label :ticking do %>
-      <%= f.check_box :ticking %>
-      <%= t('helpers.label.user.ticking') %>
-    <% end %>
-  </div>
-
+  <%= f.select :currency, options_for_select(User::CURRENCIES.invert, @user.currency), {}, { class: 'form-control' } %>
+  <%= f.number_field :work_hours_per_day, placeholder: '8', help: t('helpers.help.user.work_hours_per_day') %></p>
+  <%= f.label :average_hourly_rate %>
+  <%= f.number_field :average_hourly_rate, placeholder: '35.5', step: '0.1', prepend: current_user.currency_unit, help: t('helpers.help.user.average_hourly_rate') %></p>
+  <%= f.range_field :volume, min: 0, max: 3, help: t('helpers.help.user.volume_html') %></p>
+  <%= f.check_box :ticking, label:  t('helpers.label.user.ticking') %>
   <div class="form-group row">
-    <div class="col-sm-6">
-      <%= f.label :color %>
-      <%= f.text_field :color, class: 'form-control', placeholder: '#ccff00' %>
-      <p class="help-block"><%= t('helpers.help.user.color') %></p>
-    </div>
-    <div id="colorpicker" class="col-sm-4"></div>
+    <%= f.text_field :color, placeholder: '#ccff00', help: t('helpers.help.user.color') %>
+    <div id="colorpicker" class="col-sm-4"></div> 
   </div>
-
   <%= f.submit class: 'btn btn-default' %>
 <% end %>
