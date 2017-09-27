@@ -1,4 +1,4 @@
-<%= bootstrap_form_for @project, class: 'form-horizontal' do |f| %>
+<%= bootstrap_form_for @project, layout: :horizontal do |f| %>
   <%= render 'shared/form_errors', model: @project %>
 
   <%= f.text_field :name, placeholder: 'Butter cookies' %>
