@@ -4,5 +4,6 @@
   <%= render 'shared/form_errors', model: @tomato %>
 
   <%= f.text_field :tag_list, class: 'form-control input-lg', placeholder: 'cook, dessert' %>
-  <%= f.submit :'data-disable-with' => t('saving') %>
+
+  <%= submit_tag nil, class: 'btn btn-default', :'data-disable-with' => t('saving') %>
 <% end %>
