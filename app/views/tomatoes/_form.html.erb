@@ -1,7 +1,7 @@
 <% remote = false if local_assigns[:remote].nil? %>
 
 <%= bootstrap_form_for(@tomato, remote: remote) do |f| %>
-  <%= render 'shared/form_errors', model: @tomato %>
+  <%= f.alert_message t('form_alert_message') %>
 
   <%= f.text_field :tag_list, class: 'form-control input-lg', placeholder: 'cook, dessert' %>
 

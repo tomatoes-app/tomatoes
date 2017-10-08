@@ -1,5 +1,5 @@
 <%= bootstrap_form_for @project, layout: :horizontal do |f| %>
-  <%= render 'shared/form_errors', model: @project %>
+  <%= f.alert_message t('form_alert_message') %>
 
   <%= f.text_field :name, placeholder: 'Butter cookies' %>
   <%= f.text_field :tag_list, placeholder: 'cookie, butter', help: t('helpers.help.project.tag_list') %>

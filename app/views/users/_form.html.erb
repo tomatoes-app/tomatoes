@@ -1,5 +1,5 @@
 <%= bootstrap_form_for(@user) do |f| %>
-  <%= render 'shared/form_errors', model: @user %>
+  <%= f.alert_message t('form_alert_message') %>
 
   <%= f.text_field :name, placeholder: 'Francesco Cirillo' %>
   <%= f.text_field :email, placeholder: 'fcirillo@tomato.es' %>

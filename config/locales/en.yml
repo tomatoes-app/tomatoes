@@ -27,6 +27,7 @@ en:
   sign_out: Sign out
   saving: Saving...
   announcement: Announcement
+  form_alert_message: "Please fix the errors below:"
   helpers:
     label:
       tomato:
