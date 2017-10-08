@@ -3,10 +3,7 @@
 
   <%= f.text_field :name, placeholder: 'Francesco Cirillo' %>
   <%= f.text_field :email, placeholder: 'fcirillo@tomato.es' %>
-  <div class="form-group">
-    <%= f.label :time_zone %>
-    <%= time_zone_select 'user', 'time_zone', nil, { include_blank: true }, { class: 'form-control' } %>
-  </div>
+  <%= f.time_zone_select :time_zone, nil, { include_blank: true } %>
   <%= f.select :currency, options_for_select(User::CURRENCIES.invert, @user.currency), {}, { class: 'form-control' } %>
   <%= f.number_field :work_hours_per_day, placeholder: '8', help: t('helpers.help.user.work_hours_per_day') %></p>
   <%= f.label :average_hourly_rate %>
