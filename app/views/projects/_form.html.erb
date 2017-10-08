@@ -2,8 +2,8 @@
   <%= f.alert_message t('form_alert_message') %>
 
   <%= f.text_field :name, placeholder: 'Butter cookies' %>
-  <%= f.text_field :tag_list, placeholder: 'cookie, butter', help: t('helpers.help.project.tag_list') %>
-  <%= f.number_field :money_budget, placeholder: '10', prepend: current_user.currency_unit, help: t('helpers.help.project.money_budget', currency_unit: current_user.currency_unit) %></p>
-  <%= f.number_field :time_budget, placeholder: '1', help: t('helpers.help.project.time_budget') %>
+  <%= f.text_field :tag_list, placeholder: 'cookie, butter' %>
+  <%= f.number_field :money_budget, placeholder: '10', prepend: current_user.currency_unit %></p>
+  <%= f.number_field :time_budget, placeholder: '1' %>
   <%= f.submit %>
 <% end %>

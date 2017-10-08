@@ -38,18 +38,6 @@ pt-BR:
       user:
         color: Cor da barra de progresso
         ticking: Habilitar som de tic-tac
-    help:
-      project:
-        tag_list: Uma lista de tags relacionadas a projetos.
-        money_budget: Orçamento disponível em %{currency_unit}.
-        time_budget: Orçamento de tempo estimado em horas.
-      user:
-        work_hours_per_day: Quantas horas você trabalha por dia?
-        average_hourly_rate: Quanto você cobra por hora?
-        volume_html: >
-          Volume padrão do temporizador. <em>0</em> significa <em>mudo</em>, <em>3</em> significa
-          <em>volume máximo</em>.
-        color: Um código de cor hexadecimal.
     submit:
       create: Criar %{model}
       update: Atualizar %{model}
@@ -77,7 +65,7 @@ pt-BR:
     no_tomatoes_yet_html: >
       Você ainda não registrou nada.<br/>Clique em "Começar" para iniciar o seu primeiro pomodoro.
     no_projects_yet_html: >
-      Você ainda não trabalhou em nenhum projeto.<br/>Crie um %{new_project_link} para começar a 
+      Você ainda não trabalhou em nenhum projeto.<br/>Crie um %{new_project_link} para começar a
       coletar estatísticas agregadas.
     counters:
       day: Hoje
@@ -119,6 +107,19 @@ pt-BR:
   weekly: Semanal
   monthly: Mensal
   overall: Geral
+  activerecord:
+    help:
+      project:
+        tag_list: Uma lista de tags relacionadas a projetos.
+        money_budget: Orçamento disponível.
+        time_budget: Orçamento de tempo estimado em horas.
+      user:
+        work_hours_per_day: Quantas horas você trabalha por dia?
+        average_hourly_rate: Quanto você cobra por hora?
+        volume: >
+          Volume padrão do temporizador. 0 significa mudo, 3 significa volume
+          máximo.
+        color: Um código de cor hexadecimal.
   mongoid:
     models:
       project:

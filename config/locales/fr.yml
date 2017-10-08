@@ -38,19 +38,6 @@ fr:
       user:
         color: Couleur de la barre de progression
         ticking: Activer l'effet de tic-tac
-    help:
-      project:
-        tag_list: Une liste d'étiquettes liées au projet.
-        money_budget: Budget disponible en %{currency_unit}.
-        time_budget: Budget de temps estimé en heures.
-      user:
-        work_hours_per_day: Combien d'heures travailles-tu par jour?
-        average_hourly_rate: Combien factures-tu de l'heure?
-        volume_html: >
-          Volume par défaut de l'alarme. <em>0</em> équivaut à <em>muet</em>,
-          <em>3</em> c'est le
-          <em>volume maximum</em>.
-        color: Code hexadécimal pour la couleur.
     submit:
       create: Créer %{model}
       update: Mettre à jour %{model}
@@ -121,6 +108,19 @@ fr:
   weekly: Cette semaine
   monthly: Ce mois-ci
   overall: Général
+  activerecord:
+    help:
+      project:
+        tag_list: Une liste d'étiquettes liées au projet.
+        money_budget: Budget disponible.
+        time_budget: Budget de temps estimé en heures.
+      user:
+        work_hours_per_day: Combien d'heures travailles-tu par jour?
+        average_hourly_rate: Combien factures-tu de l'heure?
+        volume: >
+          Volume par défaut de l'alarme. 0 équivaut à muet, 3 c'est le volume
+          maximum.
+        color: Code hexadécimal pour la couleur.
   mongoid:
     models:
       project:

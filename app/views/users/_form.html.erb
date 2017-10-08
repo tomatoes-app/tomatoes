@@ -5,13 +5,17 @@
   <%= f.text_field :email, placeholder: 'fcirillo@tomato.es' %>
   <%= f.time_zone_select :time_zone, nil, { include_blank: true } %>
   <%= f.select :currency, options_for_select(User::CURRENCIES.invert, @user.currency) %>
-  <%= f.number_field :work_hours_per_day, placeholder: '8', help: t('helpers.help.user.work_hours_per_day') %></p>
-  <%= f.number_field :average_hourly_rate, placeholder: '35.5', step: '0.1', prepend: current_user.currency_unit, help: t('helpers.help.user.average_hourly_rate') %></p>
-  <%= f.range_field :volume, min: 0, max: 3, help: t('helpers.help.user.volume_html') %></p>
-  <%= f.check_box :ticking, label:  t('helpers.label.user.ticking') %>
-  <div class="form-group row">
-    <%= f.text_field :color, placeholder: '#ccff00', help: t('helpers.help.user.color') %>
-    <div id="colorpicker" class="col-sm-4"></div> 
-  </div>
+  <%= f.number_field :work_hours_per_day, placeholder: '8' %></p>
+  <%= f.number_field :average_hourly_rate, placeholder: '35.5', step: '0.1', prepend: current_user.currency_unit %></p>
+  <%= f.range_field :volume, min: 0, max: 3 %></p>
+  <%= f.form_group do %>
+    <%= f.check_box :ticking, label: t('helpers.label.user.ticking') %>
+  <% end %>
+  <%= f.text_field :color, placeholder: '#ccff00' %>
+  <%= f.form_group do %>
+    <div class="row">
+      <div id="colorpicker" class="col-sm-4"></div>
+    </div>
+  <% end %>
   <%= f.submit %>
 <% end %>
