@@ -1,4 +1,4 @@
-<%= bootstrap_form_for(@user) do |f| %>
+<%= bootstrap_form_for @user, layout: :horizontal do |f| %>
   <%= f.alert_message t('form_alert_message') %>
 
   <%= f.text_field :name, placeholder: 'Francesco Cirillo' %>
