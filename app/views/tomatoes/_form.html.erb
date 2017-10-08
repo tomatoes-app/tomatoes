@@ -3,7 +3,6 @@
 <%= bootstrap_form_for(@tomato, remote: remote) do |f| %>
   <%= f.alert_message t('form_alert_message') %>
 
-  <%= f.text_field :tag_list, class: 'form-control input-lg', placeholder: 'cook, dessert' %>
-
+  <%= f.text_field :tag_list, class: 'input-lg', placeholder: 'cook, dessert' %>
   <%= f.submit nil, :'data-disable-with' => t('saving') %>
 <% end %>
