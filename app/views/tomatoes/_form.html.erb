@@ -5,5 +5,5 @@
 
   <%= f.text_field :tag_list, class: 'form-control input-lg', placeholder: 'cook, dessert' %>
 
-  <%= submit_tag nil, class: 'btn btn-default', :'data-disable-with' => t('saving') %>
+  <%= f.submit nil, :'data-disable-with' => t('saving') %>
 <% end %>
