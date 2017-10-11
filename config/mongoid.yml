@@ -144,10 +144,9 @@ test:
 production:
   clients:
     default:
-      database: <%= ENV["MONGOHQ_DATABASE"] %>
+      database: <%= ENV["DO_DATABASE"] %>
       hosts:
-        - <%= ENV["MONGOHQ_REPL_HOST_1"] %>
-        - <%= ENV["MONGOHQ_REPL_HOST_2"] %>
+        - <%= ENV["DO_HOST"] %>
       options:
-        user: <%= ENV["MONGOHQ_USERNAME"] %>
-        password: <%= ENV["MONGOHQ_PASSWORD"] %>
+        user: <%= ENV["DO_USERNAME"] %>
+        password: <%= ENV["DO_PASSWORD"] %>
