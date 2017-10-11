@@ -27,6 +27,7 @@ en:
   sign_out: Sign out
   saving: Saving...
   announcement: Announcement
+  form_alert_message: "Please fix the errors below:"
   helpers:
     label:
       tomato:
@@ -39,18 +40,6 @@ en:
       user:
         color: Progress bar color
         ticking: Enable timer ticking effect
-    help:
-      project:
-        tag_list: A list of project related tags.
-        money_budget: Available budget in %{currency_unit}.
-        time_budget: Estimated time budget in hours.
-      user:
-        work_hours_per_day: How many hours do you work per day?
-        average_hourly_rate: How much do you charge per hour?
-        volume_html: >
-          Default timer volume. <em>0</em> is <em>mute</em>, <em>3</em> is
-          <em>max volume</em>.
-        color: A hexadecimal color code.
     submit:
       create: Create %{model}
       update: Update %{model}
@@ -123,6 +112,17 @@ en:
   weekly: Weekly
   monthly: Monthly
   overall: Overall
+  activerecord:
+    help:
+      project:
+        tag_list: A list of project related tags.
+        money_budget: Available budget.
+        time_budget: Estimated time budget in hours.
+      user:
+        work_hours_per_day: How many hours do you work per day?
+        average_hourly_rate: How much do you charge per hour?
+        volume: Default timer volume. 0 is mute, 3 is max volume.
+        color: A hexadecimal color code.
   mongoid:
     models:
       project:

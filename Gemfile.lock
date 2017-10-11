@@ -59,6 +59,7 @@ GEM
       sass (>= 3.3.4)
     bootstrap-social-rails (4.12.0)
       railties (>= 3.1)
+    bootstrap_form (2.7.0)
     bson (4.2.1)
     buftok (0.2.0)
     builder (3.2.3)
@@ -317,6 +318,7 @@ DEPENDENCIES
   binding_of_caller
   bootstrap-sass (~> 3.3.6)
   bootstrap-social-rails
+  bootstrap_form
   byebug
   coveralls
   dalli
@@ -354,4 +356,4 @@ RUBY VERSION
    ruby 2.3.3p222
 
 BUNDLED WITH
-   1.14.6
+   1.15.4

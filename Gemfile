@@ -17,6 +17,7 @@ end
 
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'bootstrap-social-rails'
+gem 'bootstrap_form'
 gem 'jquery-rails'
 
 gem 'http_accept_language'

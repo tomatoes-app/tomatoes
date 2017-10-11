@@ -40,18 +40,6 @@ es:
       user:
         color: Color de la barra de progreso
         ticking: Habilitar el efecto de tictac del temporizador
-    help:
-      project:
-        tag_list: Listado de etiquetas relacionadas con el proyecto.
-        money_budget: Presupuesto disponible en %{currency_unit}.
-        time_budget: Presupuesto estimado en horas.
-      user:
-        work_hours_per_day: ¿Cuántas horas trabajas por día?
-        average_hourly_rate: ¿Cual es tu tarifa horaria?
-        volume_html: >
-          Volumen predeterminado del temporizador. <em>0</em> es <em>silencioso
-          </em>, <em>3</em> es <em>volumen máximo</em>.
-        color: Código hexadecimal del color.
     submit:
       create: Crear %{model}
       update: Actualizar %{model}
@@ -126,6 +114,19 @@ es:
   weekly: Semanal
   monthly: Mensual
   overall: General
+  activerecord:
+    help:
+      project:
+        tag_list: Listado de etiquetas relacionadas con el proyecto.
+        money_budget: Presupuesto disponible.
+        time_budget: Presupuesto estimado en horas.
+      user:
+        work_hours_per_day: ¿Cuántas horas trabajas por día?
+        average_hourly_rate: ¿Cual es tu tarifa horaria?
+        volume: >
+          Volumen predeterminado del temporizador. 0 es silencioso, 3 es volumen
+          máximo.
+        color: Código hexadecimal del color.
   mongoid:
     models:
       project:

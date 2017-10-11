@@ -1,49 +1,9 @@
-<%= form_for(@project, html: { class: 'form-horizontal' }) do |f| %>
-  <% if @project.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
+<%= bootstrap_form_for @project, layout: :horizontal do |f| %>
+  <%= f.alert_message t('form_alert_message') %>
 
-      <ul>
-      <% @project.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="form-group">
-    <%= f.label :name, class: 'col-sm-2' %>
-    <div class="col-sm-10">
-      <%= f.text_field :name, class: 'form-control', placeholder: 'Butter cookies' %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :tag_list, class: 'col-sm-2' %>
-    <div class="col-sm-10">
-      <%= f.text_field :tag_list, class: 'form-control', placeholder: 'cookie, butter' %>
-      <p class="help-block"><%= t('helpers.help.project.tag_list') %></p>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :money_budget, class: 'col-sm-2' %>
-    <div class="col-sm-10">
-      <div class="input-group">
-        <div class="input-group-addon"><%= current_user.currency_unit %></div>
-        <%= f.number_field :money_budget, class: 'form-control', placeholder: '10' %>
-      </div>
-      <p class="help-block"><%= t('helpers.help.project.money_budget', currency_unit: current_user.currency_unit) %></p>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :time_budget, class: 'col-sm-2' %>
-    <div class="col-sm-10">
-      <%= f.number_field :time_budget, class: 'form-control', placeholder: '1' %>
-      <p class="help-block"><%= t('helpers.help.project.time_budget') %></p>
-    </div>
-  </div>
-  <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-      <%= f.submit class: 'btn btn-default' %>
-    </div>
-  </div>
+  <%= f.text_field :name, placeholder: 'Butter cookies' %>
+  <%= f.text_field :tag_list, placeholder: 'cookie, butter' %>
+  <%= f.number_field :money_budget, placeholder: '10', prepend: current_user.currency_unit %></p>
+  <%= f.number_field :time_budget, placeholder: '1' %>
+  <%= f.submit %>
 <% end %>
