@@ -21,7 +21,7 @@ class ProjectsControllerTest < ActionController::TestCase
   test 'should get index' do
     get :index
     assert_response :success
-    assert_not_nil assigns(:projects)
+    assert response.body.include? @project.name
   end
 
   test 'should get new' do
@@ -43,7 +43,9 @@ class ProjectsControllerTest < ActionController::TestCase
       )
     end
 
-    assert_redirected_to project_path(assigns(:project))
+    new_proj = Project.last
+    assert_not_equal @project, new_proj
+    assert_redirected_to project_path(new_proj)
   end
 
   test 'should show project' do
@@ -68,7 +70,7 @@ class ProjectsControllerTest < ActionController::TestCase
         }
       }
     )
-    assert_redirected_to project_path(assigns(:project))
+    assert_redirected_to project_path(@project)
   end
 
   test 'should destroy project' do

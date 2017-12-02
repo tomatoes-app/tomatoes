@@ -9,7 +9,8 @@ class TomatoesControllerTest < ActionController::TestCase
       name: 'name',
       email: 'email@example.com'
     )
-    @tomato = @user.tomatoes.create(tag_list: 'one, two', created_at: Time.zone.now - 1.day)
+    @tag = 'one'
+    @tomato = @user.tomatoes.create(tag_list: "#{@tag}, two", created_at: Time.zone.now - 1.day)
 
     @controller.stubs(:current_user).returns(@user)
   end
@@ -22,7 +23,7 @@ class TomatoesControllerTest < ActionController::TestCase
   test 'should get index' do
     get :index
     assert_response :success
-    assert_not_nil assigns(:tomatoes)
+    assert response.body.include? @tag
   end
 
   test 'should get new' do
@@ -49,8 +50,8 @@ class TomatoesControllerTest < ActionController::TestCase
   end
 
   test 'should update tomato' do
-    assert_redirected_to tomato_path(assigns(:tomato))
     put :update, params: { id: @tomato.to_param, tomato: { tag_list: '' } }
+    assert_redirected_to tomato_path(@tomato)
   end
 
   test 'should destroy tomato' do

@@ -9,6 +9,7 @@ class TagsControllerTest < ActionController::TestCase
       email: 'email@example.com'
     )
     @tag = 'test'
+    @user.tomatoes.create(tags: [@tag])
 
     @controller.stubs(:current_user).returns(@user)
   end
@@ -20,11 +21,12 @@ class TagsControllerTest < ActionController::TestCase
   test 'should get index' do
     get :index
     assert_response :success
-    assert_not_nil assigns(:tomatoes_by_tag)
+    assert response.body.include? @tag
   end
 
   test 'should show tag' do
     get :show, params: { id: @tag }
     assert_response :success
+    assert response.body.include? @tag
   end
 end
