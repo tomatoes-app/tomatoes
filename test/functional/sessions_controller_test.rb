@@ -15,7 +15,7 @@ class SessionsControllerTest < ActionController::TestCase
   end
 
   test 'should get new' do
-    get :new, provider: 'github'
+    get :new, params: { provider: 'github' }
     assert_redirected_to '/auth/github'
   end
 
@@ -23,7 +23,7 @@ class SessionsControllerTest < ActionController::TestCase
     User.expects(:find_by_omniauth).returns(@user)
     @user.expects(:update_omniauth_attributes!)
 
-    get :create, provider: 'github'
+    get :create, params: { provider: 'github' }
     assert_equal @user.id, session[:user_id]
     assert_redirected_to root_url
     assert_equal 'Signed in.', flash[:notice]
@@ -37,7 +37,7 @@ class SessionsControllerTest < ActionController::TestCase
   end
 
   test 'should get failure' do
-    get :failure, message: 'failure message'
+    get :failure, params: { message: 'failure message' }
     assert_nil session[:user_id]
     assert_redirected_to root_url
     assert_equal 'Authentication error. Failure message.', flash[:alert]

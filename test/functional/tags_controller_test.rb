@@ -24,7 +24,7 @@ class TagsControllerTest < ActionController::TestCase
   end
 
   test 'should show tag' do
-    get :show, id: @tag
+    get :show, params: { id: @tag }
     assert_response :success
   end
 end

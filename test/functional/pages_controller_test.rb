@@ -6,7 +6,7 @@ class PagesControllerTest < ActionController::TestCase
   end
 
   test 'should get how_to' do
-    get :show, id: 'how_to'
+    get :show, params: { id: 'how_to' }
     assert_response :success
     assert_template :how_to
   end

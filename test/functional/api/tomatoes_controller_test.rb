@@ -25,14 +25,14 @@ module Api
     end
 
     test 'GET /index, given an invalid token, it should return an error' do
-      get :index, token: 'invalid_token'
+      get :index, params: { token: 'invalid_token' }
       assert_response :unauthorized
       assert_equal 'application/json', @response.content_type
       assert_equal({ error: 'authentication failed' }.to_json, @response.body)
     end
 
     test 'GET /index, it should return current user\'s list of tomatoes' do
-      get :index, token: '123'
+      get :index, params: { token: '123' }
       assert_response :success
       assert_equal 'application/json', @response.content_type
       parsed_response = JSON.parse(@response.body)
@@ -44,7 +44,7 @@ module Api
     end
 
     test 'GET /index, it should return current user\'s list of tomatoes filtered by date (from)' do
-      get :index, token: '123', from: 150.minutes.ago.iso8601
+      get :index, params: { token: '123', from: 150.minutes.ago.iso8601 }
       assert_response :success
       assert_equal 'application/json', @response.content_type
       parsed_response = JSON.parse(@response.body)
@@ -55,7 +55,7 @@ module Api
     end
 
     test 'GET /index, it should return current user\'s list of tomatoes filtered by date (from, to)' do
-      get :index, token: '123', from: 150.minutes.ago.iso8601, to: 90.minutes.ago.iso8601
+      get :index, params: { token: '123', from: 150.minutes.ago.iso8601, to: 90.minutes.ago.iso8601 }
       assert_response :success
       assert_equal 'application/json', @response.content_type
       parsed_response = JSON.parse(@response.body)
@@ -65,7 +65,7 @@ module Api
     end
 
     test 'GET /index, it should return current user\'s list of tomatoes filtered by date (to)' do
-      get :index, token: '123', to: 90.minutes.ago.iso8601
+      get :index, params: { token: '123', to: 90.minutes.ago.iso8601 }
       assert_response :success
       assert_equal 'application/json', @response.content_type
       parsed_response = JSON.parse(@response.body)
@@ -76,14 +76,14 @@ module Api
     end
 
     test 'GET /show, given an invalid token, it should return an error' do
-      get :show, token: 'invalid_token', id: @tomato1.id.to_s
+      get :show, params: { token: 'invalid_token', id: @tomato1.id.to_s }
       assert_response :unauthorized
       assert_equal 'application/json', @response.content_type
       assert_equal({ error: 'authentication failed' }.to_json, @response.body)
     end
 
     test 'GET /show, it should return current user\'s tomato' do
-      get :show, token: '123', id: @tomato1.id.to_s
+      get :show, params: { token: '123', id: @tomato1.id.to_s }
       assert_response :success
       assert_equal 'application/json', @response.content_type
       assert_equal Api::Presenter::Tomato.new(@tomato1).to_json, @response.body
@@ -91,12 +91,12 @@ module Api
 
     test 'GET /show, it should not return other users\' tomatoes' do
       assert_raises(Mongoid::Errors::DocumentNotFound) do
-        get :show, token: '123', id: @other_tomato.id.to_s
+        get :show, params: { token: '123', id: @other_tomato.id.to_s }
       end
     end
 
     test 'POST /create, given an invalid token, it should return an error' do
-      post :create, token: 'invalid_token', tomato: { tag_list: 'one, two' }
+      post :create, params: { token: 'invalid_token', tomato: { tag_list: 'one, two' } }
       assert_response :unauthorized
       assert_equal 'application/json', @response.content_type
       assert_equal({ error: 'authentication failed' }.to_json, @response.body)
@@ -104,7 +104,7 @@ module Api
 
     test 'POST /create, given valid params, it should create a tomato' do
       assert_difference('@user.tomatoes.size') do
-        post :create, token: '123', tomato: { tag_list: 'one, two' }
+        post :create, params: { token: '123', tomato: { tag_list: 'one, two' } }
       end
       assert_response :created
       new_tomato = @user.reload.tomatoes.order_by([[:created_at, :desc]]).first
@@ -119,7 +119,7 @@ module Api
       assert_no_difference('@user.tomatoes.size') do
         # this request should fail because another tomato has been created
         # less than 25 minutes ago
-        post :create, token: '123', tomato: { tag_list: 'one, two' }
+        post :create, params: { token: '123', tomato: { tag_list: 'one, two' } }
       end
       assert_response :unprocessable_entity
       assert_equal 'application/json', @response.content_type
@@ -133,7 +133,7 @@ module Api
       assert_no_difference('@user.tomatoes.size') do
         # this request should fail because no tomato param
         # has been given
-        post :create, token: '123', pachino: { tag_list: 'one, two' }
+        post :create, params: { token: '123', pachino: { tag_list: 'one, two' } }
       end
       assert_response :bad_request
       assert_equal 'application/json', @response.content_type
@@ -143,7 +143,7 @@ module Api
 
     test 'POST /create, with the wrong root param type, it should return a bad request error' do
       # this request should fail because tomato is not a hash parameter
-      post :create, token: '123', tomato: 'tag_list'
+      post :create, params: { token: '123', tomato: 'tag_list' }
       assert_response :bad_request
       assert_equal 'application/json', @response.content_type
       parsed_response = JSON.parse(@response.body)
@@ -151,14 +151,14 @@ module Api
     end
 
     test 'PATCH /update, given an invalid token, it should return an error' do
-      patch :update, token: 'invalid_token', id: @tomato1.id, tomato: { tag_list: 'three' }
+      patch :update, params: { token: 'invalid_token', id: @tomato1.id, tomato: { tag_list: 'three' } }
       assert_response :unauthorized
       assert_equal 'application/json', @response.content_type
       assert_equal({ error: 'authentication failed' }.to_json, @response.body)
     end
 
     test 'PATCH /update, given valid params, it should update the tomato' do
-      patch :update, token: '123', id: @tomato1.id, tomato: { tag_list: 'three' }
+      patch :update, params: { token: '123', id: @tomato1.id, tomato: { tag_list: 'three' } }
       assert_response :success
       assert_equal 'application/json', @response.content_type
       @tomato1.reload
@@ -174,13 +174,13 @@ module Api
       tomatoes.stubs(:find).returns(@tomato1)
       @tomato1.expects(:update_attributes).returns(false)
 
-      patch :update, token: '123', id: @tomato1.id, tomato: { tag_list: 'three' }
+      patch :update, params: { token: '123', id: @tomato1.id, tomato: { tag_list: 'three' } }
       assert_response :unprocessable_entity
       assert_equal 'application/json', @response.content_type
     end
 
     test 'DELETE /destroy, given an invalid token, it should return an error' do
-      delete :destroy, token: 'invalid_token', id: @tomato1.id
+      delete :destroy, params: { token: 'invalid_token', id: @tomato1.id }
       assert_response :unauthorized
       assert_equal 'application/json', @response.content_type
       assert_equal({ error: 'authentication failed' }.to_json, @response.body)
@@ -188,7 +188,7 @@ module Api
 
     test 'DELETE /destroy, given valid params, it should destroy the tomato' do
       assert_difference('@user.tomatoes.count', -1) do
-        delete :destroy, token: '123', id: @tomato1.id
+        delete :destroy, params: { token: '123', id: @tomato1.id }
       end
       assert_response :no_content
     end

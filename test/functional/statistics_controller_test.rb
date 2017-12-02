@@ -7,17 +7,17 @@ class StatisticsControllerTest < ActionController::TestCase
   end
 
   test 'should get users_by_tomatoes' do
-    get :users_by_tomatoes, format: :json
+    get :users_by_tomatoes, params: { format: :json }
     assert_response :success
   end
 
   test 'should get users_by_day' do
-    get :users_by_day, format: :json
+    get :users_by_day, params: { format: :json }
     assert_response :success
   end
 
   test 'should get tomatoes_by_day' do
-    get :tomatoes_by_day, format: :json
+    get :tomatoes_by_day, params: { format: :json }
     assert_response :success
   end
 end
