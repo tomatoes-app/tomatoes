@@ -4,7 +4,7 @@ module Score
   included do
     include Mongoid::Timestamps
 
-    belongs_to :user, foreign_key: :uid
+    belongs_to :user, foreign_key: :uid, optional: true
 
     field :s, as: :score, type: Integer
 
