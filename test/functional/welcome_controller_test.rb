@@ -12,7 +12,6 @@ class WelcomeControllerTest < ActionController::TestCase
   test 'should get index' do
     get :index
     assert_response :success
-    assert_template layout: 'welcome'
   end
 
   test 'current user should get index' do
@@ -20,6 +19,5 @@ class WelcomeControllerTest < ActionController::TestCase
 
     get :index
     assert_response :success
-    assert_template layout: 'welcome'
   end
 end
