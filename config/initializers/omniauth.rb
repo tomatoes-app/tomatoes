@@ -6,7 +6,8 @@ if Rails.env.production?
 else
   begin
     GITHUB = YAML.load_file(Rails.root.join('config', 'github.yml'))
-  rescue
+  rescue Errno::ENOENT
+    Rails.logger.warn 'Warning: github.yml configuration is missing'
     # github.yml is not included in the repo
     GITHUB = YAML.load_file(Rails.root.join('config', 'github.example.yml'))
   end
@@ -20,7 +21,8 @@ if Rails.env.production?
 else
   begin
     TWITTER = YAML.load_file(Rails.root.join('config', 'twitter.yml'))
-  rescue
+  rescue Errno::ENOENT
+    Rails.logger.warn 'Warning: twitter.yml configuration is missing'
     # twitter.yml is not included in the repo
     TWITTER = YAML.load_file(Rails.root.join('config', 'twitter.example.yml'))
   end
