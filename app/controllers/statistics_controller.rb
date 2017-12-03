@@ -3,7 +3,7 @@ class StatisticsController < ApplicationController
   def index
     @users        = User.count
     @tomatoes     = Tomato.count
-    @first_tomato = Tomato.order_by([[:created_at, :desc]]).last || Tomato.new(created_at: Time.zone.now)
+    @first_tomato = Tomato.order_by([%i[created_at desc]]).last || Tomato.new(created_at: Time.zone.now)
   end
 
   # GET /statistics/users_by_tomatoes.json

@@ -11,7 +11,7 @@ module Api
           time_budget: 234
         )
 
-        @projects = @user.projects.order_by([[:created_at, :desc]]).page
+        @projects = @user.projects.order_by([%i[created_at desc]]).page
       end
 
       teardown do

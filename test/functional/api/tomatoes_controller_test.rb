@@ -107,7 +107,7 @@ module Api
         post :create, params: { token: '123', tomato: { tag_list: 'one, two' } }
       end
       assert_response :created
-      new_tomato = @user.reload.tomatoes.order_by([[:created_at, :desc]]).first
+      new_tomato = @user.reload.tomatoes.order_by([%i[created_at desc]]).first
       assert_equal 'application/json', @response.content_type
       assert_equal Api::Presenter::Tomato.new(new_tomato).to_json, @response.body
       assert_match(/#{api_tomato_path(new_tomato)}/, @response.headers['Location'])
@@ -164,7 +164,7 @@ module Api
       @tomato1.reload
       assert_equal Api::Presenter::Tomato.new(@tomato1).to_json, @response.body
       assert_match(/#{api_tomato_path(@tomato1)}/, @response.headers['Location'])
-      assert_equal %w(three), @tomato1.tags
+      assert_equal %w[three], @tomato1.tags
     end
 
     test 'PATCH /update, given a validation error, it should return an error' do
