@@ -18,8 +18,7 @@ module LeaderboardControllerTest
     test 'should get show' do
       get :show
       assert_response :success
-      assert_not_nil assigns(:scores)
-      assert_not_empty assigns(:scores)
+      assert response.body.include? @user.name
     end
   end
 end

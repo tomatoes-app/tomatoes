@@ -6,8 +6,8 @@ class PagesControllerTest < ActionController::TestCase
   end
 
   test 'should get how_to' do
-    get :show, id: 'how_to'
+    get :show, params: { id: 'how_to' }
     assert_response :success
-    assert_template :how_to
+    assert response.body.include? '<h1>How to</h1>'
   end
 end

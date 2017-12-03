@@ -65,7 +65,7 @@ module Api
       @github_client.expects(:user).returns(id: 'github_user_id')
 
       assert_difference('@user.reload.authorizations.count') do
-        post :create, provider: 'github', access_token: 'github_access_token'
+        post :create, params: { provider: 'github', access_token: 'github_access_token' }
       end
       assert_response :success
       assert_equal 'application/json', @response.content_type
@@ -81,7 +81,7 @@ module Api
       @github_client.expects(:user).returns(id: 'github_user_with_api_auth_id')
 
       assert_difference('@user_with_api_auth.reload.authorizations.count') do
-        post :create, provider: 'github', access_token: 'github_access_token'
+        post :create, params: { provider: 'github', access_token: 'github_access_token' }
       end
       assert_response :success
       assert_equal 'application/json', @response.content_type
@@ -96,7 +96,7 @@ module Api
       @github_client.expects(:user).returns(id: 'new_github_user_id')
 
       assert_difference('User.count') do
-        post :create, provider: 'github', access_token: 'github_access_token'
+        post :create, params: { provider: 'github', access_token: 'github_access_token' }
       end
       assert_response :success
       assert_equal 'application/json', @response.content_type
@@ -107,14 +107,14 @@ module Api
       Octokit::Client.expects(:new).with(access_token: 'github_access_token').returns(@github_client)
       @github_client.expects(:user).raises(Octokit::Unauthorized)
 
-      post :create, provider: 'github', access_token: 'github_access_token'
+      post :create, params: { provider: 'github', access_token: 'github_access_token' }
       assert_response :unauthorized
       assert_equal 'application/json', @response.content_type
       assert_equal({ error: 'authentication failed' }.to_json, @response.body)
     end
 
     test 'POST /create, given an invalid provider, it should return an error' do
-      post :create, provider: 'invalid_provider'
+      post :create, params: { provider: 'invalid_provider' }
       assert_response :bad_request
       assert_equal 'application/json', @response.content_type
       assert_equal({ error: 'provider not supported' }.to_json, @response.body)
@@ -128,7 +128,7 @@ module Api
       @twitter_client.expects(:user).returns(@twitter_user)
 
       assert_difference('@user.reload.authorizations.count') do
-        post :create, provider: 'twitter', access_token: 'twitter_access_token', secret: 'twitter_secret'
+        post :create, params: { provider: 'twitter', access_token: 'twitter_access_token', secret: 'twitter_secret' }
       end
       assert_response :success
       assert_equal 'application/json', @response.content_type
@@ -144,7 +144,7 @@ module Api
       @twitter_client.expects(:user).returns(@twitter_user_with_api_auth)
 
       assert_difference('@user_with_api_auth.reload.authorizations.count') do
-        post :create, provider: 'twitter', access_token: 'twitter_access_token', secret: 'twitter_secret'
+        post :create, params: { provider: 'twitter', access_token: 'twitter_access_token', secret: 'twitter_secret' }
       end
       assert_response :success
       assert_equal 'application/json', @response.content_type
@@ -159,7 +159,7 @@ module Api
       @twitter_client.expects(:user).returns(@new_twitter_user)
 
       assert_difference('User.count') do
-        post :create, provider: 'twitter', access_token: 'twitter_access_token', secret: 'twitter_secret'
+        post :create, params: { provider: 'twitter', access_token: 'twitter_access_token', secret: 'twitter_secret' }
       end
       assert_response :success
       assert_equal 'application/json', @response.content_type
@@ -170,7 +170,7 @@ module Api
       Twitter::REST::Client.expects(:new).returns(@twitter_client)
       @twitter_client.expects(:user).raises(Twitter::Error::Unauthorized)
 
-      post :create, provider: 'twitter', access_token: 'twitter_access_token', secret: 'twitter_secret'
+      post :create, params: { provider: 'twitter', access_token: 'twitter_access_token', secret: 'twitter_secret' }
       assert_response :unauthorized
       assert_equal 'application/json', @response.content_type
       assert_equal({ error: 'authentication failed' }.to_json, @response.body)
@@ -180,18 +180,18 @@ module Api
       Octokit::Client.stubs(:new).returns(@github_client)
       @github_client.stubs(:user).returns(id: 'github_user_with_api_auth_id')
 
-      post :create, provider: 'github', access_token: 'github_access_token'
+      post :create, params: { provider: 'github', access_token: 'github_access_token' }
       tomatoes_auth = @user_with_api_auth.reload.authorizations.where(provider: 'tomatoes').first
 
       assert_difference('@user_with_api_auth.reload.authorizations.count', -2) do
-        delete :destroy, token: tomatoes_auth.token
+        delete :destroy, params: { token: tomatoes_auth.token }
       end
       assert_empty @user_with_api_auth.authorizations.where(provider: 'tomatoes')
       assert_response :no_content
     end
 
     test 'DELETE /destroy, given an invalid token, it should return an error' do
-      delete :destroy, token: 'invalid_token'
+      delete :destroy, params: { token: 'invalid_token' }
       assert_response :unauthorized
       assert_equal 'application/json', @response.content_type
       assert_equal({ error: 'authentication failed' }.to_json, @response.body)

@@ -10,7 +10,7 @@ class Project
   field :money_budget, type: Integer
   field :time_budget,  type: Integer
 
-  belongs_to :user
+  belongs_to :user, optional: true
 
   validates :name, presence: true
   validates :money_budget, numericality: { greater_than: 0, allow_blank: true }

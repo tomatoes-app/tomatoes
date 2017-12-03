@@ -21,14 +21,14 @@ module Api
     end
 
     test 'GET /show, given a blank token, it should return an error' do
-      get :show, token: ''
+      get :show, params: { token: '' }
       assert_response :unauthorized
       assert_equal 'application/json', @response.content_type
       assert_equal({ error: 'authentication failed' }.to_json, @response.body)
     end
 
     test 'GET /show, given an invalid token, it should return an error' do
-      get :show, token: 'invalid_token'
+      get :show, params: { token: 'invalid_token' }
       assert_response :unauthorized
       assert_equal 'application/json', @response.content_type
       assert_equal({ error: 'authentication failed' }.to_json, @response.body)
@@ -43,7 +43,7 @@ module Api
     end
 
     test 'GET /show, it should return current user' do
-      get :show, token: '123'
+      get :show, params: { token: '123' }
       assert_response :success
       assert_equal 'application/json', @response.content_type
       assert_equal Api::Presenter::User.new(@user).to_json, @response.body
@@ -55,7 +55,7 @@ module Api
       setup_tz_test
 
       travel_to night_in(new_york_tz) do
-        get :show, token: '123'
+        get :show, params: { token: '123' }
         assert_response :success
         assert_equal 'application/json', @response.content_type
         response_content = JSON.parse(@response.body)
@@ -70,7 +70,7 @@ module Api
       setup_tz_test
 
       travel_to night_in(new_york_tz) do
-        get :show, token: '123', time_zone: rome_tz.name
+        get :show, params: { token: '123', time_zone: rome_tz.name }
         assert_response :success
         assert_equal 'application/json', @response.content_type
         response_content = JSON.parse(@response.body)
@@ -86,7 +86,7 @@ module Api
 
       travel_to night_in(new_york_tz) do
         @request.headers['Time-Zone'] = rome_tz.name
-        get :show, token: '123', time_zone: new_york_tz.name
+        get :show, params: { token: '123', time_zone: new_york_tz.name }
         assert_response :success
         assert_equal 'application/json', @response.content_type
         response_content = JSON.parse(@response.body)
@@ -98,19 +98,19 @@ module Api
         'user time zone is invalid, '\
         'it uses the default time zone' do
       @user.update_attributes(time_zone: 'invalid')
-      get :show, token: '123'
+      get :show, params: { token: '123' }
       assert_response :success
     end
 
     test 'PATCH /update, given an invalid token, it should return an error' do
-      patch :update, token: 'invalid_token', user: { name: 'Foo' }
+      patch :update, params: { token: 'invalid_token', user: { name: 'Foo' } }
       assert_response :unauthorized
       assert_equal 'application/json', @response.content_type
       assert_equal({ error: 'authentication failed' }.to_json, @response.body)
     end
 
     test 'PATCH /update, given valid params, it should update current user' do
-      patch :update, token: '123', user: { name: 'Foo' }
+      patch :update, params: { token: '123', user: { name: 'Foo' } }
       assert_response :success
       assert_equal 'application/json', @response.content_type
       @user.reload
@@ -123,7 +123,7 @@ module Api
       @controller.stubs(:current_user).returns(@user)
       @user.expects(:update_attributes).returns(false)
 
-      patch :update, token: '123', user: { name: 'Foo' }
+      patch :update, params: { token: '123', user: { name: 'Foo' } }
       assert_response :unprocessable_entity
       assert_equal 'application/json', @response.content_type
     end

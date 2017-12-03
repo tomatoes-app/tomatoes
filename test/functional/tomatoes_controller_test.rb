@@ -9,7 +9,8 @@ class TomatoesControllerTest < ActionController::TestCase
       name: 'name',
       email: 'email@example.com'
     )
-    @tomato = @user.tomatoes.create(tag_list: 'one, two', created_at: Time.zone.now - 1.day)
+    @tag = 'one'
+    @tomato = @user.tomatoes.create(tag_list: "#{@tag}, two", created_at: Time.zone.now - 1.day)
 
     @controller.stubs(:current_user).returns(@user)
   end
@@ -22,7 +23,7 @@ class TomatoesControllerTest < ActionController::TestCase
   test 'should get index' do
     get :index
     assert_response :success
-    assert_not_nil assigns(:tomatoes)
+    assert response.body.include? @tag
   end
 
   test 'should get new' do
@@ -32,42 +33,42 @@ class TomatoesControllerTest < ActionController::TestCase
 
   test 'should create tomato' do
     assert_difference('Tomato.count') do
-      post :create, tomato: { tag_list: '' }
+      post :create, params: { tomato: { tag_list: '' } }
     end
 
     assert_redirected_to root_path
   end
 
   test 'should show tomato' do
-    get :show, id: @tomato.to_param
+    get :show, params: { id: @tomato.to_param }
     assert_response :success
   end
 
   test 'should get edit' do
-    get :edit, id: @tomato.to_param
+    get :edit, params: { id: @tomato.to_param }
     assert_response :success
   end
 
   test 'should update tomato' do
-    put :update, id: @tomato.to_param, tomato: { tag_list: '' }
-    assert_redirected_to tomato_path(assigns(:tomato))
+    put :update, params: { id: @tomato.to_param, tomato: { tag_list: '' } }
+    assert_redirected_to tomato_path(@tomato)
   end
 
   test 'should destroy tomato' do
     assert_difference('Tomato.count', -1) do
-      delete :destroy, id: @tomato.to_param
+      delete :destroy, params: { id: @tomato.to_param }
     end
 
     assert_redirected_to tomatoes_path
   end
 
   test 'should get by_day' do
-    get :by_day, user_id: @user.id, format: :json
+    get :by_day, params: { user_id: @user.id, format: :json }
     assert_response :success
   end
 
   test 'should get by_hour' do
-    get :by_day, user_id: @user.id, format: :json
+    get :by_day, params: { user_id: @user.id, format: :json }
     assert_response :success
   end
 end
