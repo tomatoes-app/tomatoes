@@ -29,4 +29,13 @@ class TagsControllerTest < ActionController::TestCase
     assert_response :success
     assert response.body.include? @tag
   end
+
+  test 'should route tag with id that includes special characters' do
+    assert_routing(
+      '/tags/tag...',
+      controller: 'tags',
+      action: 'show',
+      id: 'tag...'
+    )
+  end
 end
