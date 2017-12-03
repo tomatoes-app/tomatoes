@@ -44,12 +44,12 @@ class User
   validates :average_hourly_rate, numericality: { greater_than: 0, allow_blank: true }
 
   embeds_many :authorizations
-  has_many :tomatoes
-  has_many :projects
-  has_one :daily_score, inverse_of: :user, foreign_key: :uid
-  has_one :weekly_score, inverse_of: :user, foreign_key: :uid
-  has_one :monthly_score, inverse_of: :user, foreign_key: :uid
-  has_one :overall_score, inverse_of: :user, foreign_key: :uid
+  has_many :tomatoes, dependent: :nullify
+  has_many :projects, dependent: :nullify
+  has_one :daily_score, inverse_of: :user, foreign_key: :uid, dependent: :nullify
+  has_one :weekly_score, inverse_of: :user, foreign_key: :uid, dependent: :nullify
+  has_one :monthly_score, inverse_of: :user, foreign_key: :uid, dependent: :nullify
+  has_one :overall_score, inverse_of: :user, foreign_key: :uid, dependent: :nullify
 
   # TODO: this could be a composite index
   # TODO: this should be a unique index (unique: true)
