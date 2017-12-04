@@ -16,7 +16,12 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :tags, only: [:index, :show]
+  resources :tags, only: :index
+  # Simulate a show action route for the tags resource. This action is more
+  # "permissive" than the default one. It allows tag ids to be strings that
+  # include any character, for instance it will match tag ids that include '/'
+  # or '.', that are special characters for the Rails router.
+  get '/tags/*id', to: 'tags#show', format: false, as: :tag
 
   resources :projects
 
