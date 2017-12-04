@@ -6,7 +6,7 @@ module Api
     def create
       auth_provider = AuthFactory.build(params)
       user = auth_provider.find_user
-      user = auth_provider.create_user! unless user
+      user ||= auth_provider.create_user!
 
       tomatoes_auth = user.authorizations.build(provider: 'tomatoes')
       tomatoes_auth.generate_token

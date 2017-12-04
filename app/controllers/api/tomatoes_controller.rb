@@ -3,14 +3,14 @@ module Api
     include TomatoesParams
 
     before_action :authenticate_user!
-    before_action :find_tomato, only: [:show, :update, :destroy]
+    before_action :find_tomato, only: %i[show update destroy]
 
     # GET /api/tomatoes
     def index
       @tomatoes = current_user.tomatoes
       @tomatoes = @tomatoes.after(from) if from
       @tomatoes = @tomatoes.before(to) if to
-      @tomatoes = @tomatoes.order_by([[:created_at, :desc], [:_id, :desc]]).page params[:page]
+      @tomatoes = @tomatoes.order_by([%i[created_at desc], %i[_id desc]]).page params[:page]
 
       render json: Presenter::Tomatoes.new(@tomatoes)
     end

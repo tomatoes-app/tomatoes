@@ -16,7 +16,7 @@ module ApplicationHelper
   end
 
   def content_for_user(user, &block)
-    capture(&block) if current_user && current_user.id == user.id
+    capture(&block) if current_user&.id == user.id
   end
 
   def money(number, unit)

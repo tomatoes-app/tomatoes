@@ -36,7 +36,7 @@ namespace :tomatoes do
   end
 
   # New release
-  task new_release: [:start_release, :update_application, :generate_manifest, :bump_version, :finish_release] do |_t, _args|
+  task new_release: %i[start_release update_application generate_manifest bump_version finish_release] do |_t, _args|
     puts "New release v. #{version} started"
   end
 
@@ -56,7 +56,7 @@ namespace :tomatoes do
     "Use this task to tag a new version of the app and to deploy it.\n" \
     "Example 1: 'rake tomatoes:deploy'\n" \
     "Example 2: 'rake tomatoes:deploy VERSION=0.6'"
-  task deploy: [:test, :new_release, :push] do
+  task deploy: %i[test new_release push] do
     puts "Deployment of version #{version} finished"
   end
 

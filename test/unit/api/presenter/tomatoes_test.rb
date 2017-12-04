@@ -10,7 +10,7 @@ module Api
         tomato.save!
         @user.tomatoes.create!(tag_list: 'one, two')
 
-        @tomatoes = @user.tomatoes.order_by([[:created_at, :desc]]).page
+        @tomatoes = @user.tomatoes.order_by([%i[created_at desc]]).page
       end
 
       teardown do

@@ -1,17 +1,17 @@
 module UsersParams
   def resource_params
     params.permit(
-      user: [
-        :name,
-        :email,
-        :image,
-        :time_zone,
-        :color,
-        :work_hours_per_day,
-        :average_hourly_rate,
-        :currency,
-        :volume,
-        :ticking
+      user: %i[
+        name
+        email
+        image
+        time_zone
+        color
+        work_hours_per_day
+        average_hourly_rate
+        currency
+        volume
+        ticking
       ]
     ).require(:user)
   end

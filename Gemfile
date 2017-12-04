@@ -76,6 +76,6 @@ end
 group :development, :test do
   gem 'byebug'
   gem 'pry'
-  gem 'rubocop', '~> 0.47.0', require: false
+  gem 'rubocop', '~> 0.51.0', require: false
   gem 'test-unit', '~> 3.0'
 end

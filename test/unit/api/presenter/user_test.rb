@@ -41,7 +41,7 @@ module Api
                        email: 'giovanni@yeah-right.com',
                        created_at: @user.created_at,
                        updated_at: @user.updated_at
-                     }, presenter.as_json.select { |k, _| [:id, :name, :email, :created_at, :updated_at].include?(k) })
+                     }, presenter.as_json.select { |k, _| %i[id name email created_at updated_at].include?(k) })
       end
 
       test '#as_json should include only basic auth data' do

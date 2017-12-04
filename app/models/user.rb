@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 class User
   include Mongoid::Document
   include Mongoid::Timestamps
@@ -46,12 +44,12 @@ class User
   validates :average_hourly_rate, numericality: { greater_than: 0, allow_blank: true }
 
   embeds_many :authorizations
-  has_many :tomatoes
-  has_many :projects
-  has_one :daily_score, inverse_of: :user, foreign_key: :uid
-  has_one :weekly_score, inverse_of: :user, foreign_key: :uid
-  has_one :monthly_score, inverse_of: :user, foreign_key: :uid
-  has_one :overall_score, inverse_of: :user, foreign_key: :uid
+  has_many :tomatoes, dependent: :nullify
+  has_many :projects, dependent: :nullify
+  has_one :daily_score, inverse_of: :user, foreign_key: :uid, dependent: :nullify
+  has_one :weekly_score, inverse_of: :user, foreign_key: :uid, dependent: :nullify
+  has_one :monthly_score, inverse_of: :user, foreign_key: :uid, dependent: :nullify
+  has_one :overall_score, inverse_of: :user, foreign_key: :uid, dependent: :nullify
 
   # TODO: this could be a composite index
   # TODO: this should be a unique index (unique: true)
@@ -115,8 +113,8 @@ class User
   def omniauth_attributes(auth)
     attributes = self.class.omniauth_attributes(auth)
 
-    [:name, :email].each do |attribute|
-      attributes.delete(attribute) if send(attribute) && !send(attribute).empty?
+    %i[name email].each do |attribute|
+      attributes.delete(attribute) if send(attribute).present?
     end
 
     attributes
@@ -149,7 +147,7 @@ class User
 
   def color
     color_value = self[:color]
-    color_value && !color_value.empty? ? color_value : User::DEFAULT_COLOR
+    color_value.present? ? color_value : User::DEFAULT_COLOR
   end
 
   def volume
@@ -164,7 +162,7 @@ class User
 
   def currency
     currency_value = self[:currency]
-    currency_value && !currency_value.empty? ? currency_value : User::DEFAULT_CURRENCY
+    currency_value.present? ? currency_value : User::DEFAULT_CURRENCY
   end
 
   def nickname
@@ -173,7 +171,7 @@ class User
 
   def image_file
     image_value = self[:image] || authorizations.first.try(:image)
-    image_value && !image_value.empty? ? image_value : User::DEFAULT_IMAGE_FILE
+    image_value.present? ? image_value : User::DEFAULT_IMAGE_FILE
   end
 
   def time_zone
@@ -189,7 +187,7 @@ class User
   end
 
   def tomatoes_counters
-    Hash[[:day, :week, :month].map do |time_period|
+    Hash[%i[day week month].map do |time_period|
       [time_period, tomatoes_counter(time_period)]
     end]
   end

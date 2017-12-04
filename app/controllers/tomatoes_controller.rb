@@ -1,18 +1,18 @@
 class TomatoesController < ApplicationController
   include TomatoesParams
 
-  before_action :authenticate_user!, except: [:by_day, :by_hour]
-  before_action :find_user, only: [:by_day, :by_hour]
-  before_action :find_tomato, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: %i[by_day by_hour]
+  before_action :find_user, only: %i[by_day by_hour]
+  before_action :find_tomato, only: %i[show edit update destroy]
 
   # GET /tomatoes
   # GET /tomatoes.csv
   def index
-    @tomatoes = current_user.tomatoes.order_by([[:created_at, :desc]]).page params[:page]
+    @tomatoes = current_user.tomatoes.order_by([%i[created_at desc]]).page params[:page]
 
     respond_to do |format|
       format.html # index.html.erb
-      format.csv { export_csv(current_user.tomatoes.order_by([[:created_at, :desc]])) }
+      format.csv { export_csv(current_user.tomatoes.order_by([%i[created_at desc]])) }
     end
   end
 
@@ -58,7 +58,7 @@ class TomatoesController < ApplicationController
       if @tomato.save
         format.js do
           @highlight      = @tomato
-          @tomatoes       = current_user.tomatoes.after(Time.zone.now.beginning_of_day).order_by([[:created_at, :desc]])
+          @tomatoes       = current_user.tomatoes.after(Time.zone.now.beginning_of_day).order_by([%i[created_at desc]])
           @tomatoes_count = current_user.tomatoes_counters
           @projects       = @tomatoes.collect(&:projects).flatten.uniq
 

@@ -2,11 +2,11 @@ class ProjectsController < ApplicationController
   include ProjectsParams
 
   before_action :authenticate_user!
-  before_action :find_project, only: [:show, :edit, :update, :destroy]
+  before_action :find_project, only: %i[show edit update destroy]
 
   # GET /projects
   def index
-    @projects = current_user.projects.order_by([[:created_at, :desc]]).page params[:page]
+    @projects = current_user.projects.order_by([%i[created_at desc]]).page params[:page]
   end
 
   # GET /projects/1

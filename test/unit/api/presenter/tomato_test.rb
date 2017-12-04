@@ -34,7 +34,7 @@ module Api
                        id: @tomato_with_tags.id.to_s,
                        created_at: @tomato_with_tags.created_at,
                        updated_at: @tomato_with_tags.updated_at,
-                       tags: %w(one two)
+                       tags: %w[one two]
                      }, presenter.as_json)
       end
     end

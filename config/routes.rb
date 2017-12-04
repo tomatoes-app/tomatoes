@@ -3,10 +3,10 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   namespace :api do
-    resource :session, only: [:create, :destroy]
-    resource :user, only: [:show, :update]
-    resources :tomatoes, only: [:index, :show, :create, :update, :destroy]
-    resources :projects, only: [:index, :show, :create, :update, :destroy]
+    resource :session, only: %i[create destroy]
+    resource :user, only: %i[show update]
+    resources :tomatoes, only: %i[index show create update destroy]
+    resources :projects, only: %i[index show create update destroy]
 
     namespace :leaderboard do
       resource :daily, only: :show
@@ -43,7 +43,7 @@ Rails.application.routes.draw do
 
   resources :tomatoes
 
-  resources :users, only: [:show, :edit, :update, :destroy] do
+  resources :users, only: %i[show edit update destroy] do
     resources :tomatoes, only: [] do
       collection do
         get 'by_day'

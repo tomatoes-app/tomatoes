@@ -94,7 +94,7 @@ module Api
         }
       end
       assert_response :created
-      new_project = @user.reload.projects.order_by([[:created_at, :desc]]).first
+      new_project = @user.reload.projects.order_by([%i[created_at desc]]).first
       assert_equal 'application/json', @response.content_type
       assert_equal Api::Presenter::Project.new(new_project).to_json, @response.body
       assert_match(/#{api_project_path(new_project)}/, @response.headers['Location'])
@@ -133,7 +133,7 @@ module Api
       @project.reload
       assert_equal Api::Presenter::Project.new(@project).to_json, @response.body
       assert_match(/#{api_project_path(@project)}/, @response.headers['Location'])
-      assert_equal %w(three), @project.tags
+      assert_equal %w[three], @project.tags
     end
 
     test 'PATCH /update, given a validation error, it should return an error' do

@@ -3,13 +3,13 @@ module Api
     include ProjectsParams
 
     before_action :authenticate_user!
-    before_action :find_project, only: [:show, :update, :destroy]
+    before_action :find_project, only: %i[show update destroy]
 
     # GET /api/projects
     def index
       @projects = current_user.projects
       @projects = @projects.tagged_with(params[:tag_list].split(',').map(&:strip)) if params[:tag_list]
-      @projects = @projects.order_by([[:created_at, :desc], [:_id, :desc]]).page params[:page]
+      @projects = @projects.order_by([%i[created_at desc], %i[_id desc]]).page params[:page]
 
       render json: Presenter::Projects.new(@projects)
     end
