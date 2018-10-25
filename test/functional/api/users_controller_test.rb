@@ -138,12 +138,12 @@ module Api
       ActiveSupport::TimeZone['Europe/Rome']
     end
 
-    def morning_in(tz)
-      tz.now.change(hour: 10)
+    def morning_in(timezone)
+      timezone.now.change(hour: 10)
     end
 
-    def night_in(tz)
-      tz.now.change(hour: 22)
+    def night_in(timezone)
+      timezone.now.change(hour: 22)
     end
 
     def setup_tz_test

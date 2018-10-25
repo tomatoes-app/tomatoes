@@ -14,9 +14,12 @@ class WelcomeController < ApplicationController
     @tomato = current_user.tomatoes.build
   end
 
+  # rubocop:disable Naming/MemoizedInstanceVariableName
   def daily_tomatoes
-    @tomatoes ||= current_user.tomatoes.after(Time.zone.now.beginning_of_day).order_by([%i[created_at desc]])
+    @tomatoes ||= current_user.tomatoes.after(Time.zone.now.beginning_of_day)
+                              .order_by([%i[created_at desc]])
   end
+  # rubocop:enable Naming/MemoizedInstanceVariableName
 
   def tomatoes_counters
     @tomatoes_count = current_user.tomatoes_counters

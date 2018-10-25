@@ -12,6 +12,7 @@ module Api
 
     def current_user
       return unless auth_token
+
       @current_user ||= User.find_by_token(auth_token)
     end
 

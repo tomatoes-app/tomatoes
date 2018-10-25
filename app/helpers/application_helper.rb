@@ -8,10 +8,10 @@ module ApplicationHelper
       [1000, :year]
     ].map do |divider, name|
       next unless secs.positive?
+
       secs, n = secs.divmod(divider)
-      if n.to_i.positive?
-        I18n.t("helpers.precise_distance_of_time_in_words.#{name}", count: n.to_i)
-      end
+
+      I18n.t("helpers.precise_distance_of_time_in_words.#{name}", count: n.to_i) if n.to_i.positive?
     end.compact.reverse.join(', ')
   end
 

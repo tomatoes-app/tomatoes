@@ -7,7 +7,10 @@
 # versions of RuboCop, may require this file to be generated again.
 
 AllCops:
-  TargetRubyVersion: 2.3
+  TargetRubyVersion: 2.4
+
+  Exclude:
+    - bin/*
 
 # Offense count: 97
 # Cop supports --auto-correct.
