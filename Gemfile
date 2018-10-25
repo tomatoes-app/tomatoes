@@ -1,13 +1,13 @@
 source 'http://rubygems.org'
 ruby '2.4.5'
 
-gem 'rails', '~> 5.1'
+gem 'rails', '~> 5.1.6'
 
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
+  gem 'mini_racer'
   gem 'sass-rails', '>= 3.2'
-  gem 'therubyracer'
   gem 'uglifier', '>= 1.0.3'
 
   # Upload assets to AWS S3
@@ -23,7 +23,7 @@ gem 'jquery-rails'
 gem 'http_accept_language'
 
 # Mongo
-gem 'mongoid'
+gem 'mongoid', '~> 6.4.2'
 
 # Omniauth
 gem 'omniauth'
@@ -56,6 +56,11 @@ gem 'sucker_punch', '~> 2.0'
 
 gem 'octokit'
 gem 'twitter'
+
+gem 'bootsnap', require: false
+
+# Asset pipeline
+gem 'sprockets', '>= 3.7.2'
 
 group :production do
   gem 'rails_12factor'
