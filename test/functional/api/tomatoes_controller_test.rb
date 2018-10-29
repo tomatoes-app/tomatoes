@@ -1,7 +1,7 @@
 require 'test_helper'
 
 module Api
-  class TomatoesControllerTest < ActionController::TestCase
+  class TomatoesControllerTest < ActionController::TestCase # rubocop:disable Metrics/ClassLength
     setup do
       @user = User.create!(name: 'name', email: 'email@example.com')
       @user.authorizations.create!(provider: 'tomatoes', token: '123')
@@ -73,6 +73,22 @@ module Api
       assert_equal tomatoes_ids.size, 2
       assert_includes tomatoes_ids, @tomato1.id.to_s
       assert_includes tomatoes_ids, @tomato2.id.to_s
+    end
+
+    test 'GET /index, it should return an error for bad from' do
+      get :index, params: { token: '123', from: '2017-20-08T01:00:00Z' }
+      assert_response :bad_request
+      assert_equal 'application/json', @response.content_type
+      parsed_response = JSON.parse(@response.body)
+      assert_equal({ 'error' => 'invalid from: argument out of range' }, parsed_response)
+    end
+
+    test 'GET /index, it should return an error for bad to' do
+      get :index, params: { token: '123', to: '2017-20-08T01:00:00Z' }
+      assert_response :bad_request
+      assert_equal 'application/json', @response.content_type
+      parsed_response = JSON.parse(@response.body)
+      assert_equal({ 'error' => 'invalid to: argument out of range' }, parsed_response)
     end
 
     test 'GET /show, given an invalid token, it should return an error' do

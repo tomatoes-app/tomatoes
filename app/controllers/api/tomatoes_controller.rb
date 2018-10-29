@@ -8,8 +8,13 @@ module Api
     # GET /api/tomatoes
     def index
       @tomatoes = current_user.tomatoes
-      @tomatoes = @tomatoes.after(from) if from
-      @tomatoes = @tomatoes.before(to) if to
+      begin
+        @tomatoes = @tomatoes.after(from) if from
+        @tomatoes = @tomatoes.before(to) if to
+      rescue ArgumentError => bad_arg
+        render status: :bad_request, json: { error: bad_arg.message }
+        return
+      end
       @tomatoes = @tomatoes.order_by([%i[created_at desc], %i[_id desc]]).page params[:page]
 
       render json: Presenter::Tomatoes.new(@tomatoes)
@@ -51,10 +56,14 @@ module Api
 
     def from
       @from ||= Time.zone.parse(params[:from].to_s)
+    rescue ArgumentError => err
+      raise(ArgumentError, "invalid from: #{err.message}")
     end
 
     def to
       @to ||= Time.zone.parse(params[:to].to_s)
+    rescue ArgumentError => err
+      raise(ArgumentError, "invalid to: #{err.message}")
     end
 
     def find_tomato
