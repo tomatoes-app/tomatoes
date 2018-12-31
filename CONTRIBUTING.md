@@ -8,7 +8,7 @@ If you find what looks like a bug:
 If you want to contribute an enhancement or a fix:
 
 1. [Fork the project](https://help.github.com/articles/fork-a-repo) on github.
-1. [Create a topic branch](http://learn.github.com/p/branching.html).
+1. [Create a topic branch](https://help.github.com/articles/about-branches/).
 1. Setup the project with [docker-compose](https://docs.docker.com/compose/) by running `docker-compose up`
 1. If you need, you can launch a rails console with  `docker-compose exec web rails c`
 1. Make your changes and adds/updates relevant tests.
