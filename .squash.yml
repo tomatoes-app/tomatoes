@@ -1,0 +1,3 @@
+deployments:
+  default:
+    port_forwarding: 3000:3000
