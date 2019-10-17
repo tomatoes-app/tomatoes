@@ -15,7 +15,7 @@ group :assets do
   gem 'fog-aws'
 end
 
-gem 'bootstrap-sass', '~> 3.3.6'
+gem 'bootstrap-sass', '~> 3.4.1'
 gem 'bootstrap-social-rails'
 gem 'bootstrap_form'
 gem 'jquery-rails'
