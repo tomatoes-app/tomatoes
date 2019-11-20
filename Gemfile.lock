@@ -89,7 +89,7 @@ GEM
     execjs (2.7.0)
     faraday (0.12.2)
       multipart-post (>= 1.2, < 3)
-    ffi (1.9.18)
+    ffi (1.11.2)
     fog-aws (2.0.0)
       fog-core (~> 1.38)
       fog-json (~> 1.0)
