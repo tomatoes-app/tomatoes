@@ -16,13 +16,13 @@
           <li><%= link_to t('sign_out'), signout_path, method: :delete %></li>
         <% else %>
           <li>
-            <%= link_to signin_path(Authorization::PROVIDER_GITHUB) do %>
+            <%= link_to signin_path(Authorization::PROVIDER_GITHUB), method: :post do %>
               <%= image_tag('github.png', width: 24) %>
               <%= t('signin_with.github') %>
             <% end %>
           </li>
           <li>
-            <%= link_to signin_path(Authorization::PROVIDER_TWITTER) do %>
+            <%= link_to signin_path(Authorization::PROVIDER_TWITTER), method: :post do %>
               <%= image_tag('twitter.png', width: 24) %>
               <%= t('signin_with.twitter') %>
             <% end %>

@@ -17,11 +17,11 @@
   <% else %>
     <div class="intro">
       <p>
-        <%= link_to signin_path(Authorization::PROVIDER_GITHUB), class: 'btn btn-lg btn-social btn-github' do %>
+        <%= link_to signin_path(Authorization::PROVIDER_GITHUB), method: :post, class: 'btn btn-lg btn-social btn-github' do %>
           <span class="fa fa-github"></span> <%= t('signin_with.github') %>
         <% end %>
 
-        <%= link_to signin_path(Authorization::PROVIDER_TWITTER), class: 'btn btn-lg btn-social btn-twitter' do %>
+        <%= link_to signin_path(Authorization::PROVIDER_TWITTER), method: :post, class: 'btn btn-lg btn-social btn-twitter' do %>
           <span class="fa fa-twitter"></span> <%= t('signin_with.twitter') %>
         <% end %>
       </p>
