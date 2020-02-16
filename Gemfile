@@ -1,5 +1,5 @@
 source 'http://rubygems.org'
-ruby '2.4.2'
+ruby '2.4.4'
 
 gem 'rails', '~> 5.1'
 
@@ -27,8 +27,10 @@ gem 'mongoid'
 
 # Omniauth
 gem 'omniauth'
-gem 'omniauth-github'
 gem 'omniauth-twitter'
+# Fix authentication using query params deprecation
+# See https://github.com/omniauth/omniauth-github/pull/84
+gem 'omniauth-github', '>= 1.4'
 
 # Puma
 gem 'puma'
