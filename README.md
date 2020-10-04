@@ -2,18 +2,25 @@
 [![OpenCollective](https://opencollective.com/tomatoes/backers/badge.svg)](#backers)
 [![OpenCollective](https://opencollective.com/tomatoes/sponsors/badge.svg)](#sponsors)
 
+
 Try it for free at [http://tomato.es](http://tomato.es "Tomatoes").
 
+
 Support the project at [backerpass.com/tomatoes](https://backerpass.com/tomatoes).
+Take interest and support it will definetly make you to learn new things.
 
 ## Why?
 
-1. [Pomodoro Technique](http://www.pomodorotechnique.com)<sup>®</sup> helps you to get things done.
-1. I need it to measure pomodoros in a fast and easy way.
-1. I want to get motivated by challenging my friends.
 
-## Backers
+1.  [Pomodoro Technique](http://www.pomodorotechnique.com)<sup>®</sup> helps you to get things done.
+1.  I need it to Measure pomodoros in a fast and easy way.
+1.  I want to get Motivated by challenging my friends.
+1.  I want to feel my friends jeolous from my programmes.
+
+##   Backers
+
 Support us with a monthly donation and help us continue our activities. [[Become a backer](https://opencollective.com/tomatoes#backer)]
+
 
 <a href="https://opencollective.com/tomatoes/backer/0/website" target="_blank"><img src="https://opencollective.com/tomatoes/backer/0/avatar.svg"></a>
 <a href="https://opencollective.com/tomatoes/backer/1/website" target="_blank"><img src="https://opencollective.com/tomatoes/backer/1/avatar.svg"></a>
@@ -46,8 +53,8 @@ Support us with a monthly donation and help us continue our activities. [[Become
 <a href="https://opencollective.com/tomatoes/backer/28/website" target="_blank"><img src="https://opencollective.com/tomatoes/backer/28/avatar.svg"></a>
 <a href="https://opencollective.com/tomatoes/backer/29/website" target="_blank"><img src="https://opencollective.com/tomatoes/backer/29/avatar.svg"></a>
 
-## Sponsors
-Become a sponsor and get your logo on our README on Github with a link to your site. [[Become a sponsor](https://opencollective.com/tomatoes#sponsor)]
+##   Sponsors
+ Become a sponsor and get your logo on our README on Github with a link to your site. [[Become a sponsor](https://opencollective.com/tomatoes#sponsor)]
 
 <a href="https://opencollective.com/tomatoes/sponsor/0/website" target="_blank"><img src="https://opencollective.com/tomatoes/sponsor/0/avatar.svg"></a>
 <a href="https://opencollective.com/tomatoes/sponsor/1/website" target="_blank"><img src="https://opencollective.com/tomatoes/sponsor/1/avatar.svg"></a>
@@ -80,13 +87,32 @@ Become a sponsor and get your logo on our README on Github with a link to your s
 <a href="https://opencollective.com/tomatoes/sponsor/28/website" target="_blank"><img src="https://opencollective.com/tomatoes/sponsor/28/avatar.svg"></a>
 <a href="https://opencollective.com/tomatoes/sponsor/29/website" target="_blank"><img src="https://opencollective.com/tomatoes/sponsor/29/avatar.svg"></a>
 
+
 ## License
 
 Tomatoes is released under the [MIT license](https://raw.github.com/tomatoes-app/tomatoes/develop/MIT-LICENSE).
 
+
 ## Status
+
 
 [![Build Status](https://travis-ci.org/tomatoes-app/tomatoes.svg?branch=master)](https://travis-ci.org/tomatoes-app/tomatoes)
 [![Code Climate](https://codeclimate.com/github/tomatoes-app/tomatoes/badges/gpa.svg)](https://codeclimate.com/github/tomatoes-app/tomatoes)
 [![Coverage Status](https://coveralls.io/repos/github/tomatoes-app/tomatoes/badge.svg)](https://coveralls.io/github/tomatoes-app/tomatoes)
 [![Dependency Status](https://gemnasium.com/badges/github.com/tomatoes-app/tomatoes.svg)](https://gemnasium.com/github.com/tomatoes-app/tomatoes)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
