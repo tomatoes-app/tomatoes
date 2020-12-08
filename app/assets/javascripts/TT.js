@@ -162,7 +162,7 @@ var TT = function() {
   var start = function(mins, callback) {
     log("start timer for " + mins + " mins");
 
-    var duration = Math.round(mins*60);
+    var duration = Math.round(mins*3600);
     var startDate = new Date();
     var pausedDate = new Date();
     var timer = duration;
