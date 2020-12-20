@@ -1,0 +1,15 @@
+[Unit]
+Description=Tomatoes
+After=network.target
+
+[Service]
+User=hoffmanc
+ExecStart=docker-compose -f /home/hoffmanc/src/tomatoes/docker-compose.yml up
+WorkingDirectory=/home/hoffmanc/src/tomatoes
+Restart=always
+RestartSec=10
+StartLimitInterval=20
+StartLimitBurst=5
+
+[Install]
+WantedBy=default.target
