@@ -1,5 +1,5 @@
-source 'http://rubygems.org'
-ruby '2.4.4'
+source 'https://rubygems.org'
+ruby '2.4.10'
 
 gem 'rails', '~> 5.1'
 
@@ -51,7 +51,7 @@ gem 'exception_notification'
 
 # Static pages
 gem 'high_voltage'
-gem 'rdiscount'
+gem 'rdiscount', '~> 2.2.0.2'
 
 # Async tasks
 gem 'sucker_punch', '~> 2.0'

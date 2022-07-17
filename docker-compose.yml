@@ -6,10 +6,11 @@ services:
     - 27017:27017
 
   web:
+    platform: linux/amd64
     build: .
     volumes:
       - .:/tomatoes
-    entrypoint: ./docker-entrypoint.sh 
+    entrypoint: ./docker-entrypoint.sh
     ports:
       - 3000:3000
     depends_on:
