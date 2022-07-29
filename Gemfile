@@ -81,3 +81,7 @@ group :development, :test do
   gem 'rubocop', '~> 0.51.0', require: false
   gem 'test-unit', '~> 3.0'
 end
+
+# Security upgrades
+gem 'actionview', '>= 5.1.6.2'
+gem "nokogiri", ">= 1.10.4"

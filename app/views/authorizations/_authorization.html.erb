@@ -11,14 +11,14 @@
       <div class="media-body">
         <p><%= link_to authorization.url, authorization.url %></p>
         <p>
-          <%= link_to signin_path(provider), class: ['btn', 'btn-social', "btn-#{provider}"] do %>
+          <%= link_to signin_path(provider), method: :post, class: ['btn', 'btn-social', "btn-#{provider}"] do %>
             <span class="fa fa-<%= provider %>"></span> <%= t("reconnect_with.#{provider}") %>
           <% end %>
         </p>
       </div>
     </div>
   <% else %>
-    <%= link_to signin_path(provider), class: ['btn', 'btn-social', "btn-#{provider}"] do %>
+    <%= link_to signin_path(provider), method: :post, class: ['btn', 'btn-social', "btn-#{provider}"] do %>
       <span class="fa fa-<%= provider %>"></span> <%= t("connect_with.#{provider}") %>
     <% end %>
   <% end %>
