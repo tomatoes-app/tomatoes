@@ -14,8 +14,10 @@ services:
       - /tomatoes/tmp
     entrypoint: ./docker-entrypoint.sh
     ports:
-      - 3000:3000
+      - 4000:3000
     depends_on:
       - mongo
     environment:
       - DO_HOST=mongo
+      - DURATION=1500
+      - BREAK_DURATION=300
