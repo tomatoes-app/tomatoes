@@ -8,3 +8,5 @@ config/twitter.yml
 .DS_Store
 public/assets
 coverage/
+docker-compose.override.yml
+node_modules/

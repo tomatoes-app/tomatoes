@@ -1,4 +1,4 @@
-if Rails.env.production?
+if ENV.has_key? 'GITHUB_CLIENT_ID'
   GITHUB = {
     'client_id' => ENV['GITHUB_CLIENT_ID'],
     'client_secret' => ENV['GITHUB_CLIENT_SECRET']

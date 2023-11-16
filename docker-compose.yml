@@ -1,7 +1,7 @@
 version: '3'
 services:
   mongo:
-    image: mongo
+    image: mongo:4
     ports:
     - 27017:27017
 
@@ -10,10 +10,14 @@ services:
     build: .
     volumes:
       - .:/tomatoes
+    tmpfs:
+      - /tomatoes/tmp
     entrypoint: ./docker-entrypoint.sh
     ports:
-      - 3000:3000
+      - 4000:3000
     depends_on:
       - mongo
     environment:
       - DO_HOST=mongo
+      - DURATION=1500
+      - BREAK_DURATION=300
